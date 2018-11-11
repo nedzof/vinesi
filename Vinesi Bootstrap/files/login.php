@@ -7,18 +7,18 @@
  */
 
 //Php Login in form
-$connection = mysqli_connect("localhost","root","root","testdb");
+$connection = mysqli_connect("localhost","nedzo","huso","vinesidb");
 if (isset($_POST['btnSubmit'])){
     $txtEmail = $_POST['txtEmail'];
     $txtPass = $_POST['txtPass'];
 
-    $query = "SELECT * FROM usertable WHERE EMAIL='{$txtEmail}' AND userPassword='{$txtPass}'";
+    $query = "SELECT * FROM usertable WHERE userEmail='{$txtEmail}' AND userPassword='{$txtPass}'";
     $result = mysqli_query($connection,$query);
 
     if($result=mysqli_fetch_array($result)){
         echo "<script>
             alert(\"Login Successful\");
-        </script>";
+        </script>";§
     } else{
 
         echo "<script>
