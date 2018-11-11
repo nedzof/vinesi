@@ -6,6 +6,7 @@
  * Time: 09:49
  */
 
+//Php Login in form
 $connection = mysqli_connect("localhost","root","root","testdb");
 if (isset($_POST['btnSubmit'])){
     $txtEmail = $_POST['txtEmail'];
