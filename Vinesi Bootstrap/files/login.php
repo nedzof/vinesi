@@ -7,7 +7,7 @@
  */
 
 //Php Login in form
-$connection = mysqli_connect("localhost","nedzo","huso","vinesidb");
+$connection = mysqli_connect("localhost","root","root","vinesidb");
 if (isset($_POST['btnSubmit'])){
     $txtEmail = $_POST['txtEmail'];
     $txtPass = $_POST['txtPass'];
@@ -18,7 +18,7 @@ if (isset($_POST['btnSubmit'])){
     if($result=mysqli_fetch_array($result)){
         echo "<script>
             alert(\"Login Successful\");
-        </script>";§
+        </script>";
     } else{
 
         echo "<script>
