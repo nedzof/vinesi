@@ -7,8 +7,8 @@
  */
 
 //Php Login in form
-$connection = mysqli_connect("localhost","root","root","vinesidb");
-if (isset($_POST['btnSubmit'])){
+$connection = mysqli_connect("localhost","root","","vinesidb");
+if (isset($_POST['submit'])){
     $txtEmail = $_POST['txtEmail'];
     $txtPass = $_POST['txtPass'];
 
