@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2018 at 03:52 PM
+-- Generation Time: Nov 12, 2018 at 04:00 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -60,6 +60,7 @@ CREATE TABLE `invoicetable` (
 
 CREATE TABLE `leasetable` (
   `leaseMonthlyRent` decimal(7,2) NOT NULL,
+  `leaseUtilities` decimal(7,2) DEFAULT NULL,
   `leasePaymentMethod` varchar(45) DEFAULT NULL,
   `leaseDeposit` enum('Half','Full','Double') DEFAULT NULL,
   `leaseStart` date DEFAULT NULL,
