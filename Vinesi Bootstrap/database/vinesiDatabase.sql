@@ -109,7 +109,6 @@ CREATE TABLE `tenanttable` (
 
 CREATE TABLE `usertable` (
   `userID` int(11) NOT NULL,
-  `userFirstName` varchar(200) DEFAULT NULL,
   `userLastName` varchar(200) DEFAULT NULL,
   `userEmail` varchar(255) NOT NULL,
   `userPassword` varchar(200) NOT NULL,

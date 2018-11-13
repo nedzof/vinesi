@@ -40,7 +40,8 @@ if (isset($_POST['submit'])) {
                 } else {
                     //Hashing password
                     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-                    $sql = "INSERT INTO usertable () VALUES ()"
+                    $sql = "INSERT INTO usertable (userFirstName, userLastName, userEmail, userPassword, userStatus) 
+                        VALUES ($last);
                 }
             }
         }
