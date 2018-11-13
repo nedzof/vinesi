@@ -113,11 +113,6 @@ CREATE TABLE `usertable` (
   `userLastName` varchar(200) DEFAULT NULL,
   `userEmail` varchar(255) NOT NULL,
   `userPassword` varchar(200) NOT NULL,
-  `userAddress` varchar(200) DEFAULT NULL,
-  `userAddressNumber` int(11) DEFAULT NULL,
-  `userPostalCode` int(11) DEFAULT NULL,
-  `userCity` varchar(200) DEFAULT NULL,
-  `userCounty` varchar(200) DEFAULT NULL,
   `userStatus` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
