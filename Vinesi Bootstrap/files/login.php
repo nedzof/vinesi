@@ -19,10 +19,14 @@ if (isset($_POST['submit'])){
         echo "<script>
             alert(\"Login Successful\");
         </script>";
+
+
     } else{
 
         echo "<script>
             alert(\"Login Failed\");
         </script>";
+    //    header("Location: ../login.php");
+     //   exit();
     }
 }
