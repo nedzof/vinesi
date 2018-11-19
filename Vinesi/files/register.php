@@ -19,6 +19,7 @@ if (isset($_POST['submit'])) {
     if(empty($first) || empty($last) || empty($email) || empty($uid) || empty($password)){
         header("Location: /register.php?register=empty");
         exit();
+
     } else{
         if (!preg_match("/^[a-zA-Z]*$/",$first) || !preg_match("/^[a-zA-Z]*$",$last)){
             header("Location: /register.php?register=invalid");
