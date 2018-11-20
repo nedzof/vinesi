@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
                 exit();
             } else{
 
-                $sql = "SELECT * FROM usertable WHERE userLastName='$last'";
+                $sql = "SELECT * FROM 'usertable' WHERE userLastName='$last'";
                 $result = mysqli_query($connection, $sql);
                 $resultcheck = mysqli_num_rows($result);
 
