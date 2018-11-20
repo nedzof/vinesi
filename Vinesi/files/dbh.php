@@ -9,6 +9,6 @@
 $dbServerName = "localhost";
 $dbUserName = "root";
 $dbPassword = "";
-$dbName = "vinesidb";
+$dbName = "vinesiDatabase";
 
 $connection = mysqli_connect($dbServerName,$dbUserName,$dbPassword,$dbName);

@@ -21,6 +21,7 @@ if (isset($_POST['submit'])) {
         exit();
 
     } else{
+        //Check format first and last name
         if (!preg_match("/^[a-zA-Z]*$/",$first) || !preg_match("/^[a-zA-Z]*$",$last)){
             header("Location: /register.php?register=invalid");
             exit();
@@ -31,6 +32,7 @@ if (isset($_POST['submit'])) {
                 header("Location: /register.php?register=invalidEmail");
                 exit();
             } else{
+
                 $sql = "SELECT * FROM usertable WHERE userLastName='$last'";
                 $result = mysqli_query($connection, $sql);
                 $resultcheck = mysqli_num_rows($result);
