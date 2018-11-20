@@ -52,5 +52,6 @@ if (isset($_POST['submit'])) {
 
 } else {
    // header("Location: /register.php");
+    echo "Bravo";
     exit();
 }
