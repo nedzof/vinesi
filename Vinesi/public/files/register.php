@@ -8,7 +8,7 @@
 
 if (isset($_POST['submit'])) {
 
-    include_once 'dbh.php';
+    require_once ('dbh.php');
 
     $first = mysqli_real_escape_string($connection, $_POST['first']);
     $last = mysqli_real_escape_string($connection, $_POST['first']);

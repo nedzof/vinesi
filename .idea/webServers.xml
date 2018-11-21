@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="a2e5c9d2-3bae-4457-9c78-303b2d97c555" name="XAMPP_Vinesi" url="http://localhost">
-        <fileTransfer port="0" accessType="LOCAL" />
+        <fileTransfer port="0" mountedRoot="C:\xampp\htdocs\Vinesiproject" accessType="MOUNT" />
       </webServer>
     </option>
   </component>
