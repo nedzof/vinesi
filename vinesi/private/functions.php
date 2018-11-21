@@ -23,9 +23,3 @@ function url_for ($script_path) {
     $_wwwRoot = changeBackslash($_wwwRoot);
     return $_wwwRoot;
 }
-
-echo 'Here is from function.php:   ';
-echo "<br>";
-
-echo (url_for('files/home.php'));
-echo "<br>";

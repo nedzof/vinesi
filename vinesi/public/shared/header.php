@@ -3,6 +3,7 @@
        $page_title = 'Admin Area'; }
  ?>
 
+<?php require_once ('../../private/functions.php');?>
 
 <!DOCTYPE html>
 <html>
@@ -33,7 +34,6 @@
         <div class="container">
             <a class="navbar-brand"
                href="<?php
-               include ('../../private/functions.php');
                echo (url_for('/files/home.php'));?>" style="color: #17a2b8;font-size: 32px;font-weight: 300;">
                 <i class="fa fa-ravelry"></i>Vinesi
             </a>
