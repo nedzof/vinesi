@@ -8,6 +8,11 @@
 
 include ('initialize.php');
 
+function changeBackslash ($str){
+    $newPath = str_replace('\\', '/', $str);
+    return $newPath;
+}
+
 function url_for ($script_path) {
     //adding leading / if not here
     if ($script_path[0] != '/'){
@@ -15,9 +20,12 @@ function url_for ($script_path) {
     }
 
     $_wwwRoot = WWW_ROOT . $script_path;
+    $_wwwRoot = changeBackslash($_wwwRoot);
     return $_wwwRoot;
 }
 
-echo WWW_ROOT;
-echo 'Here is from function.php';
-echo url_for('files/home.php');
+echo 'Here is from function.php:   ';
+echo "<br>";
+
+echo (url_for('files/home.php'));
+echo "<br>";

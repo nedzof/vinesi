@@ -3,6 +3,7 @@
        $page_title = 'Admin Area'; }
  ?>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,8 +30,12 @@
 <body>
 <div>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean">
-        <div class="container"><a class="navbar-brand" href="<?php echo url_for('files/home.php');?>"
-                                  style="color: #17a2b8;font-size: 32px;font-weight: 300;"><i class="fa fa-ravelry"></i>Vinesi</a>
+        <div class="container">
+            <a class="navbar-brand"
+               href="<?php echo /*(url_for('/files/home.php'));*/ '../files/home.php'?>" style="color: #17a2b8;font-size: 32px;font-weight: 300;">
+                <i class="fa fa-ravelry"></i>Vinesi
+            </a>
+
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span>
                 <span
                         class="navbar-toggler-icon"></span></button>
