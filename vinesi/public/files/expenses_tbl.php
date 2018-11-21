@@ -36,21 +36,19 @@
                 <div class="table-responsive">
                     <?php
 
-                    $dbServerName = "localhost";
-                    $dbUserName = "root";
-                    $dbPassword = "";
-                    $dbName = "vinesidatabase";
-
-                    $conn = mysqli_connect($dbServerName,$dbUserName,$dbPassword,$dbName);
-
-                    // Check connection
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
-
-
+                    include('../files/dbh.php');
                     $sql = "SELECT * FROM expensetable";
                     $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        // output data of each row
+                        while($row = $result->fetch_assoc()) {
+                            echo "id: " . $row["expenseID"]. " - Name: " . $row["expenseType"]."<br>";
+                        }
+                    } else {
+                        echo "0 results";
+                    }
+                    $conn->close();
 
                     ?>
                     <table class="striped">

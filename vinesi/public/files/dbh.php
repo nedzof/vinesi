@@ -19,16 +19,6 @@ if ($conn->connect_error) {
 }
 
 
-$sql = "SELECT * FROM usertable";
-$result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo "id: " . $row["userID"]. " - Name: " . $row["userLastName"]."<br>";
-    }
-} else {
-    echo "0 results";
-}
-$conn->close();
+
 ?>
