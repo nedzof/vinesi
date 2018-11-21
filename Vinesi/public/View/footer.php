@@ -20,6 +20,7 @@
                 </div>
                 <div class="col-lg-3 item social"><a href="#"><i class="fa fa-ravelry"></i></a>
                     <p class="copyright">Vinesi © 2018</p>
+                 <!--   &copy; <?php echo date('Y'); ?> -->
                 </div>
             </div>
         </div>
