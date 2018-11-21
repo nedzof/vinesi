@@ -25,7 +25,7 @@
 <body>
 <div>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean">
-        <div class="container"><a class="navbar-brand" href="<?php echo WWW_ROOT . '/files/home.php'?>"
+        <div class="container"><a class="navbar-brand" href="<?php echo '../files/home.php'?>"
                                   style="color: #17a2b8;font-size: 32px;font-weight: 300;"><i class="fa fa-ravelry"></i>Vinesi</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
                         class="navbar-toggler-icon"></span></button>
