@@ -53,7 +53,7 @@
                                         echo "<td>" . $row['expenseAmount'] . "</td>";
                                         echo "<td>" . $row['expenseStartDate'] . "</td>";
                                         echo "<td>" . $row['expensePaidDate'] . "</td>";
-                                        echo "<td><a class='action' href=''>PDF</a> </td>";
+                                        echo "<td> <a class="action" href="<?php echo url_for('/staff/subjects/show.php?id=' . $row['expenseID']); ?>">View</a></td>
                                         echo "<td>  <button class=\"btn btn-primary\" type=\"button\" style=\"margin-right: 35px;background-color: #17a2b8;\"><i
                     class=\"icon ion-printer\"></i></button></td>";
                                         echo "<td>       <button
@@ -90,11 +90,3 @@
     </body>
 
     </html>
-
-<?php
-/**
- * Created by PhpStorm.
- * User: Nedzo
- * Date: 06.11.2018
- * Time: 09:52
- */
