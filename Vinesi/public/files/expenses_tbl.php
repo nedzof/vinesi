@@ -23,18 +23,8 @@
 </head>
 
 <body>
-<nav class="navbar navbar-light navbar-expand-md navigation-clean">
-    <div class="container"><a class="navbar-brand" href="#" style="color: #17a2b8;font-size: 32px;font-weight: 300;"><i class="fa fa-ravelry"></i>Vinesi</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-        <div
-            class="collapse navbar-collapse" id="navcol-1">
-            <ul class="nav navbar-nav ml-auto">
-                <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Menu&nbsp;</a>
-                    <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<?php include_once ('../shared/header.php'); ?>
+
 <div class="intro">
     <h2 class="text-center" style="margin-bottom: 40px;padding-top: 40px;"><strong>Expenses</strong></h2>
     <p class="text-center" style="color: #a2a8ae;">Overview of all expenses during a weeks time.</p>
@@ -156,33 +146,8 @@
     <button
         class="btn btn-primary" type="button" style="background-color: #17a2b8;"><i class="icon ion-ios-email"></i></button>
 </div>
-<div class="footer-clean">
-    <footer>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-sm-4 col-md-3 item">
-                    <h3>Services</h3>
-                    <ul>
-                        <li><a href="#">Web design</a></li>
-                        <li><a href="#">Development</a></li>
-                        <li><a href="#">Hosting</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-4 col-md-3 item">
-                    <h3>About</h3>
-                    <ul>
-                        <li><a href="#">Company</a></li>
-                        <li><a href="#">Team</a></li>
-                        <li><a href="#">Legacy</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 item social"><a href="#"><i class="fa fa-ravelry"></i></a>
-                    <p class="copyright">Vinesi © 2018</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-</div>
+<?php include "../shared/footer.php"?>
+
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
