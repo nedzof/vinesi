@@ -34,108 +34,46 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Supplier</th>
-                            <th>Category</th>
-                            <th>Recipient</th>
-                            <th>Due Date</th>
-                            <th>Amount Due</th>
-                            <th>Paid</th>
-                            <th>Action</th>
+                    <?php
+
+                    $dbServerName = "localhost";
+                    $dbUserName = "root";
+                    $dbPassword = "";
+                    $dbName = "vinesidatabase";
+
+                    $conn = mysqli_connect($dbServerName,$dbUserName,$dbPassword,$dbName);
+
+                    // Check connection
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+
+
+                    $sql = "SELECT * FROM expensetable";
+                    $result = $conn->query($sql);
+
+                    ?>
+                    <table class="striped">
+                        <tr class="header">
+                            <td>ID</td>
+                            <td>Expense Type</td>
+                            <td>Amount</td>
+                            <td>Start Date</td>
+                            <td>Paid Date</td>
+
                         </tr>
-                        </thead>
-                        <tbody>
-                        <tr style="background-color: #e7f7ed;">
-                            <td>Repair AG, Basel</td>
-                            <td>Reparation</td>
-                            <td>Vinesi AG</td>
-                            <td>27.11.18</td>
-                            <td>£434</td>
-                            <td>£434</td>
-                            <td class="d-flex"><button class="btn btn-info mt-2" type="submit" style="padding: 1px;padding-right: 0px;padding-top: 1px;"></button><button class="btn btn-info mt-2" type="submit" style="margin-right: 2px;"><i class="icon ion-edit"></i></button>
-                                <button
-                                    class="btn btn-info mt-2" type="submit" style="margin-right: 2px;"><i class="icon ion-android-delete"></i></button><button class="btn btn-info mt-2" type="submit" style="margin-right: 2px;margin-left: 0px;"><i class="fa fa-file-pdf-o"></i></button></td>
-                        </tr>
-                        <tr style="background-color: #e7f7ed;">
-                            <td>Oil AG, Oberwil</td>
-                            <td>Oil</td>
-                            <td>Vinesi AG</td>
-                            <td>27.11.18</td>
-                            <td>£356</td>
-                            <td>£356</td>
-                            <td class="d-flex"><button class="btn btn-info mt-2" type="submit" style="padding: 1px;padding-right: 0px;padding-top: 1px;"></button><button class="btn btn-info mt-2" type="submit" style="margin-right: 2px;"><i class="icon ion-edit"></i></button>
-                                <button
-                                    class="btn btn-info mt-2" type="submit" style="margin-right: 2px;"><i class="icon ion-android-delete"></i></button><button class="btn btn-info mt-2" type="submit" style="margin-right: 2px;margin-left: 0px;"><i class="fa fa-file-pdf-o"></i></button></td>
-                        </tr>
-                        <tr style="background-color: #ffe6e6;">
-                            <td>Water AG,Basel</td>
-                            <td>Water</td>
-                            <td>Vinesi AG</td>
-                            <td>27.11.18</td>
-                            <td>£386</td>
-                            <td>£0</td>
-                            <td class="d-flex"><button class="btn btn-info mt-2" type="submit" style="padding: 1px;padding-right: 0px;padding-top: 1px;"></button><button class="btn btn-info mt-2" type="submit" style="margin-right: 2px;"><i class="icon ion-edit"></i></button>
-                                <button
-                                    class="btn btn-info mt-2" type="submit" style="margin-right: 2px;"><i class="icon ion-android-delete"></i></button><button class="btn btn-info mt-2" type="submit" style="margin-right: 2px;margin-left: 0px;"><i class="fa fa-file-pdf-o"></i></button></td>
-                        </tr>
-                        <tr style="background-color: #ffe6e6;">
-                            <td>Electricity AG,Liestal</td>
-                            <td>Electricity</td>
-                            <td>Vinesi AG</td>
-                            <td>27.11.18</td>
-                            <td>£386</td>
-                            <td>£0</td>
-                            <td class="d-flex"><button class="btn btn-info mt-2" type="submit" style="padding: 1px;padding-right: 0px;padding-top: 1px;"></button><button class="btn btn-info mt-2" type="submit" style="margin-right: 2px;"><i class="icon ion-edit"></i></button>
-                                <button
-                                    class="btn btn-info mt-2" type="submit" style="margin-right: 2px;"><i class="icon ion-android-delete"></i></button><button class="btn btn-info mt-2" type="submit" style="margin-right: 2px;margin-left: 0px;"><i class="fa fa-file-pdf-o"></i></button></td>
-                        </tr>
-                        <tr style="background-color: #ffe6e6;">
-                            <td>Victoria Villar</td>
-                            <td>Employees</td>
-                            <td>Vinesi AG</td>
-                            <td>27.11.18</td>
-                            <td>£386</td>
-                            <td>£0</td>
-                            <td class="d-flex"><button class="btn btn-info mt-2" type="submit" style="padding: 1px;padding-right: 0px;padding-top: 1px;"></button><button class="btn btn-info mt-2" type="submit" style="margin-right: 2px;"><i class="icon ion-edit"></i></button>
-                                <button
-                                    class="btn btn-info mt-2" type="submit" style="margin-right: 2px;"><i class="icon ion-android-delete"></i></button><button class="btn btn-info mt-2" type="submit" style="margin-right: 2px;margin-left: 0px;"><i class="fa fa-file-pdf-o"></i></button></td>
-                        </tr>
-                        <tr style="background-color: #ffe6e6;">
-                            <td>Nedzo Fetahovic</td>
-                            <td>Employees</td>
-                            <td>Vinesi AG</td>
-                            <td>27.11.18</td>
-                            <td>£386</td>
-                            <td>£0</td>
-                            <td class="d-flex"><button class="btn btn-info mt-2" type="submit" style="padding: 1px;padding-right: 0px;padding-top: 1px;"></button><button class="btn btn-info mt-2" type="submit" style="margin-right: 2px;"><i class="icon ion-edit"></i></button>
-                                <button
-                                    class="btn btn-info mt-2" type="submit" style="margin-right: 2px;"><i class="icon ion-android-delete"></i></button><button class="btn btn-info mt-2" type="submit" style="margin-right: 2px;margin-left: 0px;"><i class="fa fa-file-pdf-o"></i></button></td>
-                        </tr>
-                        <tr style="background-color: #ffe6e6;">
-                            <td>Sira Tamba</td>
-                            <td>Employees</td>
-                            <td>Vinesi AG</td>
-                            <td>27.11.18</td>
-                            <td>£386</td>
-                            <td>£0</td>
-                            <td class="d-flex"><button class="btn btn-info mt-2" type="submit" style="padding: 1px;padding-right: 0px;padding-top: 1px;"></button><button class="btn btn-info mt-2" type="submit" style="margin-right: 2px;"><i class="icon ion-edit"></i></button>
-                                <button
-                                    class="btn btn-info mt-2" type="submit" style="margin-right: 2px;"><i class="icon ion-android-delete"></i></button><button class="btn btn-info mt-2" type="submit" style="margin-right: 2px;margin-left: 0px;"><i class="fa fa-file-pdf-o"></i></button></td>
-                        </tr>
-                        <tr style="background-color: #ffe6e6;">
-                            <td>Insurance AG</td>
-                            <td>Property Insurance</td>
-                            <td>Vinesi AG</td>
-                            <td>27.11.18</td>
-                            <td>£386</td>
-                            <td>£0</td>
-                            <td class="d-flex"><button class="btn btn-info mt-2" type="submit" style="padding: 1px;padding-right: 0px;padding-top: 1px;"></button><button class="btn btn-info mt-2" type="submit" style="margin-right: 2px;"><i class="icon ion-edit"></i></button>
-                                <button
-                                    class="btn btn-info mt-2" type="submit" style="margin-right: 2px;"><i class="icon ion-android-delete"></i></button><button class="btn btn-info mt-2" type="submit" style="margin-right: 2px;margin-left: 0px;"><i class="fa fa-file-pdf-o"></i></button></td>
-                        </tr>
-                        </tbody>
+                        <?php
+                        while($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>".$row['expenseID']."</td>";
+                            echo "<td>".$row['expenseType']."</td>";
+                            echo "<td>".$row['expenseAmount']."</td>";
+                            echo "<td>".$row['expenseStartDate']."</td>";
+                            echo "<td>".$row['expensePaidDate']."</td>";
+                            echo "</tr>";
+                        }
+
+                        ?>
                     </table>
                 </div>
             </div>
