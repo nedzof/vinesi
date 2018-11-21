@@ -25,7 +25,7 @@
 <body>
 <div>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean">
-        <div class="container"><a class="navbar-brand" href="<?php echo '../files/home.php'?>"
+        <div class="container"><a class="navbar-brand" href="<?php echo WWW_ROOT . '/files/home.php'?>"
                                   style="color: #17a2b8;font-size: 32px;font-weight: 300;"><i class="fa fa-ravelry"></i>Vinesi</a>
             <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
                         class="navbar-toggler-icon"></span></button>
@@ -34,9 +34,10 @@
                 <ul class="nav navbar-nav ml-auto">
                     <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown"
                                             aria-expanded="false" href="#">Menu&nbsp;</a>
-                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">First
-                                Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a
-                                    class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                        <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" role="presentation" href="#">First  Item</a>
+                            <a class="dropdown-item" role="presentation" href="#">Second Item</a>
+                            <a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
                     </li>
                 </ul>
             </div>
