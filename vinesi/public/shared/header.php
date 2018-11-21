@@ -43,7 +43,7 @@
                     class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown"
-                                            aria-expanded="false" href="#">Menu&nbsp;</a>
+                                            aria-expanded="false" href="#" >Menu;</a>
                         <div class="dropdown-menu" role="menu">
                             <a class="dropdown-item" role="menuitem" href="#">First  Item</a>
                             <a class="dropdown-item" role="menuitem" href="#">Second Item</a>

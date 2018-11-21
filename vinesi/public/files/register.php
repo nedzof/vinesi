@@ -61,11 +61,11 @@ if (isset($_POST['submit'])) {
 
     require_once ('dbh.php');
 
-    $first = mysqli_real_escape_string($connection, $_POST['first']);
-    $last = mysqli_real_escape_string($connection, $_POST['first']);
-    $email = mysqli_real_escape_string($connection, $_POST['first']);
-    $uid = mysqli_real_escape_string($connection, $_POST['first']);
-    $password = mysqli_real_escape_string($connection, $_POST['first']);
+    $first = mysqli_real_escape_string($conn, $_POST['first']);
+    $last = mysqli_real_escape_string($conn, $_POST['first']);
+    $email = mysqli_real_escape_string($conn, $_POST['first']);
+    $uid = mysqli_real_escape_string($conn, $_POST['first']);
+    $password = mysqli_real_escape_string($conn, $_POST['first']);
 
     if(empty($first) || empty($last) || empty($email) || empty($uid) || empty($password)){
         header("Location: /register.php?register=empty");
@@ -85,7 +85,7 @@ if (isset($_POST['submit'])) {
             } else{
 
                 $sql = "SELECT * FROM 'usertable' WHERE userLastName='$last'";
-                $result = mysqli_query($connection, $sql);
+                $result = mysqli_query($conn, $sql);
                 $resultcheck = mysqli_num_rows($result);
 
                 if($resultcheck > 0){
@@ -95,7 +95,7 @@ if (isset($_POST['submit'])) {
                     //Hashing password
                     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
                     $sql = "INSERT INTO usertable (userLastName, userEmail, userPassword, userStatus) VALUES ($last, $email, $hashedPassword, 0)";
-                    mysqli_query($connection, $sql);
+                    mysqli_query($conn, $sql);
                     header("Location: /register.php?register=success");
                     exit();
                 }
