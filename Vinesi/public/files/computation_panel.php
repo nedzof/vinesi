@@ -23,7 +23,7 @@
 </head>
 
 <body>
-<?php include_once ('../shared/header.php'); ?>
+<?php include_once (SHARED_PATH . 'header.php'); ?>
 
 <div class="card">
     <div class="justify-content-center align-items-center align-content-center align-self-center intro">

@@ -23,7 +23,10 @@
 </head>
 
 <body>
-<?php include "../shared/header.php"?>
+
+<?php include "../shared/header.php";
+//echo  PRIVATE_PATH;
+//include ".../private/initialize.php";?>
 
 <div class="intro">
     <h2 class="text-center" style="margin-bottom: 40px;padding-top: 40px;"><strong>Tenancies</strong></h2>
@@ -141,7 +144,7 @@
         </div>
     </div>
 </div>
-<?php include "../shared/footer.php"?>
+<?php include "../shared/footer.php";?>
 
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
