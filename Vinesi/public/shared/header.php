@@ -35,9 +35,9 @@
                     <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown"
                                             aria-expanded="false" href="#">Menu&nbsp;</a>
                         <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" role="presentation" href="#">First  Item</a>
-                            <a class="dropdown-item" role="presentation" href="#">Second Item</a>
-                            <a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                            <a class="dropdown-item" role="menuitem" href="#">First  Item</a>
+                            <a class="dropdown-item" role="menuitem" href="#">Second Item</a>
+                            <a class="dropdown-item" role="menuitem" href="#">Third Item</a></div>
                     </li>
                 </ul>
             </div>
