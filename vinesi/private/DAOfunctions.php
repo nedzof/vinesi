@@ -14,7 +14,7 @@ function getExpenseTable(): string
     return $sql;
 }
 
-function getExpenseTable(): string
+function getExpeneseTable(): string
 {
     $sql = "SELECT * FROM expensetable";
     return $sql;

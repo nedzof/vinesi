@@ -1,6 +1,6 @@
 <?php
 
-$id = $_GET['expenseID'];
+$id = $_GET['id'];
 
 echo $id;
 
