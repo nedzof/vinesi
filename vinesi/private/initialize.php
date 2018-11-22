@@ -1,5 +1,7 @@
 <?php
 require_once('functions.php');
+require_once('dbh.php');
+require_once('DAOfunctions.php');
 
 // Assign file paths to PHP constants
 // __FILE__ returns the current path to this file

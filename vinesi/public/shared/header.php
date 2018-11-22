@@ -3,7 +3,7 @@
        $page_title = 'Admin Area'; }
  ?>
 
-<?php require_once ('../../private/functions.php');?>
+<?php include ('../../private/initialize.php');?>
 
 <!DOCTYPE html>
 <html>

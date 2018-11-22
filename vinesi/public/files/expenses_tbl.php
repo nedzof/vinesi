@@ -1,5 +1,4 @@
-<?php include("../../private/dbh.php"); ?>
-<?php include("../../private/DAOfunctions.php"); ?>
+<?php include("../../private/initialize.php"); ?>
 
 
     <!DOCTYPE html>
