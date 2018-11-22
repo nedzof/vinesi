@@ -1,7 +1,11 @@
 <?php
 
+include('../../private/functions.php');
+
 //Null Coalescing Operator
 $id = $_GET['id'] ?? '1';
-echo $id;
+
+//XSS Cross Site Scripting
+echo h($id);
 
 ?>

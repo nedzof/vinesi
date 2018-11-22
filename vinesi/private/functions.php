@@ -23,3 +23,7 @@ function url_for ($script_path) {
     $_wwwRoot = changeBackslash($_wwwRoot);
     return $_wwwRoot;
 }
+
+function h($string=""){
+    return htmlspecialchars($string);
+}
