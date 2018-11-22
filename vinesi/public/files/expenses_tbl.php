@@ -1,4 +1,5 @@
 <?php include("../../private/dbh.php"); ?>
+<?php include("../../private/DAOfunctions.php"); ?>
 
 
     <!DOCTYPE html>
@@ -41,8 +42,7 @@
                             <tr class="header">
                                 <?php
 
-                                $sql = "SELECT * FROM expensetable";
-                                $result = $conn->query($sql);
+                                $result = $conn->query(getExpenseTable());
 
                                 if ($result->num_rows > 0) {
                                     // output data of each row
@@ -54,7 +54,7 @@
                                        <td><?php echo $row['expenseAmount'] ?></td>
                                         <td><?php echo $row['expenseStartDate'] ?></td>
                                         <td><?php echo $row['expensePaidDate'] ?></td>
-                                <td><a class="action" href="<?php echo url_for('/staff/subjects/show.php?id=' . $row['expenseID']); ?>">View</a></td>
+                                <td><a class="action" href="<?php echo url_for('files/showPDF.php?id=' . $row['expenseID']); ?>">View</a></td>
                                 <td><button></button></td>
                                 <td><button></button></td>
                                         </tr>
