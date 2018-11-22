@@ -34,7 +34,8 @@
         <div class="row projects">
             <div class="col-sm-6 item">
                 <div class="row">
-                    <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid" src="../assets/img/Fotolia_122593238_Subscription_Monthly_M.jpg"></a></div>
+                    <div class="col-md-12 col-lg-5"><a href="<?php echo url_for('files/tenancies.php'); ?>">
+                            <img class="img-fluid" src="../assets/img/Fotolia_122593238_Subscription_Monthly_M.jpg"></a></div>
                     <div class="col">
                         <h3 class="name">Tenancy Schedule</h3>
                         <p class="description">Overview of the current tenancies. The page includes information about the property units and the tenant and the individual contract.</p>
@@ -43,7 +44,9 @@
             </div>
             <div class="col-sm-6 item">
                 <div class="row">
-                    <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid" src="../assets/img/desk.jpg"></a></div>
+                    <div class="col-md-12 col-lg-5">
+                        <a href="<?php echo url_for('files/computation_panel.php'); ?>">
+                            <img class="img-fluid" src="../assets/img/desk.jpg"></a></div>
                     <div class="col">
                         <h3 class="name">Computation</h3>
                         <p class="description">Creates a yearly invoice for clients for additional charges.</p>
@@ -52,7 +55,9 @@
             </div>
             <div class="col-sm-6 item">
                 <div class="row">
-                    <div class="col-md-12 col-lg-5"><a href="#"><img class="img-fluid" src="../assets/img/building.jpg"></a></div>
+                    <div class="col-md-12 col-lg-5">
+                        <a href="<?php echo url_for('files/controlling.php'); ?>">
+                            <img class="img-fluid" src="../assets/img/building.jpg"></a></div>
                     <div class="col">
                         <h3 class="name">Controlling</h3>
                         <p class="description">Monitoring the rent payments.</p>
@@ -61,8 +66,10 @@
             </div>
             <div class="col-sm-6 item" class>
                 <div class="row">
-                    <div class="col-md-12 col-lg-5"><a href="<?php echo url_for('files/expenses_tbl.php'); ?>">
-                            <img class="img-fluid" src="../assets/img/Accounting-1024x682.jpg"></a></div>
+                    <div class="col-md-12 col-lg-5">
+                        <a href="<?php echo url_for('files/expenses_tbl.php'); ?>">
+                            <img class="img-fluid" src="../assets/img/Accounting-1024x682.jpg"></a>
+                    </div>
                     <div class="col">
                         <h3 class="name">Expenses</h3>
                         <p class="description">Offers records of all incoming invoices of our suppliers.&nbsp;</p>
