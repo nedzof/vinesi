@@ -15,7 +15,7 @@ define("SHARED_PATH", PRIVATE_PATH . '\shared');
 // * Do not need to include the domain
 // * Use same document root as webserver
 // * Can set a hardcoded value:
-// define("WWW_ROOT", '/~vinesi/globe_bank/public');
+// define("WWW_ROOT", '/~vinesi/vinesi/public');
 // define("WWW_ROOT", '');
 // * Can dynamically find everything in URL up to "/public"
 $public_end = strpos($_SERVER['SCRIPT_NAME'], '/public') + 7;
