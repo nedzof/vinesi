@@ -30,15 +30,15 @@
         <div class="intro">
             <h2 class="text-center" style="font-weight: normal;"><strong>Create</strong>&nbsp;Invoice</h2>
             <form>
-                <div class="form-group"><label class="text-secondary">Unit</label><input class="form-control" type="text" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$" inputmode="email"></div>
-                <div class="form-group"><label class="text-secondary">Tenant Name</label><input class="form-control" type="password" required=""></div>
-                <div class="form-group"><label class="text-secondary">Adress</label><input class="form-control" type="password" required=""></div>
-                <div class="form-group"><label class="text-secondary">Area (in square meter)</label><input class="form-control" type="password" required=""></div>
-                <div class="form-group"><label class="text-secondary">Lease Term</label><input class="form-control" type="password" required=""></div>
-                <div class="form-group"><label class="text-secondary">Lease Start</label><input class="form-control" type="password" required=""></div>
-                <div class="form-group"><label class="text-secondary">Lease Expiry</label><input class="form-control" type="password" required=""></div>
-                <div class="form-group"><label class="text-secondary">Rent</label><input class="form-control" type="password" required=""></div>
-                <div class="form-group"><label class="text-secondary">Notes</label><input class="form-control" type="password" required=""></div><button class="btn btn-info mt-2" type="submit">Save</button></form>
+                <div class="form-group"><label class="text-secondary">ID</label><input class="form-control" type="number" required=""></div>
+                <div class="form-group"><label class="text-secondary">Type</label><input class="form-control" type="text" required=""></div>
+                <div class="form-group"><label class="text-secondary">Amount</label><input class="form-control" type="number" required=""></div>
+                <div class="form-group"><label class="text-secondary">Date start</label><input class="form-control" type="date" required=""></div>
+                <div class="form-group"><label class="text-secondary">Date paid</label><input class="form-control" type="date" required=""></div>
+                <div class="form-group"><label class="text-secondary">Invoice Creator</label><input class="form-control" type="number" required=""></div>
+                <div class="form-group"><label class="text-secondary">Invoice Client</label><input class="form-control" type="number" required=""></div>
+
+                </div><button class="btn btn-info mt-2" type="submit">Save</button></form>
         </div>
     </div>
 </div>
