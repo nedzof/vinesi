@@ -30,35 +30,15 @@
         <div class="intro">
             <h2 class="text-center" style="font-weight: normal;"><strong>Create</strong>&nbsp;Tenancy</h2>
             <form>
-                <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input class="form-control"
-                                                                                                  type="number"
-                                                                                                  required=""
-                                                                                                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$"
-                                                                                                  inputmode="email">
-                </div>
-                <div class="form-group"><label class="text-secondary">Utilities</label><input class="form-control"
-                                                                                              type="number" required="">
-                </div>
-                <div class="form-group"><label class="text-secondary">Payment Method</label><input class="form-control"
-                                                                                                   type="number"
-                                                                                                   required=""></div>
-                <div class="form-group"><label class="text-secondary">Deposit</label><input class="form-control"
-                                                                                            type="number" required="">
-                </div>
-                <button class="btn btn-info mt-2" type="submit" style="max-height: -8px;"><i
-                            class="icon ion-ios-compose-outline"></i></button>
-            </form>
-            <div class="form-group"><label class="text-secondary">Lease Start</label><input class="form-control"
-                                                                                            type="date" required="">
-            </div>
-            <div class="form-group"><label class="text-secondary">Lease Expiry</label><input class="form-control"
-                                                                                             type="date" required="">
-            </div>
-            <div class="form-group"><label class="text-secondary">Property</label><input class="form-control"
-                                                                                         type="number" required="">
-            </div>
-            <div class="form-group"><label class="text-secondary">Tenant</label><input class="form-control"
-                                                                                       type="number" required=""></div>
+                <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input class="form-control" type="text" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$" inputmode="email"></div>
+                <div class="form-group"><label class="text-secondary">Utilities</label><input class="form-control" type="number" required=""></div>
+                <div class="form-group"><label class="text-secondary">Payment Method</label><input class="form-control" type="text" required=""></div>
+                <div class="form-group"><label class="text-secondary">Deposit</label><input class="form-control" type="text" required=""></div>
+                <div class="form-group"><label class="text-secondary">Lease Start</label><input class="form-control" type="date" required=""></div>
+                <div class="form-group"><label class="text-secondary">Lease Expiry</label><input class="form-control" type="date" required=""></div>
+                <div class="form-group"><label class="text-secondary">Property</label><input class="form-control" type="number" required=""></div>
+                <div class="form-group"><label class="text-secondary">Tenant</label><input class="form-control" type="number" required=""></div>
+                <button class="btn btn-info mt-2" type="submit" style="max-height: -8px;"><i class="icon ion-ios-compose-outline"></i></button></form>
         </div>
     </div>
 </div>
