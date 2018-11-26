@@ -8,20 +8,20 @@
 
 function getExpenseTable(): string
 {
-    $sql = "SELECT * FROM expensetable";
+    $sql = "SELECT * FROM 'expensetable'";
     return $sql;
 }
 
 
 function getLeaseTable(): string
 {
-    $sql = "SELECT * FROM leasetable";
+    $sql = "SELECT * FROM 'leasetable'";
     return $sql;
 }
 
 function getLeaseTable_By_ID($key): string
 {
-    $sql = "SELECT * FROM leasetable WHERE leaseID = $key";
+    $sql = "SELECT * FROM 'leasetable' WHERE leaseID= $key";
     return $sql;
 }
 

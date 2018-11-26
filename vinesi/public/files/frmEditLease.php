@@ -7,24 +7,12 @@
      redirect_to(url_for('files/home.php'));
  }
  $id = $_GET['id'];
+ $result = getLeaseTable_By_ID(id);
+ confirm_result_set($result);
 
- if(is_post_request()){
+ $row = mysqli_fetch_assoc($result);
+ mysqli_free_result($result);
 
-     $leaseID = $_POST['leaseID'] ?? 0;
-     $leaseMonthlyRent = $_POST['leaseMonthlyRent'] ?? "";
-     $leaseUtilities = $_POST['leaseUtilities'] ?? "";
-     $leasePaymentMethod = $_POST['leasePaymentMethod'] ?? "";
-     $leaseDeposit = $_POST['leaseDeposit'] ?? "";
-     $leaseStart = $_POST['leaseStart'] ?? "";
-     $leaseEnd = $_POST['leaseEnd'] ?? "";
-     $propertytable_propertyID = $_POST['propertytable_propertyID'] ?? "";
-     $tentanttable_tenantID = $_POST['tentanttable_tenantID'] ?? "";
-
-
-
-
-
- }
 ?>
 
 
@@ -62,7 +50,7 @@
             <h2 class="text-center" style="font-weight: normal;"><strong>Edit</strong>&nbsp;Tenancy</h2>
             <form action="<?php echo url_for('files/frmEditLease.php') ?>">
 
-                <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input value="<?php echo $leaseMonthlyRent ?>"
+                <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input value="<?php echo h($row['leaseMonthlyRent']) ?>"
                                                                                                   class="form-control"
                                                                                                   type="text"
                                                                                                   required=""

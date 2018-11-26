@@ -42,6 +42,7 @@
                             <?php
 
                             $result = $db->query(getLeaseTable());
+                            confirm_result_set($result);
 
                             if (mysqli_num_rows($result) > 0) {
                             // output data of each row
@@ -57,7 +58,7 @@
                             <td><?php echo $row['leaseEnd'] ?></td>
                             <td><?php echo $row['propertytable_propertyID'] ?></td>
                             <td><?php echo $row['tenanttable_tenantID'] ?></td>
-                            <td><a class="action" href="<?php echo url_for('files/frmEditLease?id=' . $row['leaseID']); ?>">View</a></td>
+                            <td><a class="action" href="<?php echo url_for('files/frmEditLease.php?id=' . $row['leaseID']); ?>">View</a></td>
                             <td> <button></button></td>
                         </tr>
                         <?php }
