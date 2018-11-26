@@ -6,7 +6,7 @@
  * Time: 13:35
  */
 
-include('initialize.php');
+require_once('initialize.php');
 
 function changeBackslash($str)
 {

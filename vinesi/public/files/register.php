@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php require_once('../../private/initialize.php'); ?>
+
+
+    <!DOCTYPE html>
 <html>
 
 
@@ -64,10 +67,10 @@
 if (isset($_POST['submit'])) {
 
 
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
-    $password2 = mysqli_real_escape_string($conn, $_POST['password2']);
+    $name = mysqli_real_escape_string($db, $_POST['name']);
+    $email = mysqli_real_escape_string($db, $_POST['email']);
+    $password = mysqli_real_escape_string($db, $_POST['password']);
+    $password2 = mysqli_real_escape_string($db, $_POST['password2']);
 
     echo $name . $email . $password . $password2;
 }

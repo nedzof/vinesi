@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2018 at 03:52 PM
+-- Generation Time: Nov 26, 2018 at 04:14 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -57,15 +57,16 @@ CREATE TABLE `invoicetable` (
   `invoiceStartDate` datetime DEFAULT NULL,
   `invoicePaidDate` datetime DEFAULT NULL,
   `invoiceCreator` int(11) DEFAULT NULL,
-  `invoiceClient` int(11) DEFAULT NULL
+  `invoiceClient` int(11) DEFAULT NULL,
+  `invoiceProperty` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `invoicetable`
 --
 
-INSERT INTO `invoicetable` (`invoiceID`, `invoiceType`, `invoiceAmount`, `invoiceStartDate`, `invoicePaidDate`, `invoiceCreator`, `invoiceClient`) VALUES
-(1, 'Email', 32.32, '2018-06-19 14:20:47', '2018-11-19 14:20:56', 1, 1);
+INSERT INTO `invoicetable` (`invoiceID`, `invoiceType`, `invoiceAmount`, `invoiceStartDate`, `invoicePaidDate`, `invoiceCreator`, `invoiceClient`, `invoiceProperty`) VALUES
+(1, 'Email', 32.32, '2018-06-19 14:20:47', '2018-11-19 14:20:56', 1, 1, 11);
 
 -- --------------------------------------------------------
 
@@ -175,7 +176,8 @@ ALTER TABLE `expensetable`
 ALTER TABLE `invoicetable`
   ADD PRIMARY KEY (`invoiceID`),
   ADD KEY `invoiceTable_usertable_userID_fk` (`invoiceCreator`),
-  ADD KEY `invoicetable_tenanttable_tenantID_fk` (`invoiceClient`);
+  ADD KEY `invoicetable_tenanttable_tenantID_fk` (`invoiceClient`),
+  ADD KEY `invoicetable_propertytable_propertyID_fk` (`invoiceProperty`);
 
 --
 -- Indexes for table `leasetable`
@@ -253,6 +255,7 @@ ALTER TABLE `usertable`
 --
 ALTER TABLE `invoicetable`
   ADD CONSTRAINT `invoiceTable_usertable_userID_fk` FOREIGN KEY (`invoiceCreator`) REFERENCES `usertable` (`userID`),
+  ADD CONSTRAINT `invoicetable_propertytable_propertyID_fk` FOREIGN KEY (`invoiceProperty`) REFERENCES `propertytable` (`propertyID`),
   ADD CONSTRAINT `invoicetable_tenanttable_tenantID_fk` FOREIGN KEY (`invoiceClient`) REFERENCES `tenanttable` (`tenantID`);
 
 --

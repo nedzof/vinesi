@@ -6,8 +6,6 @@
  * Time: 09:27
  */
 
-include('database.php');
-
 function getExpenseTable(): string
 {
     $sql = "SELECT * FROM expensetable";

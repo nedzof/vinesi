@@ -21,7 +21,7 @@ $doc_root = substr($_SERVER['SCRIPT_NAME'], 0, $public_end);
 define("WWW_ROOT", $doc_root);
 
 
-//$db = db_connect();
+$db = db_connection();
 $errors = [];
 
 ?>
