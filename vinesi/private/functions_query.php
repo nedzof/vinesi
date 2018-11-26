@@ -6,7 +6,7 @@
  * Time: 09:27
  */
 
-include ('dbh.php');
+include('database.php');
 
 function getExpenseTable(): string
 {
