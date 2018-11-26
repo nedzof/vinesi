@@ -6,38 +6,50 @@
  * Time: 09:27
  */
 
-function getExpenseTable(): string
+require_once('initialize.php');
+
+function getExpenseTable()
 {
+    global $db;
     $sql = "SELECT * FROM 'expensetable'";
-    return $sql;
+    $result = mysqli_query($db, $sql);
+    return $result;
 }
 
 
-function getLeaseTable(): string
+function getLeaseTable()
 {
-    $sql = "SELECT * FROM 'leasetable'";
-    return $sql;
+    global $db;
+    $sql = "SELECT * FROM leasetable";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    return $result;
 }
 
-function getLeaseTable_By_ID($key): string
+function getLeaseTable_By_ID($key)
 {
-    $sql = "SELECT * FROM 'leasetable' WHERE leaseID= $key";
-    return $sql;
+    global $db;
+    $sql = "SELECT * FROM leasetable WHERE leaseID=' ".$key ."'";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    $row = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    return $row; //return assoc array;
 }
 
-function getInvoiceTable(): string
+function getInvoiceTable()
 {
     $sql = "SELECT * FROM invoicetable";
     return $sql;
 }
 
-function getPropertyTable(): string
+function getPropertyTable()
 {
     $sql = "SELECT * FROM propertytable";
     return $sql;
 }
 
-function getUserTable(): string
+function getUserTable()
 {
     $sql = "SELECT * FROM usertable";
     return $sql;

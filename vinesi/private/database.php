@@ -34,7 +34,7 @@ function db_escape($connection, $string) {
 
 
 function confirm_result_set($result_set) {
-    if (!$result_set) {
+    if (!$result_set && $result_set>0) {
         exit("Database query failed.");
     }
 }

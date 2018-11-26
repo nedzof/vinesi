@@ -40,9 +40,8 @@
                     <table class="table">
                         <tr class="header">
                             <?php
+                            $result = getLeaseTable();
 
-                            $result = $db->query(getLeaseTable());
-                            confirm_result_set($result);
 
                             if (mysqli_num_rows($result) > 0) {
                             // output data of each row

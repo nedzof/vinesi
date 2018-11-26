@@ -7,11 +7,8 @@
      redirect_to(url_for('files/home.php'));
  }
  $id = $_GET['id'];
- $result = getLeaseTable_By_ID(id);
- confirm_result_set($result);
+ $row = getLeaseTable_By_ID($id);
 
- $row = mysqli_fetch_assoc($result);
- mysqli_free_result($result);
 
 ?>
 
