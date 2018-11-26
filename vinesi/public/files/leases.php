@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php require_once("../../private/initialize.php"); ?>
+<?php include ('../shared/header.php'); ?>
+
+
+    <!DOCTYPE html>
 <html>
 
 <head>
@@ -23,10 +27,6 @@
 </head>
 
 <body>
-
-<?php include "../shared/header.php";
-//echo  PRIVATE_PATH;
-//include ".../private/initialize.php";?>
 
 <div class="intro">
     <h2 class="text-center" style="margin-bottom: 40px;padding-top: 40px;"><strong>Leases</strong></h2>

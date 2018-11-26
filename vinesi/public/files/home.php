@@ -1,3 +1,7 @@
+<?php require_once("../../private/initialize.php"); ?>
+<?php include ('../shared/header.php'); ?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -23,7 +27,6 @@
 </head>
 
 <body>
-<?php include ('../shared/header.php'); ?>
 
 <div class="projects-horizontal">
     <div class="container">

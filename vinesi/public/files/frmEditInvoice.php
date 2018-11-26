@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php require_once("../../private/initialize.php"); ?>
+<?php include ('../shared/header.php'); ?>
+
+    <!DOCTYPE html>
 <html>
 
 <head>

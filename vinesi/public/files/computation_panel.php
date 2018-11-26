@@ -1,6 +1,9 @@
-<!DOCTYPE html>
+<?php require_once('../../private/initialize.php'); ?>
+<?php include ('../shared/header.php'); ?>
+
+
+    <!DOCTYPE html>
 <html>
-<?php include_once (SHARED_PATH . '/header.php'); ?>
 
 <head>
     <meta charset="utf-8">

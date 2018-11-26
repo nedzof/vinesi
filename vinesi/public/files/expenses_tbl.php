@@ -1,4 +1,5 @@
 <?php require_once("../../private/initialize.php"); ?>
+<?php include ('../shared/header.php'); ?>
 
 
 <!DOCTYPE html>
@@ -26,7 +27,6 @@
 </head>
 
 <body>
-<?php include_once('../shared/header.php'); ?>
 
 <div class="intro">
     <h2 class="text-center" style="margin-bottom: 40px;padding-top: 40px;"><strong>Expenses</strong></h2>

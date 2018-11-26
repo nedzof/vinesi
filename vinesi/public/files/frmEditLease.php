@@ -1,4 +1,6 @@
 <?php require_once("../../private/initialize.php"); ?>
+<?php include ('../shared/header.php'); ?>
+
 
 <?php
 $id = $_GET['id'] ?? redirect_to('../../files/home.php'); // PHP > 7.0
@@ -40,7 +42,7 @@ if ($result->num_rows == 1) {
 
 <body>
 </body>
-<?php include_once('../shared/header.php'); ?>
+
 
 <div class="projects-horizontal">
     <div class="container">

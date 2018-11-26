@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php require_once('../../private/initialize.php'); ?>
+<?php include ('../shared/header.php'); ?>
+
+
+    <!DOCTYPE html>
 <html>
 
 <head>
@@ -23,7 +27,6 @@
 </head>
 
 <body>
-<?php include_once ('../shared/header.php'); ?>
 
 <div class="card">
     <div class="justify-content-center align-items-center align-content-center align-self-center intro">

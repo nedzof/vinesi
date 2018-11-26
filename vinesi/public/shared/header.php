@@ -3,8 +3,6 @@ if (!isset($page_title)) {
     $page_title = 'Admin Area';
 }
 ?>
-<?php include_once ('../../private/initialize.php')?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +32,7 @@ if (!isset($page_title)) {
     <nav class="navbar navbar-light navbar-expand-md navigation-clean">
         <div class="container">
             <a class="navbar-brand"
-               href="<?php echo(url_for('files/home.php')); ?>" style="color: #17a2b8;font-size: 32px;font-weight: 300;">
+               href="../files/home.php" style="color: #17a2b8;font-size: 32px;font-weight: 300;">
                 <i class="fa fa-ravelry"></i>Vinesi
             </a>
 
