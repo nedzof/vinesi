@@ -86,7 +86,7 @@ if ($result->num_rows == 1) {
         </div>
     </div>
 </div>
-<?php include_once('../shared/footer.php'); ?>
+<?php include('../shared/footer.php'); ?>
 
 </body>
 

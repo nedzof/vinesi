@@ -8,7 +8,7 @@ require_once('functions_validation.php');
 
 //ob_start(); // output buffering is turned on
 
-session_start(); // turn on sessions
+//session_start(); // turn on sessions
 
 
 define("PRIVATE_PATH", dirname(__FILE__));
@@ -21,7 +21,7 @@ $doc_root = substr($_SERVER['SCRIPT_NAME'], 0, $public_end);
 define("WWW_ROOT", $doc_root);
 
 
-$db = db_connect();
+//$db = db_connect();
 $errors = [];
 
 ?>

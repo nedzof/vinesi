@@ -21,7 +21,7 @@ function getLeaseTable(): string
     return $sql;
 }
 
-function getLeaseTableID($key): string
+function getLeaseTable_By_ID($key): string
 {
     $sql = "SELECT * FROM leasetable WHERE leaseID = $key";
     return $sql;
@@ -30,5 +30,17 @@ function getLeaseTableID($key): string
 function getInvoiceTable(): string
 {
     $sql = "SELECT * FROM invoicetable";
+    return $sql;
+}
+
+function getPropertyTable(): string
+{
+    $sql = "SELECT * FROM propertytable";
+    return $sql;
+}
+
+function getUserTable(): string
+{
+    $sql = "SELECT * FROM usertable";
     return $sql;
 }

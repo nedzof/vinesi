@@ -1,31 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Nedzo
- * Date: 13.11.2018
- * Time: 17:42
- */
 
-function db_connect()
-{
+require_once('database_credentials.php');
 
-    $dbServerName = "localhost";
-    $dbUserName = "root";
-    $dbPassword = "";
-    $dbName = "vinesidatabase";
-
-    $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    return $conn;
-
+function db_connect() {
+    $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+    confirm_db_connect();
+    return $connection;
 }
-
-
 
 function db_disconnect($connection) {
     if(isset($connection)) {
