@@ -20,3 +20,8 @@ function getExpeneseTable(): string
     return $sql;
 }
 
+function getLeaseTable(): string
+{
+    $sql = "SELECT * FROM leasetable";
+    return $sql;
+}

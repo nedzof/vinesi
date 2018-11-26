@@ -1,6 +1,3 @@
-<?php require_once("../../private/initialize.php"); ?>
-
-
 <!DOCTYPE html>
 <html>
 
@@ -26,11 +23,14 @@
 </head>
 
 <body>
-<?php include_once('../shared/header.php'); ?>
+
+<?php include "../shared/header.php";
+//echo  PRIVATE_PATH;
+//include ".../private/initialize.php";?>
 
 <div class="intro">
-    <h2 class="text-center" style="margin-bottom: 40px;padding-top: 40px;"><strong>Expenses</strong></h2>
-    <p class="text-center" style="color: #a2a8ae;">Overview of all expenses during a weeks time.</p>
+    <h2 class="text-center" style="margin-bottom: 40px;padding-top: 40px;"><strong>Leases</strong></h2>
+    <p class="text-center" style="color: #a2a8ae;">In this tab all current units as well as their tenants are visible.</p>
 </div>
 <div>
     <div class="container">
@@ -41,18 +41,26 @@
                         <tr class="header">
                             <?php
 
-                            $result = $conn->query(getExpenseTable());
+                            $result = $conn->query(getLeaseTable());
 
                             if ($result->num_rows > 0) {
                             // output data of each row
                             while ($row = $result->fetch_assoc()) { ?>
                         </tr>
                         <tr>
-                            <td><?php echo $row['expenseID'] ?></td>
-                            <td><?php echo $row['expenseType'] ?></td>
-                            <td><?php echo $row['expenseAmount'] ?></td>
-                            <td><?php echo $row['expenseStartDate'] ?></td>
-                            <td><?php echo $row['expensePaidDate'] ?></td>
+                            <td><?php echo $row['leaseID'] ?></td>
+                            <td><?php echo $row['leaseMonthlyRent'] ?></td>
+                            <td><?php echo $row['leaseUtilities'] ?></td>
+                            <td><?php echo $row['leasePaymentMethod'] ?></td>
+                            <td><?php echo $row['leaseDeposit'] ?></td>
+                            <td><?php echo $row['leaseStart'] ?></td>
+                            <td><?php echo $row['leaseEnd'] ?></td>
+                            <td><?php echo $row['propertytable_propertyID'] ?></td>
+                            <td><?php echo $row['tenanttable_tenantID'] ?></td>
+
+
+
+
                             <td><a class="action"
                                    href="<?php echo url_for('files/showPDF.php?id=' . $row['expenseID']); ?>">View</a>
                             </td>
@@ -76,14 +84,7 @@
         </div>
     </div>
 </div>
-<div class="col d-flex justify-content-center align-items-center align-content-center align-self-center"
-     style="padding: 26px;">
-    <button class="btn btn-primary" type="button" style="margin: 0px;margin-right: 35px;background-color: #17a2b8;">
-        <i class="icon ion-android-add" style="color: #ffffff;"></i></button>
-
-
-</div>
-<?php include "../shared/footer.php" ?>
+<?php include "../shared/footer.php";?>
 
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
@@ -92,3 +93,11 @@
 </body>
 
 </html>
+
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Nedzo
+ * Date: 06.11.2018
+ * Time: 09:50
+ */

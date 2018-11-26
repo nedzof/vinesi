@@ -1,9 +1,9 @@
 <?php
-   if(!isset($page_title)) {
-       $page_title = 'Admin Area'; }
- ?>
-
-<?php include_once ('../../private/initialize.php');?>
+if (!isset($page_title)) {
+    $page_title = 'Admin Area';
+}
+?>
+<?php include_once ('../../private/initialize.php')?>
 
 <!DOCTYPE html>
 <html>
@@ -30,11 +30,11 @@
 
 <body>
 <div>
+
     <nav class="navbar navbar-light navbar-expand-md navigation-clean">
         <div class="container">
             <a class="navbar-brand"
-               href="<?php
-               echo (url_for('/files/home.php'));?>" style="color: #17a2b8;font-size: 32px;font-weight: 300;">
+               href="<?php echo(url_for('files/home.php')); ?>" style="color: #17a2b8;font-size: 32px;font-weight: 300;">
                 <i class="fa fa-ravelry"></i>Vinesi
             </a>
 
@@ -45,9 +45,9 @@
                     class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown"
-                                            aria-expanded="false" href="#" >Menu;</a>
+                                            aria-expanded="false" href="#">Menu;</a>
                         <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" role="menuitem" href="#">First  Item</a>
+                            <a class="dropdown-item" role="menuitem" href="#">First Item</a>
                             <a class="dropdown-item" role="menuitem" href="#">Second Item</a>
                             <a class="dropdown-item" role="menuitem" href="#">Third Item</a></div>
                     </li>
