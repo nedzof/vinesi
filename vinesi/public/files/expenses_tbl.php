@@ -41,7 +41,7 @@
                         <tr class="header">
                             <?php
 
-                            $result = $conn->query(getExpenseTable());
+                            $result = $db->query(getExpenseTable());
 
                             if ($result->num_rows > 0) {
                             // output data of each row
@@ -68,7 +68,7 @@
                         </tr>
                         <?php }
                         }
-                        $conn->close();
+                        db_disconnect($db);
                         ?>
                     </table>
                 </div>

@@ -21,9 +21,10 @@ function db_disconnect($connection) {
 }
 
 function confirm_query($result_set) {
-    if(!$result_set) {
+    if(!$result_set && $result_set > 0) {
         exit("Database query failed.");
     }
+    return true;
 }
 
 function db_escape($connection, $string) {

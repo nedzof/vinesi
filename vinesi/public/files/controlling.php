@@ -40,89 +40,49 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Unit</th>
-                            <th>Name</th>
-                            <th>Adress</th>
-                            <th>Due Date</th>
-                            <th>Amount due</th>
-                            <th>Paid</th>
-                            <th>Notes</th>
-                            <th>Action</th>
+                            <th>ID</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Start Date</th>
+                            <th>Paid Date</th>
+                            <th>Creator</th>
+                            <th>Client</th>
+                            <th>Property</th>
                         </tr>
+                        <tr class="header">
+                            <?php
+
+                            $result = $db->query(getExpenseTable());
+
+                            if ($result->num_rows > 0) {
+                            // output data of each row
+                            while ($row = $result->fetch_assoc()) { ?>
+                        </tr>
+                        <tr>
+                            <td><?php echo $row['expenseID'] ?></td>
+                            <td><?php echo $row['expenseType'] ?></td>
+                            <td><?php echo $row['expenseAmount'] ?></td>
+                            <td><?php echo $row['expenseStartDate'] ?></td>
+                            <td><?php echo $row['expensePaidDate'] ?></td>
+                            <td><a class="action"
+                                   href="<?php echo url_for('files/showPDF.php?id=' . $row['expenseID']); ?>">View</a>
+                            </td>
+                            <td>
+                                <button></button>
+                            </td>
+                            <td>
+                                <button></button>
+                            </td>
+                        </tr>
+
+
+                        </tr>
+                        <?php }
+                        }
+                        db_disconnect($db);
+                        ?>
                         </thead>
-                        <tbody>
-                        <tr style="background-color: #e7f7ed;">
-                            <td>1.01</td>
-                            <td>Sira Tamba</td>
-                            <td>Auf der Wacht 1a, 4104 Oberwil, Switzerland</td>
-                            <td>27.11.18</td>
-                            <td>£547</td>
-                            <td>£547</td>
-                            <td>+1 parking spot</td>
-                            <td>
-                                <div class="btn-group" role="group"><button class="btn btn-info mt-2" type="submit" style="margin-right: 5px;"><i class="icon ion-edit"></i></button><button class="btn btn-info mt-2" type="submit"><i class="icon ion-android-delete"></i></button></div>
-                            </td>
-                        </tr>
-                        <tr style="background-color: #ffe6e6;">
-                            <td>1.02</td>
-                            <td>Victoria Villar</td>
-                            <td>Auf der Wacht 1b, 4104 Oberwil, Switzerland</td>
-                            <td>27.11.18</td>
-                            <td>£534</td>
-                            <td>£0</td>
-                            <td></td>
-                            <td>
-                                <div class="btn-group" role="group"><button class="btn btn-info mt-2" type="submit" style="margin-right: 5px;"><i class="icon ion-edit"></i></button><button class="btn btn-info mt-2" type="submit"><i class="icon ion-android-delete"></i></button></div>
-                            </td>
-                        </tr>
-                        <tr style="background-color: #e7f7ed;">
-                            <td>2.01</td>
-                            <td>Nedzo Fetahovic</td>
-                            <td>Auf der Wacht 8b, 4104 Oberwil, Switzerland</td>
-                            <td>27.11.18</td>
-                            <td>£386</td>
-                            <td>£387</td>
-                            <td></td>
-                            <td>
-                                <div class="btn-group" role="group"><button class="btn btn-info mt-2" type="submit" style="margin-right: 5px;"><i class="icon ion-edit"></i></button><button class="btn btn-info mt-2" type="submit"><i class="icon ion-android-delete"></i></button></div>
-                            </td>
-                        </tr>
-                        <tr style="background-color: #ffe6e6;">
-                            <td>2.02</td>
-                            <td>Timothy Applewhite</td>
-                            <td>Auf der Wacht 8b, 4104 Oberwil, Switzerland</td>
-                            <td>27.11.18</td>
-                            <td>£386</td>
-                            <td>£0</td>
-                            <td></td>
-                            <td>
-                                <div class="btn-group" role="group"><button class="btn btn-info mt-2" type="submit" style="margin-right: 5px;"><i class="icon ion-edit"></i></button><button class="btn btn-info mt-2" type="submit"><i class="icon ion-android-delete"></i></button></div>
-                            </td>
-                        </tr>
-                        <tr style="background-color: #ffe6e6;">
-                            <td>2.03</td>
-                            <td>Nicola Niclaus</td>
-                            <td>Auf der Wacht 8b, 4104 Oberwil, Switzerland</td>
-                            <td>27.11.18</td>
-                            <td>£386</td>
-                            <td>£0</td>
-                            <td></td>
-                            <td>
-                                <div class="btn-group" role="group"><button class="btn btn-info mt-2" type="submit" style="margin-right: 5px;"><i class="icon ion-edit"></i></button><button class="btn btn-info mt-2" type="submit"><i class="icon ion-android-delete"></i></button></div>
-                            </td>
-                        </tr>
-                        <tr style="background-color: #ffe6e6;">
-                            <td>3.01</td>
-                            <td>Aymen Fathallah</td>
-                            <td>Auf der Wacht 8b, 4104 Oberwil, Switzerland</td>
-                            <td>27.11.18</td>
-                            <td>£386</td>
-                            <td>£0</td>
-                            <td></td>
-                            <td>
-                                <div class="btn-group" role="group"><button class="btn btn-info mt-2" type="submit" style="margin-right: 5px;"><i class="icon ion-edit"></i></button><button class="btn btn-info mt-2" type="submit"><i class="icon ion-android-delete"></i></button></div>
-                            </td>
-                        </tr>
+
                         </tbody>
                     </table>
                 </div>

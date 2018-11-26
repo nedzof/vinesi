@@ -41,7 +41,7 @@
                         <tr class="header">
                             <?php
 
-                            $result = $conn->query(getLeaseTable());
+                            $result = $db->query(getLeaseTable());
 
                             if ($result->num_rows > 0) {
                             // output data of each row
@@ -76,7 +76,7 @@
                         </tr>
                         <?php }
                         }
-                        $conn->close();
+                        db_disconnect($db);
                         ?>
                     </table>
                 </div>
