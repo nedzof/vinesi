@@ -43,8 +43,6 @@
                             $result = getLeaseTable();
 
 
-                            if (mysqli_num_rows($result) > 0) {
-                            // output data of each row
                             while ($row = mysqli_fetch_assoc($result)) { ?>
                         </tr>
                         <tr>
@@ -60,7 +58,7 @@
                             <td><a class="action" href="<?php echo url_for('files/frmEditLease.php?id=' . $row['leaseID']); ?>">Edit</a></td>
                             <td> <button></button></td>
                         </tr>
-                        <?php }
+                        <?php
                         }
                         mysqli_free_result($result);
                         db_disconnect($db);
