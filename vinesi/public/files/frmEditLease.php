@@ -3,16 +3,27 @@
 
 
 <?php
-$id = $_GET['id'] ?? redirect_to('../../files/home.php'); // PHP > 7.0
-//
-$result = $conn->query(getLeaseTableID($id));
-if ($result->num_rows == 1) {
-    // output data of each row
-    $row = $result->fetch_assoc();
-    $leaseMonthlyRent = $row['leaseMonthlyRent'];
-    echo $row;
+ if(!isset($_GET['id'])){
+     redirect_to(url_for('files/home.php'));
+ }
+ $id = $_GET['id'];
 
-}
+ if(is_post_request()){
+     $leaseID = $_POST['leaseID'] ?? "";
+     $leaseMonthlyRent = $_POST['leaseMonthlyRent'] ?? "";
+     $leaseUtilities = $_POST['leaseUtilities'] ?? "";
+     $leasePaymentMethod = $_POST['leasePaymentMethod'] ?? "";
+     $leaseDeposit = $_POST['leaseDeposit'] ?? "";
+     $leaseStart = $_POST['leaseStart'] ?? "";
+     $leaseEnd = $_POST['leaseEnd'] ?? "";
+     $propertytable_propertyID = $_POST['propertytable_propertyID'] ?? "";
+     $tentanttable_tenantID = $_POST['tentanttable_tenantID'] ?? "";
+
+
+
+
+
+ }
 ?>
 
 
@@ -48,7 +59,7 @@ if ($result->num_rows == 1) {
     <div class="container">
         <div class="intro">
             <h2 class="text-center" style="font-weight: normal;"><strong>Edit</strong>&nbsp;Tenancy</h2>
-            <form action="<?php echo url_for('') ?>">
+            <form action="<?php echo url_for('files/frmEditLease.php') ?>">
 
                 <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input value="33"
                                                                                                   class="form-control"
