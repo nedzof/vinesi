@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<?php include_once (SHARED_PATH . '/header.php'); ?>
 
 <head>
     <meta charset="utf-8">
@@ -23,7 +24,6 @@
 </head>
 
 <body>
-<?php include_once (SHARED_PATH . 'header.php'); ?>
 
 <div class="card">
     <div class="justify-content-center align-items-center align-content-center align-self-center intro">
@@ -207,7 +207,7 @@
         </div>
     </div>
 </div>
-<?php include "../shared/footer.php"?>
+<?php include_once (SHARED_PATH . '/footer.php'); ?>
 
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>

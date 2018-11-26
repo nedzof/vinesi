@@ -14,14 +14,21 @@ function getExpenseTable(): string
     return $sql;
 }
 
-function getExpeneseTable(): string
-{
-    $sql = "SELECT * FROM expensetable";
-    return $sql;
-}
 
 function getLeaseTable(): string
 {
     $sql = "SELECT * FROM leasetable";
+    return $sql;
+}
+
+function getLeaseTableID($key): string
+{
+    $sql = "SELECT * FROM leasetable WHERE leaseID = $key";
+    return $sql;
+}
+
+function getInvoiceTable(): string
+{
+    $sql = "SELECT * FROM invoicetable";
     return $sql;
 }

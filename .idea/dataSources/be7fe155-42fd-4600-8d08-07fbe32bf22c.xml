@@ -1039,218 +1039,233 @@
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="261" parent="243" name="invoiceTable_usertable_userID_fk">
+    <column id="261" parent="243" name="invoiceProperty">
+      <Position>8</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="262" parent="243" name="invoiceTable_usertable_userID_fk">
       <ColNames>invoiceCreator</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="262" parent="243" name="invoicetable_tenanttable_tenantID_fk">
+    <index id="263" parent="243" name="invoicetable_tenanttable_tenantID_fk">
       <ColNames>invoiceClient</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="263" parent="243" name="PRIMARY">
+    <index id="264" parent="243" name="invoicetable_propertytable_propertyID_fk">
+      <ColNames>invoiceProperty</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="265" parent="243" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>invoiceID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="264" parent="243" name="invoiceTable_usertable_userID_fk">
+    <foreign-key id="266" parent="243" name="invoiceTable_usertable_userID_fk">
       <ColNames>invoiceCreator</ColNames>
       <RefSchemaName>vinesidatabase</RefSchemaName>
       <RefTableName>usertable</RefTableName>
       <RefColNames>userID</RefColNames>
     </foreign-key>
-    <foreign-key id="265" parent="243" name="invoicetable_tenanttable_tenantID_fk">
+    <foreign-key id="267" parent="243" name="invoicetable_tenanttable_tenantID_fk">
       <ColNames>invoiceClient</ColNames>
       <RefSchemaName>vinesidatabase</RefSchemaName>
       <RefTableName>tenanttable</RefTableName>
       <RefColNames>tenantID</RefColNames>
     </foreign-key>
-    <column id="266" parent="244" name="leaseID">
+    <foreign-key id="268" parent="243" name="invoicetable_propertytable_propertyID_fk">
+      <ColNames>invoiceProperty</ColNames>
+      <RefSchemaName>vinesidatabase</RefSchemaName>
+      <RefTableName>propertytable</RefTableName>
+      <RefColNames>propertyID</RefColNames>
+    </foreign-key>
+    <column id="269" parent="244" name="leaseID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="267" parent="244" name="leaseMonthlyRent">
+    <column id="270" parent="244" name="leaseMonthlyRent">
       <Position>2</Position>
       <DataType>decimal(7,2 digit)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="268" parent="244" name="leaseUtilities">
+    <column id="271" parent="244" name="leaseUtilities">
       <Position>3</Position>
       <DataType>decimal(7,2 digit)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="244" name="leasePaymentMethod">
+    <column id="272" parent="244" name="leasePaymentMethod">
       <Position>4</Position>
       <DataType>varchar(45)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="244" name="leaseDeposit">
+    <column id="273" parent="244" name="leaseDeposit">
       <Position>5</Position>
       <DataType>enum(&apos;Half&apos;, &apos;Full&apos;, &apos;Double&apos;)|0e</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="271" parent="244" name="leaseStart">
+    <column id="274" parent="244" name="leaseStart">
       <Position>6</Position>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="272" parent="244" name="leaseEnd">
+    <column id="275" parent="244" name="leaseEnd">
       <Position>7</Position>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="273" parent="244" name="propertytable_propertyID">
+    <column id="276" parent="244" name="propertytable_propertyID">
       <Position>8</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="274" parent="244" name="tenanttable_tenantID">
+    <column id="277" parent="244" name="tenanttable_tenantID">
       <Position>9</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="275" parent="244" name="leasetable_propertytable_propertyID_fk">
+    <index id="278" parent="244" name="leasetable_propertytable_propertyID_fk">
       <ColNames>propertytable_propertyID</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="276" parent="244" name="leasetable_tenanttable_tenantID_fk">
+    <index id="279" parent="244" name="leasetable_tenanttable_tenantID_fk">
       <ColNames>tenanttable_tenantID</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="277" parent="244" name="PRIMARY">
+    <key id="280" parent="244" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>leaseID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="278" parent="244" name="leasetable_propertytable_propertyID_fk">
+    <foreign-key id="281" parent="244" name="leasetable_propertytable_propertyID_fk">
       <ColNames>propertytable_propertyID</ColNames>
       <RefSchemaName>vinesidatabase</RefSchemaName>
       <RefTableName>propertytable</RefTableName>
       <RefColNames>propertyID</RefColNames>
     </foreign-key>
-    <foreign-key id="279" parent="244" name="leasetable_tenanttable_tenantID_fk">
+    <foreign-key id="282" parent="244" name="leasetable_tenanttable_tenantID_fk">
       <ColNames>tenanttable_tenantID</ColNames>
       <RefSchemaName>vinesidatabase</RefSchemaName>
       <RefTableName>tenanttable</RefTableName>
       <RefColNames>tenantID</RefColNames>
     </foreign-key>
-    <column id="280" parent="245" name="propertyID">
+    <column id="283" parent="245" name="propertyID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="281" parent="245" name="propertyRooms">
+    <column id="284" parent="245" name="propertyRooms">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="282" parent="245" name="propertyLeasedBy">
+    <column id="285" parent="245" name="propertyLeasedBy">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="283" parent="245" name="propertytable_tenanttable_tenantID_fk">
+    <index id="286" parent="245" name="propertytable_tenanttable_tenantID_fk">
       <ColNames>propertyLeasedBy</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="284" parent="245" name="PRIMARY">
+    <key id="287" parent="245" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>propertyID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="285" parent="245" name="propertytable_tenanttable_tenantID_fk">
+    <foreign-key id="288" parent="245" name="propertytable_tenanttable_tenantID_fk">
       <ColNames>propertyLeasedBy</ColNames>
       <RefSchemaName>vinesidatabase</RefSchemaName>
       <RefTableName>tenanttable</RefTableName>
       <RefColNames>tenantID</RefColNames>
     </foreign-key>
-    <column id="286" parent="246" name="tenantID">
+    <column id="289" parent="246" name="tenantID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="246" name="tenantFirstName">
+    <column id="290" parent="246" name="tenantFirstName">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="246" name="tenantLastName">
+    <column id="291" parent="246" name="tenantLastName">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="246" name="tenantEmail">
+    <column id="292" parent="246" name="tenantEmail">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="246" name="tenantGender">
+    <column id="293" parent="246" name="tenantGender">
       <Position>5</Position>
       <DataType>enum(&apos;Ms&apos;, &apos;Mr&apos;)|0e</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="246" name="tenantBillingStreet">
+    <column id="294" parent="246" name="tenantBillingStreet">
       <Position>6</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="292" parent="246" name="tenantBillingCity">
+    <column id="295" parent="246" name="tenantBillingCity">
       <Position>7</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="293" parent="246" name="tenantBillingPostalCode">
+    <column id="296" parent="246" name="tenantBillingPostalCode">
       <Position>8</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="294" parent="246" name="tenantBillingCountry">
+    <column id="297" parent="246" name="tenantBillingCountry">
       <Position>9</Position>
       <DataType>varchar(30)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="295" parent="246" name="PRIMARY">
+    <key id="298" parent="246" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>tenantID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="296" parent="247" name="userID">
+    <column id="299" parent="247" name="userID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="297" parent="247" name="userLastName">
+    <column id="300" parent="247" name="userLastName">
       <Position>2</Position>
       <DataType>varchar(200)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="298" parent="247" name="userEmail">
+    <column id="301" parent="247" name="userEmail">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="299" parent="247" name="userPassword">
+    <column id="302" parent="247" name="userPassword">
       <Position>4</Position>
       <DataType>varchar(200)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="300" parent="247" name="userStatus">
+    <column id="303" parent="247" name="userStatus">
       <Position>5</Position>
       <DataType>tinyint(1)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="301" parent="247" name="PRIMARY">
+    <key id="304" parent="247" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userID</ColNames>
       <Primary>1</Primary>

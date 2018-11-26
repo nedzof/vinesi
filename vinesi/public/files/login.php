@@ -47,36 +47,22 @@
 </body>
 
 </html>
-
+<?php $page_title = 'Log in'; ?>
 <?php
-/**
- * Created by PhpStorm.
- * User: Nedzo
- * Date: 06.11.2018
- * Time: 09:49
- */
+require_once ('../../private/initialize.php');
 
-//Php Login in form
-$connection = mysqli_connect("localhost","root","","vinesidb");
-if (isset($_POST['submit'])){
-    $txtEmail = $_POST['txtEmail'];
-    $txtPass = $_POST['txtPass'];
+$errors = [];
+$username = '';
+$password = '';
 
-    $query = "SELECT * FROM usertable WHERE userEmail='{$txtEmail}' AND userPassword='{$txtPass}'";
-    $result = mysqli_query($connection,$query);
+if(is_post_request()) {
 
-    if($result=mysqli_fetch_array($result)){
-        echo "<script>
-            alert(\"Login Successful\");
-        </script>";
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
 
+    $_SESSION['username'] = $username;
 
-    } else{
-
-        echo "<script>
-            alert(\"Login Failed\");
-        </script>";
-    //    header("Location: ../login.php");
-     //   exit();
-    }
+    redirect_to(url_for('/staff/index.php'));
 }
+
+?>
