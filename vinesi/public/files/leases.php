@@ -57,7 +57,7 @@
                             <td><?php echo $row['leaseEnd'] ?></td>
                             <td><?php echo $row['propertytable_propertyID'] ?></td>
                             <td><?php echo $row['tenanttable_tenantID'] ?></td>
-                            <td><a class="action" href="<?php echo url_for('files/frmEditLease.php?id=' . $row['leaseID']); ?>">View</a></td>
+                            <td><a class="action" href="<?php echo url_for('files/frmEditLease.php?id=' . $row['leaseID']); ?>">Edit</a></td>
                             <td> <button></button></td>
                         </tr>
                         <?php }

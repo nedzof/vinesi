@@ -54,25 +54,25 @@
                                                                                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$"
                                                                                                   inputmode="email">
                 </div>
-                <div class="form-group"><label class="text-secondary">Utilities</label><input class="form-control"
+                <div class="form-group"><label class="text-secondary">Utilities</label><input value="<?php echo h($row['leaseUtilities']) ?>" class="form-control"
                                                                                               type="number" required="">
                 </div>
-                <div class="form-group"><label class="text-secondary">Payment Method</label><input class="form-control"
+                <div class="form-group"><label class="text-secondary">Payment Method</label><input value="<?php echo h($row['leasePaymentMethod']) ?>" class="form-control"
                                                                                                    type="text"
                                                                                                    required=""></div>
-                <div class="form-group"><label class="text-secondary">Deposit</label><input class="form-control"
+                <div class="form-group"><label class="text-secondary">Deposit</label><input value="<?php echo h($row['leaseDeposit']) ?>" class="form-control"
                                                                                             type="text" required="">
                 </div>
-                <div class="form-group"><label class="text-secondary">Lease Start</label><input class="form-control"
+                <div class="form-group"><label class="text-secondary">Lease Start</label><input value="<?php echo h($row['leaseStart']) ?>" class="form-control"
                                                                                                 type="date" required="">
                 </div>
-                <div class="form-group"><label class="text-secondary">Lease Expiry</label><input class="form-control"
+                <div class="form-group"><label class="text-secondary">Lease Expiry</label><input value="<?php echo h($row['leaseEnd']) ?>" class="form-control"
                                                                                                  type="date"
                                                                                                  required=""></div>
-                <div class="form-group"><label class="text-secondary">Property</label><input class="form-control"
+                <div class="form-group"><label class="text-secondary">Property</label><input value="<?php echo h($row['propertytable_propertyID']) ?>" class="form-control"
                                                                                              type="number" required="">
                 </div>
-                <div class="form-group"><label class="text-secondary">Tenant</label><input class="form-control"
+                <div class="form-group"><label class="text-secondary">Tenant</label><input value="<?php echo h($row['tenanttable_tenantID']) ?>" class="form-control"
                                                                                            type="number" required="">
                 </div>
                 <button class="btn btn-info mt-2" type="submit" style="max-height: -8px;"><i
