@@ -41,7 +41,7 @@
                         <tr class="header">
                             <?php
 
-                            $result = $conn->query(getInvoiceTable());
+                            $result = $db->query(getInvoiceTable());
 
                             if ($result->num_rows > 0) {
                             // output data of each row
@@ -72,7 +72,7 @@
                         </tr>
                         <?php }
                         }
-                        $conn->close();
+                        $db->close();
                         ?>
                     </table>
                 </div>
