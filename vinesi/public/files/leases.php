@@ -43,9 +43,9 @@
 
                             $result = $db->query(getLeaseTable());
 
-                            if ($result->num_rows > 0) {
+                            if (mysqli_num_rows($result) > 0) {
                             // output data of each row
-                            while ($row = $result->fetch_assoc()) { ?>
+                            while ($row = mysqli_fetch_assoc($result)) { ?>
                         </tr>
                         <tr>
                             <td><?php echo $row['leaseID'] ?></td>
@@ -62,6 +62,7 @@
                         </tr>
                         <?php }
                         }
+                        mysqli_free_result($result);
                         db_disconnect($db);
                         ?>
                     </table>

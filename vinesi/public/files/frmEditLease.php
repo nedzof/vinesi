@@ -9,7 +9,8 @@
  $id = $_GET['id'];
 
  if(is_post_request()){
-     $leaseID = $_POST['leaseID'] ?? "";
+
+     $leaseID = $_POST['leaseID'] ?? 0;
      $leaseMonthlyRent = $_POST['leaseMonthlyRent'] ?? "";
      $leaseUtilities = $_POST['leaseUtilities'] ?? "";
      $leasePaymentMethod = $_POST['leasePaymentMethod'] ?? "";
@@ -61,7 +62,7 @@
             <h2 class="text-center" style="font-weight: normal;"><strong>Edit</strong>&nbsp;Tenancy</h2>
             <form action="<?php echo url_for('files/frmEditLease.php') ?>">
 
-                <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input value="33"
+                <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input value="<?php echo $leaseMonthlyRent ?>"
                                                                                                   class="form-control"
                                                                                                   type="text"
                                                                                                   required=""
