@@ -1,14 +1,16 @@
+<?php require_once("../../private/initialize.php"); ?>
+
 <?php
-$id = $_GET['id'] ?? '1'; // PHP > 7.0
+$id = $_GET['id'] ?? redirect_to('../../files/home.php'); // PHP > 7.0
 //
 $result = $conn->query(getLeaseTableID($id));
 if ($result->num_rows == 1) {
     // output data of each row
     $row = $result->fetch_assoc();
+    $leaseMonthlyRent = $row['leaseMonthlyRent'];
     echo $row;
 
 }
-$conn->close();
 ?>
 
 
@@ -32,7 +34,7 @@ $conn->close();
     <link rel="stylesheet" href="../assets/css/Navigation-Clean.css">
     <link rel="stylesheet" href="../assets/css/Projects-Horizontal.css">
     <link rel="stylesheet" href="../assets/css/register.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
     <link rel="stylesheet" href="../assets/css/Team-Clean.css">
 </head>
 
@@ -45,6 +47,7 @@ $conn->close();
         <div class="intro">
             <h2 class="text-center" style="font-weight: normal;"><strong>Edit</strong>&nbsp;Tenancy</h2>
             <form action="<?php echo url_for('') ?>">
+
                 <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input value="33"
                                                                                                   class="form-control"
                                                                                                   type="text"

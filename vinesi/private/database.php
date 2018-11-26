@@ -6,17 +6,26 @@
  * Time: 17:42
  */
 
-$dbServerName = "localhost";
-$dbUserName = "root";
-$dbPassword = "";
-$dbName = "vinesidatabase";
+function db_connect()
+{
 
-$conn = mysqli_connect($dbServerName,$dbUserName,$dbPassword,$dbName);
+    $dbServerName = "localhost";
+    $dbUserName = "root";
+    $dbPassword = "";
+    $dbName = "vinesidatabase";
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    return $conn;
+
 }
+
+
 
 function db_disconnect($connection) {
     if(isset($connection)) {
