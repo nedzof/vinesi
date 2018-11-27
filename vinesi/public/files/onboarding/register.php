@@ -1,4 +1,4 @@
-<?php require_once('../../private/initialize.php'); ?>
+<?php require_once('../../../private/initialize.php'); ?>
 <?php
 /**
  * Created by PhpStorm.
@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) {
              id="login-block">
             <div class="m-auto w-lg-75 w-xl-50">
                 <h2 class="text-info font-weight-light mb-5"><i class="fa fa-ravelry"></i>&nbsp;Vinesi</h2>
-                <form action="register.php" href="<?php url_for('../files/home.php"') ?>" method="post">
+                <form action="register.php" href="<?php url_for('../files/index.php"') ?>" method="post">
                     <div class="form-group"><label class="text-secondary">Name</label><input class="form-control"
                                                                                              name="name" type="text"
                                                                                              required=""></div>

@@ -1,5 +1,4 @@
-<?php $page_title = 'Log in'; ?>
-<?php require_once('../../private/initialize.php');
+<?php require_once('../../../private/initialize.php'); ?>
 
 
 $errors = [];

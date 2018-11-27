@@ -1,10 +1,10 @@
-<?php require_once("../../private/initialize.php"); ?>
-<?php include('../shared/header.php'); ?>
+<?php require_once('../../../private/initialize.php'); ?>
+<?php include('../../shared/header.php'); ?>
 
 
 <?php
  if(!isset($_GET['id'])){
-     redirect_to(url_for('files/home.php'));
+     redirect_to(url_for('files/index.php'));
  }
  $id = $_GET['id'];
  $row = getLeaseTable_By_ID($id);
