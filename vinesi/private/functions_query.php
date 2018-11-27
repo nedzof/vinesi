@@ -37,6 +37,25 @@ function getLeaseTable_By_ID($key)
     return $row; //return assoc array;
 }
 
+function deleteLeaseTable_By_ID($key)
+{
+    global $db;
+    $sql = "DELETE FROM expensetable WHERE expenseID =' " . $key . "'";
+    $result = mysqli_query($db, $sql);
+    mysqli_free_result($result);
+
+}
+
+function insertLeaseTable($key)
+    {
+        global $db;
+        $sql = "DELETE FROM expensetable WHERE expenseID =' ".$key ."'";
+        $result = mysqli_query($db, $sql);
+        mysqli_free_result($result);
+    }
+
+
+
 function getInvoiceTable()
 {
     $sql = "SELECT * FROM invoicetable";

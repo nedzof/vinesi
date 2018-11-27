@@ -1,6 +1,5 @@
 <?php require_once('../../../private/initialize.php'); ?>
-<?php include('../../shared/header.php'); ?>
-
+<?php include('../../../private/shared/header.php'); ?>
 
 unset($_SESSION['username']);
 // or you could use
