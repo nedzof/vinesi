@@ -37,7 +37,7 @@
         <div class="row projects">
             <div class="col-sm-6 item">
                 <div class="row">
-                    <div class="col-md-12 col-lg-5"><a href="<?php echo url_for('files/leases.php'); ?>">
+                    <div class="col-md-12 col-lg-5"><a href="<?php echo url_for('files/index.php'); ?>">
                             <img class="img-fluid" src="../assets/img/Fotolia_122593238_Subscription_Monthly_M.jpg"></a></div>
                     <div class="col">
                         <h3 class="name">Tenancy Schedule</h3>
