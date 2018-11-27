@@ -1,5 +1,5 @@
 <?php require_once("../../private/initialize.php"); ?>
-<?php include('../shared/header.php'); ?>
+<?php include('../../private/shared/header.php'); ?>
 
 
 <!DOCTYPE html>
@@ -82,7 +82,7 @@
         </div>
     </div>
 </div>
-<?php include('../shared/footer.php'); ?>
+<?php include('../../private/shared/footer.php'); ?>
 
 </body>
 
