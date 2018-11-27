@@ -1,5 +1,5 @@
 <?php require_once('../../private/initialize.php'); ?>
-<?php include ('../shared/header.php'); ?>
+<?php include('../shared/header.php'); ?>
 
 
     <!DOCTYPE html>
@@ -83,7 +83,7 @@
 <div class="col d-flex justify-content-center align-items-center align-content-center align-self-center" style="padding: 26px;"><button class="btn btn-primary" type="button" style="margin: 0px;margin-right: 35px;background-color: #17a2b8;"><i class="icon ion-android-add" style="color: #ffffff;"></i></button><button class="btn btn-primary" type="button" style="margin-right: 35px;background-color: #17a2b8;"><i class="icon ion-printer"></i></button>
     <button
         class="btn btn-primary" type="button" style="background-color: #17a2b8;"><i class="icon ion-ios-email"></i></button>
-    <?php include "../shared/footer.php"?>
+    <?php include "../shared/footer.php" ?>
 
 <script src="../assets/js/jquery.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>

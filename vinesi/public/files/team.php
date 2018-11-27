@@ -23,7 +23,7 @@
 </head>
 
 <body>
-<?php include "../shared/header.php"?>
+<?php include "../shared/header.php" ?>
 
 <div class="team-clean">
     <div class="container">
@@ -53,7 +53,7 @@
         </div>
     </div>
 </div>
-<?php include("../shared/footer.php")?>
+<?php include("../shared/footer.php") ?>
 </body>
 
 </html>
