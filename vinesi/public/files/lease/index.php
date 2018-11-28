@@ -48,6 +48,7 @@
                             <th>End</th>
                             <th>Property ID</th>
                             <th>Tenant ID</th>
+                            <th>Tenant Name</th>
 
 
 
@@ -66,6 +67,17 @@
                             <td><?php echo $row['leaseEnd'] ?></td>
                             <td><?php echo $row['propertytable_propertyID'] ?></td>
                             <td><?php echo $row['tenanttable_tenantID'] ?></td>
+                            <td><?php
+
+                                $sql = "SELECT tenantLastName, tenantFirstName FROM tenanttable WHERE tenantID = " . $row['tenanttable_tenantID'];
+                                $result = mysqli_query($db, $sql);
+                                while ($name = mysqli_fetch_array($result)) {
+                                    $tenantName = $name['tenantLastName'] . " " . $name['tenantFirstName'];
+                                    echo $tenantName;
+                                }
+                                ?></td>
+
+
                             <td><a class="action"
                                    href="<?php echo url_for('../public/files/lease/edit.php?id=' . h(u($row['leaseID'])) . '&pID=' . h(u(($row['propertytable_propertyID'])))); ?>">Edit</a>
                             </td>
