@@ -3,7 +3,7 @@
 
 <?php
 
-if (!isset($_GET['id']) || !isset($_GET['pID']) || !isset($_GET['tID'])) {
+if (!isset($_GET['id']) || isset($_GET['pID']) || isset($_GET['tID'])) {
     redirect_to(url_for('files/index.php'));
 }
 $pID = $_GET['pID'];
