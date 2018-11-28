@@ -6,20 +6,20 @@
 
 if(is_post_request()){
 
-    $leaseMonthlyRent = $_POST['leaseMonthlyRent'];
-    $leaseUtilities= $_POST['leaseUtilities'];
-    $leasePaymentMethod= $_POST['leasePaymentMethod'];
-    $leaseDeposit= $_POST['leaseDeposit'];
-    $leaseStart= $_POST['leaseStart'];
-    $leaseEnd= $_POST['leaseEnd'];
-    $propertytable_propertyID= $_POST['propertytable_propertyID'];
-    $tentanttable_tenantID= $_POST['tenanttable_tenantID'];
+    $leaseMonthlyRent = $_POST['leaseMonthlyRent'] ?? 100.00;
+    $leaseUtilities= $_POST['leaseUtilities'] ?? 100.00;
+    $leasePaymentMethod= $_POST['leasePaymentMethod'] ?? 'Email';
+    $leaseDeposit= $_POST['leaseDeposit'] ?? 'Half';
+    $leaseStart= $_POST['leaseStart'] ?? "2018-06-06";
+    $leaseEnd= $_POST['leaseEnd'] ?? "2018-06-06";
+    $propertytable_propertyID= $_POST['propertytable_propertyID'] ?? 11;
+    $tentanttable_tenantID= $_POST['tenanttable_tenantID'] ?? 1;
 
     $result = insertLeaseTable($leaseMonthlyRent, $leaseUtilities, $leasePaymentMethod, $leaseDeposit, $leaseStart, $leaseEnd, $propertytable_propertyID, $tentanttable_tenantID);
 
     if($result == true){
         $new_id = mysqli_insert_id($db);
-        redirect_to(url_for('/lease/create.php'));
+        redirect_to(url_for('/lease/edit.php?id='. $new_id));
 
     } else{
         redirect_to(url_for('/lease/index.php'));

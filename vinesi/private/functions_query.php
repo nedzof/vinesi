@@ -49,8 +49,19 @@ function deleteLeaseTable_By_ID($key)
 function insertLeaseTable($leaseMonthlyRent, $leaseUtilities, $leasePaymentMethod, $leaseDeposit, $leaseStart, $leaseEnd, $propertytable_propertyID, $tenanttable_tenantID)
 {
     global $db;
-    $sql = "INSERT INTO `leasetable` (leaseMonthlyRent, leaseUtilities, leasePaymentMethod, leaseDeposit, leaseStart, leaseEnd, propertytable_propertyID, tenanttable_tenantID) 
-VALUES (`leaseMonthlyRent`, `leaseUtilities`, `leasePaymentMethod`, `leaseDeposit`, `leaseStart`, `leaseEnd`, `propertytable_propertyID`, `tenanttable_tenantID`)";
+    $sql = "INSERT INTO leasetable " ;
+    $sql .= "(leaseMonthlyRent, leaseUtilities, leasePaymentMethod, leaseDeposit, leaseStart, leaseEnd, propertytable_propertyID, tenanttable_tenantID) ";
+    $sql .= "VALUES (";
+    $sql .= "'" . $leaseMonthlyRent . "',";
+    $sql .= "'" . $leaseUtilities . "',";
+    $sql .= "'" . $leasePaymentMethod . "',";
+    $sql .= "'" . $leaseDeposit . "',";
+    $sql .= "'" . $leaseStart . "',";
+    $sql .= "'" . $leaseEnd . "',";
+    $sql .= "'" . $propertytable_propertyID . "',";
+    $sql .= "'" . $tenanttable_tenantID . "'";
+    $sql .= ")";
+
     $result = mysqli_query($db, $sql);
 
     if($result) {
