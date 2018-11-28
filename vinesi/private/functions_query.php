@@ -79,14 +79,14 @@ function updateLeaseTable($entry)
     global $db;
 
     $sql = "UPDATE leasetable SET ";
-    $sql .= "leaseMonthlyRent'" . $entry['leaseMonthlyRent'] . "', ";
-    $sql .= "leaseUtilities'" . $entry['leaseUtilities'] . "', ";
-    $sql .= "leasePaymentMethod'" . $entry['leasePaymentMethod'] . "', ";
-    $sql .= "leaseDeposit'" . $entry['leaseDeposit'] . "', ";
-    $sql .= "leaseStart'" . $entry['leaseStart'] . "', ";
-    $sql .= "leaseEnd'" . $entry['leaseEnd'] . "', ";
-    $sql .= "propertytable_propertyID'" . $entry['propertytable_propertyID'] . "', ";
-    $sql .= "tenanttable_tenantID'" . $entry['tenanttable_tenantID'] . "' ";
+    $sql .= "leaseMonthlyRent='" . $entry['leaseMonthlyRent'] . "', ";
+    $sql .= "leaseUtilities='" . $entry['leaseUtilities'] . "', ";
+    $sql .= "leasePaymentMethod='" . $entry['leasePaymentMethod'] . "', ";
+    $sql .= "leaseDeposit='" . $entry['leaseDeposit'] . "', ";
+    $sql .= "leaseStart='" . $entry['leaseStart'] . "', ";
+    $sql .= "leaseEnd='" . $entry['leaseEnd'] . "', ";
+    $sql .= "propertytable_propertyID='" . $entry['propertytable_propertyID'] . "', ";
+    $sql .= "tenanttable_tenantID='" . $entry['tenanttable_tenantID'] . "' ";
     $sql .= "WHERE id='" . $entry['leaseID'] . "' ";
     $sql .= "LIMIT 1";
 
