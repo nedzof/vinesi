@@ -1,5 +1,5 @@
 <?php require_once('../../../private/initialize.php'); ?>
-<?php include('../../shared/header.php'); ?>
+<?php include(SHARED_PATH . '/header.php'); ?>
 
     <!DOCTYPE html>
 <html>
@@ -30,7 +30,7 @@
 <div class="projects-horizontal">
     <div class="container">
         <div class="intro">
-            <h2 class="text-center" style="font-weight: normal;"><strong>Create</strong>&nbsp;Tenancy</h2>
+            <h2 class="text-center" style="font-weight: normal;"><strong>Create</strong>&nbsp;Lease</h2>
             <form>
                 <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input class="form-control" type="text" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$" inputmode="email"></div>
                 <div class="form-group"><label class="text-secondary">Utilities</label><input class="form-control" type="number" required=""></div>
@@ -44,7 +44,7 @@
         </div>
     </div>
 </div>
-<?php include('../shared/footer.php'); ?>
+<?php include(SHARED_PATH . '/footer.php'); ?>
 
 </body>
 
