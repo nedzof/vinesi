@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="../../assets/css/Navigation-Clean.css">
         <link rel="stylesheet" href="../../assets/css/Projects-Horizontal.css">
         <link rel="stylesheet" href="../../assets/css/register.css">
-        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="../assets/css/styles.css">
         <link rel="stylesheet" href="../../assets/css/Team-Clean.css">
     </head>
 
