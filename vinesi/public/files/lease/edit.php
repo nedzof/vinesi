@@ -6,6 +6,7 @@
 if (!isset($_GET['id'])) {
     redirect_to(url_for('files/index.php'));
 }
+$pID = $_GET['pID'];
 $id = $_GET['id'];
 $row = getLeaseTable_By_ID($id);
 
@@ -101,16 +102,43 @@ if (is_post_request()) {
                                                                                                  class="form-control"
                                                                                                  type="date"
                                                                                                  required=""></div>
-                <div class="form-group"><label class="text-secondary">Property</label><input
-                            name="propertytable_propertyID"
-                            value="<?php echo h($row['propertytable_propertyID']) ?>" class="form-control"
-                            type="number" required="">
+                <div class="form-group">
+                    <label class="text-secondary">Property</label>
+                    <select name="propertytable_propertyID">
+
+                        <?php
+
+                        $sql = "SELECT propertyID, propertyLeasedBy FROM propertytable ORDER BY propertyID";
+                        $result = mysqli_query($db, $sql);
+                        while ($row = mysqli_fetch_array($result)) {
+                            $id = $row['propertyID'];
+                            echo "<option value='$id'>$id</option>";
+                        }
+                        ?>
+                    </select>
+
                 </div>
-                <div class="form-group"><label class="text-secondary">Tenant</label><input name="tenanttable_tenantID"
-                                                                                           value="<?php echo h($row['tenanttable_tenantID']) ?>"
-                                                                                           class="form-control"
-                                                                                           type="number" required="">
+
+                <div class="form-group">
+                    <label class="text-secondary">Tenant</label>
+                    <select name="tenanttable_tenantID">
+
+                        <?php
+
+                        $sql = "SELECT tenantID, tenantLastName, tenantFirstName FROM tenanttable ORDER BY tenantID";
+                        $result = mysqli_query($db, $sql);
+                        while ($row = mysqli_fetch_array($result)) {
+                            $id = $row['tenantID'];
+                            $tenantName = $row['tenantLastName'] . " " . $row['tenantFirstName'];
+
+                            echo "<option value='$id'>$tenantName</option>";
+                        }
+                        ?>
+                    </select>
+
                 </div>
+
+
                 <div>
                     <input type="submit" value="Edit Lease"/>
                 </div>

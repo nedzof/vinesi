@@ -16,10 +16,10 @@ function getExpenseTable()
     return $result;
 }
 
-function getTenantTable()
+function getPropertyByIds()
 {
     global $db;
-    $sql = "SELECT * FROM leasetable ASC";
+    $sql = mysqli_query($db, "SELECT propertyID, propertyLeasedBy FROM propertytable ORDER BY propertyID;");
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
     return $result;
