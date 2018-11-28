@@ -15,14 +15,14 @@ if(is_post_request()){
     $propertytable_propertyID= $_POST['propertytable_propertyID'];
     $tentanttable_tenantID= $_POST['tenanttable_tenantID'];
 
-    $result = insertLeaseTable(`$leaseMonthlyRent`, `$leaseUtilities`, `$leasePaymentMethod`, `$leaseDeposit`, `$leaseStart`, `$leaseEnd`, $propertytable_propertyID, $tentanttable_tenantID);
+    $result = insertLeaseTable($leaseMonthlyRent, $leaseUtilities, $leasePaymentMethod, $leaseDeposit, $leaseStart, $leaseEnd, $propertytable_propertyID, $tentanttable_tenantID);
 
     if($result == true){
-        $new_id=mysqli_insert_id($db);
-        redirect_to(url_for('/lease/index.php'));
+        $new_id = mysqli_insert_id($db);
+        redirect_to(url_for('/lease/create.php'));
 
-    } elseif ($result == false){
-        echo "Result is: " . $result;
+    } else{
+        redirect_to(url_for('/lease/index.php'));
 
     }
 
