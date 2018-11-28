@@ -14,12 +14,15 @@ if(is_post_request()){
     $leaseEnd= $_POST['leaseEnd'];
     $propertytable_propertyID= $_POST['propertytable_propertyID'];
     $tentanttable_tenantID= $_POST['tenanttable_tenantID'];
+    echo $leaseMonthlyRent, $leaseMonthlyRent, $leaseEnd;
 
+    $result = insertLeaseTable(`$leaseMonthlyRent`, `$leaseUtilities`, `$leasePaymentMethod`, `$leaseDeposit`, `$leaseStart`, `$leaseEnd`, $propertytable_propertyID, $tentanttable_tenantID);
 
-    $result = insertLeaseTable(`$leaseMonthlyRent`, `$leaseUtilities`, `$leasePaymentMethod`, `$leaseDeposit`, `$leaseStart`, `$leaseEnd`, $propertytable_propertyID, '$tentanttable_tenantID');
+    if($result == true){
+        $new_id=mysqli_insert_id($db);
+        redirect_to(url_for('/lease/index.php'));
 
-    $new_id=mysqli_insert_id($db);
-    redirect_to(url_for('public/files/lease/index.php'));
+    }
 
     mysqli_free_result($result);
 }
@@ -57,14 +60,14 @@ if(is_post_request()){
         <div class="intro">
             <h2 class="text-center" style="font-weight: normal;"><strong>Create</strong>&nbsp;Lease</h2>
             <form href="<?php echo url_for('lease/create.php')?>" method="post">
-                <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input class="form-control" type="text" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$" inputmode="email"></div>
-                <div class="form-group"><label class="text-secondary">Utilities</label><input class="form-control" type="number" required=""></div>
-                <div class="form-group"><label class="text-secondary">Payment Method</label><input class="form-control" type="text" required=""></div>
-                <div class="form-group"><label class="text-secondary">Deposit</label><input class="form-control" type="text" required=""></div>
-                <div class="form-group"><label class="text-secondary">Lease Start</label><input class="form-control" type="date" required=""></div>
-                <div class="form-group"><label class="text-secondary">Lease Expiry</label><input class="form-control" type="date" required=""></div>
-                <div class="form-group"><label class="text-secondary">Property</label><input class="form-control" type="number" required=""></div>
-                <div class="form-group"><label class="text-secondary">Tenant</label><input class="form-control" type="number" required=""></div>
+                <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input name="leaseMonthlyRent" class="form-control" type="number" required="" ></div>
+                <div class="form-group"><label class="text-secondary">Utilities</label><input name="leaseUtilities" class="form-control" type="number" required=""></div>
+                <div class="form-group"><label class="text-secondary">Payment Method</label><input name="leasePaymentMethod" class="form-control" type="text" required=""></div>
+                <div class="form-group"><label class="text-secondary">Deposit</label><input name="leaseDeposit" class="form-control" type="text" required=""></div>
+                <div class="form-group"><label class="text-secondary">Lease Start</label><input name="leaseStart" class="form-control" type="date" required=""></div>
+                <div class="form-group"><label class="text-secondary">Lease Expiry</label><input name="leaseEnd" class="form-control" type="date" required=""></div>
+                <div class="form-group"><label class="text-secondary">Property</label><input name="propertytable_propertyID" class="form-control" type="number" required=""></div>
+                <div class="form-group"><label class="text-secondary">Tenant</label><input name="tenanttable_tenantID" class="form-control" type="number" required=""></div>
                 <button class="btn btn-info mt-2" type="submit" style="max-height: -8px;"><i class="icon ion-ios-compose-outline"></i></button></form>
         </div>
     </div>

@@ -49,7 +49,7 @@ function deleteLeaseTable_By_ID($key)
 function insertLeaseTable($leaseMonthlyRent,$leaseUtilities, $leasePaymentMethod, $leaseDeposit, $leaseStart, $leaseEnd, $propertytable_propertyID, $tenanttable_tenantID)
     {
         global $db;
-        $sql = "INSERT INTO `leasetable` (`$leaseMonthlyRent`, `$leaseUtilities`, `$leasePaymentMethod`, `$leaseDeposit`, `$leaseStart`, `$leaseEnd`, `$propertytable_propertyID`, `$tenanttable_tenantID`) VALUES (1100.00, 353.00, 'Invoice', 'Double', '2018-11-28', '2018-11-28', 11, 1)";
+        $sql = "INSERT INTO `leasetable` (`$leaseMonthlyRent`, `$leaseUtilities`, `$leasePaymentMethod`, `$leaseDeposit`, `$leaseStart`, `$leaseEnd`, `$propertytable_propertyID`, `$tenanttable_tenantID`) VALUES (`$leaseMonthlyRent`, `$leaseUtilities`, `$leasePaymentMethod`, `$leaseDeposit`, `$leaseStart`, `$leaseEnd`, `$propertytable_propertyID`, `$tenanttable_tenantID`)";
         return mysqli_query($db, $sql);}
 
 
