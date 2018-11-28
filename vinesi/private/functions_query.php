@@ -52,15 +52,43 @@ function insertLeaseTable($leaseMonthlyRent, $leaseUtilities, $leasePaymentMetho
     $sql = "INSERT INTO leasetable " ;
     $sql .= "(leaseMonthlyRent, leaseUtilities, leasePaymentMethod, leaseDeposit, leaseStart, leaseEnd, propertytable_propertyID, tenanttable_tenantID) ";
     $sql .= "VALUES (";
-    $sql .= "'" . $leaseMonthlyRent . "',";
-    $sql .= "'" . $leaseUtilities . "',";
-    $sql .= "'" . $leasePaymentMethod . "',";
+    $sql .= "'" . $leaseMonthlyRent . "', ";
+    $sql .= "'" . $leaseUtilities . "', ";
+    $sql .= "'" . $leasePaymentMethod . "' ,";
     $sql .= "'" . $leaseDeposit . "',";
-    $sql .= "'" . $leaseStart . "',";
-    $sql .= "'" . $leaseEnd . "',";
-    $sql .= "'" . $propertytable_propertyID . "',";
+    $sql .= "'" . $leaseStart . "', ";
+    $sql .= "'" . $leaseEnd . "', ";
+    $sql .= "'" . $propertytable_propertyID . "', ";
     $sql .= "'" . $tenanttable_tenantID . "'";
     $sql .= ")";
+
+    $result = mysqli_query($db, $sql);
+
+    if($result) {
+        return true;
+    } else {
+        // UPDATE failed
+        echo mysqli_error($db);
+        db_disconnect($db);
+        exit;
+    }
+}
+
+function updateLeaseTable($entry)
+{
+    global $db;
+
+    $sql = "UPDATE leasetable SET ";
+    $sql .= "leaseMonthlyRent'" . $entry['leaseMonthlyRent'] . "', ";
+    $sql .= "leaseUtilities'" . $entry['leaseUtilities'] . "', ";
+    $sql .= "leasePaymentMethod'" . $entry['leasePaymentMethod'] . "', ";
+    $sql .= "leaseDeposit'" . $entry['leaseDeposit'] . "', ";
+    $sql .= "leaseStart'" . $entry['leaseStart'] . "', ";
+    $sql .= "leaseEnd'" . $entry['leaseEnd'] . "', ";
+    $sql .= "propertytable_propertyID'" . $entry['propertytable_propertyID'] . "', ";
+    $sql .= "tenanttable_tenantID'" . $entry['tenanttable_tenantID'] . "' ";
+    $sql .= "WHERE id='" . $entry['leaseID'] . "' ";
+    $sql .= "LIMIT 1";
 
     $result = mysqli_query($db, $sql);
 

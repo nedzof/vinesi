@@ -39,6 +39,19 @@
                 <div class="table-responsive">
                     <table class="table">
                         <tr class="header">
+                            <th>ID</th>
+                            <th>Monthly Rent</th>
+                            <th>Utilities</th>
+                            <th>Payment Method</th>
+                            <th>Deposit</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Property ID</th>
+                            <th>Tenant ID</th>
+
+
+
+
                             <?php
                             $result = getLeaseTable();
                             while ($row = mysqli_fetch_assoc($result)) { ?>
@@ -59,7 +72,7 @@
                         <?php
                         }
                         mysqli_free_result($result);
-                        db_disconnect($db);
+                       // db_disconnect($db);
                         ?>
                     </table>
                 </div>
