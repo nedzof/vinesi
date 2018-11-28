@@ -3,10 +3,11 @@
 
 <?php
 
-if (!isset($_GET['id']) || !isset($_GET['pID'])) {
+if (!isset($_GET['id']) || !isset($_GET['pID']) || !isset($_GET['tID'])) {
     redirect_to(url_for('files/index.php'));
 }
 $pID = $_GET['pID'];
+$tID = $_GET['tID'];
 $id = $_GET['id'];
 $singlerow = getLeaseTable_By_ID($id);
 
@@ -108,7 +109,7 @@ if (is_post_request()) {
 
                         <?php
 
-                        $sql = "SELECT propertyID, propertyLeasedBy FROM propertytable ORDER BY propertyID";
+                        $sql = "SELECT propertyID FROM propertytable ORDER BY propertyID";
                         $result = mysqli_query($db, $sql);
                         while ($row = mysqli_fetch_array($result)) {
                             $identity = $row['propertyID'];
@@ -128,12 +129,11 @@ if (is_post_request()) {
 
                         $sql = "SELECT tenantID, tenantLastName, tenantFirstName FROM tenanttable ORDER BY tenantID";
                         $result = mysqli_query($db, $sql);
-                        while ($singlerow = mysqli_fetch_array($result)) {
-                            $id = $singlerow['tenantID'];
-                            $tenantName = $singlerow['tenantLastName'] . " " . $singlerow['tenantFirstName'];
+                        while ($row = mysqli_fetch_array($result)) {
+                            $tidentity = $row['tenantID'];
+                            $tName = $row['tenantLastName'] . " " . $row['tenantFirstName'];
 
-
-                            echo "<option value='$id'>$tenantName</option>";
+                            echo($tID == $tidentity ? "<option selected value='$tidentity'>$tName</option>" : "<option value='$tidentity'>$tName</option>");
                         }
                         ?>
                     </select>
