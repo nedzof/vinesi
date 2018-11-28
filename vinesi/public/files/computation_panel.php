@@ -1,5 +1,5 @@
 <?php require_once('../../private/initialize.php'); ?>
-<?php include('../shared/header.php'); ?>
+<?php include('../../private/shared/header.php'); ?>
 
 
     <!DOCTYPE html>

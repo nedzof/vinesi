@@ -59,7 +59,7 @@
             <div class="col-sm-6 item">
                 <div class="row">
                     <div class="col-md-12 col-lg-5">
-                        <a href="<?php echo url_for('files/controlling.php'); ?>">
+                        <a href="<?php echo url_for('files/invoice/index.php'); ?>">
                             <img class="img-fluid" src="../assets/img/building.jpg"></a></div>
                     <div class="col">
                         <h3 class="name">Controlling</h3>

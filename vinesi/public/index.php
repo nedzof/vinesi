@@ -6,5 +6,5 @@
  * Time: 09:19
  */
 
-require_once('./shared/header.php');
-include_once('./shared/footer.php');
+require_once('../private/shared/header.php');
+include_once('../private/shared/footer.php');
