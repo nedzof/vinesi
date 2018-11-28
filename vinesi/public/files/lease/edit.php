@@ -10,7 +10,7 @@ $row = getLeaseTable_By_ID($id);
 if (is_get_request()) {
 
     $entry = [];
-    $entry['leaseID'] = $row['leaseID'] ?? '';
+    $entry['leaseID'] = $row['leaseID'] ?? 1;
     $entry['leaseMonthlyRent'] = $_POST['leaseMonthlyRent'] ?? '';
     $entry['leaseUtilities'] = $_POST['leaseUtilities'] ?? '';
     $entry['leasePaymentMethod'] = $_POST['leasePaymentMethod'] ?? '';
