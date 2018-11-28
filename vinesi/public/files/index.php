@@ -48,7 +48,7 @@
             <div class="col-sm-6 item">
                 <div class="row">
                     <div class="col-md-12 col-lg-5">
-                        <a href="<?php echo url_for('files/computation_panel.php'); ?>">
+                        <a href="<?php echo url_for('files/index.php'); ?>">
                             <img class="img-fluid" src="../assets/img/desk.jpg"></a></div>
                     <div class="col">
                         <h3 class="name">Computation</h3>
@@ -70,7 +70,7 @@
             <div class="col-sm-6 item" class>
                 <div class="row">
                     <div class="col-md-12 col-lg-5">
-                        <a href="<?php echo url_for('files/expenses_tbl.php'); ?>">
+                        <a href="<?php echo url_for('files/expense/index.php'); ?>">
                             <img class="img-fluid" src="../assets/img/Accounting-1024x682.jpg"></a>
                     </div>
                     <div class="col">
