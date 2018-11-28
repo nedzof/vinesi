@@ -29,7 +29,7 @@
 <body>
 
 <div class="intro">
-    <h2 class="text-center" style="margin-bottom: 40px;padding-top: 40px;"><strong>Leases</strong></h2>
+    <h2 class="text-center" style="margin-bottom: 40px;padding-top: 40px;"><strong>Lease Menu</strong></h2>
     <p class="text-center" style="color: #a2a8ae;">In this tab all current units as well as their tenants are visible.</p>
 </div>
 <div>
