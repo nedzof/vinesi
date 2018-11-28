@@ -16,6 +16,14 @@ function getExpenseTable()
     return $result;
 }
 
+function getTenantTable()
+{
+    global $db;
+    $sql = "SELECT * FROM leasetable ASC";
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    return $result;
+}
 
 function getLeaseTable()
 {

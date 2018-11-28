@@ -6,11 +6,12 @@
 if (!isset($_GET['id'])) {
     redirect_to(url_for('files/index.php'));
 }
+$id = $_GET['id'];
+$row = getLeaseTable_By_ID($id);
 
 if (is_post_request()) {
 
-    $id = $_GET['id'];
-    $row = getLeaseTable_By_ID($id);
+
     echo $row['leaseMonthlyRent'];
 
     $entry = [];
