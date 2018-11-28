@@ -10,8 +10,5 @@
  * Time: 20:28
 
  * */
-
-
-
 ?>
 <?php include(SHARED_PATH . '/header.php'); ?>

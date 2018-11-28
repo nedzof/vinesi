@@ -1,5 +1,5 @@
 <?php require_once('../../../private/initialize.php'); ?>
-<?php include('../../shared/header.php'); ?>
+<?php include(SHARED_PATH . '/header.php'); ?>
 
 
     <!DOCTYPE html>
@@ -212,7 +212,7 @@
             class="btn btn-primary" type="button" style="background-color: #17a2b8;"><i class="icon ion-ios-email"></i></button>
     </div>
 </div>
-<?php include "../shared/footer.php" ?>
+<?php include(SHARED_PATH . '/header.php'); ?>
 
 <script src="../../assets/js/jquery.min.js"></script>
 <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>

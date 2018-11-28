@@ -1,5 +1,5 @@
 <?php require_once('../../../private/initialize.php'); ?>
-<?php include('../../../private/shared/header.php'); ?>
+<?php include(SHARED_PATH . '/header.php'); ?>
 
 
 <!DOCTYPE html>
@@ -41,10 +41,9 @@
                         <tr class="header">
                             <?php
 
-                            $result = $db->query(getExpenseTable());
+                            $result = getExpenseTable();
 
-                            if ($result->num_rows > 0) {
-                            // output data of each row
+                           // output data of each row
                             while ($row = $result->fetch_assoc()) { ?>
                         </tr>
                         <tr>
@@ -66,7 +65,7 @@
 
 
                         </tr>
-                        <?php }
+                        <?php
                         }
                         db_disconnect($db);
                         ?>
