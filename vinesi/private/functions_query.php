@@ -29,7 +29,7 @@ function getLeaseTable()
 function getLeaseTable_By_ID($key)
 {
     global $db;
-    $sql = "SELECT * FROM leasetable WHERE leaseID=' ".$key ."'";
+    $sql = "SELECT * FROM leasetable WHERE leaseID=' " . $key . "'";
     $result = mysqli_query($db, $sql);
     confirm_result_set($result);
     $row = mysqli_fetch_assoc($result);
@@ -46,11 +46,13 @@ function deleteLeaseTable_By_ID($key)
 
 }
 
-function insertLeaseTable($leaseMonthlyRent,$leaseUtilities, $leasePaymentMethod, $leaseDeposit, $leaseStart, $leaseEnd, $propertytable_propertyID, $tenanttable_tenantID)
-    {
-        global $db;
-        $sql = "INSERT INTO `leasetable` (`$leaseMonthlyRent`, `$leaseUtilities`, `$leasePaymentMethod`, `$leaseDeposit`, `$leaseStart`, `$leaseEnd`, `$propertytable_propertyID`, `$tenanttable_tenantID`) VALUES (`$leaseMonthlyRent`, `$leaseUtilities`, `$leasePaymentMethod`, `$leaseDeposit`, `$leaseStart`, `$leaseEnd`, `$propertytable_propertyID`, `$tenanttable_tenantID`)";
-        return mysqli_query($db, $sql);}
+function insertLeaseTable($leaseMonthlyRent, $leaseUtilities, $leasePaymentMethod, $leaseDeposit, $leaseStart, $leaseEnd, $propertytable_propertyID, $tenanttable_tenantID)
+{
+    global $db;
+    $sql = "INSERT INTO `leasetable` (`leaseMonthlyRent`, `leaseUtilities`, `leasePaymentMethod`, `leaseDeposit`, `leaseStart`, `leaseEnd`, `propertytable_propertyID`, `tenanttable_tenantID`) 
+VALUES (`$leaseMonthlyRent`, `$leaseUtilities`, `$leasePaymentMethod`, `$leaseDeposit`, `$leaseStart`, `$leaseEnd`, `$propertytable_propertyID`, `$tenanttable_tenantID`)";
+    return mysqli_query($db, $sql);
+}
 
 
 function getInvoiceTable()
