@@ -66,7 +66,7 @@
                             <td><?php echo $row['leaseEnd'] ?></td>
                             <td><?php echo $row['propertytable_propertyID'] ?></td>
                             <td><?php echo $row['tenanttable_tenantID'] ?></td>
-                            <td><a class="action" href="<?php echo url_for('../public/files/lease/edit.php?id=' . $row['leaseID']); ?>">Edit</a></td>
+                            <td><a class="action" href="<?php echo url_for('../public/files/lease/edit.php?id=' . h(u($row['leaseID']))); ?>">Edit</a></td>
                             <td> <button></button></td>
                         </tr>
                         <?php

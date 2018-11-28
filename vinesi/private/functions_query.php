@@ -87,7 +87,7 @@ function updateLeaseTable($entry)
     $sql .= "leaseEnd='" . $entry['leaseEnd'] . "', ";
     $sql .= "propertytable_propertyID='" . $entry['propertytable_propertyID'] . "', ";
     $sql .= "tenanttable_tenantID='" . $entry['tenanttable_tenantID'] . "' ";
-    $sql .= "WHERE id='" . $entry['leaseID'] . "' ";
+    $sql .= "WHERE leaseID='" . $entry['leaseID'] . "' ";
     $sql .= "LIMIT 1";
 
     $result = mysqli_query($db, $sql);

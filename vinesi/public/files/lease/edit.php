@@ -65,16 +65,14 @@ if (is_get_request()) {
     <div class="container">
         <div class="intro">
             <h2 class="text-center" style="font-weight: normal;"><strong>Edit</strong>&nbsp;Tenancy</h2>
-            <form action="<?php echo url_for('files/edit.php?id=' . h(u($id))) ?>">
+            <form action="<?php echo url_for('/files/lease/edit.php?id=' . h(u($id))) ?>" method="get">
 
                 <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input
                             name="leaseMonthlyRent"
                             value="<?php echo h($row['leaseMonthlyRent']) ?>"
                             class="form-control"
                             type="number"
-                            required=""
-                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$"
-                            inputmode="email">
+                            required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Utilities</label><input name="leaseUtilities"
                                                                                               value="<?php echo h($row['leaseUtilities']) ?>"
