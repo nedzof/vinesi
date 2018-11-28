@@ -50,12 +50,9 @@
                             <th>Tenant ID</th>
                             <th>Tenant Name</th>
 
-
-
-
                             <?php
-                            $result = getLeaseTable();
-                            while ($row = mysqli_fetch_assoc($result)) { ?>
+                            $result1 = getLeaseTable();
+                            while ($row = mysqli_fetch_assoc($result1)) { ?>
                         </tr>
                         <tr>
                             <td><?php echo $row['leaseID'] ?></td>
@@ -70,8 +67,8 @@
                             <td><?php
 
                                 $sql = "SELECT tenantLastName, tenantFirstName FROM tenanttable WHERE tenantID = " . $row['tenanttable_tenantID'];
-                                $result = mysqli_query($db, $sql);
-                                while ($name = mysqli_fetch_array($result)) {
+                                $result2 = mysqli_query($db, $sql);
+                                while ($name = mysqli_fetch_array($result2)) {
                                     $tenantName = $name['tenantLastName'] . " " . $name['tenantFirstName'];
                                     echo $tenantName;
                                 }
@@ -85,8 +82,8 @@
                         </tr>
                         <?php
                         }
-                        mysqli_free_result($result);
-                       // db_disconnect($db);
+                        mysqli_free_result($result2);
+                        //db_disconnect($db);
                         ?>
                     </table>
                 </div>
