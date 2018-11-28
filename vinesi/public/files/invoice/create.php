@@ -1,6 +1,15 @@
 <?php require_once('../../../private/initialize.php'); ?>
 <?php include(SHARED_PATH . '/header.php'); ?>
 
+<?php
+
+
+
+
+
+?>
+
+
     <!DOCTYPE html>
 <html>
 
@@ -31,7 +40,7 @@
     <div class="container">
         <div class="intro">
             <h2 class="text-center" style="font-weight: normal;"><strong>Create</strong>&nbsp;Invoice</h2>
-            <form>
+            <form action="<?php echo url_for('create.php')?>" method="post">
                 <div class="form-group"><label class="text-secondary">ID</label><input class="form-control" type="number" required=""></div>
                 <div class="form-group"><label class="text-secondary">Type</label><input class="form-control" type="text" required=""></div>
                 <div class="form-group"><label class="text-secondary">Amount</label><input class="form-control" type="number" required=""></div>

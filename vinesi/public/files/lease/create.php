@@ -1,6 +1,31 @@
 <?php require_once('../../../private/initialize.php'); ?>
 <?php include(SHARED_PATH . '/header.php'); ?>
 
+<?php
+
+
+if(is_post_request()){
+
+    $leaseMonthlyRent = $_POST['leaseMonthlyRent'];
+    $leaseUtilities= $_POST['leaseUtilities'];
+    $leasePaymentMethod= $_POST['leasePaymentMethod'];
+    $leaseDeposit= $_POST['leaseDeposit'];
+    $leaseStart= $_POST['leaseStart'];
+    $leaseEnd= $_POST['leaseEnd'];
+    $propertytable_propertyID= $_POST['propertytable_propertyID'];
+    $tentanttable_tenantID= $_POST['tenanttable_tenantID'];
+
+
+    $result = insertLeaseTable(`$leaseMonthlyRent`, `$leaseUtilities`, `$leasePaymentMethod`, `$leaseDeposit`, `$leaseStart`, `$leaseEnd`, $propertytable_propertyID, '$tentanttable_tenantID');
+
+    $new_id=mysqli_insert_id($db);
+    redirect_to(url_for('public/files/lease/index.php'));
+
+    mysqli_free_result($result);
+}
+
+?>
+
     <!DOCTYPE html>
 <html>
 
@@ -31,7 +56,7 @@
     <div class="container">
         <div class="intro">
             <h2 class="text-center" style="font-weight: normal;"><strong>Create</strong>&nbsp;Lease</h2>
-            <form>
+            <form href="<?php echo url_for('lease/create.php')?>" method="post">
                 <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input class="form-control" type="text" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$" inputmode="email"></div>
                 <div class="form-group"><label class="text-secondary">Utilities</label><input class="form-control" type="number" required=""></div>
                 <div class="form-group"><label class="text-secondary">Payment Method</label><input class="form-control" type="text" required=""></div>

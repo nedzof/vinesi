@@ -46,14 +46,11 @@ function deleteLeaseTable_By_ID($key)
 
 }
 
-function insertLeaseTable($key)
+function insertLeaseTable($leaseMonthlyRent,$leaseUtilities, $leasePaymentMethod, $leaseDeposit, $leaseStart, $leaseEnd, $propertytable_propertyID, $tenanttable_tenantID)
     {
         global $db;
-        $sql = "DELETE FROM expensetable WHERE expenseID =' ".$key ."'";
-        $result = mysqli_query($db, $sql);
-        mysqli_free_result($result);
-    }
-
+        $sql = "INSERT INTO `leasetable` (`$leaseMonthlyRent`, `$leaseUtilities`, `$leasePaymentMethod`, `$leaseDeposit`, `$leaseStart`, `$leaseEnd`, `$propertytable_propertyID`, `$tenanttable_tenantID`) VALUES (1100.00, 353.00, 'Invoice', 'Double', '2018-11-28', '2018-11-28', 11, 1)";
+        return mysqli_query($db, $sql);}
 
 
 function getInvoiceTable()

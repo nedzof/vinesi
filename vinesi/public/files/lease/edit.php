@@ -49,7 +49,7 @@
 
                 <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input value="<?php echo h($row['leaseMonthlyRent']) ?>"
                                                                                                   class="form-control"
-                                                                                                  type="text"
+                                                                                                  type="number"
                                                                                                   required=""
                                                                                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$"
                                                                                                   inputmode="email">

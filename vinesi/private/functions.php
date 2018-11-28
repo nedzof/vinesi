@@ -22,7 +22,7 @@ function url_for($script_path)
     }
 
     $_wwwRoot = WWW_ROOT . $script_path;
-    $_wwwRoot = changeBackslash($_wwwRoot);
+    $_wwwRoot = changeBackslash($_wwwRoot); //Windows Configuration
     return $_wwwRoot;
 }
 
