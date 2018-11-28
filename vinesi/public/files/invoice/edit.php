@@ -1,5 +1,5 @@
 <?php require_once('../../../private/initialize.php'); ?>
-<?php include('../../shared/header.php'); ?>
+<?php include(SHARED_PATH . '/header.php'); ?>
 
     <!DOCTYPE html>
 <html>
@@ -56,7 +56,7 @@
         </div>
     </div>
 </div>
-<?php include_once('../shared/footer.php'); ?>
+<?php include(SHARED_PATH . '/header.php'); ?>
 
 
 </body>
