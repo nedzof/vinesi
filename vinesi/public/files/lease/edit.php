@@ -9,15 +9,14 @@ if (!isset($_GET['id']) || !isset($_GET['pID']) || !isset($_GET['tID'])) {
 $pID = $_GET['pID'];
 $tID = $_GET['tID'];
 $id = $_GET['id'];
-$singlerow = getLeaseTable_By_ID($id);
+$row = getLeaseTable_By_ID($id);
 
 if (is_post_request()) {
 
 
-    echo $singlerow['leaseMonthlyRent'];
 
     $entry = [];
-    $entry['leaseID'] = $singlerow['leaseID'] ?? 1;
+    $entry['leaseID'] = $row['leaseID'] ?? 1;
     $entry['leaseMonthlyRent'] = $_POST['leaseMonthlyRent'] ?? '';
     $entry['leaseUtilities'] = $_POST['leaseUtilities'] ?? '';
     $entry['leasePaymentMethod'] = $_POST['leasePaymentMethod'] ?? '';
@@ -73,33 +72,33 @@ if (is_post_request()) {
 
                 <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input
                             name="leaseMonthlyRent"
-                            value="<?php echo h($singlerow['leaseMonthlyRent']) ?>"
+                            value="<?php echo h($row['leaseMonthlyRent']) ?>"
                             class="form-control"
                             type="number"
                             required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Utilities</label><input name="leaseUtilities"
-                                                                                              value="<?php echo h($singlerow['leaseUtilities']) ?>"
+                                                                                              value="<?php echo h($row['leaseUtilities']) ?>"
                                                                                               class="form-control"
                                                                                               type="number" required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Payment Method</label><input
                             name="leasePaymentMethod"
-                            value="<?php echo h($singlerow['leasePaymentMethod']) ?>" class="form-control"
+                            value="<?php echo h($row['leasePaymentMethod']) ?>" class="form-control"
                             type="text"
                             required=""></div>
                 <div class="form-group"><label class="text-secondary">Deposit</label><input name="leaseDeposit"
-                                                                                            value="<?php echo h($singlerow['leaseDeposit']) ?>"
+                                                                                            value="<?php echo h($row['leaseDeposit']) ?>"
                                                                                             class="form-control"
                                                                                             type="text" required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Lease Start</label><input name="leaseStart"
-                                                                                                value="<?php echo h($singlerow['leaseStart']) ?>"
+                                                                                                value="<?php echo h($row['leaseStart']) ?>"
                                                                                                 class="form-control"
                                                                                                 type="date" required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Lease Expiry</label><input name="leaseEnd"
-                                                                                                 value="<?php echo h($singlerow['leaseEnd']) ?>"
+                                                                                                 value="<?php echo h($row['leaseEnd']) ?>"
                                                                                                  class="form-control"
                                                                                                  type="date"
                                                                                                  required=""></div>
@@ -111,8 +110,8 @@ if (is_post_request()) {
 
                         $sql = "SELECT propertyID FROM propertytable ORDER BY propertyID";
                         $result = mysqli_query($db, $sql);
-                        while ($row = mysqli_fetch_array($result)) {
-                            $identity = $row['propertyID'];
+                        while ($prow = mysqli_fetch_array($result)) {
+                            $identity = $prow['propertyID'];
 
                             echo($pID == $identity ? "<option selected value='$identity'>$identity</option>" : "<option value='$identity'>$identity</option>");
                         }
@@ -129,9 +128,9 @@ if (is_post_request()) {
 
                         $sql = "SELECT tenantID, tenantLastName, tenantFirstName FROM tenanttable ORDER BY tenantID";
                         $result = mysqli_query($db, $sql);
-                        while ($row = mysqli_fetch_array($result)) {
-                            $tidentity = $row['tenantID'];
-                            $tName = $row['tenantLastName'] . " " . $row['tenantFirstName'];
+                        while ($trow = mysqli_fetch_array($result)) {
+                            $tidentity = $trow['tenantID'];
+                            $tName = $trow['tenantLastName'] . " " . $trow['tenantFirstName'];
 
                             echo($tID == $tidentity ? "<option selected value='$tidentity'>$tName</option>" : "<option value='$tidentity'>$tName</option>");
                         }
