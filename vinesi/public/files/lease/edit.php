@@ -1,13 +1,17 @@
 <?php require_once('../../../private/initialize.php'); ?>
 <?php include(SHARED_PATH . '/header.php'); ?>
 
-
 <?php
 
-$id = $_GET['id'];
-$row = getLeaseTable_By_ID($id);
+if (!isset($_GET['id'])) {
+    redirect_to(url_for('files/index.php'));
+}
 
-if (is_get_request()) {
+if (is_post_request()) {
+
+    $id = $_GET['id'];
+    $row = getLeaseTable_By_ID($id);
+    echo $row['leaseMonthlyRent'];
 
     $entry = [];
     $entry['leaseID'] = $row['leaseID'] ?? 1;
@@ -17,21 +21,18 @@ if (is_get_request()) {
     $entry['leaseDeposit'] = $_POST['leaseDeposit'] ?? '';
     $entry['leaseStart'] = $_POST['leaseStart'] ?? '';
     $entry['leaseEnd'] = $_POST['leaseEnd'] ?? '';
-    $entry['propertytable_propertyID'] = $_POST['propertytable_propertyID'] ?? '';
-    $entry['tenanttable_tenantID'] = $_POST['tenanttable_tenantID'] ?? '';
+    $entry['propertytable_propertyID'] = $_POST['propertytable_propertyID'] ?? 11;
+    $entry['tenanttable_tenantID'] = $_POST['tenanttable_tenantID'] ?? 1;
 
 
     $result = updateLeaseTable($entry);
     redirect_to(url_for('/files/lease/index.php'));
 
 
-} else {
-    redirect_to(url_for('files/index.php'));
 }
 
 
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -65,7 +66,7 @@ if (is_get_request()) {
     <div class="container">
         <div class="intro">
             <h2 class="text-center" style="font-weight: normal;"><strong>Edit</strong>&nbsp;Tenancy</h2>
-            <form action="<?php echo url_for('/files/lease/edit.php?id=' . h(u($id))) ?>" method="get">
+            <form action="<?php echo url_for('/files/lease/edit.php?id=' . h(u($id))); ?>" method="post">
 
                 <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input
                             name="leaseMonthlyRent"
@@ -109,8 +110,9 @@ if (is_get_request()) {
                                                                                            class="form-control"
                                                                                            type="number" required="">
                 </div>
-                <button class="btn btn-info mt-2" type="submit" style="max-height: -8px;"><i
-                            class="icon ion-ios-compose-outline"></i></button>
+                <div>
+                    <input type="submit" value="Edit Lease"/>
+                </div>
             </form>
 
 
@@ -122,3 +124,4 @@ if (is_get_request()) {
 </body>
 
 </html>
+
