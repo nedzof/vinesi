@@ -11,7 +11,7 @@ require_once('initialize.php');
 function getExpenseTable()
 {
     global $db;
-    $sql = "SELECT * FROM 'expensetable'";
+    $sql = "SELECT * FROM expensetable";
     $result = mysqli_query($db, $sql);
     return $result;
 }

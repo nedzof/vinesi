@@ -52,9 +52,8 @@
                             <tr class="header">
                                 <?php
 
-                                $result = $db->query(getExpenseTable());
+                                $result = getExpenseTable();
 
-                                if ($result->num_rows > 0) {
                                 // output data of each row
                                 while ($row = $result->fetch_assoc()) { ?>
                             </tr>
@@ -77,7 +76,7 @@
 
 
                             </tr>
-                            <?php }
+                            <?php
                             }
                             db_disconnect($db);
                             ?>
