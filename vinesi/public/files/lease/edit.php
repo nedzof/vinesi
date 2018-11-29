@@ -3,19 +3,20 @@
 
 <?php
 
-if (!isset($_GET['id']) || isset($_GET['pID']) || isset($_GET['tID'])) {
-    redirect_to(url_for('files/index.php'));
+//if (!isset($_GET['id']) || !isset($_GET['pID']) || !isset($_GET['tID'])) {
+if (!isset($_GET['id'])) {
+
+    redirect_to(url_for('/files/index.php'));
 }
-$pID = $_GET['pID'];
-$tID = $_GET['tID'];
+$entry = [];
 $id = $_GET['id'];
 $row = getLeaseTable_By_ID($id);
+
 
 if (is_post_request()) {
 
 
 
-    $entry = [];
     $entry['leaseID'] = $row['leaseID'] ?? 1;
     $entry['leaseMonthlyRent'] = $_POST['leaseMonthlyRent'] ?? '';
     $entry['leaseUtilities'] = $_POST['leaseUtilities'] ?? '';
@@ -25,6 +26,10 @@ if (is_post_request()) {
     $entry['leaseEnd'] = $_POST['leaseEnd'] ?? '';
     $entry['propertytable_propertyID'] = $_POST['propertytable_propertyID'] ?? 11;
     $entry['tenanttable_tenantID'] = $_POST['tenanttable_tenantID'] ?? 1;
+
+
+    $pID = $entry['propertytable_propertyID'];
+    $tID = $entry['tenanttable_tenantID'];
 
 
     $result = updateLeaseTable($entry);
