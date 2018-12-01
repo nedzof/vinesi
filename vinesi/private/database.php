@@ -3,7 +3,8 @@
 require_once('database_credentials.php');
 
 function db_connection() {
-    $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+    $connection = pg_connect(DB_HOST_2, DB_NAME_2, DB_USER_2, DB_PASS_2);
+    //$connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
     if(mysqli_connect_errno()) {
         $msg = "Database connection failed: ";
         $msg .= mysqli_connect_error();
@@ -40,3 +41,4 @@ function confirm_result_set($result_set) {
 }
 
 ?>
+-
