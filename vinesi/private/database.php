@@ -9,7 +9,7 @@ function db_connection(){
     $db = new PDO($dsn);
 
         if ($db) {
-            return true;
+            return $db;
         } else {
             return false;
         }

@@ -1,4 +1,6 @@
 <?php require_once ('../database.php'); ?>
+<?php require_once('../../private/initialize.php'); ?>
+
 
 
 
@@ -12,9 +14,22 @@
 <body>
 <h1>Connection with PDO</h1>
 <?php
-
-if (db_connection()){
+global $db;
+if (db_connection() != false){
     echo "<p>Successful</p>";
+
+    $sql = "INSERT INTO usertable " ;
+    $sql .= "(userlastname, useremail, userhashedpassword, userstatus) ";
+    $sql .= "VALUES (";
+    $sql .= "'" . "Villar" . "', ";
+    $sql .= "'" . "victoria.villar@students.fhnw.ch" . "', ";
+    $sql .= "'" . "test123" . "' ,";
+    $sql .= "'" . "true" . "',";
+    $sql .= ")";
+
+
+    $db->exec($sql);
+    echo "<p>Query Submitted</p>";
 
 } else {
     echo "<p>Not successful</p>";
