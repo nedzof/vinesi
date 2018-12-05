@@ -15,24 +15,15 @@
 <h1>Connection with PDO</h1>
 <?php
 global $db;
-if (db_connection() != false){
+if ($db == true) {
     echo "<p>Successful</p>";
 
-    $sql = "INSERT INTO usertable " ;
-    $sql .= "(userlastname, useremail, userhashedpassword, userstatus) ";
-    $sql .= "VALUES (";
-    $sql .= "'" . "Villar" . "', ";
-    $sql .= "'" . "victoria.villar@students.fhnw.ch" . "', ";
-    $sql .= "'" . "test123" . "' ,";
-    $sql .= "'" . "true" . "',";
-    $sql .= ")";
+    $sql = "INSERT INTO public.usertable (userid, userlastname, useremail, userhashedpassword, userstatus) VALUES (DEFAULT, 'Sira', 'sira.tamba@fhnw.students.ch', 'test', NULL)";
 
 
-    $db->exec($sql);
-    echo "<p>Query Submitted</p>";
 
-} else {
-    echo "<p>Not successful</p>";
+    $affected = $db->exec($sql);
+    echo $affected . ' row inserted with ID ' . $db->lastInsertId();
 }
 
 ?>

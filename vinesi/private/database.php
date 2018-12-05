@@ -7,12 +7,7 @@ function db_connection(){
 
     $dsn = "pgsql:host=" . DB_HOST_2 . ";dbname=" . DB_NAME_2 . ";user=" . DB_USER_2 . ";port=" . DB_PORT_2 . ";sslmode=require;password=" . DB_PASS_2 . ";";
     $db = new PDO($dsn);
-
-        if ($db) {
-            return $db;
-        } else {
-            return false;
-        }
+    return $db;
 
 }
 
