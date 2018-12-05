@@ -46,12 +46,12 @@ function getLeaseTable()
 function getLeaseTable_By_ID($key)
 {
     global $db;
-    $sql = "SELECT * FROM leasetable WHERE leaseID=' " . $key . "'";
-    $result = mysqli_query($db, $sql);
+    $sql = "SELECT * FROM leasetable WHERE leaseid=  $key ";
+    $statement_handler = $db->prepare($sql);
+    $statement_handler->execute();
+    $result = $statement_handler->fetchAll(PDO::FETCH_ASSOC);
     confirm_result_set($result);
-    $row = mysqli_fetch_assoc($result);
-    mysqli_free_result($result);
-    return $row; //return assoc array;
+    return $result; //return assoc array;
 }
 
 function deleteLeaseTable_By_ID($key)

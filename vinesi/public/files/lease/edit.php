@@ -10,26 +10,26 @@ if (!isset($_GET['id'])) {
 }
 $entry = [];
 $id = $_GET['id'];
-$row = getLeaseTable_By_ID($id);
+$row = getLeaseTable_By_ID($id)[0];
 
 
 if (is_post_request()) {
 
 
 
-    $entry['leaseID'] = $row['leaseID'] ?? 1;
-    $entry['leaseMonthlyRent'] = $_POST['leaseMonthlyRent'] ?? '';
-    $entry['leaseUtilities'] = $_POST['leaseUtilities'] ?? '';
-    $entry['leasePaymentMethod'] = $_POST['leasePaymentMethod'] ?? '';
-    $entry['leaseDeposit'] = $_POST['leaseDeposit'] ?? '';
-    $entry['leaseStart'] = $_POST['leaseStart'] ?? '';
-    $entry['leaseEnd'] = $_POST['leaseEnd'] ?? '';
-    $entry['propertytable_propertyID'] = $_POST['propertytable_propertyID'] ?? 11;
-    $entry['tenanttable_tenantID'] = $_POST['tenanttable_tenantID'] ?? 1;
+    $entry['leaseid'] = $row['leaseid'] ?? 1;
+    $entry['leasemonthlyrent'] = $_POST['leasemonthlyrent'] ?? '';
+    $entry['leaseutilities'] = $_POST['leaseutilities'] ?? '';
+    $entry['leasepaymentmethod'] = $_POST['leasepaymentmethod'] ?? '';
+    $entry['leasedeposit'] = $_POST['leasedeposit'] ?? '';
+    $entry['leasestart'] = $_POST['leasestart'] ?? '';
+    $entry['leaseend'] = $_POST['leaseend'] ?? '';
+    $entry['propertytable_propertyid'] = $_POST['propertytable_propertyid'] ?? 11;
+    $entry['tenttable_tenantid'] = $_POST['tenttable_tenantid'] ?? 1;
 
 
-    $pID = $entry['propertytable_propertyID'];
-    $tID = $entry['tenanttable_tenantID'];
+    $pID = $entry['propertytable_propertyid'];
+    $tID = $entry['tenttable_tenantid'];
 
 
     $result = updateLeaseTable($entry);
@@ -76,40 +76,40 @@ if (is_post_request()) {
             <form action="<?php echo url_for('/files/lease/edit.php?id=' . h(u($id))); ?>" method="post">
 
                 <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input
-                            name="leaseMonthlyRent"
-                            value="<?php echo h($row['leaseMonthlyRent']) ?>"
+                            name="leasemonthlyrent"
+                            value="<?php echo h($row['leasemonthlyrent']) ?>"
                             class="form-control"
                             type="number"
                             required="">
                 </div>
-                <div class="form-group"><label class="text-secondary">Utilities</label><input name="leaseUtilities"
-                                                                                              value="<?php echo h($row['leaseUtilities']) ?>"
+                <div class="form-group"><label class="text-secondary">Utilities</label><input name="leaseutilities"
+                                                                                              value="<?php echo h($row['leaseutilities']) ?>"
                                                                                               class="form-control"
                                                                                               type="number" required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Payment Method</label><input
-                            name="leasePaymentMethod"
-                            value="<?php echo h($row['leasePaymentMethod']) ?>" class="form-control"
+                            name="leasepaymentmethod"
+                            value="<?php echo h($row['leasepaymentmethod']) ?>" class="form-control"
                             type="text"
                             required=""></div>
-                <div class="form-group"><label class="text-secondary">Deposit</label><input name="leaseDeposit"
-                                                                                            value="<?php echo h($row['leaseDeposit']) ?>"
+                <div class="form-group"><label class="text-secondary">Deposit</label><input name="leasedeposit"
+                                                                                            value="<?php echo h($row['leasedeposit']) ?>"
                                                                                             class="form-control"
                                                                                             type="text" required="">
                 </div>
-                <div class="form-group"><label class="text-secondary">Lease Start</label><input name="leaseStart"
-                                                                                                value="<?php echo h($row['leaseStart']) ?>"
+                <div class="form-group"><label class="text-secondary">Lease Start</label><input name="leasestart"
+                                                                                                value="<?php echo h($row['leasestart']) ?>"
                                                                                                 class="form-control"
                                                                                                 type="date" required="">
                 </div>
-                <div class="form-group"><label class="text-secondary">Lease Expiry</label><input name="leaseEnd"
-                                                                                                 value="<?php echo h($row['leaseEnd']) ?>"
+                <div class="form-group"><label class="text-secondary">Lease Expiry</label><input name="leaseend"
+                                                                                                 value="<?php echo h($row['leaseend']) ?>"
                                                                                                  class="form-control"
                                                                                                  type="date"
                                                                                                  required=""></div>
                 <div class="form-group">
                     <label class="text-secondary">Property</label>
-                    <select name="propertytable_propertyID">
+                    <select name="propertytable_propertyid">
 
                         <?php
 
@@ -127,7 +127,7 @@ if (is_post_request()) {
 
                 <div class="form-group">
                     <label class="text-secondary">Tenant</label>
-                    <select name="tenanttable_tenantID">
+                    <select name="tenttable_tenantid">
 
                         <?php
 

@@ -73,7 +73,7 @@
 
 
                             <td><a class="action"
-                                   href="<?php echo url_for('../public/files/lease/edit.php?id=' . h(u($row['leaseID']))); ?>">Edit</a>
+                                   href="<?php echo url_for('../public/files/lease/edit.php?id=' . h(u($row['leaseid']))); ?>">Edit</a>
                             </td>
                             <td> <button></button></td>
                         </tr>
