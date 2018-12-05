@@ -18,12 +18,8 @@ global $db;
 if ($db == true) {
     echo "<p>Successful</p>";
 
-    $sql = "INSERT INTO public.usertable (userid, userlastname, useremail, userhashedpassword, userstatus) VALUES (DEFAULT, 'Sira', 'sira.tamba@fhnw.students.ch', 'test', NULL)";
-
-
-
-    $affected = $db->exec($sql);
-    echo $affected . ' row inserted with ID ' . $db->lastInsertId();
+    insertUserTable('Fetahovic','nedzo.fetahovic@students.fhnw.ch','test','false');
+   // $db->exec($sql);
 }
 
 ?>

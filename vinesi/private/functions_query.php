@@ -8,6 +8,13 @@
 
 require_once('initialize.php');
 
+/*
+ * • PDOStatement::execute is used to execute an INSERT, an UPDATE, or DELETE query.
+• PDOStatement::fetch is used to retrieve one row of data from the database.
+• PDOStatement::fetchAll is used to retrieve multiple rows of data from the database.
+• PDO::prepare prepares an SQL query to be executed, creating a so-called prepared statement.
+ */
+
 function getExpenseTable()
 {
     global $db;
@@ -29,7 +36,9 @@ function getLeaseTable()
 {
     global $db;
     $sql = "SELECT * FROM leasetable";
-    $result = mysqli_query($db, $sql);
+    $statement_handler = $db->prepare($sql);
+    $statement_handler->execute();
+    $result = $statement_handler->fetchAll(PDO::FETCH_ASSOC);
     confirm_result_set($result);
     return $result;
 }
@@ -52,6 +61,17 @@ function deleteLeaseTable_By_ID($key)
     $result = mysqli_query($db, $sql);
     mysqli_free_result($result);
 
+}
+
+function getTenantLastNameById($id){
+
+    global $db;
+    $sql = "SELECT tenantlastname FROM tenanttable WHERE tenantid = $id";
+    $statement_handler = $db->prepare($sql);
+    $statement_handler->execute();
+    $result = $statement_handler->fetch(PDO::FETCH_ASSOC);
+    confirm_result_set($result);
+    return $result;
 }
 
 function insertLeaseTable($leaseMonthlyRent, $leaseUtilities, $leasePaymentMethod, $leaseDeposit, $leaseStart, $leaseEnd, $propertytable_propertyID, $tenanttable_tenantID)
@@ -108,6 +128,18 @@ function updateLeaseTable($entry)
         db_disconnect($db);
         exit;
     }
+}
+
+
+function insertUserTable($userLastName, $userEmail, $userhashedpassword, $userstatus){
+
+    global $db;
+
+    $sql = "INSERT INTO public.usertable (userid, userlastname, useremail, userhashedpassword, userstatus) VALUES (DEFAULT, '$userLastName', '$userEmail', '$userhashedpassword', $userstatus)";
+   // $db->exec($sql);
+
+    $statement_handler = $db->prepare($sql);
+    $statement_handler->execute();
 }
 
 

@@ -52,27 +52,24 @@
 
                             <?php
                             $result1 = getLeaseTable();
-                            while ($row = mysqli_fetch_assoc($result1)) { ?>
+                            for ($i = 0; $i < count($result1); $i++){
+                                $row = $result1[$i];
+                            ?>
                         </tr>
                         <tr>
-                            <td><?php echo $row['leaseID'] ?></td>
-                            <td><?php echo $row['leaseMonthlyRent'] ?></td>
-                            <td><?php echo $row['leaseUtilities'] ?></td>
-                            <td><?php echo $row['leasePaymentMethod'] ?></td>
-                            <td><?php echo $row['leaseDeposit'] ?></td>
-                            <td><?php echo $row['leaseStart'] ?></td>
-                            <td><?php echo $row['leaseEnd'] ?></td>
-                            <td><?php echo $row['propertytable_propertyID'] ?></td>
-                            <td><?php echo $row['tenanttable_tenantID'] ?></td>
+                            <td><?php echo $row['leaseid'] ?></td>
+                            <td><?php echo $row['leasemonthlyrent'] ?></td>
+                            <td><?php echo $row['leaseutilities'] ?></td>
+                            <td><?php echo $row['leasepaymentmethod'] ?></td>
+                            <td><?php echo $row['leasedeposit'] ?></td>
+                            <td><?php echo $row['leasestart'] ?></td>
+                            <td><?php echo $row['leaseend'] ?></td>
+                            <td><?php echo $row['propertytable_propertyid'] ?></td>
+                            <td><?php echo $row['tenttable_tenantid'] ?></td>
                             <td><?php
 
-                                $sql = "SELECT tenantLastName, tenantFirstName FROM tenanttable WHERE tenantID = " . $row['tenanttable_tenantID'];
-                                $result2 = mysqli_query($db, $sql);
-                                while ($name = mysqli_fetch_array($result2)) {
-                                    $tenantName = $name['tenantLastName'] . " " . $name['tenantFirstName'];
-                                    echo $tenantName;
-                                }
-                                ?></td>
+                                $result2 = getTenantLastNameById($row['tenttable_tenantid']);
+                                echo $result2['tenantlastname']; ?></td>
 
 
                             <td><a class="action"
@@ -80,11 +77,8 @@
                             </td>
                             <td> <button></button></td>
                         </tr>
-                        <?php
-                        }
-                        mysqli_free_result($result2);
-                        //db_disconnect($db);
-                        ?>
+                        <?php } ?>
+
                     </table>
                 </div>
             </div>
