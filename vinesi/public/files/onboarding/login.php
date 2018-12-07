@@ -1,18 +1,27 @@
 <?php require_once('../../../private/initialize.php'); ?>
-
-
+<?php
 $errors = [];
 $username = '';
 $password = '';
 
 if(is_post_request()) {
 
-    $username = $_POST['username'] ?? '';
+    //$username = pg_escape_string($db, $_POST['email']);
+    $username = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    $_SESSION['username'] = $username;
+    //Error Handlers
+
+    if (empty($username) || empty($password)){
+        redirect_to('index.php');
+    }
 
     redirect_to(url_for('/staff/index.php'));
+} else {
+    redirect_to('index.php');
+    exit();
+
+
 }
 
 ?>
@@ -48,8 +57,8 @@ if(is_post_request()) {
             <div class="m-auto w-lg-75 w-xl-50">
                 <h2 class="text-info font-weight-light mb-5"><i class="fa fa-ravelry"></i>&nbsp;Vinesi</h2>
                 <form action="login.php" method="post" >
-                    <div class="form-group"><label class="text-secondary">Email</label><input class="form-control" type="text" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$" inputmode="email"></div>
-                    <div class="form-group"><label class="text-secondary">Password</label><input class="form-control" type="password" required=""></div>
+                    <div class="form-group"><label class="text-secondary">Email</label><input class="form-control" name="email" type="text" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$" inputmode="email"></div>
+                    <div class="form-group"><label class="text-secondary">Password</label><input class="form-control" name="password" type="password" required=""></div>
                     <button class="btn btn-info mt-2" type="submit">Log In</button></form>
                 <p class="mt-3 mb-0" style="margin-bottom: 0px;margin-top: 16px;"><a href="<?php echo url_for('/files/register.php')?>" class="text-info small">Register here.</a></p>
                 <p class="mt-3 mb-0" style="margin: 0px;margin-top: 0;margin-right: 0;margin-bottom: 0;margin-left: 0;min-height: 0px;padding-top: 0px;padding-bottom: 12px;"><a href="#" class="text-info small">Forgot your email or password?</a></p>

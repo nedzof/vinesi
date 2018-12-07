@@ -26,8 +26,10 @@ function getExpenseTable()
 function getPropertyByIds()
 {
     global $db;
-    $sql = mysqli_query($db, "SELECT propertyID, propertyLeasedBy FROM propertytable ORDER BY propertyID;");
-    $result = mysqli_query($db, $sql);
+    $sql = ("SELECT propertyid FROM propertytable");
+    $statement_handler = $db->prepare($sql);
+    $statement_handler->execute();
+    $result = $statement_handler->fetchAll(PDO::FETCH_ASSOC);
     confirm_result_set($result);
     return $result;
 }
@@ -43,6 +45,16 @@ function getLeaseTable()
     return $result;
 }
 
+function getTenantIdByLeaseId($key){
+    global $db;
+    $sql = "SELECT tenttable_tenantid FROM leasetable WHERE leaseid=  $key ";
+    $statement_handler = $db->prepare($sql);
+    $statement_handler->execute();
+    $result = $statement_handler->fetch(PDO::FETCH_ASSOC);
+    confirm_result_set($result);
+    return $result['tenttable_tenantid']; //return assoc array;
+}
+
 function getLeaseTable_By_ID($key)
 {
     global $db;
@@ -51,7 +63,7 @@ function getLeaseTable_By_ID($key)
     $statement_handler->execute();
     $result = $statement_handler->fetchAll(PDO::FETCH_ASSOC);
     confirm_result_set($result);
-    return $result; //return assoc array;
+    return $result[0]; //return assoc array;
 }
 
 function deleteLeaseTable_By_ID($key)

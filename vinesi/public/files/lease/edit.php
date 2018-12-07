@@ -9,12 +9,13 @@ if (!isset($_GET['id'])) {
     redirect_to(url_for('/files/index.php'));
 }
 $entry = [];
-$id = $_GET['id'];
-$row = getLeaseTable_By_ID($id)[0];
+$id = (int)$_GET['id'];
+$row = getLeaseTable_By_ID($id);
+$test = getTenantIdByLeaseId($id);
+print_r($test);
 
 
 if (is_post_request()) {
-
 
 
     $entry['leaseid'] = $row['leaseid'] ?? 1;
@@ -113,13 +114,16 @@ if (is_post_request()) {
 
                         <?php
 
-                        $sql = "SELECT propertyID FROM propertytable ORDER BY propertyID";
-                        $result = mysqli_query($db, $sql);
-                        while ($prow = mysqli_fetch_array($result)) {
-                            $identity = $prow['propertyID'];
+                        $result1 = getPropertyByIds();
+                        print_r($result1);
+                        for ($i = 0; $i < count($result1); $i++) {
+                            $row = $result1[$i];
+                            //echo "<option selected value='3'>$row['propertyid']</option>";
 
-                            echo($pID == $identity ? "<option selected value='$identity'>$identity</option>" : "<option value='$identity'>$identity</option>");
+
                         }
+
+                        echo "<option selected value=''></option>"
                         ?>
                     </select>
 
@@ -131,13 +135,18 @@ if (is_post_request()) {
 
                         <?php
 
-                        $sql = "SELECT tenantID, tenantLastName, tenantFirstName FROM tenanttable ORDER BY tenantID";
-                        $result = mysqli_query($db, $sql);
-                        while ($trow = mysqli_fetch_array($result)) {
-                            $tidentity = $trow['tenantID'];
-                            $tName = $trow['tenantLastName'] . " " . $trow['tenantFirstName'];
 
-                            echo($tID == $tidentity ? "<option selected value='$tidentity'>$tName</option>" : "<option value='$tidentity'>$tName</option>");
+                        $sql = "SELECT tenantid, tenantlastname, tenantfirstname FROM tenanttable ORDER BY tenantid";
+                        $statement_handler = $db->prepare($sql);
+                        $statement_handler->execute();
+                        //$result1 = $statement_handler->fetchAll(PDO::FETCH_ASSOC);
+                        global $id;
+                        while ($trow = $statement_handler->fetch(PDO::FETCH_ASSOC)) {
+                            $tidentity = (int) $trow['tenantid'];
+                            $tenantnumber = getTenantIdByLeaseId($id);
+                            $tName = $trow['tenantlastname'] . " " . $trow['tenantfirstname'];
+
+                           echo($tenantnumber == $tidentity ? "<option selected value='$tidentity'>$tName</option>" : "<option value='$tidentity'>$tName</option>");
                         }
                         ?>
                     </select>
