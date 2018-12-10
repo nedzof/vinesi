@@ -8,8 +8,8 @@
 
 namespace database;
 
-use \PDO;
 use config\Config;
+use PDO;
 
 class Database
 {
@@ -17,6 +17,13 @@ class Database
 
     protected function __construct()
     {
+        /* $dsn = "pgsql:host=" . Config::get("database.host") .
+             ";dbname=" . Config::get("database.name") .
+             ";user=" . Config::get("database.user") .
+             ";port=" . Config::get("database.port") .
+             ";sslmode=require;password=" . Config::get("database.password") . ";";
+
+         self::$pdoInstance = new PDO($dsn);*/
         self::$pdoInstance = new PDO (Config::get("database.dsn"), Config::get("database.user"), Config::get("database.password"));
         self::$pdoInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
