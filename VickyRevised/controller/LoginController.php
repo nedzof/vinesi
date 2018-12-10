@@ -6,6 +6,10 @@
  * Time: 10:12
  */
 
+namespace controller;
+
+use view\TemplateView;
+
 class LoginController{
 
     public static function loginView(){

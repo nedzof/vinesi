@@ -6,10 +6,14 @@
  * Time: 10:58
  */
 require_once("config/Autoloader.php");
-use router\Router;
+
 use Controller\AuthController;
+use controller\ErrorController;
 use Controller\LoginController;
 use http\HTTPException;
+use http\HTTPHeader;
+use http\HTTPStatusCode;
+use router\Router;
 
 ini_set( 'session.cookie_httponly', 1 );
 session_start();
@@ -53,3 +57,17 @@ Router::route("GET", "/menu", function () {
 Router::route("GET", "/computation_tbl", function (){
 
 });
+
+try {
+    HTTPHeader::setHeader("Access-Control-Allow-Origin: *");
+    HTTPHeader::setHeader("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS, HEAD");
+    HTTPHeader::setHeader("Access-Control-Allow-Headers: Authorization, Location, Origin, Content-Type, X-Requested-With");
+    if ($_SERVER['REQUEST_METHOD'] == "OPTIONS") {
+        HTTPHeader::setStatusHeader(HTTPStatusCode::HTTP_204_NO_CONTENT);
+    } else {
+        Router::call_route($_SERVER['REQUEST_METHOD'], $_SERVER['PATH_INFO']);
+    }
+} catch (HTTPException $exception) {
+    $exception->getHeader();
+    ErrorController::show404();
+}

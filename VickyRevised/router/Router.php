@@ -8,10 +8,9 @@
 
 namespace router;
 
-use http\Exception;
 use http\HTTPException;
-use http\HTTPStatusCode;
 use http\HTTPHeader;
+use http\HTTPStatusCode;
 
 class Router
 {
@@ -37,11 +36,27 @@ class Router
         if(empty(self::$routes))
             self::init();
         $path = trim($path, '/');
+        preg_match_all("/{(.*?)}/", $path, $matches);
+        foreach ($matches[1] as $match_key => $match_value) {
+            $match_pos = strpos($path, $match_value);
+            if ($match_pos) {
+                $path = substr_replace($path, "{parameter" . $match_key . "}", $match_pos - 1, strlen($match_value) + 2);
+            }
+        }
         self::$routes[$method][$path] = array("authFunction" => $authFunction, "routeFunction" => $routeFunction);
     }
 
     public static function call_route($method, $path) {
         $path = trim(parse_url($path, PHP_URL_PATH), '/');
+        $path_pieces = explode('/', $path);
+        $parameters = [];
+        $parameter_number = 0;
+        foreach ($path_pieces as $path_value) {
+            if (is_numeric($path_value)) {
+                $parameters[$parameter_number] = $path_value;
+                $path = str_replace("/" . $path_value, "/" . "{parameter" . $parameter_number++ . "}", $path);
+            }
+        }
         if(!array_key_exists($method, self::$routes) || !array_key_exists($path, self::$routes[$method])) {
             throw new HTTPException(HTTPStatusCode::HTTP_404_NOT_FOUND);
         }
@@ -51,7 +66,7 @@ class Router
                 return;
             }
         }
-        $route["routeFunction"]();
+        $route["routeFunction"](...$parameters);
     }
 
     public static function errorHeader() {

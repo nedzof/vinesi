@@ -5,6 +5,9 @@
  * Date: 07/12/2018
  * Time: 16:39
  */
+
+namespace controller;
+
 class AuthController{
     public static function authenticate(){
         if (isset($_SESSION["login"])) {
@@ -17,8 +20,7 @@ class AuthController{
 
     public static function login(){
         $authService = AuthServiceImpl::getInstance();
-        if($authService->verifyAgent($_POST["email"],$_POST["password"]))
-        {
+        if($authService->verifyAgent($_POST["email"],$_POST["password"])) {
             session_regenerate_id(true);
             $_SESSION["login"]["token"] = $authService->issueToken();
         }
