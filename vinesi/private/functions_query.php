@@ -23,13 +23,13 @@ function getExpenseTable()
     return $result;
 }
 
-function getPropertyByIds()
+function getPropertyIdsByLeaseIds()
 {
     global $db;
     $sql = ("SELECT propertyid FROM propertytable");
     $statement_handler = $db->prepare($sql);
     $statement_handler->execute();
-    $result = $statement_handler->fetchAll(PDO::FETCH_ASSOC);
+    $result = $statement_handler->fetchAll(PDO::FETCH_COLUMN);
     confirm_result_set($result);
     return $result;
 }

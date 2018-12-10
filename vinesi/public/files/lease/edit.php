@@ -11,12 +11,10 @@ if (!isset($_GET['id'])) {
 $entry = [];
 $id = (int)$_GET['id'];
 $row = getLeaseTable_By_ID($id);
-$test = getTenantIdByLeaseId($id);
-print_r($test);
 
 
-if (is_post_request()) {
 
++
 
     $entry['leaseid'] = $row['leaseid'] ?? 1;
     $entry['leasemonthlyrent'] = $_POST['leasemonthlyrent'] ?? '';
@@ -113,8 +111,9 @@ if (is_post_request()) {
                     <select name="propertytable_propertyid">
 
                         <?php
+                        global $db;
 
-                        $result1 = getPropertyByIds();
+                        $result1 = getPropertyIdsByLeaseIds();
                         print_r($result1);
                         for ($i = 0; $i < count($result1); $i++) {
                             $row = $result1[$i];
