@@ -3,10 +3,11 @@
  * Created by PhpStorm.
  * User: nedzo
  * Date: 10.12.18
- * Time: 12:55
+ * Time: 13:05
  */
 
-class UserDAO {
+class User
+{
     /**
      * @return mixed
      */
@@ -14,7 +15,6 @@ class UserDAO {
     {
         return $this->userid;
     }
-
 
     /**
      * @return mixed
@@ -79,7 +79,6 @@ class UserDAO {
     {
         $this->userstatus = $userstatus;
     }
-
     private $userid;
     private $userlastname;
     private $useremail;
