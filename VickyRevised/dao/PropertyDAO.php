@@ -51,7 +51,7 @@ class PropertyDAO extends BasicDAO {
 
     public function delete(Property $property) {
         $stmt = $this->pdoInstance->prepare('
-            DELETE FROM tenanttable
+            DELETE FROM propertytable
             WHERE id = :id
         ');
         $stmt->bindValue(':id', $property->getPropertyid());

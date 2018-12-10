@@ -66,7 +66,7 @@ class UserDAO extends BasicDAO
     public function delete(User $user)
     {
         $stmt = $this->pdoInstance->prepare('
-            DELETE FROM tenanttable
+            DELETE FROM usertable
             WHERE id = :id
         ');
         $stmt->bindValue(':id', $user->getUserid());
