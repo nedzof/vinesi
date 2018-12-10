@@ -33,6 +33,16 @@ class TenantDAO extends BasicDAO {
         return null;
     }
 
+    public function readAll() {
+        $stmt = $this->pdoInstance->prepare('
+            SELECT * FROM tenanttable');
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Tenant");
+        }
+        return null;
+    }
+
     public function update(Tenant $tenant) {
         $stmt = $this->pdoInstance->prepare('
             UPDATE tenanttable SET 
