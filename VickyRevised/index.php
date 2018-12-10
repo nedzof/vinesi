@@ -1,19 +1,24 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Victoria Villar
- * Date: 07/12/2018
- * Time: 10:58
+ * User: andreas.martin
+ * Date: 12.09.2017
+ * Time: 21:30
  */
 require_once("config/Autoloader.php");
 
-use Controller\AuthController;
+use controller\AgentController;
+use controller\AgentPasswordResetController;
+use controller\AuthController;
+use controller\EmailController;
 use controller\ErrorController;
-use Controller\LoginController;
+use controller\LoginController;
+use controller\PDFController;
 use http\HTTPException;
 use http\HTTPHeader;
 use http\HTTPStatusCode;
 use router\Router;
+use service\ServiceEndpoint;
 
 ini_set( 'session.cookie_httponly', 1 );
 session_start();
@@ -25,37 +30,127 @@ $authFunction = function () {
     return false;
 };
 
-//Login actions
 Router::route("GET", "/login", function () {
     LoginController::loginView();
 });
 
-Router::route("POST", "/login", function (){
+Router::route("GET", "/register", function () {
+    LoginController::registerView();
+});
+
+Router::route("POST", "/register", function () {
+    if (AgentController::register())
+        Router::redirect("/logout");
+});
+
+Router::route("POST", "/login", function () {
     AuthController::login();
-    Router::redirect("/menu");
+    Router::redirect("/");
 });
 
-//Menu actions
-Router::route( "GET", "/menu", function (){
-    Router::redirect("/tenancies");
+Router::route("GET", "/logout", function () {
+    AuthController::logout();
+    Router::redirect("/login");
 });
 
-Router::route("GET", "/menu", function () {
-    Router::redirect("/expenses_tbl");
+Router::route("POST", "/password/request", function () {
+    AgentPasswordResetController::resetEmail();
+    Router::redirect("/login");
 });
 
-Router::route("GET", "/menu", function () {
-    Router::redirect("/controlling");
+Router::route("GET", "/password/request", function () {
+    AgentPasswordResetController::requestView();
 });
 
-Router::route("GET", "/menu", function () {
-    Router::redirect("/computation_tbl");
+Router::route("POST", "/password/reset", function () {
+    AgentPasswordResetController::reset();
+    Router::redirect("/login");
 });
-//Tenancies/leases actions
 
-//Computation actions
-Router::route("GET", "/computation_tbl", function (){
+Router::route("GET", "/password/reset", function () {
+    AgentPasswordResetController::resetView();
+});
 
+Router::route_auth("GET", "/", $authFunction, function () {
+    CustomerController::readAll();
+});
+
+Router::route_auth("GET", "/agent/edit", $authFunction, function () {
+    AgentController::editView();
+});
+
+Router::route_auth("POST", "/agent/edit", $authFunction, function () {
+    if (AgentController::update())
+        Router::redirect("/logout");
+});
+
+Router::route_auth("GET", "/customer/create", $authFunction, function () {
+    CustomerController::create();
+});
+
+Router::route_auth("GET", "/customer/edit", $authFunction, function () {
+    CustomerController::edit();
+});
+
+Router::route_auth("GET", "/customer/delete", $authFunction, function () {
+    CustomerController::delete();
+    Router::redirect("/");
+});
+
+Router::route_auth("POST", "/customer/update", $authFunction, function () {
+    if (CustomerController::update())
+        Router::redirect("/");
+});
+
+Router::route_auth("GET", "/customer/email", $authFunction, function () {
+    EmailController::sendMeMyCustomers();
+    Router::redirect("/");
+});
+
+Router::route_auth("GET", "/customer/pdf", $authFunction, function () {
+    PDFController::generatePDFCustomers();
+});
+
+$authAPIBasicFunction = function () {
+    if (ServiceEndpoint::authenticateBasic())
+        return true;
+    Router::errorHeader();
+    return false;
+};
+
+Router::route_auth("GET", "/api/token", $authAPIBasicFunction, function () {
+    ServiceEndpoint::loginBasicToken();
+});
+
+$authAPITokenFunction = function () {
+    if (ServiceEndpoint::authenticateToken())
+        return true;
+    Router::errorHeader();
+    return false;
+};
+
+Router::route_auth("HEAD", "/api/token", $authAPITokenFunction, function () {
+    ServiceEndpoint::validateToken();
+});
+
+Router::route_auth("GET", "/api/customer", $authAPITokenFunction, function () {
+    ServiceEndpoint::findAllCustomer();
+});
+
+Router::route_auth("GET", "/api/customer/{id}", $authAPITokenFunction, function ($id) {
+    ServiceEndpoint::readCustomer($id);
+});
+
+Router::route_auth("PUT", "/api/customer/{id}", $authAPITokenFunction, function ($id) {
+    ServiceEndpoint::updateCustomer($id);
+});
+
+Router::route_auth("POST", "/api/customer", $authAPITokenFunction, function () {
+    ServiceEndpoint::createCustomer();
+});
+
+Router::route_auth("DELETE", "/api/customer/{id}", $authAPITokenFunction, function ($id) {
+    ServiceEndpoint::deleteCustomer($id);
 });
 
 try {
