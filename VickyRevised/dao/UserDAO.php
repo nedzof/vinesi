@@ -73,6 +73,19 @@ class UserDAO extends BasicDAO
         $stmt->execute();
     }
 
+    public function findByEmail($useremail)
+    {
+        $stmt = $this->pdoInstance->prepare('
+            SELECT * FROM usertable WHERE useremail = :useremail;');
+        $stmt->bindValue(':useremail', $useremail);
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            $result = $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\User")[0];
+        }
+        print_r($result);
+        return $result;
+    }
+
 }
 
 ?>

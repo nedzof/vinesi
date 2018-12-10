@@ -30,7 +30,7 @@
              id="login-block">
             <div class="m-auto w-lg-75 w-xl-50">
                 <h2 class="text-info font-weight-light mb-5"><i class="fa fa-ravelry"></i>&nbsp;Vinesi</h2>
-                <form action="login.php" method="post">
+                <form action="<?php echo $GLOBALS["ROOT_URL"]; ?>/login" method="post">
                     <div class="form-group"><label class="text-secondary">Email</label><input class="form-control"
                                                                                               name="email" type="text"
                                                                                               required=""

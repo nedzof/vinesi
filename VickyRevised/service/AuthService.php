@@ -8,7 +8,7 @@
 
 namespace service;
 
-use domain\Agent;
+use domain\User;
 
 /**
  * @access public
@@ -18,7 +18,7 @@ interface AuthService {
     /**
      * @AttributeType int
      */
-    const AGENT_TOKEN = 1;
+    const USER_TOKEN = 1;
     /**
      * @AttributeType int
      */
@@ -33,14 +33,14 @@ interface AuthService {
      * @ParamType password String
      * @ReturnType boolean
      */
-    public function verifyAgent($email, $password);
+    public function verifyUser($email, $password);
 
     /**
      * @access public
-     * @return Agent
-     * @ReturnType Agent
+     * @return User
+     * @ReturnType User
      */
-    public function readAgent();
+    public function readUser();
 
     /**
      * @access public
@@ -53,7 +53,7 @@ interface AuthService {
      * @ParamType password String
      * @ReturnType boolean
      */
-    public function editAgent($name, $email, $password);
+    public function editUser($name, $email, $password);
 
     /**
      * @access public
@@ -73,5 +73,5 @@ interface AuthService {
      * @ParamType email String
      * @ReturnType String
      */
-    public function issueToken($type = self::AGENT_TOKEN, $email = null);
+    public function issueToken($type = self::USER_TOKEN, $email = null);
 }

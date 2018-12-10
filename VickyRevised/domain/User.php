@@ -10,6 +10,12 @@ namespace domain;
 
 class User
 {
+
+    private $userid;
+    private $userlastname;
+    private $useremail;
+    private $userhashedpassword;
+    private $userstatus;
     /**
      * @return mixed
      */
@@ -81,10 +87,6 @@ class User
     {
         $this->userstatus = $userstatus;
     }
-    private $userid;
-    private $userlastname;
-    private $useremail;
-    private $userhashedpassword;
-    private $userstatus;
+
 
 }
