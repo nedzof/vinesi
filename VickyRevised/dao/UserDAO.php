@@ -1,89 +1,78 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nedzo
- * Date: 10.12.18
- * Time: 12:55
- */
 
-class UserDAO {
-    /**
-     * @return mixed
-     */
-    public function getUserid()
+namespace dao;
+
+use domain\User;
+
+class UserDAO extends BasicDAO
+{
+
+
+    public function create(User $user)
     {
-        return $this->userid;
+        $stmt = $this->pdoInstance->prepare('
+            INSERT INTO usertable(userid, userlastname, useremail, userhashedpassword, userstatus) 
+            VALUES (DEFAULT, :userlastname, :useremail, :userhashedpassword, :userstatus');
+        $stmt->bindValue(':userlastname', $user->getUserlastname());
+        $stmt->bindValue(':useremail', $user->getUseremail());
+        $stmt->bindValue(':userhashedpassword', $user->getUserhashedpassword());
+        $stmt->bindValue(':userstatus', $user->getUserstatus());
+        $stmt->execute();
+        return $this->read($this->pdoInstance->lastInsertId());
     }
 
 
-    /**
-     * @return mixed
-     */
-    public function getUserlastname()
+    public function read($userid)
     {
-        return $this->userlastname;
+        $stmt = $this->pdoInstance->prepare('
+            SELECT * FROM usertable WHERE id = :id;');
+        $stmt->bindValue(':id', $userid);
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\User")[0];
+        }
+        return null;
     }
 
-    /**
-     * @param mixed $userlastname
-     */
-    public function setUserlastname($userlastname): void
+    public function readAll()
     {
-        $this->userlastname = $userlastname;
+        $stmt = $this->pdoInstance->prepare('
+            SELECT * FROM usertable');
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\User");
+        }
+        return null;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getUseremail()
+    public function update(User $user)
     {
-        return $this->useremail;
+        $stmt = $this->pdoInstance->prepare('
+            UPDATE usertable SET 
+            userlastname = :userlastname,
+            useremail = :useremail,
+            userhashedpassword = :userhashedpassword,
+            userstatus = :userstatus
+            WHERE id = :id');
+        $stmt->bindValue(':userlastname', $user->getUserlastname());
+        $stmt->bindValue(':useremail', $user->getUseremail());
+        $stmt->bindValue(':userhashedpassword', $user->getUserhashedpassword());
+        $stmt->bindValue(':userstatus', $user->getUserstatus());
+        $stmt->execute();
+        return $this->read($user->getUserstatus());
     }
 
-    /**
-     * @param mixed $useremail
-     */
-    public function setUseremail($useremail): void
-    {
-        $this->useremail = $useremail;
-    }
 
-    /**
-     * @return mixed
-     */
-    public function getUserhashedpassword()
+    public function delete(User $user)
     {
-        return $this->userhashedpassword;
+        $stmt = $this->pdoInstance->prepare('
+            DELETE FROM tenanttable
+            WHERE id = :id
+        ');
+        $stmt->bindValue(':id', $user->getUserid());
+        $stmt->execute();
     }
-
-    /**
-     * @param mixed $userhashedpassword
-     */
-    public function setUserhashedpassword($userhashedpassword): void
-    {
-        $this->userhashedpassword = $userhashedpassword;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUserstatus()
-    {
-        return $this->userstatus;
-    }
-
-    /**
-     * @param mixed $userstatus
-     */
-    public function setUserstatus($userstatus): void
-    {
-        $this->userstatus = $userstatus;
-    }
-
-    private $userid;
-    private $userlastname;
-    private $useremail;
-    private $userhashedpassword;
-    private $userstatus;
 
 }
+
+?>

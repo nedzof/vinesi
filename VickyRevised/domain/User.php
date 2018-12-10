@@ -6,6 +6,8 @@
  * Time: 13:05
  */
 
+namespace domain;
+
 class User
 {
     /**
