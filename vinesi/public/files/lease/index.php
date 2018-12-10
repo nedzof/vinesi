@@ -75,8 +75,9 @@
                             <td><a class="action"
                                    href="<?php echo url_for('../public/files/lease/edit.php?id=' . h(u($row['leaseid']))); ?>">Edit</a>
                             </td>
-                            <td> <button></button></td>
-                        </tr>
+                            <td><a class="action"
+                                   href="<?php echo url_for('../public/files/lease/edit.php?id=' . h(u($row['leaseid']))); ?>">Delete</a>
+                            </td>                        </tr>
                         <?php } ?>
 
                     </table>
