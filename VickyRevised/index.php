@@ -48,7 +48,9 @@ Router::route("POST", "/register", function () {
 Router::route("POST", "/login", function () {
     if (AuthController::login() == true) {
         Router::redirect("/menu");
-    };
+    } else {
+        echo "<script>alert(\"invalid username/password.  Please try again\")</script>";
+    }
 });
 
 Router::route("GET", "/logout", function () {
