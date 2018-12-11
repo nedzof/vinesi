@@ -13,6 +13,7 @@ use controller\AuthController;
 use controller\EmailController;
 use controller\ErrorController;
 use controller\LoginController;
+use controller\MenuController;
 use controller\PDFController;
 use http\HTTPException;
 use http\HTTPHeader;
@@ -45,12 +46,16 @@ Router::route("POST", "/register", function () {
 
 Router::route("POST", "/login", function () {
     AuthController::login();
-    Router::redirect("/");
+    Router::redirect("/menu");
 });
 
 Router::route("GET", "/logout", function () {
     AuthController::logout();
     Router::redirect("/login");
+});
+
+Router::route("GET", "/menu", function () {
+    MenuController::menuView();
 });
 
 Router::route("POST", "/password/request", function () {

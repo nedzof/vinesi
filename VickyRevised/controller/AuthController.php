@@ -24,7 +24,8 @@ class AuthController{
         $authService = AuthServiceImpl::getInstance();
         if ($authService->verifyUser($_POST["email"], $_POST["password"])) {
             session_regenerate_id(true);
-            $_SESSION["login"]["token"] = $authService->issueToken();
+            $token = $authService->issueToken();
+            $_SESSION["agentLogin"]["token"] = $token;
         }
     }
 }
