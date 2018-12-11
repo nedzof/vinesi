@@ -25,6 +25,7 @@ class Database
 
          self::$pdoInstance = new PDO($dsn);*/
         self::$pdoInstance = new PDO (Config::get("database.dsn"), Config::get("database.user"), Config::get("database.password"));
+        echo "successful";
         self::$pdoInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
