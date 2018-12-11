@@ -32,18 +32,12 @@ $authFunction = function () {
     return false;
 };
 
+/*
+ * Login Routing
+ */
 Router::route("GET", "/login", function () {
     LoginController::loginView();
 
-});
-
-Router::route("GET", "/register", function () {
-    RegisterController::registerView();
-});
-
-Router::route("POST", "/register", function () {
-    if (AgentController::register())
-        Router::redirect("/logout");
 });
 
 Router::route("POST", "/login", function () {
@@ -56,11 +50,28 @@ Router::route("POST", "/login", function () {
     }
 });
 
+/*
+ * Register Routing
+ */
+Router::route("GET", "/register", function () {
+    RegisterController::registerView();
+});
+
+Router::route("POST", "/register", function () {
+    if (AgentController::register())
+        Router::redirect("/logout");
+});
+
+
+
 Router::route("GET", "/logout", function () {
     AuthController::logout();
     Router::redirect("/login");
 });
 
+/*
+ * Menu Routing
+ */
 Router::route("GET", "/menu", function () {
     MenuController::menuView();
 });
