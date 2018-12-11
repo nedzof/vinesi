@@ -27,6 +27,16 @@ class User
      */
 
 
+    public function __construct($userid, $userlastname, $useremail, $userhashedpassword, $userstatus)
+    {
+        $this->userid = $userid;
+        $this->userlastname = $userlastname;
+        $this->useremail = $useremail;
+        $this->userhashedpassword = $userhashedpassword;
+        $this->userstatus = $userstatus;
+    }
+
+
     /**
      * @return mixed
      */
@@ -99,5 +109,16 @@ class User
         $this->userstatus = $userstatus;
     }
 
+    public static function createUserFromArray($array): User
+    {
+        $userid = $array->userid;
+        $userlastname = $array->userlastname;
+        $useremail = $array->useremail;
+        $userhashedpassword = $array->userhashedpassword;
+        $userstatus = $array->userstatus;
+
+        return new User($userid, $userlastname, $useremail, $userhashedpassword, $userstatus);
+
+    }
 
 }

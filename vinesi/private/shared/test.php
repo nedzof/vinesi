@@ -22,14 +22,11 @@ if ($db == true) {
     //insertUserTable('Fetahovic','nedzo.fetahovic@students.fhnw.ch','test','false');
    // $db->exec($sql);
 
-    $pdostatement = $db->prepare('SELECT * FROM usertable WHERE useremail = :email;');
+    $pdostatement = $db->prepare('SELECT * FROM usertable WHERE useremail = :email');
     $pdostatement->bindValue(':email', "nedzo@fhnw.ch");
     $pdostatement->execute();
-    echo $pdostatement->rowCount();
-    echo "\n\n";
     if ($pdostatement->rowCount() > 0) {
-        $result = $pdostatement->fetchObject();
-        print_r($result);
+        return $result = $pdostatement->fetchObject();
     }
     return null;
 }

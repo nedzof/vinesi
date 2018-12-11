@@ -45,8 +45,10 @@ class AuthServiceImpl implements AuthService {
     public function verifyUser($email, $password)
     {
         $userDAO = new UserDAO();
-        $user = $userDAO->findByEmail($email);
-        if (isset($user)) {
+        $result = $userDAO->findByEmail($email);
+        $user = new User($result->userid, $result->userlastname, $result->useremail, $result->userhashedpassword, $result->userstatus);
+        if (!false) {
+            print $user->getUserid();
             if (password_verify($password, $user->getUserhashedpassword())) {
                 if (password_needs_rehash($user->getUserhashedpassword(), PASSWORD_DEFAULT)) {
                     $user->setUserhashedpassword(password_hash($password, PASSWORD_DEFAULT));
@@ -76,8 +78,8 @@ class AuthServiceImpl implements AuthService {
         $user->setUserhashedpassword(password_hash($password, PASSWORD_DEFAULT));
         $userDAO = new UserDAO();
         if ($this->verifyAuth()) {
-            //$user->setId($this->currentUserId);
-            if ($userDAO->read($this->currentUserId)->getEmail() !== $user->getEmail()) {
+            $user->setId($this->currentUserId);
+            if ($userDAO->read($this->currentUserId)->getUseremail() !== $user->getUseremail()) {
                 if (!is_null($userDAO->findByEmail($email))) {
                     return false;
                 }
