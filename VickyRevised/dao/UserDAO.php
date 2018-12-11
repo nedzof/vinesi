@@ -29,7 +29,7 @@ class UserDAO extends BasicDAO
         $stmt->bindValue(':id', $userid);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
-            return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\User")[0];
+            return $stmt->fetch(\PDO::FETCH_CLASS, "domain\User")[0];
         }
         return null;
     }
@@ -79,11 +79,8 @@ class UserDAO extends BasicDAO
             SELECT * FROM usertable WHERE useremail = :email;');
         $stmt->bindValue(':email', $email);
         $stmt->execute();
-        if ($stmt->rowCount() > 0) {
-            $result = $stmt->fetch(\PDO::FETCH_CLASS, "domain\User")[0];
-            return new User($result['userlastname'], $result[$email], $result['userhashedpassword'], $result['userstatus']);
-        }
-
+        if ($stmt->rowCount() > 0)
+            return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\User")[0];
         return null;
     }
 

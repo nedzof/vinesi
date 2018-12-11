@@ -28,10 +28,10 @@ class Database
 
         try {
             // create a PostgreSQL database connection
-            $conn = new PDO($dsn);
+            self::$pdoInstance = new PDO($dsn);
 
             // display a message if connected to the PostgreSQL successfully
-            if ($conn) {
+            if (self::$pdoInstance) {
                 echo "Connected to the <strong>$_dbname</strong> database successfully!";
                 self::$pdoInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

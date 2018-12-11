@@ -25,13 +25,7 @@ class User
      * @param $userhashedpassword
      * @param $userstatus
      */
-    public function __construct($userlastname, $useremail, $userhashedpassword, $userstatus)
-    {
-        $this->userlastname = $userlastname;
-        $this->useremail = $useremail;
-        $this->userhashedpassword = $userhashedpassword;
-        $this->userstatus = $userstatus;
-    }
+
 
     /**
      * @return mixed
