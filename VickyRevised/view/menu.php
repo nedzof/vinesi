@@ -33,7 +33,7 @@
         <div class="row projects">
             <div class="col-sm-6 item">
                 <div class="row">
-                    <div class="col-md-12 col-lg-5"><a href="<?php echo url_for('files/lease/index.php'); ?>">
+                    <div class="col-md-12 col-lg-5"><a href="">
                             <img class="img-fluid" src="assets/img/Fotolia_122593238_Subscription_Monthly_M.jpg"></a>
                     </div>
                     <div class="col">
@@ -46,8 +46,8 @@
             <div class="col-sm-6 item">
                 <div class="row">
                     <div class="col-md-12 col-lg-5">
-                        <a href="<?php echo url_for('files/index.php'); ?>">
-                            <img class="img-fluid" src="../assets/img/desk.jpg"></a></div>
+                        <a href="">
+                            <img class="img-fluid" src="assets/img/desk.jpg"></a></div>
                     <div class="col">
                         <h3 class="name">Computation</h3>
                         <p class="description">Creates a yearly invoice for clients for additional charges.</p>
@@ -57,8 +57,8 @@
             <div class="col-sm-6 item">
                 <div class="row">
                     <div class="col-md-12 col-lg-5">
-                        <a href="<?php echo url_for('files/invoice/index.php'); ?>">
-                            <img class="img-fluid" src="../assets/img/building.jpg"></a></div>
+                        <a href="">
+                            <img class="img-fluid" src="assets/img/building.jpg"></a></div>
                     <div class="col">
                         <h3 class="name">Controlling</h3>
                         <p class="description">Monitoring the rent payments.</p>
@@ -68,8 +68,8 @@
             <div class="col-sm-6 item" class>
                 <div class="row">
                     <div class="col-md-12 col-lg-5">
-                        <a href="<?php echo url_for('files/expense/index.php'); ?>">
-                            <img class="img-fluid" src="../assets/img/Accounting-1024x682.jpg"></a>
+                        <a href="">
+                            <img class="img-fluid" src="assets/img/Accounting-1024x682.jpg"></a>
                     </div>
                     <div class="col">
                         <h3 class="name">Expenses</h3>
