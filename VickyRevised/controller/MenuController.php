@@ -8,7 +8,6 @@
 
 namespace controller;
 
-use view\LayoutRendering;
 use view\TemplateView;
 
 class MenuController
@@ -36,7 +35,8 @@ class MenuController
     public static function menuView()
     {
 
-        $contentView = new TemplateView("menu.php");
-        LayoutRendering::basicLayout($contentView);
+        echo (new TemplateView("menu.php"))->render();
+        // $contentView = new TemplateView("menu.php");
+        // LayoutRendering::basicLayout($contentView);
     }
 }

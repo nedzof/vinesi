@@ -78,7 +78,8 @@ class AuthServiceImpl implements AuthService {
         $userDAO = new UserDAO();
         if ($this->verifyAuth()) {
             $user->setUserid($this->currentUserId);
-            if ($userDAO->read($this->currentUserId)->getUseremail() !== $user->getUseremail()) {
+            $userRead = $userDAO->read($this->currentUserId);
+            if ($userRead->getUseremail() !== $user->getUseremail()) {
                 if (!is_null($userDAO->findByEmail($email))) {
                     return false;
                 }
