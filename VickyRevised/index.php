@@ -33,6 +33,7 @@ $authFunction = function () {
 
 Router::route("GET", "/login", function () {
     LoginController::loginView();
+
 });
 
 Router::route("GET", "/register", function () {
@@ -45,8 +46,9 @@ Router::route("POST", "/register", function () {
 });
 
 Router::route("POST", "/login", function () {
-    AuthController::login();
-    Router::redirect("/menu");
+    if (AuthController::login() == true) {
+        Router::redirect("/menu");
+    };
 });
 
 Router::route("GET", "/logout", function () {

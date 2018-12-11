@@ -26,6 +26,8 @@ class AuthController{
             session_regenerate_id(true);
             $token = $authService->issueToken();
             $_SESSION["agentLogin"]["token"] = $token;
+            return true;
         }
+        return false;
     }
 }
