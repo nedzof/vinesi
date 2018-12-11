@@ -43,7 +43,7 @@
                     <button class="btn btn-info mt-2" type="submit">Log In</button>
                 </form>
                 <p class="mt-3 mb-0" style="margin-bottom: 0px;margin-top: 16px;"><a
-                            href="<?php echo "register.php" ?>" class="text-info small">Register
+                            href="<?php echo $GLOBALS["ROOT_URL"]; ?>/register" class="text-info small">Register
                         here.</a></p>
                 <p class="mt-3 mb-0"
                    style="margin: 0px;margin-top: 0;margin-right: 0;margin-bottom: 0;margin-left: 0;min-height: 0px;padding-top: 0px;padding-bottom: 12px;">

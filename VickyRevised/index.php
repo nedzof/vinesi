@@ -15,6 +15,7 @@ use controller\ErrorController;
 use controller\LoginController;
 use controller\MenuController;
 use controller\PDFController;
+use controller\RegisterController;
 use http\HTTPException;
 use http\HTTPHeader;
 use http\HTTPStatusCode;
@@ -37,7 +38,7 @@ Router::route("GET", "/login", function () {
 });
 
 Router::route("GET", "/register", function () {
-    LoginController::registerView();
+    RegisterController::registerView();
 });
 
 Router::route("POST", "/register", function () {
