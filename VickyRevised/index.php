@@ -50,6 +50,8 @@ Router::route("POST", "/login", function () {
         Router::redirect("/menu");
     } else {
         echo "<script>alert(\"invalid username/password.  Please try again\")</script>";
+        echo "<script>window.location='login'</script>";
+
     }
 });
 
