@@ -36,6 +36,14 @@ class User
         $this->userstatus = $userstatus;
     }
 
+    /**
+     * @param mixed $userid
+     */
+    public function setUserid($userid): void
+    {
+        $this->userid = $userid;
+    }
+
 
     /**
      * @return mixed

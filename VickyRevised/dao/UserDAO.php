@@ -59,7 +59,7 @@ class UserDAO extends BasicDAO
         $stmt->bindValue(':userhashedpassword', $user->getUserhashedpassword());
         $stmt->bindValue(':userstatus', $user->getUserstatus());
         $stmt->execute();
-        return $this->read($user->getUserstatus());
+        return $this->read($user->getUserid());
     }
 
 
@@ -79,9 +79,10 @@ class UserDAO extends BasicDAO
         $pdostatement->bindValue(':email', $email);
         $pdostatement->execute();
         if ($pdostatement->rowCount() > 0) {
-            return $result = $pdostatement->fetchObject();
+            $result = $pdostatement->fetchObject();
+            return new User($result->userid, $result->userlastname, $result->useremail, $result->userhashedpassword, $result->userstatus);
         }
-        return false;
+        return null;
     }
 
 }

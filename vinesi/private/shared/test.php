@@ -22,13 +22,15 @@ if ($db == true) {
     //insertUserTable('Fetahovic','nedzo.fetahovic@students.fhnw.ch','test','false');
    // $db->exec($sql);
 
-    $pdostatement = $db->prepare('SELECT * FROM usertable WHERE useremail = :email');
-    $pdostatement->bindValue(':email', "nedzo@fhnw.ch");
-    $pdostatement->execute();
-    if ($pdostatement->rowCount() > 0) {
-        return $result = $pdostatement->fetchObject();
-    }
-    return null;
+    /* $pdostatement = $db->prepare('SELECT * FROM usertable WHERE useremail = :email');
+     $pdostatement->bindValue(':email', "nedzo@fhnw.ch");
+     $pdostatement->execute();
+     if ($pdostatement->rowCount() > 0) {
+         return $result = $pdostatement->fetchObject();
+     }
+     return null;*/
+
+    echo(password_hash("test", PASSWORD_DEFAULT));
 }
 
 ?>

@@ -10,7 +10,7 @@ namespace service;
 
 use dao\UserDAO;
 use domain\User;
-use http\HTTPException;
+use Exception;
 use http\HTTPStatusCode;
 
 
@@ -45,16 +45,15 @@ class AuthServiceImpl implements AuthService {
     public function verifyUser($email, $password)
     {
         $userDAO = new UserDAO();
-        $result = $userDAO->findByEmail($email);
-        $user = new User($result->userid, $result->userlastname, $result->useremail, $result->userhashedpassword, $result->userstatus);
-        if (!false) {
+        $user = $userDAO->findByEmail($email);
+        if (!is_null($user)) {
             print $user->getUserid();
             if (password_verify($password, $user->getUserhashedpassword())) {
                 if (password_needs_rehash($user->getUserhashedpassword(), PASSWORD_DEFAULT)) {
                     $user->setUserhashedpassword(password_hash($password, PASSWORD_DEFAULT));
                     $userDAO->update($user);
                 }
-                $this->currentAgentId = $user->getUserid();
+                $this->currentUserId = $user->getUserid();
                 return true;
             }
         }
@@ -63,22 +62,22 @@ class AuthServiceImpl implements AuthService {
 
     public function readUser()
     {
-        if($this->verifyAuth()) {
+
+        try {
             $userDAO = new UserDAO();
             return $userDAO->read($this->currentUserId);
+        } catch (Exception $e) {
+            echo 'Caught exception: ', $e->getMessage() . "\n" . (HTTPStatusCode::HTTP_401_UNAUTHORIZED) . "\n";
+            return null;
         }
-        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
     public function editUser($name, $email, $password)
     {
-        $user = new User();
-        $user->setUserlastname($name);
-        $user->setUseremail($email);
-        $user->setUserhashedpassword(password_hash($password, PASSWORD_DEFAULT));
+        $user = new User(null, $name, $email, password_hash($password, PASSWORD_DEFAULT), null);
         $userDAO = new UserDAO();
         if ($this->verifyAuth()) {
-            $user->setId($this->currentUserId);
+            $user->setUserid($this->currentUserId);
             if ($userDAO->read($this->currentUserId)->getUseremail() !== $user->getUseremail()) {
                 if (!is_null($userDAO->findByEmail($email))) {
                     return false;
@@ -105,7 +104,12 @@ class AuthServiceImpl implements AuthService {
     }
 
 
-    public function issueToken($type = self::AGENT_TOKEN, $email = null) {
-        return $this->currentUserId . ":" . bin2hex(random_bytes(20));
+    public function issueToken($type = self::USER_TOKEN, $email = null)
+    {
+        try {
+            return $this->currentUserId . ":" . bin2hex(random_bytes(20));
+        } catch (Exception $e) {
+            return "Caught exception: " . $e->getMessage();
+        }
     }
 }
