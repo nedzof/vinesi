@@ -16,6 +16,23 @@ class User
     private $useremail;
     private $userhashedpassword;
     private $userstatus;
+
+    /**
+     * User constructor.
+     * @param $userid
+     * @param $userlastname
+     * @param $useremail
+     * @param $userhashedpassword
+     * @param $userstatus
+     */
+    public function __construct($userlastname, $useremail, $userhashedpassword, $userstatus)
+    {
+        $this->userlastname = $userlastname;
+        $this->useremail = $useremail;
+        $this->userhashedpassword = $userhashedpassword;
+        $this->userstatus = $userstatus;
+    }
+
     /**
      * @return mixed
      */
