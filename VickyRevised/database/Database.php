@@ -10,6 +10,7 @@ namespace database;
 
 use config\Config;
 use PDO;
+use PDOException;
 
 class Database
 {
@@ -17,16 +18,33 @@ class Database
 
     protected function __construct()
     {
-        /* $dsn = "pgsql:host=" . Config::get("database.host") .
-             ";dbname=" . Config::get("database.name") .
-             ";user=" . Config::get("database.user") .
-             ";port=" . Config::get("database.port") .
-             ";sslmode=require;password=" . Config::get("database.password") . ";";
+        $_host = Config::get("database.host");
+        $_dbname = Config::get("database.name");
+        $_user = Config::get("database.user");
+        $_port = (int)Config::get("database.port");
+        $_password = Config::get("database.password");
 
-         self::$pdoInstance = new PDO($dsn);*/
-        self::$pdoInstance = new PDO (Config::get("database.dsn"), Config::get("database.user"), Config::get("database.password"));
-        echo "successful";
-        self::$pdoInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $dsn = "pgsql:host=$_host;port=$_port;dbname=$_dbname;user=$_user;password=$_password";
+
+        try {
+            // create a PostgreSQL database connection
+            $conn = new PDO($dsn);
+
+            // display a message if connected to the PostgreSQL successfully
+            if ($conn) {
+                echo "Connected to the <strong>$_dbname</strong> database successfully!";
+                self::$pdoInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            }
+        } catch (PDOException $e) {
+            // report error message
+            echo $e->getMessage();
+        }
+
+
+        /* self::$pdoInstance = new PDO($dsn, $user, )
+       //  self::$pdoInstance = new PDO (Config::get("database.dsn"), Config::get("database.user"), Config::get("database.password"));
+         echo "successful";*/
     }
 
     public static function connect()

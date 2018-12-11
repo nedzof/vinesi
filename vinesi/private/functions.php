@@ -14,7 +14,7 @@ function changeBackslash($str)
     return $newPath;
 }
 
-function url_for($script_path)
+/*function url_for($script_path)
 {
     //adding leading / if not here
     if ($script_path[0] != '/') {
@@ -25,7 +25,7 @@ function url_for($script_path)
     $_wwwRoot = changeBackslash($_wwwRoot); //Windows Configuration
     return $_wwwRoot;
 }
-
+*/
 function u($string="") {
   return urlencode($string);
 }

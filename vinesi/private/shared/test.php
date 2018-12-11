@@ -7,8 +7,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Database Connection with PDO</title>
+    <title>
+        <meta charset="UTF-8">
+        <title>Database Connection with PDO</title>
     </title>
 </head>
 <body>
