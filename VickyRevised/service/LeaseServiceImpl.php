@@ -26,7 +26,7 @@ class LeaseServiceImpl implements LeaseService {
     public function createLease(Lease $lease) {
         if(AuthServiceImpl::getInstance()->verifyAuth()) {
             $leaseDAO = new LeaseDAO();
-           // $lease->setAgentId(AuthServiceImpl::getInstance()->getCurrentAgentId());
+            $lease->setAgentId(AuthServiceImpl::getInstance()->getCurrentAgentId());
             return $leaseDAO->create($lease);
         }
         throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
@@ -40,7 +40,6 @@ class LeaseServiceImpl implements LeaseService {
      * @ReturnType Lease
      * @throws HTTPException
      */
-
     public function readLease($leaseId)
     {
         if(AuthServiceImpl::getInstance()->verifyAuth()) {
@@ -50,18 +49,50 @@ class LeaseServiceImpl implements LeaseService {
         throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
+    /**
+     * @access public
+     * @param Lease lease
+     * @return Lease
+     * @ParamType lease Lease
+     * @ReturnType Lease
+     * @throws HTTPException
+     */
     public function updateLease(Lease $lease)
     {
-        // TODO: Implement updateLease() method.
+        if(AuthServiceImpl::getInstance()->verifyAuth()) {
+            $leaseDAO = new LeaseDAO();
+            return $leaseDAO->update($lease);
+        }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
+    /**
+     * @access public
+     * @param int leaseId
+     * @ParamType leaseId int
+     */
     public function deleteLease($leaseId)
     {
-        // TODO: Implement deleteLease() method.
+        if(AuthServiceImpl::getInstance()->verifyAuth()) {
+            $leaseDAO = new LeaseDAO();
+            $lease = new Lease();
+            $lease->setId($leaseId);
+            $leaseDAO->delete($lease);
+        }
     }
 
+    /**
+     * @access public
+     * @return Lease[]
+     * @ReturnType Lease[]
+     * @throws HTTPException
+     */
     public function findAllLease()
     {
-        // TODO: Implement findAllLease() method.
+        if(AuthServiceImpl::getInstance()->verifyAuth()){
+            $leaseDAO = new LeaseDAO();
+            return $leaseDAO->findByAgent(AuthServiceImpl::getInstance()->getCurrentAgentId());
+        }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 }
