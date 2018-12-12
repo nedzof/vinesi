@@ -30,4 +30,10 @@ class AuthController{
         }
         return false;
     }
+
+    public static function logout()
+    {
+        session_destroy();
+        setcookie("token", "", time() - 3600, "/", "", false, true);
+    }
 }

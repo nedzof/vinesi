@@ -28,37 +28,17 @@ use dao\LeaseDAO;
         <?php
         $leasedao = new LeaseDAO();
         $result = $leasedao->readAll();
-        for ($i = 0;
-        $i < count($result);
-        $i++){
-        $row = $result[$i];
-        ?>
-        */ ?>
+        print_r($result[0]);
+        echo $result[0]->leaseid;
+        /* for ($i = 0;$i < count($result);$i++){
+         $row = $result[$i];
+         ?>
+         */ ?>
     </tr>
     <tr>
-        <td><?php echo $row['leaseid'] ?></td>
-        <td><?php echo $row['leasemonthlyrent'] ?></td>
-        <td><?php echo $row['leaseutilities'] ?></td>
-        <td><?php echo $row['leasepaymentmethod'] ?></td>
-        <td><?php echo $row['leasedeposit'] ?></td>
-        <td><?php echo $row['leasestart'] ?></td>
-        <td><?php echo $row['leaseend'] ?></td>
-        <td><?php echo $row['propertytable_propertyid'] ?></td>
-        <td><?php echo $row['tenttable_tenantid'] ?></td>
-        <td><?php
 
-            $result2 = $leasedao->getTenantLastNameById($row['tenttable_tenantid']);
-            echo $result2['tenantlastname']; ?></td>
-
-
-        <td><a class="action"
-               href="<? //php echo url_for('../public/files/lease/lease_edit.php?id=' . h(u($row['leaseid']))); ?>">Edit</a>
-        </td>
-        <td><a class="action"
-               href="<? //php echo url_for('../public/files/lease/lease_edit.php?id=' . h(u($row['leaseid']))); ?>">Delete</a>
-        </td>
     </tr>
-    <?php } ?>
+    <?php //} ?>
 
 </table>
 </body>
