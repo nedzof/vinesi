@@ -21,6 +21,31 @@ class Lease{
     private $tenttable_tenantid;
 
     /**
+     * Lease constructor.
+     * @param $leaseid
+     * @param $leasemonthylrent
+     * @param $leaseutilities
+     * @param $leasepaymentmethod
+     * @param $leasedeposit
+     * @param $leasestart
+     * @param $leaseend
+     * @param $propertytable_propertyid
+     * @param $tenttable_tenantid
+     */
+    public function __construct($leaseid, $leasemonthylrent, $leaseutilities, $leasepaymentmethod, $leasedeposit, $leasestart, $leaseend, $propertytable_propertyid, $tenttable_tenantid)
+    {
+        $this->leaseid = $leaseid;
+        $this->leasemonthylrent = $leasemonthylrent;
+        $this->leaseutilities = $leaseutilities;
+        $this->leasepaymentmethod = $leasepaymentmethod;
+        $this->leasedeposit = $leasedeposit;
+        $this->leasestart = $leasestart;
+        $this->leaseend = $leaseend;
+        $this->propertytable_propertyid = $propertytable_propertyid;
+        $this->tenttable_tenantid = $tenttable_tenantid;
+    }
+
+    /**
      * @return mixed
      */
     public function getLeaseid()

@@ -50,6 +50,6 @@ interface LeaseService{
      * @return Lease[]
      * @ReturnType Lease[]
      */
-    public function findAllLease();
+    public function findAll();
 
 }

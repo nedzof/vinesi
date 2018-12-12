@@ -8,8 +8,8 @@
 
 namespace service;
 
-use domain\Lease;
 use dao\LeaseDAO;
+use domain\Lease;
 use http\HTTPException;
 use http\HTTPStatusCode;
 
@@ -26,7 +26,7 @@ class LeaseServiceImpl implements LeaseService {
     public function createLease(Lease $lease) {
         if(AuthServiceImpl::getInstance()->verifyAuth()) {
             $leaseDAO = new LeaseDAO();
-            $lease->setAgentId(AuthServiceImpl::getInstance()->getCurrentAgentId());
+            $lease->setLeaseid(AuthServiceImpl::getInstance()->getCurrentUserId());
             return $leaseDAO->create($lease);
         }
         throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
@@ -42,6 +42,7 @@ class LeaseServiceImpl implements LeaseService {
      */
     public function readLease($leaseId)
     {
+
         if(AuthServiceImpl::getInstance()->verifyAuth()) {
             $leaseDAO = new LeaseDAO();
             return $leaseDAO->read($leaseId);
@@ -76,7 +77,7 @@ class LeaseServiceImpl implements LeaseService {
         if(AuthServiceImpl::getInstance()->verifyAuth()) {
             $leaseDAO = new LeaseDAO();
             $lease = new Lease();
-            $lease->setId($leaseId);
+            $lease->setLeaseid($leaseId);
             $leaseDAO->delete($lease);
         }
     }
@@ -87,11 +88,11 @@ class LeaseServiceImpl implements LeaseService {
      * @ReturnType Lease[]
      * @throws HTTPException
      */
-    public function findAllLease()
+    public function findAll()
     {
         if(AuthServiceImpl::getInstance()->verifyAuth()){
             $leaseDAO = new LeaseDAO();
-            return $leaseDAO->findByAgent(AuthServiceImpl::getInstance()->getCurrentAgentId());
+            return $leaseDAO->readAll();
         }
         throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }

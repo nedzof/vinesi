@@ -37,13 +37,32 @@ class LeaseDAO extends BasicDAO {
     }
 
     public function readAll() {
-        $stmt = $this->pdoInstance->prepare('
-            SELECT * FROM leasetable');
+        $stmt = $this->pdoInstance->prepare('SELECT * FROM leasetable');
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
-            return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Lease");
+            $result = $stmt->fetchObject();
+            $returnSet = [];
+            for ($i = 0; $i < count($result); $i++) {
+                $leaseid = $result[$i]['leaseid'];
+                $leasemonthlyrent = $result[$i]['leasemonthlyrent'];
+                $leaseutilities = $result[$i]['leaseutilities'];
+                $leasepaymentmethod = $result[$i]['leasepaymentmethod'];
+                $leasedeposit = $result[$i]['leasedeposit'];
+                $leasestart = $result[$i]['leasestart'];
+                $leaseend = $result[$i]['leaseend'];
+                $propertytable_propertyid = $result[$i]['propertytable_propertyid'];
+                $tenttable_tenantid = $result[$i]['tenttable_tenantid'];
+
+                $leaseObject = new Lease($leaseid, $leasemonthlyrent, $leaseutilities, $leasepaymentmethod, $leasedeposit, $leasestart, $leaseend, $propertytable_propertyid, $tenttable_tenantid);
+                $returnSet[$i] = $leaseObject;
+            }
+
+            return $returnSet;
+
         }
         return null;
+
+
     }
 
     public function update(Lease $lease) {
@@ -82,6 +101,5 @@ class LeaseDAO extends BasicDAO {
         $stmt->bindValue(':id', $lease->getLeaseid());
         $stmt->execute();
     }
-
 }
 ?>

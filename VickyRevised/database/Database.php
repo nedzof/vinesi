@@ -32,7 +32,7 @@ class Database
 
             // display a message if connected to the PostgreSQL successfully
             if (self::$pdoInstance) {
-                echo "Connected to the <strong>$_dbname</strong> database successfully!";
+                // echo "Connected to the <strong>$_dbname</strong> database successfully!";
                 self::$pdoInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             }

@@ -12,6 +12,7 @@ use controller\AgentPasswordResetController;
 use controller\AuthController;
 use controller\EmailController;
 use controller\ErrorController;
+use controller\LeaseController;
 use controller\LoginController;
 use controller\MenuController;
 use controller\PDFController;
@@ -50,6 +51,12 @@ Router::route("POST", "/login", function () {
     }
 });
 
+Router::route("GET", "/logout", function () {
+    AuthController::logout();
+    Router::redirect("/login");
+});
+
+
 /*
  * Register Routing
  */
@@ -63,10 +70,13 @@ Router::route("POST", "/register", function () {
 });
 
 
+/*
+ *  Lease
+ */
 
-Router::route("GET", "/logout", function () {
-    AuthController::logout();
-    Router::redirect("/login");
+Router::route("GET", "/lease", function () {
+    LeaseController::leaseView();
+    // Router::redirect("/login");
 });
 
 /*
