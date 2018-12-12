@@ -28,11 +28,11 @@ use dao\LeaseDAO;
         <?php
         $leasedao = new LeaseDAO();
         $result = $leasedao->readAll();
-        print_r($result);
-        /* for ($i = 0; $i < count($result); $i++){
-         echo "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-         echo $result[$i]->leaseid;
-         $row = $result[$i];
+        for ($i = 0;
+        $i < count($result);
+        $i++){
+        $row = $result[$i];
+        ?>
         */ ?>
     </tr>
     <tr>
@@ -47,7 +47,7 @@ use dao\LeaseDAO;
         <td><?php echo $row['tenttable_tenantid'] ?></td>
         <td><?php
 
-            $result2 = getTenantLastNameById($row['tenttable_tenantid']);
+            $result2 = $leasedao->getTenantLastNameById($row['tenttable_tenantid']);
             echo $result2['tenantlastname']; ?></td>
 
 
@@ -58,7 +58,7 @@ use dao\LeaseDAO;
                href="<? //php echo url_for('../public/files/lease/lease_edit.php?id=' . h(u($row['leaseid']))); ?>">Delete</a>
         </td>
     </tr>
-    <?php //} ?>
+    <?php } ?>
 
 </table>
 </body>

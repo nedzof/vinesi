@@ -3,6 +3,7 @@
 namespace dao;
 
 use domain\Lease;
+use PDO;
 
 class LeaseDAO extends BasicDAO {
 
@@ -40,24 +41,8 @@ class LeaseDAO extends BasicDAO {
         $stmt = $this->pdoInstance->prepare('SELECT * FROM leasetable');
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
-            $result = $stmt->fetchObject();
-            $returnSet = [];
-            for ($i = 0; $i < count($result); $i++) {
-                $leaseid = $result[$i]['leaseid'];
-                $leasemonthlyrent = $result[$i]['leasemonthlyrent'];
-                $leaseutilities = $result[$i]['leaseutilities'];
-                $leasepaymentmethod = $result[$i]['leasepaymentmethod'];
-                $leasedeposit = $result[$i]['leasedeposit'];
-                $leasestart = $result[$i]['leasestart'];
-                $leaseend = $result[$i]['leaseend'];
-                $propertytable_propertyid = $result[$i]['propertytable_propertyid'];
-                $tenttable_tenantid = $result[$i]['tenttable_tenantid'];
-
-                $leaseObject = new Lease($leaseid, $leasemonthlyrent, $leaseutilities, $leasepaymentmethod, $leasedeposit, $leasestart, $leaseend, $propertytable_propertyid, $tenttable_tenantid);
-                $returnSet[$i] = $leaseObject;
-            }
-
-            return $returnSet;
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $result;
 
         }
         return null;
@@ -100,6 +85,15 @@ class LeaseDAO extends BasicDAO {
         ');
         $stmt->bindValue(':id', $lease->getLeaseid());
         $stmt->execute();
+    }
+
+    public function getTenantLastNameById($id)
+    {
+        $sql = "SELECT tenantlastname FROM tenanttable WHERE tenantid = $id";
+        $statement_handler = $this->pdoInstance->prepare($sql);
+        $statement_handler->execute();
+        $result = $statement_handler->fetch(PDO::FETCH_ASSOC);
+        return $result;
     }
 }
 ?>
