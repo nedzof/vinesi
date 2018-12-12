@@ -15,24 +15,18 @@
 <body>
 <h1>Connection with PDO</h1>
 <?php
-global $db;
-if ($db == true) {
-    echo "<p>Successful</p>";
 
-    //insertUserTable('Fetahovic','nedzo.fetahovic@students.fhnw.ch','test','false');
-   // $db->exec($sql);
-
-    /* $pdostatement = $db->prepare('SELECT * FROM usertable WHERE useremail = :email');
-     $pdostatement->bindValue(':email', "nedzo@fhnw.ch");
-     $pdostatement->execute();
-     if ($pdostatement->rowCount() > 0) {
-         return $result = $pdostatement->fetchObject();
-     }
-     return null;*/
-
-    echo(password_hash("test", PASSWORD_DEFAULT));
+class MyClass
+{
+    protected $variable = 'I am protected variable!';
 }
 
+$closure = function () {
+    return $this->variable;
+};
+
+$result = Closure::bind($closure, new MyClass(), 'MyClass');
+echo $result();
 ?>
 </body>
 </html>

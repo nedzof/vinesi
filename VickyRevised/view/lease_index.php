@@ -6,6 +6,9 @@
  * Time: 16:59
  */
 
+namespace domain;
+
+use Closure;
 use dao\LeaseDAO;
 
 ?>
@@ -26,10 +29,14 @@ use dao\LeaseDAO;
         <th>Tenant Name</th>
 
         <?php
+        $closure = function () {
+            return $this->leaseid;
+        };
         $leasedao = new LeaseDAO();
-        $result = $leasedao->readAll();
-        print_r($result[0]);
-        echo $result[0]->leaseid;
+        $result = $leasedao->readAll()[0];
+        //print_r($result[0]);
+        $ede = Closure::bind($closure, $result, Lease::class);
+        echo $ede();
         /* for ($i = 0;$i < count($result);$i++){
          $row = $result[$i];
          ?>

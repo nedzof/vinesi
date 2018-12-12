@@ -8,9 +8,10 @@
 
 namespace domain;
 
-class Lease{
+class Lease
+{
 
-    private $leaseid;
+    protected $leaseid;
     private $leasemonthylrent;
     private $leaseutilities;
     private $leasepaymentmethod;
@@ -44,6 +45,7 @@ class Lease{
          $this->propertytable_propertyid = $propertytable_propertyid;
          $this->tenttable_tenantid = $tenttable_tenantid;
      }*/
+
 
     /**
      * @return mixed
@@ -189,3 +191,5 @@ class Lease{
         $this->tenttable_tenantid = $tenttable_tenantid;
     }
 }
+
+

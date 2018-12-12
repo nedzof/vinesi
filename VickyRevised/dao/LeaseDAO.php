@@ -32,7 +32,7 @@ class LeaseDAO extends BasicDAO {
         $stmt->bindValue(':id', $leaseid);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
-            return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Lease")[0];
+            return $stmt->fetchAll(\PDO::FETCH_CLASS, Lease::class)[0];
         }
         return null;
     }
@@ -41,7 +41,7 @@ class LeaseDAO extends BasicDAO {
         $stmt = $this->pdoInstance->prepare('SELECT * FROM leasetable');
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
-            $result = $stmt->fetchAll(PDO::FETCH_CLASS, 'domain\Lease');
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS, Lease::class);
             return $result;
 
         }
