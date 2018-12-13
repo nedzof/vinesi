@@ -46,10 +46,10 @@
             <div class="col-sm-6 item">
                 <div class="row">
                     <div class="col-md-12 col-lg-5">
-                        <a href="">
+                        <a href="<?php echo $GLOBALS["ROOT_URL"]; ?>/invoice">
                             <img class="img-fluid" src="assets/img/desk.jpg"></a></div>
                     <div class="col">
-                        <h3 class="name">Computation</h3>
+                        <h3 class="name">Invoice</h3>
                         <p class="description">Creates a yearly invoice for clients for additional charges.</p>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
             <div class="col-sm-6 item">
                 <div class="row">
                     <div class="col-md-12 col-lg-5">
-                        <a href="">
+                        <a href="<?php echo $GLOBALS["ROOT_URL"]; ?>/controlling">
                             <img class="img-fluid" src="assets/img/building.jpg"></a></div>
                     <div class="col">
                         <h3 class="name">Controlling</h3>
@@ -68,7 +68,7 @@
             <div class="col-sm-6 item" class>
                 <div class="row">
                     <div class="col-md-12 col-lg-5">
-                        <a href="">
+                        <a href="<?php echo $GLOBALS["ROOT_URL"]; ?>/expenses">
                             <img class="img-fluid" src="assets/img/Accounting-1024x682.jpg"></a>
                     </div>
                     <div class="col">

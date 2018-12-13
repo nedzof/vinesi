@@ -159,9 +159,6 @@ $row = getLeaseTable_By_ID($id);
         </div>
     </div>
 </div>
-<?php include(SHARED_PATH . '/footer.php'); ?>
-
-</body>
 
 </html>
 

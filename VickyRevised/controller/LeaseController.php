@@ -2,6 +2,7 @@
 
 namespace controller;
 
+use dao\LeaseDAO;
 use http\HTTPException;
 use http\HTTPStatusCode;
 use router\Router;
@@ -17,23 +18,23 @@ use view\TemplateView;
  */
 class LeaseController{
 
+    public static function create()
+    {
+
+    }
+
     public static function leaseView()
     {
-        $contentView = new TemplateView("lease.php");
-        LayoutRendering::basicLayout($contentView);
-    }
-
-    public static function create(){
-
-    }
-
-    public static function readAll()
-    {
         try {
+
+            $contentView = new TemplateView("lease.php");
+            $contentView->leases = (new LeaseDAO())->getAllLeases();
+            LayoutRendering::basicLayout($contentView);
+            /*
             $contentView = new TemplateView("lease.php");
             $contentView->leases = (new LeaseServiceImpl())->findAllLeases();
             LayoutRendering::basicLayout($contentView);
-
+*/
         } catch (HTTPException $e) {
             HTTPStatusCode::HTTP_401_UNAUTHORIZED;
 

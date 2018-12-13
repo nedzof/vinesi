@@ -8,6 +8,8 @@
 
 namespace domain;
 
+use service\TenantServiceImpl;
+
 class Lease
 {
 
@@ -20,6 +22,7 @@ class Lease
     private $leaseend;
     private $propertytable_propertyid;
     private $tenttable_tenantid;
+
 
     /**
      * @return mixed
@@ -163,6 +166,13 @@ class Lease
     public function setTenttableTenantid($tenttable_tenantid): void
     {
         $this->tenttable_tenantid = $tenttable_tenantid;
+    }
+
+    public function getTenant($tid)
+    {
+        $tenantLastName = (new TenantServiceImpl())->getTenantsById($tid);
+        return $tenantLastName;
+
     }
 
 

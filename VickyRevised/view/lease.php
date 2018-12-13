@@ -37,11 +37,14 @@ use view\TemplateView;
             <td><?php echo TemplateView::noHTML($lease->getLeaseid()); ?></td>
             <td><?php echo TemplateView::noHTML($lease->getLeasemonthylrent()); ?></td>
             <td><?php echo TemplateView::noHTML($lease->getLeaseutilities()); ?> </td>
+            <td><?php echo TemplateView::noHTML($lease->getLeasepaymentmethod()); ?> </td>
             <td><?php echo TemplateView::noHTML($lease->getLeasedeposit()); ?> </td>
             <td><?php echo TemplateView::noHTML($lease->getLeasestart()); ?> </td>
             <td><?php echo TemplateView::noHTML($lease->getLeaseend()); ?> </td>
             <td><?php echo TemplateView::noHTML($lease->getPropertytablePropertyid()); ?> </td>
             <td><?php echo TemplateView::noHTML($lease->getTenttableTenantid()); ?> </td>
+            <td><?php echo $lease->getTenant($lease->getTenttableTenantid()); ?> </td>
+
 
             <div class="btn-group" role="group">
                 <a class="btn btn-default" role="button" href="lease/create"> <i class="fa fa-plus-square-o"></i></a>
@@ -51,10 +54,11 @@ use view\TemplateView;
             </div>
             <td>
                 <div class="btn-group btn-group-sm" role="group">
-                    <a class="btn btn-default" role="button" href="lease/edit?id=<?php echo $lease->getId(); ?>"> <i
+                    <a class="btn btn-default" role="button" href="lease/edit?id=<?php echo $lease->getLeaseid(); ?>">
+                        <i
                                 class="fa fa-edit"></i></a>
                     <button class="btn btn-default" type="button" data-target="#confirm-modal" data-toggle="modal"
-                            data-href="lease/delete?id=<?php echo $lease->getId(); ?>"><i
+                            data-href="lease/delete?id=<?php echo $lease->getLeaseid(); ?>"><i
                                 class="glyphicon glyphicon-trash"></i></button>
                 </div>
             </td>

@@ -44,23 +44,7 @@ class TenantDAO extends BasicDAO {
     }
 
     public function update(Tenant $tenant) {
-        $stmt = $this->pdoInstance->prepare('
-            UPDATE tenanttable SET 
-            tenantfirstname = :tenantfirstname, 
-            tenantlastname = :tenantemail, 
-            tenantlastname = :tenantlastname, 
-            tenantgender = :tenantgender, 
-            tenantbillingstreet = :tenantbillingstreet, 
-            tenantbillingcity = :tenantbillingcity
-            WHERE id = :id');
-        $stmt->bindValue(':tenantfirstname', $tenant->getTenantFirstName());
-        $stmt->bindValue(':tenantlastname', $tenant->getTenantLastName());
-        $stmt->bindValue(':tenantemail', $tenant->getTenantEmail());
-        $stmt->bindValue(':tenantgender', $tenant->getTenantGender());
-        $stmt->bindValue(':tenantbillingstreet', $tenant->getTenantBillingStreet());
-        $stmt->bindValue(':tenantbillingcity', $tenant->getTenantBillingCity());
-        $stmt->execute();
-        return $this->read($tenant->getTenantid());
+
     }
 
 
@@ -73,5 +57,20 @@ class TenantDAO extends BasicDAO {
         $stmt->execute();
     }
 
+    function getTenantLastNameById($id)
+    {
+
+        $sql = "SELECT tenantlastname FROM tenanttable WHERE tenantid = :id LIMIT 1";
+        $stmt = $this->pdoInstance->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            $result = $stmt->fetchAll(\PDO::FETCH_CLASS, Tenant::class)[0];
+
+            return $result->getTenantlastname();
+        }
+        return null;
+
+    }
 }
 ?>

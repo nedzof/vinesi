@@ -7,14 +7,11 @@
  */
 require_once("config/Autoloader.php");
 
-use controller\AgentPasswordResetController;
 use controller\AuthController;
-use controller\EmailController;
 use controller\ErrorController;
 use controller\LeaseController;
 use controller\LoginController;
 use controller\MenuController;
-use controller\PDFController;
 use controller\RegisterController;
 use controller\UserController;
 use http\HTTPException;
@@ -75,8 +72,8 @@ Router::route("POST", "/register", function () {
  */
 
 Router::route("GET", "/lease", function () {
-    LeaseController::readAll();
-    // Router::redirect("/login");
+    LeaseController::leaseView();
+
 });
 
 /*
@@ -86,63 +83,6 @@ Router::route("GET", "/menu", function () {
     MenuController::menuView();
 });
 
-Router::route("POST", "/password/request", function () {
-    AgentPasswordResetController::resetEmail();
-    Router::redirect("/login");
-});
-
-Router::route("GET", "/password/request", function () {
-    AgentPasswordResetController::requestView();
-});
-
-Router::route("POST", "/password/reset", function () {
-    AgentPasswordResetController::reset();
-    Router::redirect("/login");
-});
-
-Router::route("GET", "/password/reset", function () {
-    AgentPasswordResetController::resetView();
-});
-
-Router::route_auth("GET", "/", $authFunction, function () {
-    CustomerController::readAll();
-});
-
-Router::route_auth("GET", "/agent/edit", $authFunction, function () {
-    AgentController::editView();
-});
-
-Router::route_auth("POST", "/agent/edit", $authFunction, function () {
-    if (AgentController::update())
-        Router::redirect("/logout");
-});
-
-Router::route_auth("GET", "/customer/create", $authFunction, function () {
-    CustomerController::create();
-});
-
-Router::route_auth("GET", "/customer/edit", $authFunction, function () {
-    CustomerController::edit();
-});
-
-Router::route_auth("GET", "/customer/delete", $authFunction, function () {
-    CustomerController::delete();
-    Router::redirect("/");
-});
-
-Router::route_auth("POST", "/customer/update", $authFunction, function () {
-    if (CustomerController::update())
-        Router::redirect("/");
-});
-
-Router::route_auth("GET", "/customer/email", $authFunction, function () {
-    EmailController::sendMeMyCustomers();
-    Router::redirect("/");
-});
-
-Router::route_auth("GET", "/customer/pdf", $authFunction, function () {
-    PDFController::generatePDFCustomers();
-});
 
 try {
     HTTPHeader::setHeader("Access-Control-Allow-Origin: *");

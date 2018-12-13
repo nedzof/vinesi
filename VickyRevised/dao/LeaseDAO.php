@@ -24,11 +24,11 @@ class LeaseDAO extends BasicDAO
         $stmt->bindValue(':propertytable_propertyid', $lease->getPropertytablePropertyid());
         $stmt->bindValue(':tenttable_tenantid', $lease->getTenttableTenantid());
         $stmt->execute();
-        return $this->read($this->pdoInstance->lastInsertId());
+        return $this->readById($this->pdoInstance->lastInsertId());
     }
 
 
-    public function read($leaseid)
+    public function readById($leaseid)
     {
         $stmt = $this->pdoInstance->prepare('
             SELECT * FROM leasetable WHERE id = :id;');
@@ -79,7 +79,7 @@ class LeaseDAO extends BasicDAO
 
 
         $stmt->execute();
-        return $this->read($lease->getLeaseid());
+        return $this->readById($lease->getLeaseid());
     }
 
 
@@ -94,21 +94,12 @@ class LeaseDAO extends BasicDAO
     }
 
 
-    public function getTenantLastNameById($id)
-    {
-        $sql = "SELECT tenantlastname FROM tenanttable WHERE tenantid = $id";
-        $statement_handler = $this->pdoInstance->prepare($sql);
-        $statement_handler->execute();
-        $result = $statement_handler->fetch(PDO::FETCH_ASSOC);
-        return $result;
-
-    }
-
-    public function getAllLeases($getCurrentuserId)
+    public function getAllLeases()
     {
         $stmt = $this->pdoInstance->prepare('SELECT * FROM leasetable ORDER BY leaseid;');
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_CLASS, Lease::class);
+
 
     }
 }
