@@ -22,4 +22,4 @@ class Autoloader
     }
 }
 
-spl_autoload_register('configurations\Autoloader::autoload');
+spl_autoload_register('config\Autoloader::autoload');

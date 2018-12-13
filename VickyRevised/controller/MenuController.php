@@ -13,26 +13,6 @@ use view\TemplateView;
 
 class MenuController
 {
-    public static function leaseView()
-    {
-
-    }
-
-    public static function invoiceView()
-    {
-
-    }
-
-    public static function expensesView()
-    {
-
-    }
-
-    public static function controllingView()
-    {
-
-    }
-
     public static function menuView()
     {
 

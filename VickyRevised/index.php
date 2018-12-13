@@ -5,7 +5,7 @@
  * Date: 12.09.2017
  * Time: 21:30
  */
-require_once("configurations/Autoloader.php");
+require_once("config/Autoloader.php");
 
 use controller\AgentPasswordResetController;
 use controller\AuthController;
@@ -75,7 +75,7 @@ Router::route("POST", "/register", function () {
  */
 
 Router::route("GET", "/lease", function () {
-    LeaseController::leaseView();
+    LeaseController::readAll();
     // Router::redirect("/login");
 });
 

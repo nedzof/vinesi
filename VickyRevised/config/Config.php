@@ -10,7 +10,7 @@ namespace config;
 
 class Config
 {
-    protected static $iniFile = "configurations/configurations.env";
+    protected static $iniFile = "config/config.env";
     protected static $config = [];
 
     public static function init()

@@ -104,7 +104,7 @@ class LeaseDAO extends BasicDAO
 
     }
 
-    public function getAllLeases($getCurrentAgentId)
+    public function getAllLeases($getCurrentuserId)
     {
         $stmt = $this->pdoInstance->prepare('SELECT * FROM leasetable ORDER BY leaseid;');
         $stmt->execute();
