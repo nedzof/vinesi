@@ -45,7 +45,7 @@ class TenantServiceImpl implements TenantService
     {
         if (AuthServiceImpl::getInstance()->verifyAuth()) {
             $tenantDAO = new TenantDAO();
-            return $tenantDAO->readById($tenantId);
+            return $tenantDAO->readTenantById($tenantId);
         }
         throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
@@ -97,11 +97,10 @@ class TenantServiceImpl implements TenantService
         throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
-    public function getTenantsById($id)
+    public function getTenantlastnameById($id)
     {
         $tenantDAO = new TenantDAO();
         return $tenantDAO->getTenantLastNameById($id);
-
 
     }
 

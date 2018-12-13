@@ -6,7 +6,7 @@ use dao\LeaseDAO;
 use http\HTTPException;
 use http\HTTPStatusCode;
 use router\Router;
-use service\LeaseServiceImpl;
+use service\TenantServiceImpl;
 use view\LayoutRendering;
 use view\TemplateView;
 
@@ -48,9 +48,10 @@ class LeaseController{
         }
 
         $id = $_GET["id"];
-        $contentView = new TemplateView("lease_edit.php");
+
         try {
-            $contentView->lease = (new LeaseServiceImpl())->readLease($id);
+            $contentView = new TemplateView("login.php");
+            $contentView->tenant = (new TenantServiceImpl())->readTenant($id);
             LayoutRendering::basicLayout($contentView);
         } catch (HTTPException $e) {
             HTTPStatusCode::HTTP_401_UNAUTHORIZED;

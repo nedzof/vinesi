@@ -22,7 +22,8 @@ class TenantDAO extends BasicDAO {
     }
 
 
-    public function read($tenantid) {
+    public function readTenantById($tenantid)
+    {
         $stmt = $this->pdoInstance->prepare('
             SELECT * FROM tenanttable WHERE id = :id;');
         $stmt->bindValue(':id', $tenantid);

@@ -1,41 +1,3 @@
-<?php
-
-//if (!isset($_GET['id']) || !isset($_GET['pID']) || !isset($_GET['tID'])) {
-if (!isset($_GET['id'])) {
-
-    redirect_to(url_for('/files/index.php'));
-}
-$entry = [];
-$id = (int)$_GET['id'];
-$row = getLeaseTable_By_ID($id);
-
-
-
-
-    $entry['leaseid'] = $row['leaseid'] ?? 1;
-    $entry['leasemonthlyrent'] = $_POST['leasemonthlyrent'] ?? '';
-    $entry['leaseutilities'] = $_POST['leaseutilities'] ?? '';
-    $entry['leasepaymentmethod'] = $_POST['leasepaymentmethod'] ?? '';
-    $entry['leasedeposit'] = $_POST['leasedeposit'] ?? '';
-    $entry['leasestart'] = $_POST['leasestart'] ?? '';
-    $entry['leaseend'] = $_POST['leaseend'] ?? '';
-    $entry['propertytable_propertyid'] = $_POST['propertytable_propertyid'] ?? 11;
-    $entry['tenttable_tenantid'] = $_POST['tenttable_tenantid'] ?? 1;
-
-
-    $pID = $entry['propertytable_propertyid'];
-    $tID = $entry['tenttable_tenantid'];
-
-
-    $result = updateLeaseTable($entry);
-    redirect_to(url_for('/files/lease/index.php'));
-
-
-}
-
-
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -73,7 +35,7 @@ $row = getLeaseTable_By_ID($id);
 
                 <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input
                             name="leasemonthlyrent"
-                            value="<?php echo h($row['leasemonthlyrent']) ?>"
+                            value="<?php echo  ?>"
                             class="form-control"
                             type="number"
                             required="">

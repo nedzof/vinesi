@@ -8,6 +8,7 @@
 
 namespace domain;
 
+use http\HTTPException;
 use service\TenantServiceImpl;
 
 class Lease
@@ -170,8 +171,11 @@ class Lease
 
     public function getTenant($tid)
     {
-        $tenantLastName = (new TenantServiceImpl())->getTenantsById($tid);
-        return $tenantLastName;
+        try {
+            $tenantLastName = (new TenantServiceImpl())->getTenantlastnameById($tid);
+            return $tenantLastName;
+        } catch (HTTPException $e) {
+        }
 
     }
 

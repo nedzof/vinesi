@@ -63,7 +63,8 @@ use view\TemplateView;
                 </div>
             </td>
         </tr>
-    <?php endforeach; ?>
+    <?php endforeach;
+    ?>
     </tbody>
 </table>
 </div>
