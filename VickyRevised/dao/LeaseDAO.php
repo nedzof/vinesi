@@ -102,6 +102,18 @@ class LeaseDAO extends BasicDAO
 
 
     }
+
+    public function getLeaseById($leaseID)
+    {
+        $stmt = $this->pdoInstance->prepare('SELECT * FROM leasetable WHERE leaseid = :id LIMIT 1');
+        $stmt->bindValue(':id', $leaseID);
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            $result = $stmt->fetchAll(\PDO::FETCH_CLASS, Lease::class)[0];
+            return $result;
+        }
+        return null;
+    }
 }
 
 ?>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -31,37 +30,37 @@
     <div class="container">
         <div class="intro">
             <h2 class="text-center" style="font-weight: normal;"><strong>Edit</strong>&nbsp;Tenancy</h2>
-            <form action="<?php echo url_for('/files/lease/lease_edit.php?id=' . h(u($id))); ?>" method="post">
+            <form action="<?php ?>" method="post">
 
                 <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input
                             name="leasemonthlyrent"
-                            value="<?php echo  ?>"
+                            value="<?php echo $this->lease->getLeaseid() ?>"
                             class="form-control"
                             type="number"
                             required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Utilities</label><input name="leaseutilities"
-                                                                                              value="<?php echo h($row['leaseutilities']) ?>"
+                                                                                              value="<?php echo $this->lease->getLeaseutilities() ?>"
                                                                                               class="form-control"
                                                                                               type="number" required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Payment Method</label><input
                             name="leasepaymentmethod"
-                            value="<?php echo h($row['leasepaymentmethod']) ?>" class="form-control"
+                            value="<?php echo $this->lease->getLeasepaymentmethod() ?>" class="form-control"
                             type="text"
                             required=""></div>
                 <div class="form-group"><label class="text-secondary">Deposit</label><input name="leasedeposit"
-                                                                                            value="<?php echo h($row['leasedeposit']) ?>"
+                                                                                            value="<?php echo $this->lease->getLeasedeposit() ?>"
                                                                                             class="form-control"
                                                                                             type="text" required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Lease Start</label><input name="leasestart"
-                                                                                                value="<?php echo h($row['leasestart']) ?>"
+                                                                                                value="<?php echo $this->lease->getLeasestart() ?>"
                                                                                                 class="form-control"
                                                                                                 type="date" required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Lease Expiry</label><input name="leaseend"
-                                                                                                 value="<?php echo h($row['leaseend']) ?>"
+                                                                                                 value="<?php echo $this->lease->getLeaseend() ?>"
                                                                                                  class="form-control"
                                                                                                  type="date"
                                                                                                  required=""></div>
@@ -70,7 +69,6 @@
                     <select name="propertytable_propertyid">
 
                         <?php
-                        global $db;
 
                         $result1 = getPropertyIdsByLeaseIds();
                         print_r($result1);

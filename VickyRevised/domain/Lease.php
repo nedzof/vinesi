@@ -24,7 +24,6 @@ class Lease
     private $propertytable_propertyid;
     private $tenttable_tenantid;
 
-
     /**
      * @return mixed
      */

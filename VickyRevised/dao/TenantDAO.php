@@ -29,7 +29,8 @@ class TenantDAO extends BasicDAO {
         $stmt->bindValue(':id', $tenantid);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
-            return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Tenant")[0];
+            $result = $stmt->fetchAll(\PDO::FETCH_CLASS, Tenant::class)[0];
+            return $result;
         }
         return null;
     }

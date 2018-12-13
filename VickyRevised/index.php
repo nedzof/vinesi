@@ -77,8 +77,6 @@ Router::route("GET", "/lease", function () {
 });
 
 Router::route("GET", "/lease/edit", function () {
-
-
     LeaseController::edit();
 
 });
