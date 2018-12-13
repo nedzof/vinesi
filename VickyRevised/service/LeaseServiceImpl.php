@@ -1,9 +1,9 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Victoria Villar
- * Date: 11/12/2018
- * Time: 14:36
+ * User: andreas.martin
+ * Date: 13.11.2017
+ * Time: 08:09
  */
 
 namespace service;
@@ -13,8 +13,8 @@ use domain\Lease;
 use http\HTTPException;
 use http\HTTPStatusCode;
 
-class LeaseServiceImpl implements LeaseService {
-
+class LeaseServiceImpl implements LeaseService
+{
     /**
      * @access public
      * @param Lease lease
@@ -26,7 +26,7 @@ class LeaseServiceImpl implements LeaseService {
     public function createLease(Lease $lease) {
         if(AuthServiceImpl::getInstance()->verifyAuth()) {
             $leaseDAO = new LeaseDAO();
-            $lease->setLeaseid(AuthServiceImpl::getInstance()->getCurrentUserId());
+            $lease->setUserid(AuthServiceImpl::getInstance()->getCurrentUserId());
             return $leaseDAO->create($lease);
         }
         throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
@@ -42,7 +42,6 @@ class LeaseServiceImpl implements LeaseService {
      */
     public function readLease($leaseId)
     {
-
         if(AuthServiceImpl::getInstance()->verifyAuth()) {
             $leaseDAO = new LeaseDAO();
             return $leaseDAO->read($leaseId);
@@ -88,11 +87,11 @@ class LeaseServiceImpl implements LeaseService {
      * @ReturnType Lease[]
      * @throws HTTPException
      */
-    public function findAll()
+    public function findAllLeases()
     {
         if(AuthServiceImpl::getInstance()->verifyAuth()){
             $leaseDAO = new LeaseDAO();
-            return $leaseDAO->readAll();
+            return $leaseDAO->getAllLeases(AuthServiceImpl::getInstance()->getCurrentAgentId());
         }
         throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }

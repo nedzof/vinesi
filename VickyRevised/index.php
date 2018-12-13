@@ -5,9 +5,8 @@
  * Date: 12.09.2017
  * Time: 21:30
  */
-require_once("config/Autoloader.php");
+require_once("configurations/Autoloader.php");
 
-use controller\AgentController;
 use controller\AgentPasswordResetController;
 use controller\AuthController;
 use controller\EmailController;
@@ -17,6 +16,7 @@ use controller\LoginController;
 use controller\MenuController;
 use controller\PDFController;
 use controller\RegisterController;
+use controller\UserController;
 use http\HTTPException;
 use http\HTTPHeader;
 use http\HTTPStatusCode;

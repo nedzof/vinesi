@@ -1,6 +1,3 @@
-<?php require_once('../../../private/initialize.php'); ?>
-<?php include(SHARED_PATH . '/header.php'); ?>
-
 <?php
 
 //if (!isset($_GET['id']) || !isset($_GET['pID']) || !isset($_GET['tID'])) {

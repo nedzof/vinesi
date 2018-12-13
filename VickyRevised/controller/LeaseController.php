@@ -2,6 +2,7 @@
 
 namespace controller;
 
+use http\HTTPException;
 use http\HTTPStatusCode;
 use router\Router;
 use service\LeaseServiceImpl;
@@ -18,7 +19,7 @@ class LeaseController{
 
     public static function leaseView()
     {
-        $contentView = new TemplateView("lease_index.php");
+        $contentView = new TemplateView("lease.php");
         LayoutRendering::basicLayout($contentView);
     }
 
@@ -26,10 +27,23 @@ class LeaseController{
 
     }
 
+    public static function readAll()
+    {
+        try {
+            $contentView = new TemplateView("lease.php");
+            $contentView->leases = (new LeaseServiceImpl())->findAllLeases();
+            LayoutRendering::basicLayout($contentView);
+
+        } catch (HTTPException $e) {
+            HTTPStatusCode::HTTP_401_UNAUTHORIZED;
+
+        }
+    }
+
     public static function edit(){
 
         if (!isset($_GET['id'])) {
-            Router::redirect("/lease_index.php");
+            Router::redirect("/lease.php");
         }
 
         $id = $_GET["id"];
@@ -37,7 +51,7 @@ class LeaseController{
         try {
             $contentView->lease = (new LeaseServiceImpl())->readLease($id);
             LayoutRendering::basicLayout($contentView);
-        } catch (\http\HTTPException $e) {
+        } catch (HTTPException $e) {
             HTTPStatusCode::HTTP_401_UNAUTHORIZED;
 
         }
@@ -48,4 +62,5 @@ class LeaseController{
     public static function delete(){
 
     }
+
 }
