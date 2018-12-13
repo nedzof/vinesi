@@ -43,7 +43,7 @@ use view\TemplateView;
             <td><?php echo TemplateView::noHTML($lease->getLeaseend()); ?> </td>
             <td><?php echo TemplateView::noHTML($lease->getPropertytablePropertyid()); ?> </td>
             <td><?php echo TemplateView::noHTML($lease->getTenttableTenantid()); ?> </td>
-            <td><?php echo $lease->getTenant($lease->getTenttableTenantid()); ?> </td>
+            <td><?php echo TemplateView::noHTML($lease->getTenant($lease->getTenttableTenantid())); ?> </td>
 
 
             <div class="btn-group" role="group">
