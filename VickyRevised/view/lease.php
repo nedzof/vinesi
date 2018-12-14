@@ -44,19 +44,10 @@ use view\TemplateView;
             <td><?php echo TemplateView::noHTML($lease->getPropertytablePropertyid()); ?> </td>
             <td><?php echo TemplateView::noHTML($lease->getTenttableTenantid()); ?> </td>
             <td><?php echo TemplateView::noHTML($lease->getTenant($lease->getTenttableTenantid())); ?> </td>
-
-
-            <div class="btn-group" role="group">
-                <a class="btn btn-default" role="button" href="lease/create"> <i class="fa fa-plus-square-o"></i></a>
-                <a target="_blank" class="btn btn-default" role="button" href="lease/pdf"> <i
-                            class="fa fa-file-pdf-o"></i></a>
-                <a class="btn btn-default" role="button" href="lease/email"> <i class="fa fa-envelope-o"></i></a>
-            </div>
             <td>
                 <div class="btn-group btn-group-sm" role="group">
                     <a class="btn btn-default" role="button" href="lease/edit?id=<?php echo $lease->getLeaseid(); ?>">
-                        <i
-                                class="fa fa-edit"></i></a>
+                        <i class="fa fa-edit"></i></a>
                     <button class="btn btn-default" type="button" data-target="#confirm-modal" data-toggle="modal"
                             data-href="lease/delete?id=<?php echo $lease->getLeaseid(); ?>"><i
                                 class="glyphicon glyphicon-trash"></i></button>
@@ -65,6 +56,12 @@ use view\TemplateView;
         </tr>
     <?php endforeach;
     ?>
+    <div class="btn-group" role="group">
+        <a class="btn btn-default" role="button" href="lease/create"> <i class="fa fa-plus-square-o"></i></a>
+        <a target="_blank" class="btn btn-default" role="button" href="lease/pdf"> <i
+                    class="fa fa-file-pdf-o"></i></a>
+        <a class="btn btn-default" role="button" href="lease/email"> <i class="fa fa-envelope-o"></i></a>
+    </div>
     </tbody>
 </table>
 </div>

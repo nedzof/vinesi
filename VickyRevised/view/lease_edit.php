@@ -34,9 +34,7 @@
 
                 <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input
                             name="leasemonthlyrent"
-                            value="<?php use service\TenantServiceImpl;
-
-                            echo $this->lease->getLeasemonthylrent() ?>"
+                            value="<?php echo $this->lease->getLeaseid() ?>"
                             class="form-control"
                             type="number"
                             required="">
@@ -65,48 +63,29 @@
                                                                                                  value="<?php echo $this->lease->getLeaseend() ?>"
                                                                                                  class="form-control"
                                                                                                  type="date"
-                                                                                                 required=""></div>
-
-
-
+                                                                                                 required="">
+                </div>
 
 
                 <div class="form-group">
                     <label class="text-secondary">Property</label>
-                        <select name="tenttable_tenantid">
 
-                            <option value='fe'>TEST</option>
-                            <option value='fe'>TEST</option>
-                            <option value='fe'>TEST</option>
-                            <option value='fe'>TEST</option>
-                            <option value='fe'>TEST</option>
-                            <?php
-                            $tenants = (new TenantServiceImpl())->getDropDownTenants($this->lease->leaseid);
-                            foreach($tenants as $tenant):
-                                echo $tenant;
-                            endforeach;
-                            ?>
-                            <option value='fe'>TEST</option>
-
-
-
-                        </select>
 
                 </div>
 
                 <div class="form-group">
                     <label class="text-secondary">Tenant</label>
-                        <select name="tenttable_tenantid">
+                    <select name="tenttable_tenantid">
 
-                            <option value='fe'>TEST</option>
+                        <option value='fe'>TEST</option>
 
-                            <?php
-                            $tenants =(new TenantServiceImpl())->getDropDownTenants($this->lease->leaseid);
-                            foreach($tenants as $tenant):
+                        <?php
+                        $tenants = (new service\TenantServiceImpl())->getDropDownTenants($this->lease->leaseid);
+                        foreach ($tenants as $tenant):
                             echo $tenant;
-                            endforeach;
-                            ?>
-                        </select>
+                        endforeach;
+                        ?>
+                    </select>
                 </div>
 
 
