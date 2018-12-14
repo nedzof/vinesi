@@ -67,6 +67,20 @@
                 </div>
 
 
+                <div class="form-group">
+                    <label class="text-secondary">Property</label>
+                    <select name="propertytable_propertyid">
+
+
+                        <?php
+
+                        $properties = (new PropertyServiceImpl())->getDropDownProperties($this->lease->getPropertytablePropertyid());
+                        foreach ($properties as $property) {
+                            echo $property;
+                        } ?>
+
+                    </select>
+                </div>
 
 
                 <div class="form-group">
@@ -75,8 +89,6 @@
 
 
                         <?php
-                        use service\TenantServiceImpl;
-                        use dao\TenantDAO;
 
                         $tenants = (new service\TenantServiceImpl())->getDropDownTenants($this->lease->getTenttableTenantid());
                         foreach ($tenants as $tenant) {
@@ -85,6 +97,8 @@
 
                     </select>
                 </div>
+
+
 
 
                 <div>

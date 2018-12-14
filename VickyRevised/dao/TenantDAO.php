@@ -69,7 +69,6 @@ class TenantDAO extends BasicDAO {
 
     function getTenantLastNameById($id)
     {
-
         $sql = "SELECT tenantlastname FROM tenanttable WHERE tenantid = :id LIMIT 1";
         $stmt = $this->pdoInstance->prepare($sql);
         $stmt->bindValue(':id', $id);

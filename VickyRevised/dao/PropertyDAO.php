@@ -28,16 +28,21 @@ class PropertyDAO extends BasicDAO {
         return null;
     }
 
-    public function readAll() {
-        $stmt = $this->pdoInstance->prepare('SELECT * FROM tenanttable');
+    public function readAll()
+    {
+        $sql = "SELECT * FROM propertytable";
+        $stmt = $this->pdoInstance->prepare($sql);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
-            return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Property");
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+
+
         }
-        return null;
     }
 
-    public function update(Property $property) {
+
+        public function update(Property $property) {
         $stmt = $this->pdoInstance->prepare('
             UPDATE propertytable SET 
             propertyrooms = :propertyrooms;
