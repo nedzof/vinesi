@@ -101,19 +101,18 @@ class TenantServiceImpl implements TenantService
         $tenantlist = [];
 
         $result = (new TenantDAO())->readAll();
-        //$result = array("<option value='fe'>TEST1</option>", "<option value='fe'>TEST2</option>","<option value='fe'>TEST3</option>");
-
         for ($i = 0; $i < count($result); $i++)
-        $row = $result[$i];
         {
+            $row = $result[$i];
             $lastnametenant = $row['tenantfirstname'];
             $firstname = $row['tenantlastname'];
             $name = $lastnametenant . " " . $firstname;
-            $result[$i]['tenantid'] == $id ?
-                $tenantlist[$i] = "<option selected='selected' value='$lastnametenant'>$name</option>" :
-                $tenantlist[$i] = "<option value='$lastnametenant'>$name</option>";
-        }
 
+            $tenantID = $row['tenantid'];
+            $tenantID == $id ?
+                $tenantlist[$i] = "<option selected='selected' value='$tenantID'>$name</option>" :
+                $tenantlist[$i] = "<option value='$tenantID'>$name</option>";
+        }
 
         return $tenantlist;
     }

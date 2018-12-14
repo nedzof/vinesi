@@ -73,15 +73,14 @@
                     <label class="text-secondary">Tenant</label>
                     <select name="tenttable_tenantid">
 
-                        <option value='fe'>TEST</option>
 
                         <?php
                         use service\TenantServiceImpl;
                         use dao\TenantDAO;
 
                         $tenants = (new service\TenantServiceImpl())->getDropDownTenants($this->lease->getLeaseid());
-                        for ($i = 0; $i < count($tenants); $i++) {
-                            echo $tenants[$i];
+                        foreach ($tenants as $tenant) {
+                            echo $tenant;
                         };
                         ?>
 
