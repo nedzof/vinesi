@@ -35,7 +35,7 @@ use view\TemplateView;
     foreach ($this->leases as $lease): /* @var lease $lease */ ?>
         <tr>
             <td><?php echo TemplateView::noHTML($lease->getLeaseid()); ?></td>
-            <td><?php echo TemplateView::noHTML($lease->getLeasemonthylrent()); ?></td>
+            <td><?php echo TemplateView::noHTML($lease->getLeasemonthlyent()); ?></td>
             <td><?php echo TemplateView::noHTML($lease->getLeaseutilities()); ?> </td>
             <td><?php echo TemplateView::noHTML($lease->getLeasepaymentmethod()); ?> </td>
             <td><?php echo TemplateView::noHTML($lease->getLeasedeposit()); ?> </td>

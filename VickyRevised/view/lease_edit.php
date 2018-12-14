@@ -81,7 +81,7 @@
                             <option value='fe'>TEST</option>
                             <option value='fe'>TEST</option>
                             <?php
-                            $tenants =(new TenantServiceImpl())->getDropDownTenants($this->lease->leaseid);
+                            $tenants = (new TenantServiceImpl())->getDropDownTenants($this->lease->leaseid);
                             foreach($tenants as $tenant):
                                 echo $tenant;
                             endforeach;

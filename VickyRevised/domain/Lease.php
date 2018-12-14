@@ -15,7 +15,7 @@ class Lease
 {
 
     protected $leaseid;
-    private $leasemonthylrent;
+    private $leasemonthlyrent;
     private $leaseutilities;
     private $leasepaymentmethod;
     private $leasedeposit;
@@ -43,17 +43,17 @@ class Lease
     /**
      * @return mixed
      */
-    public function getLeasemonthylrent()
+    public function getLeasemonthlyent()
     {
-        return $this->leasemonthylrent;
+        return $this->leasemonthlyrent;
     }
 
     /**
      * @param mixed $leasemonthylrent
      */
-    public function setLeasemonthylrent($leasemonthylrent): void
+    public function setLeasemonthylrent($leasemonthlyrent): void
     {
-        $this->leasemonthylrent = $leasemonthylrent;
+        $this->leasemonthlyrent = $leasemonthlyrent;
     }
 
     /**
