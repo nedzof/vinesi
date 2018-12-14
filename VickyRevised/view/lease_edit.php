@@ -78,11 +78,10 @@
                         use service\TenantServiceImpl;
                         use dao\TenantDAO;
 
-                        $tenants = (new service\TenantServiceImpl())->getDropDownTenants($this->lease->getLeaseid());
+                        $tenants = (new service\TenantServiceImpl())->getDropDownTenants($this->lease->getTenttableTenantid());
                         foreach ($tenants as $tenant) {
                             echo $tenant;
-                        };
-                        ?>
+                        } ?>
 
                     </select>
                 </div>

@@ -110,6 +110,7 @@ class TenantServiceImpl implements TenantService
 
             $tenantID = $row['tenantid'];
             $tenantID == $id ?
+
                 $tenantlist[$i] = "<option selected='selected' value='$tenantID'>$name</option>" :
                 $tenantlist[$i] = "<option value='$tenantID'>$name</option>";
         }
