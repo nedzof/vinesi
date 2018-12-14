@@ -106,8 +106,8 @@ class TenantServiceImpl implements TenantService
         for ($i = 0; $i < count($result); $i++)
         $row = $result[$i];
         {
-            $lastnametenant = $row['firstname'];
-            $firstname = $row[2];
+            $lastnametenant = $row['tenantfirstname'];
+            $firstname = $row['tenantlastname'];
             $name = $lastnametenant . " " . $firstname;
             $result[$i]['tenantid'] == $id ?
                 $tenantlist[$i] = "<option selected='selected' value='$lastnametenant'>$name</option>" :
