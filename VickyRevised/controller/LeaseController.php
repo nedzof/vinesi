@@ -29,6 +29,7 @@ class LeaseController{
             $contentView = new TemplateView("lease.php");
             $contentView->leases = (new LeaseDAO())->getAllLeases();
             LayoutRendering::basicLayout($contentView);
+
             /*
             $contentView = new TemplateView("lease.php");
             $contentView->leases = (new LeaseServiceImpl())->findAllLeases();

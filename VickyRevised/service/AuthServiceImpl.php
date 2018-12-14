@@ -47,7 +47,6 @@ class AuthServiceImpl implements AuthService {
         $userDAO = new UserDAO();
         $user = $userDAO->findByEmail($email);
         if (!is_null($user)) {
-            print $user->getUserid();
             if (password_verify($password, $user->getUserhashedpassword())) {
                 if (password_needs_rehash($user->getUserhashedpassword(), PASSWORD_DEFAULT)) {
                     $user->setUserhashedpassword(password_hash($password, PASSWORD_DEFAULT));

@@ -3,6 +3,8 @@
 namespace dao;
 
 use domain\Tenant;
+use PDO;
+use service\TenantServiceImpl;
 
 class TenantDAO extends BasicDAO {
 
@@ -29,18 +31,18 @@ class TenantDAO extends BasicDAO {
         $stmt->bindValue(':id', $tenantid);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
-            $result = $stmt->fetchAll(\PDO::FETCH_CLASS, Tenant::class)[0];
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS, Tenant::class)[0];
             return $result;
         }
         return null;
     }
 
     public function readAll() {
-        $stmt = $this->pdoInstance->prepare('
-            SELECT * FROM tenanttable');
+
+        $stmt = $this->pdoInstance->prepare('SELECT * FROM tenanttable ORDER BY tenantid');
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
-            return $stmt->fetchAll(\PDO::FETCH_CLASS, "domain\Tenant");
+            return $stmt->fetchAll(PDO::FETCH_CLASS, Tenant::class);
         }
         return null;
     }
@@ -67,7 +69,7 @@ class TenantDAO extends BasicDAO {
         $stmt->bindValue(':id', $id);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
-            $result = $stmt->fetchAll(\PDO::FETCH_CLASS, Tenant::class)[0];
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS, Tenant::class)[0];
 
             return $result->getTenantlastname();
         }

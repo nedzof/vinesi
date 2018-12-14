@@ -1,7 +1,8 @@
-<?php require_once ('../database.php'); ?>
+<?php use dao\TenantDAO;
+use database\Database;
+
+require_once('../database.php'); ?>
 <?php require_once('../../private/initialize.php'); ?>
-
-
 
 
 <!DOCTYPE html>
@@ -16,17 +17,38 @@
 <h1>Connection with PDO</h1>
 <?php
 
-class MyClass
-{
-    protected $variable = 'I am protected variable!';
+$tenantlist = [];
+
+$pdoInstance = Database::connect();
+
+$stmt = $pdoInstance->prepare('SELECT * FROM tenanttable ORDER BY tenantid');
+
+
+$stmt->execute();
+
+
+if ($stmt->rowCount() > 0) {
+
+
+}
+$result =  $stmt->fetchAll(PDO::FETCH_CLASS, Tenant::class);
+
+
+
+for ($i = 0; $i < count($result); $i++) {
+    $lastnametenant = $result[$i]['tenantlastname'];
+    $firstname = $result[$i]['tenantfirstname'];
+    $name = $lastnametenant . " " . $firstname;
+    if ($result[$i]['leaseid'] == $id) {
+        array_push($tenantlist, "<option selected value='$lastnametenant'>$name</option>");
+    } else {
+        array_push($tenantlist, "<option value='$lastnametenant'>$name</option>");
+    }
 }
 
-$closure = function () {
-    return $this->variable;
-};
-
-$result = Closure::bind($closure, new MyClass(), 'MyClass');
-echo $result();
+foreach ($tenantlist as $tenant):
+    echo $tenant;
+endforeach;
 ?>
 </body>
 </html>

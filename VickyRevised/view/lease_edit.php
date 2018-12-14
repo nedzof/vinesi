@@ -34,7 +34,9 @@
 
                 <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input
                             name="leasemonthlyrent"
-                            value="<?php echo $this->lease->getLeaseid() ?>"
+                            value="<?php use service\TenantServiceImpl;
+
+                            echo $this->lease->getLeasemonthylrent() ?>"
                             class="form-control"
                             type="number"
                             required="">
@@ -64,49 +66,47 @@
                                                                                                  class="form-control"
                                                                                                  type="date"
                                                                                                  required=""></div>
+
+
+
+
+
                 <div class="form-group">
                     <label class="text-secondary">Property</label>
-                    <select name="propertytable_propertyid">
+                        <select name="tenttable_tenantid">
 
-                        <?php
+                            <option value='fe'>TEST</option>
+                            <option value='fe'>TEST</option>
+                            <option value='fe'>TEST</option>
+                            <option value='fe'>TEST</option>
+                            <option value='fe'>TEST</option>
+                            <?php
+                            $tenants =(new TenantServiceImpl())->getDropDownTenants($this->lease->leaseid);
+                            foreach($tenants as $tenant):
+                                echo $tenant;
+                            endforeach;
+                            ?>
+                            <option value='fe'>TEST</option>
 
-                        $result1 = getPropertyIdsByLeaseIds();
-                        print_r($result1);
-                        for ($i = 0; $i < count($result1); $i++) {
-                            $row = $result1[$i];
-                            //echo "<option selected value='3'>$row['propertyid']</option>";
 
 
-                        }
-
-                        echo "<option selected value=''></option>"
-                        ?>
-                    </select>
+                        </select>
 
                 </div>
 
                 <div class="form-group">
                     <label class="text-secondary">Tenant</label>
-                    <select name="tenttable_tenantid">
+                        <select name="tenttable_tenantid">
 
-                        <?php
+                            <option value='fe'>TEST</option>
 
-
-                        $sql = "SELECT tenantid, tenantlastname, tenantfirstname FROM tenanttable ORDER BY tenantid";
-                        $statement_handler = $db->prepare($sql);
-                        $statement_handler->execute();
-                        //$result1 = $statement_handler->fetchAll(PDO::FETCH_ASSOC);
-                        global $id;
-                        while ($trow = $statement_handler->fetch(PDO::FETCH_ASSOC)) {
-                            $tidentity = (int) $trow['tenantid'];
-                            $tenantnumber = getTenantIdByLeaseId($id);
-                            $tName = $trow['tenantlastname'] . " " . $trow['tenantfirstname'];
-
-                           echo($tenantnumber == $tidentity ? "<option selected value='$tidentity'>$tName</option>" : "<option value='$tidentity'>$tName</option>");
-                        }
-                        ?>
-                    </select>
-
+                            <?php
+                            $tenants =(new TenantServiceImpl())->getDropDownTenants($this->lease->leaseid);
+                            foreach($tenants as $tenant):
+                            echo $tenant;
+                            endforeach;
+                            ?>
+                        </select>
                 </div>
 
 

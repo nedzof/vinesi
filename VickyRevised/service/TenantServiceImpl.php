@@ -97,6 +97,23 @@ class TenantServiceImpl implements TenantService
         throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
+    public function getDropDownTenants($id){
+        $tenantlist = [];
+
+        $tenantDAO = new TenantDAO();
+        $result = $tenantDAO->readAll();
+
+        for ($i = 0; $i < count($result); $i++) {
+            $lastnametenant = $result[$i]['tenantlastname'];
+            $firstname = $result[$i]['tenantfirstname'];
+            $name = $lastnametenant . " " . $firstname;
+            echo($result[$i]['tenantid'] == $id ?
+                array_push($tenantlist, "<option selected value='$lastnametenant'>$name</option>") :
+                array_push($tenantlist, "<option value='$lastnametenant'>$name</option>"));
+        }
+        return $tenantlist;
+    }
+
     public function getTenantlastnameById($id)
     {
         $tenantDAO = new TenantDAO();
