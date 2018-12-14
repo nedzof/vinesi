@@ -39,10 +39,11 @@ class TenantDAO extends BasicDAO {
 
     public function readAll() {
 
-        $stmt = $this->pdoInstance->prepare('SELECT * FROM tenanttable ORDER BY tenantid');
+        $sql = "SELECT tenantid, tenantlastname,tenantfirstname FROM tenanttable";
+        $stmt = $this->pdoInstance->prepare($sql);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
-            return $stmt->fetchAll(PDO::FETCH_CLASS, Tenant::class);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         return null;
     }

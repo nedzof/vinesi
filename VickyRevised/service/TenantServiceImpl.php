@@ -100,18 +100,22 @@ class TenantServiceImpl implements TenantService
     public function getDropDownTenants($id){
         $tenantlist = [];
 
-        $tenantDAO = new TenantDAO();
-        $result = $tenantDAO->readAll();
+        $result = (new TenantDAO())->readAll();
+        //$result = array("<option value='fe'>TEST1</option>", "<option value='fe'>TEST2</option>","<option value='fe'>TEST3</option>");
 
-        for ($i = 0; $i < count($result); $i++) {
-            $lastnametenant = $result[$i]['tenantlastname'];
-            $firstname = $result[$i]['tenantfirstname'];
+        for ($i = 0; $i < count($result); $i++)
+        $row = $result[$i];
+        {
+            $lastnametenant = $row['firstname'];
+            $firstname = $row[2];
             $name = $lastnametenant . " " . $firstname;
-            echo($result[$i]['tenantid'] == $id ?
-                array_push($tenantlist, "<option selected value='$lastnametenant'>$name</option>") :
-                array_push($tenantlist, "<option value='$lastnametenant'>$name</option>"));
+            $result[$i]['tenantid'] == $id ?
+                $tenantlist[$i] = "<option selected='selected' value='$lastnametenant'>$name</option>" :
+                $tenantlist[$i] = "<option value='$lastnametenant'>$name</option>";
         }
-        return $tenantlist;
+
+
+        return $result;
     }
 
     public function getTenantlastnameById($id)

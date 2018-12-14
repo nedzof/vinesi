@@ -67,11 +67,7 @@
                 </div>
 
 
-                <div class="form-group">
-                    <label class="text-secondary">Property</label>
 
-
-                </div>
 
                 <div class="form-group">
                     <label class="text-secondary">Tenant</label>
@@ -80,11 +76,15 @@
                         <option value='fe'>TEST</option>
 
                         <?php
-                        $tenants = (new service\TenantServiceImpl())->getDropDownTenants($this->lease->leaseid);
-                        foreach ($tenants as $tenant):
-                            echo $tenant;
-                        endforeach;
+                        use service\TenantServiceImpl;
+                        use dao\TenantDAO;
+
+                        $tenants = (new service\TenantServiceImpl())->getDropDownTenants($this->lease->getLeaseid());
+                        for ($i = 0; $i < count($tenants); $i++) {
+                            echo $tenants[$i];
+                        };
                         ?>
+
                     </select>
                 </div>
 
