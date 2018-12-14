@@ -115,7 +115,7 @@ class TenantServiceImpl implements TenantService
         }
 
 
-        return $result;
+        return $tenantlist;
     }
 
     public function getTenantlastnameById($id)
