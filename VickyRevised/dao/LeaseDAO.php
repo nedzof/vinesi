@@ -23,7 +23,7 @@ class LeaseDAO extends BasicDAO
         $stmt->bindValue(':propertytable_propertyid', $lease->getPropertytablePropertyid());
         $stmt->bindValue(':tenttable_tenantid', $lease->getTenttableTenantid());
         $stmt->execute();
-        return $this->readById($this->pdoInstance->lastInsertId());
+        return $this->pdoInstance->lastInsertId();
     }
 
 

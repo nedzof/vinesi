@@ -57,7 +57,7 @@ $createOrUpdate = !empty($this->lease) ?>
                 <div class="form-group"><label class="text-secondary">Deposit</label><input name="leasedeposit"
                                                                                             value="<?php echo $createOrUpdate ? $this->lease->getLeasedeposit() : 0 ?>"
                                                                                             class="form-control"
-                                                                                            type="text" required="">
+                                                                                            type="number" required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Lease Start</label><input name="leasestart"
                                                                                                 value="<?php echo $createOrUpdate ? $this->lease->getLeasestartDate() : null ?>"

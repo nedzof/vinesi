@@ -6,7 +6,6 @@ use dao\LeaseDAO;
 use domain\Lease;
 use http\HTTPException;
 use http\HTTPStatusCode;
-use router\Router;
 use service\LeaseServiceImpl;
 use view\LayoutRendering;
 use view\TemplateView;
@@ -44,14 +43,14 @@ class LeaseController{
 
         $lease = new Lease();
         $lease->setLeaseid($_POST["id"] ?? 0);
-        $lease->setLeasemonthylrent($POST["leasymonthlyrent"] ?? 0);
-        $lease->setLeaseutilities($POST["leasymonthlyrent"] ?? 0);
-        $lease->setLeasepaymentmethod($POST["leasepaymentmethod"] ?? "");
-        $lease->setLeasedeposit($POST["leasedeposit"] ?? 0);
-        $lease->setLeasestart($POST["leasestart"] ?? null);
-        $lease->setLeaseend($POST["leaseend"] ?? null);
-        $lease->setPropertytablePropertyid($POST["propertytable_propertyid"] ?? null);
-        $lease->setTenttableTenantid($POST["tenttable_tenantid"] ?? null);
+        $lease->setLeasemonthylrent($_POST["leasymonthlyrent"] ?? 0);
+        $lease->setLeaseutilities($_POST["leasymonthlyrent"] ?? 0);
+        $lease->setLeasepaymentmethod($_POST["leasepaymentmethod"] ?? "");
+        $lease->setLeasedeposit($_POST["leasedeposit"] ?? 0);
+        $lease->setLeasestart($_POST["leasestart"] ?? null);
+        $lease->setLeaseend($_POST["leaseend"] ?? null);
+        $lease->setPropertytablePropertyid($_POST["propertytable_propertyid"] ?? null);
+        $lease->setTenttableTenantid($_POST["tenttable_tenantid"] ?? null);
 
 
         try {
@@ -63,7 +62,6 @@ class LeaseController{
                 (new LeaseServiceImpl())->updateLease($lease);
 
             }
-            Router::redirect("/lease");
 
         } catch (HTTPException $e) {
         }
