@@ -12,8 +12,8 @@ class LeaseDAO extends BasicDAO
     public function create(Lease $lease)
     {
         $stmt = $this->pdoInstance->prepare('
-            INSERT INTO leasetable (leaseid, leasemonthlyrent, leaseutilities, leasepaymentmethod, leasedeposit, leasestart, leaseend, propertytable_propertyid, tenttable_tenantid) VALUES (
-           DEFAULT , :leasemonthlyrent, :leaseutilities, :leasepaymentmethod, :leasedeposit, :leasestart, :leaseend, :propertytable_propertyid, :tenttable_tenantid');
+            INSERT INTO leasetable (leaseid, leasemonthlyrent, leaseutilities, leasepaymentmethod, leasedeposit, leasestart, leaseend, propertytable_propertyid, tenttable_tenantid) 
+            VALUES (DEFAULT , :leasemonthlyrent, :leaseutilities, :leasepaymentmethod, :leasedeposit, :leasestart, :leaseend, :propertytable_propertyid, :tenttable_tenantid');
         $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyent());
         $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
         $stmt->bindValue(':leasepaymentmethod', $lease->getLeasepaymentmethod());
