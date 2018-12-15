@@ -7,6 +7,8 @@
  */
 
 namespace domain;
+include("lease_delete_popup.php");
+
 
 use view\TemplateView;
 
@@ -46,11 +48,12 @@ use view\TemplateView;
             <td><?php echo TemplateView::noHTML($lease->getTenant($lease->getTenttableTenantid())); ?> </td>
             <td>
                 <div class="btn-group btn-group-sm" role="group">
-                    <a class="btn btn-default" role="button" href="lease/edit?id=<?php echo $lease->getLeaseid(); ?>">
-                        <i class="fa fa-edit"></i></a>
-                    <button class="btn btn-default" type="button" data-target="#confirm-modal" data-toggle="modal"
-                            data-href="lease/delete?id=<?php echo $lease->getLeaseid(); ?>"><i
-                                class="glyphicon glyphicon-trash"></i></button>
+                    <a class="btn btn-default" role="button" href="lease/edit?id=<?php echo $lease->getLeaseid(); ?>"><i
+                                class="fa fa-edit"></i></a>
+
+                    <a class="btn btn-default" data-toggle="modal" data-target="#modalContactForm" role="button"
+                       href=""><i class="ion-android-delete"></i></a>
+
                 </div>
             </td>
         </tr>
