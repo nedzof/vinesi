@@ -50,7 +50,7 @@ class LeaseController{
         $id = $_GET["id"];
 
         try {
-            $contentView = new TemplateView("lease_edit.php");
+            $contentView = new TemplateView("lease_form.php");
             // $contentView->lease = (new LeaseServiceImpl())->findLeaseById($id);
             $contentView->lease = (new LeaseDAO())->getLeaseById($id);
             LayoutRendering::basicLayout($contentView);

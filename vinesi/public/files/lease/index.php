@@ -73,10 +73,10 @@
 
 
                             <td><a class="action"
-                                   href="<?php echo url_for('../public/files/lease/lease_edit.php?id=' . h(u($row['leaseid']))); ?>">Edit</a>
+                                   href="<?php echo url_for('../public/files/lease/lease_form.php?id=' . h(u($row['leaseid']))); ?>">Edit</a>
                             </td>
                             <td><a class="action"
-                                   href="<?php echo url_for('../public/files/lease/lease_edit.php?id=' . h(u($row['leaseid']))); ?>">Delete</a>
+                                   href="<?php echo url_for('../public/files/lease/lease_form.php?id=' . h(u($row['leaseid']))); ?>">Delete</a>
                             </td>                        </tr>
                         <?php } ?>
 

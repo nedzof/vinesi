@@ -40,7 +40,7 @@
                             required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Utilities</label><input name="leaseutilities"
-                                                                                              value="<?php echo $this->lease->getLeaseutilities() ?>"
+                                                                                              value="<?php echo $this->lease->getLeaseutilities() ?? 0 ?>"
                                                                                               class="form-control"
                                                                                               type="number" required="">
                 </div>
@@ -50,17 +50,17 @@
                             type="text"
                             required=""></div>
                 <div class="form-group"><label class="text-secondary">Deposit</label><input name="leasedeposit"
-                                                                                            value="<?php echo $this->lease->getLeasedeposit() ?>"
+                                                                                            value="<?php echo $this->lease->getLeasedeposit() ?? 0 ?>"
                                                                                             class="form-control"
                                                                                             type="text" required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Lease Start</label><input name="leasestart"
-                                                                                                value="<?php echo $this->lease->getLeasestart() ?>"
+                                                                                                value="<?php echo $this->lease->getLeasestart() ?? null ?>"
                                                                                                 class="form-control"
                                                                                                 type="date" required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Lease Expiry</label><input name="leaseend"
-                                                                                                 value="<?php echo $this->lease->getLeaseend() ?>"
+                                                                                                 value="<?php echo $this->lease->getLeaseend() ?? null ?>"
                                                                                                  class="form-control"
                                                                                                  type="date"
                                                                                                  required="">
@@ -74,9 +74,12 @@
 
                         <?php
 
-                        $properties = (new PropertyServiceImpl())->getDropDownProperties($this->lease->getPropertytablePropertyid());
+                        $pID = $this->lease->getPropertytablePropertyid() ?? 1;
+
+                        $properties = (new service\PropertyServiceImpl())->getDropDownProperties($pID);
                         foreach ($properties as $property) {
                             echo $property;
+
                         } ?>
 
                     </select>
@@ -90,10 +93,13 @@
 
                         <?php
 
-                        $tenants = (new service\TenantServiceImpl())->getDropDownTenants($this->lease->getTenttableTenantid());
+                        $tID = $this->lease->getTenttableTenantid() ?? 1;
+                        $tenants = (new service\TenantServiceImpl())->getDropDownTenants($tID);
                         foreach ($tenants as $tenant) {
                             echo $tenant;
-                        } ?>
+                        }
+
+                        ?>
 
                     </select>
                 </div>

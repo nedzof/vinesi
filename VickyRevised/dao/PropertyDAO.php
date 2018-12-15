@@ -3,11 +3,14 @@
 namespace dao;
 
 use domain\Property;
+use PDO;
 
-class PropertyDAO extends BasicDAO {
+class PropertyDAO extends BasicDAO
+{
 
 
-    public function create(Property $property) {
+    public function create(Property $property)
+    {
         $stmt = $this->pdoInstance->prepare('
             INSERT INTO propertytable (propertyid, propertyrooms) VALUES (DEFAULT, :propertyrooms)');
 
@@ -17,7 +20,8 @@ class PropertyDAO extends BasicDAO {
     }
 
 
-    public function read($propertyid) {
+    public function read($propertyid)
+    {
         $stmt = $this->pdoInstance->prepare('
             SELECT * FROM tenanttable WHERE id = :id;');
         $stmt->bindValue(':id', $propertyid);
@@ -29,20 +33,18 @@ class PropertyDAO extends BasicDAO {
     }
 
     public function readAll()
+
     {
-        $sql = "SELECT * FROM propertytable";
-        $stmt = $this->pdoInstance->prepare($sql);
+        $stmt = $this->pdoInstance->prepare('SELECT propertyid FROM propertytable ORDER BY propertyid;');
         $stmt->execute();
-        if ($stmt->rowCount() > 0) {
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
 
-
-        }
     }
 
 
-        public function update(Property $property) {
+    public function update(Property $property)
+    {
         $stmt = $this->pdoInstance->prepare('
             UPDATE propertytable SET 
             propertyrooms = :propertyrooms;
@@ -54,7 +56,8 @@ class PropertyDAO extends BasicDAO {
     }
 
 
-    public function delete(Property $property) {
+    public function delete(Property $property)
+    {
         $stmt = $this->pdoInstance->prepare('
             DELETE FROM propertytable
             WHERE id = :id
@@ -64,4 +67,5 @@ class PropertyDAO extends BasicDAO {
     }
 
 }
+
 ?>
