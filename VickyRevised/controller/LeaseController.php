@@ -39,9 +39,8 @@ class LeaseController{
         }
     }
 
-    public static function update()
+    public static function leaseUpdateOrCreate()
     {
-
 
         $lease = new Lease();
         $lease->setLeaseid($_POST["id"] ?? 0);
@@ -73,30 +72,17 @@ class LeaseController{
 
     }
 
-    public static function createUpdateForm()
+    public static function createForm()
     {
-        if (!isset($_GET['id'])) {
-            Router::redirect("/lease.php");
-        }
-        $id = $_GET["id"];
+        $id = $_GET["id"] ?? 0;
         try {
             $contentView = new TemplateView("lease_form.php");
-            // $contentView->lease = (new LeaseServiceImpl())->findLeaseById($id);
-            $contentView->lease = (new LeaseDAO())->getLeaseById($id);
+            if ($id != 0) {
+                $contentView->lease = (new LeaseDAO())->getLeaseById($id);
+            }
             LayoutRendering::basicLayout($contentView);
         } catch (HTTPException $e) {
             HTTPStatusCode::HTTP_401_UNAUTHORIZED;
-        }
-    }
-
-    public static function create()
-    {
-        try {
-            $contentView = new TemplateView("lease_form.php");
-            LayoutRendering::basicLayout($contentView);
-        } catch (HTTPException $e) {
-            HTTPStatusCode::HTTP_401_UNAUTHORIZED;
-
         }
     }
 
