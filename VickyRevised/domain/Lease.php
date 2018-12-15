@@ -110,7 +110,8 @@ class Lease
     public function getLeasestartDate()
     {
         $timestamp = $this->leasestart;
-        $date = strftime('%d-%m-%Y', strtotime($timestamp));
+        $date = strftime('%Y-%m-%d', strtotime($timestamp));
+
         // $time = date('Gi.s', $timestamp);
         return $date;
     }
@@ -129,7 +130,7 @@ class Lease
     public function getLeaseendDate()
     {
         $timestamp = $this->leasestart;
-        $date = strftime('%d-%m-%Y', strtotime($timestamp));
+        $date = strftime('%Y-%m-%d', strtotime($timestamp));
         //$time = date('Gi.s', $timestamp);
         return $date;
     }

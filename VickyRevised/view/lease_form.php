@@ -35,9 +35,10 @@ $createOrUpdate = !empty($this->lease) ?>
                 <strong><?php echo $createOrUpdate ? "Update" : "Create" ?></strong>&nbsp;Tenancy</h2>
             <form action="<?php echo $createOrUpdate ? "update" : "create" ?>" method="post">
 
+
                 <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input
                             name="leasemonthlyrent"
-                            value="<?php echo $createOrUpdate ? $this->lease->getLeaseid() : 0 ?>"
+                            value="<?php echo $createOrUpdate ? $this->lease->getLeasemonthlyent() : 0 ?>"
                             class="form-control"
                             type="number"
                             required="">
@@ -59,12 +60,12 @@ $createOrUpdate = !empty($this->lease) ?>
                                                                                             type="text" required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Lease Start</label><input name="leasestart"
-                                                                                                value="<?php echo $createOrUpdate ? $this->lease->getLeasestart() : null ?>"
+                                                                                                value="<?php echo $createOrUpdate ? $this->lease->getLeasestartDate() : null ?>"
                                                                                                 class="form-control"
                                                                                                 type="date" required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Lease Expiry</label><input name="leaseend"
-                                                                                                 value="<?php echo $createOrUpdate ? $this->lease->getLeaseend() : null ?>"
+                                                                                                 value="<?php echo $createOrUpdate ? $this->lease->getLeaseendDate() : null ?>"
                                                                                                  class="form-control"
                                                                                                  type="date"
                                                                                                  required="">
