@@ -1,5 +1,4 @@
-<?php use dao\TenantDAO;
-use database\Database;
+<?php
 
 require_once('../database.php'); ?>
 <?php require_once('../../private/initialize.php'); ?>
@@ -17,14 +16,11 @@ require_once('../database.php'); ?>
 <h1>Connection with PDO</h1>
 <?php
 
-$fruits = array("Apple", "Banana","Orange");
-$fruits[0] = "Orange";
-print_r($fruits);
+$d = new Datetime('2000-01-01');
+//$d = date('Y-m-d');
 
-$cars[0] = "bmw";
-$cars[1] = "bmw";
-print_r($cars);
-
+$result = $d->format('Y-m-d H:i:s.u');
+echo "<script>alert(\"$result\")</script>";
 
 ?>
 </body>
