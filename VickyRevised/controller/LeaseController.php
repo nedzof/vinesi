@@ -53,6 +53,7 @@ class LeaseController{
         $lease->setPropertytablePropertyid($POST["propertytable_propertyid"] ?? null);
         $lease->setTenttableTenantid($POST["tenttable_tenantid"] ?? null);
 
+
         try {
             if ($lease->getLeaseid() == 0) {
                 (new LeaseServiceImpl())->createLease($lease);
