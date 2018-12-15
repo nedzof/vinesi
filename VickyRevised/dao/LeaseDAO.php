@@ -12,7 +12,7 @@ class LeaseDAO extends BasicDAO
     public function create(Lease $lease)
     {
         $stmt = $this->pdoInstance->prepare('
-            INSERT INTO leasetable (leaseid, leasemonthlyrent, leaseutilities, leasepaymentmethod, leasedeposit, leasestart, leaseend, propertytable_propertyid, tenttable_tenantid) VALUES );
+            INSERT INTO leasetable (leaseid, leasemonthlyrent, leaseutilities, leasepaymentmethod, leasedeposit, leasestart, leaseend, propertytable_propertyid, tenttable_tenantid) VALUES (
            DEFAULT , :leasemonthlyrent, :leaseutilities, :leasepaymentmethod, :leasedeposit, :leasestart, :leaseend, :propertytable_propertyid, :tenttable_tenantid');
         $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyent());
         $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
@@ -30,7 +30,7 @@ class LeaseDAO extends BasicDAO
     public function readById($leaseid)
     {
         $stmt = $this->pdoInstance->prepare('
-            SELECT * FROM leasetable WHERE id = :id;');
+            SELECT * FROM leasetable WHERE leaseid = :id;');
         $stmt->bindValue(':id', $leaseid);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
@@ -86,7 +86,7 @@ class LeaseDAO extends BasicDAO
     {
         $stmt = $this->pdoInstance->prepare('
             DELETE FROM leasetable
-            WHERE id = :id
+            WHERE leaseid = :id
         ');
         $stmt->bindValue(':id', $lease->getLeaseid());
         $stmt->execute();
