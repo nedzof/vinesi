@@ -13,9 +13,8 @@ class LeaseDAO extends BasicDAO
     {
         $stmt = $this->pdoInstance->prepare('
             INSERT INTO leasetable (leaseid, leasemonthlyrent, leaseutilities, leasepaymentmethod, leasedeposit, leasestart, leaseend, propertytable_propertyid, tenttable_tenantid) VALUES );
-           :leaseid, :leasemonthlyrent, :leaseutilities, :leasepaymentmethod, :leasedeposit, :leasestart, :leaseend, :propertytable_propertyid, :tenttable_tenantid');
-        $stmt->bindValue(':leaseid', $lease->getLeaseid());
-        $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthylrent());
+           DEFAULT , :leasemonthlyrent, :leaseutilities, :leasepaymentmethod, :leasedeposit, :leasestart, :leaseend, :propertytable_propertyid, :tenttable_tenantid');
+        $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyent());
         $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
         $stmt->bindValue(':leasepaymentmethod', $lease->getLeasepaymentmethod());
         $stmt->bindValue(':leasedeposit', $lease->getLeasedeposit());
@@ -58,7 +57,6 @@ class LeaseDAO extends BasicDAO
     {
         $stmt = $this->pdoInstance->prepare('
             UPDATE leasetable SET 
-            leaseid = :leaseid,
             leasemonthlyrent = :leasemonthlyrent,
             leaseutilities = :leaseutilities,
             leasepaymentmethod = :leasepaymentmethod,
@@ -68,7 +66,8 @@ class LeaseDAO extends BasicDAO
             propertytable_propertyid = :propertytable_propertyid,
             tenttable_tenantid = :tenttable_tenantid,
             WHERE id = :id');
-        $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthylrent());
+        $stmt->bindValue(':id', $lease->getLeaseid());
+        $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyent());
         $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
         $stmt->bindValue(':leasepaymentmethod', $lease->getLeasepaymentmethod());
         $stmt->bindValue(':leasedeposit', $lease->getLeasedeposit());

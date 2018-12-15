@@ -76,8 +76,13 @@ Router::route("GET", "/lease", function () {
 
 });
 
-Router::route("GET", "/lease/edit", function () {
-    LeaseController::edit();
+Router::route("GET", "/lease/update", function () {
+    LeaseController::createUpdateForm();
+
+});
+
+Router::route("POST", "/lease/update", function () {
+    LeaseController::update();
 
 });
 

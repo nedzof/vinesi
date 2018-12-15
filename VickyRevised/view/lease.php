@@ -46,10 +46,38 @@ use view\TemplateView;
             <td><?php echo TemplateView::noHTML($lease->getTenant($lease->getTenttableTenantid())); ?> </td>
             <td>
                 <div class="btn-group btn-group-sm" role="group">
-                    <a class="btn btn-default" role="button" href="lease/edit?id=<?php echo $lease->getLeaseid(); ?>"><i
+                    <a class="btn btn-default" role="button" href="lease/update?id=<?php echo $lease->getLeaseid(); ?>"><i
                                 class="fa fa-edit"></i></a>
 
-                    <?php include("lease_delete_popup.php") ?>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter">
+                        <i class="ion-android-delete"></i>
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalCenterTitle"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Deleting Lease</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Mr Andreas Martin, do you want to delete this Lease?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-primary"
+                                    ="lease/delete?id=<?php echo $lease->getLeaseid(); ?>">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                 </div>
             </td>
@@ -66,3 +94,7 @@ use view\TemplateView;
 </div>
 </body>
 </html>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
