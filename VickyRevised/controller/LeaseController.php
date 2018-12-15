@@ -42,7 +42,7 @@ class LeaseController{
     {
 
         $lease = new Lease();
-        $lease->setLeaseid($_POST["id"] ?? 0);
+        $lease->setLeaseid($_POST["leaseid"] ?? 0);
         $lease->setLeasemonthylrent($_POST["leasymonthlyrent"] ?? 0);
         $lease->setLeaseutilities($_POST["leasymonthlyrent"] ?? 0);
         $lease->setLeasepaymentmethod($_POST["leasepaymentmethod"] ?? "");

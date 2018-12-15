@@ -35,94 +35,104 @@ $createOrUpdate = !empty($this->lease) ?>
                 <strong><?php echo $createOrUpdate ? "Update" : "Create" ?></strong>&nbsp;Tenancy</h2>
             <form action="<?php echo $createOrUpdate ? "update" : "create" ?>" method="post">
 
-
-                <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input
-                            name="leasemonthlyrent"
-                            value="<?php echo $createOrUpdate ? $this->lease->getLeasemonthlyent() : 0 ?>"
+                <?php if ($createOrUpdate) { ?>
+                <div class="form-grou§p"><label class="text-secondary">LeaseID</label><input
+                            name="leaseid"
+                            value="<?php echo $createOrUpdate ? $this->lease->getLeaseid() : 0 ?>"
                             class="form-control"
                             type="number"
-                            required="">
-                </div>
-                <div class="form-group"><label class="text-secondary">Utilities</label><input name="leaseutilities"
-                                                                                              value="<?php echo $createOrUpdate ? $this->lease->getLeaseutilities() : 0 ?>"
-                                                                                              class="form-control"
-                                                                                              type="number" required="">
-                </div>
-                <div class="form-group"><label class="text-secondary">Payment Method</label><input
-                            name="leasepaymentmethod"
-                            value="<?php echo $createOrUpdate ? $this->lease->getLeasepaymentmethod() : "" ?>"
-                            class="form-control"
-                            type="text"
-                            required=""></div>
-                <div class="form-group"><label class="text-secondary">Deposit</label><input name="leasedeposit"
-                                                                                            value="<?php echo $createOrUpdate ? $this->lease->getLeasedeposit() : 0 ?>"
-                                                                                            class="form-control"
-                                                                                            type="number" required="">
-                </div>
-                <div class="form-group"><label class="text-secondary">Lease Start</label><input name="leasestart"
-                                                                                                value="<?php echo $createOrUpdate ? $this->lease->getLeasestartDate() : null ?>"
+                            required=""
+                            readonly="readonly">
+
+                    <?php } ?>
+
+                    <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input
+                                name="leasemonthlyrent"
+                                value="<?php echo $createOrUpdate ? $this->lease->getLeasemonthlyent() : 0 ?>"
+                                class="form-control"
+                                type="number"
+                                required="">
+                    </div>
+                    <div class="form-group"><label class="text-secondary">Utilities</label><input name="leaseutilities"
+                                                                                                  value="<?php echo $createOrUpdate ? $this->lease->getLeaseutilities() : 0 ?>"
+                                                                                                  class="form-control"
+                                                                                                  type="number" required="">
+                    </div>
+                    <div class="form-group"><label class="text-secondary">Payment Method</label><input
+                                name="leasepaymentmethod"
+                                value="<?php echo $createOrUpdate ? $this->lease->getLeasepaymentmethod() : "" ?>"
+                                class="form-control"
+                                type="text"
+                                required=""></div>
+                    <div class="form-group"><label class="text-secondary">Deposit</label><input name="leasedeposit"
+                                                                                                value="<?php echo $createOrUpdate ? $this->lease->getLeasedeposit() : 0 ?>"
                                                                                                 class="form-control"
-                                                                                                type="date" required="">
-                </div>
-                <div class="form-group"><label class="text-secondary">Lease Expiry</label><input name="leaseend"
-                                                                                                 value="<?php echo $createOrUpdate ? $this->lease->getLeaseendDate() : null ?>"
-                                                                                                 class="form-control"
-                                                                                                 type="date"
-                                                                                                 required="">
-                </div>
+                                                                                                type="number" required="">
+                    </div>
+                    <div class="form-group"><label class="text-secondary">Lease Start</label><input name="leasestart"
+                                                                                                    value="<?php echo $createOrUpdate ? $this->lease->getLeasestartDate() : null ?>"
+                                                                                                    class="form-control"
+                                                                                                    type="date" required="">
+                    </div>
+                    <div class="form-group"><label class="text-secondary">Lease Expiry</label><input name="leaseend"
+                                                                                                     value="<?php echo $createOrUpdate ? $this->lease->getLeaseendDate() : null ?>"
+                                                                                                     class="form-control"
+                                                                                                     type="date"
+                                                                                                     required="">
+                    </div>
 
 
-                <div class="form-group">
-                    <label class="text-secondary">Property</label>
-                    <select name="propertytable_propertyid">
+                    <div class="form-group">
+                        <label class="text-secondary">Property</label>
+                        <select name="propertytable_propertyid">
 
 
-                        <?php
+                            <?php
 
-                        $piD = 0;
-                        if ($createOrUpdate) {
-                            $pID = $this->lease->getPropertytablePropertyid();
-                        } else {
-                            $pID = 1;
-                        }
-                        $properties = (new service\PropertyServiceImpl())->getDropDownProperties($pID);
-                        foreach ($properties as $property) {
-                            echo $property;
+                            $piD = 0;
+                            if ($createOrUpdate) {
+                                $pID = $this->lease->getPropertytablePropertyid();
+                            } else {
+                                $pID = 1;
+                            }
+                            $properties = (new service\PropertyServiceImpl())->getDropDownProperties($pID);
+                            foreach ($properties as $property) {
+                                echo $property;
 
-                        } ?>
+                            } ?>
 
-                    </select>
-                </div>
-
-
-                <div class="form-group">
-                    <label class="text-secondary">Tenant</label>
-                    <select name="tenttable_tenantid">
+                        </select>
+                    </div>
 
 
-                        <?php
-
-                        $tiD = 0;
-                        if ($createOrUpdate) {
-                            $tID = $this->lease->getTenttableTenantid();
-                        } else {
-                            $tID = 1;
-                        }
-
-                        $tenants = (new service\TenantServiceImpl())->getDropDownTenants($tID);
-                        foreach ($tenants as $tenant) {
-                            echo $tenant;
-                        }
-
-                        ?>
-
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <label class="text-secondary">Tenant</label>
+                        <select name="tenttable_tenantid">
 
 
-                <div>
-                    <input type="submit" value="Edit Lease"/>
-                </div>
+                            <?php
+
+                            $tiD = 0;
+                            if ($createOrUpdate) {
+                                $tID = $this->lease->getTenttableTenantid();
+                            } else {
+                                $tID = 1;
+                            }
+
+                            $tenants = (new service\TenantServiceImpl())->getDropDownTenants($tID);
+                            foreach ($tenants as $tenant) {
+                                echo $tenant;
+                            }
+
+                            ?>
+
+                        </select>
+                    </div>
+
+
+                    <div>
+                        <input type="submit" value="Edit Lease"/>
+                    </div>
             </form>
 
 
