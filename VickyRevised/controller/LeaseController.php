@@ -60,8 +60,9 @@ class LeaseController{
                 return true;
             } else {
                 (new LeaseServiceImpl())->updateLease($lease);
+
             }
-            Router::redirect("/lease.php");
+            Router::redirect("/lease");
 
         } catch (HTTPException $e) {
         }
