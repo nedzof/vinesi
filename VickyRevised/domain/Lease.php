@@ -129,7 +129,7 @@ class Lease
      */
     public function getLeaseendDate()
     {
-        $timestamp = $this->leasestart;
+        $timestamp = $this->leaseend;
         $date = strftime('%Y-%m-%d', strtotime($timestamp));
         //$time = date('Gi.s', $timestamp);
         return $date;
