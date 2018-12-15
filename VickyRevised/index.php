@@ -83,8 +83,7 @@ Router::route("GET", "/lease/update", function () {
 
 Router::route("POST", "/lease/update", function () {
     LeaseController::leaseUpdateOrCreate();
-    // Router::redirect("/lease");
-    echo "<script>alert(\"updated\")</script>";
+    Router::redirect("/lease");
 
 
 });
