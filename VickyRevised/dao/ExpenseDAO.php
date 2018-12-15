@@ -10,7 +10,6 @@ namespace dao;
 
 
 use domain\Expense;
-use PDO;
 
 class ExpenseDAO extends BasicDAO
 {
@@ -47,7 +46,8 @@ public function readAll()
 /*
     public function getLeaseById($expenseID)
     {
-        $stmt = $this->pdoInstance->prepare('SELECT * FROM expensetable WHERE expenseid = :id LIMIT 1');
+        $stmt = $this->pdoInstance->prepare('SELECT * FROM expensetable WHERE expenseid = :id
+ LIMIT 1');
         $stmt->bindValue(':id', $expenseID);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {

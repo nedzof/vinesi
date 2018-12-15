@@ -39,8 +39,8 @@ use view\TemplateView;
             <td><?php echo TemplateView::noHTML($lease->getLeaseutilities()); ?> </td>
             <td><?php echo TemplateView::noHTML($lease->getLeasepaymentmethod()); ?> </td>
             <td><?php echo TemplateView::noHTML($lease->getLeasedeposit()); ?> </td>
-            <td><?php echo TemplateView::noHTML($lease->getLeasestart()); ?> </td>
-            <td><?php echo TemplateView::noHTML($lease->getLeaseend()); ?> </td>
+            <td><?php echo TemplateView::noHTML($lease->getLeasestartDate()); ?> </td>
+            <td><?php echo TemplateView::noHTML($lease->getLeaseendDate()); ?> </td>
             <td><?php echo TemplateView::noHTML($lease->getPropertytablePropertyid()); ?> </td>
             <td><?php echo TemplateView::noHTML($lease->getTenttableTenantid()); ?> </td>
             <td><?php echo TemplateView::noHTML($lease->getTenant($lease->getTenttableTenantid())); ?> </td>

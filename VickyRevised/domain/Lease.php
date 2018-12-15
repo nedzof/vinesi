@@ -107,9 +107,12 @@ class Lease
     /**
      * @return mixed
      */
-    public function getLeasestart()
+    public function getLeasestartDate()
     {
-        return $this->leasestart;
+        $timestamp = $this->leasestart;
+        $date = strftime('%d-%m-%Y', strtotime($timestamp));
+        // $time = date('Gi.s', $timestamp);
+        return $date;
     }
 
     /**
@@ -123,9 +126,12 @@ class Lease
     /**
      * @return mixed
      */
-    public function getLeaseend()
+    public function getLeaseendDate()
     {
-        return $this->leaseend;
+        $timestamp = $this->leasestart;
+        $date = strftime('%d-%m-%Y', strtotime($timestamp));
+        //$time = date('Gi.s', $timestamp);
+        return $date;
     }
 
     /**

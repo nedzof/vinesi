@@ -94,12 +94,16 @@ Router::route("GET", "/lease/create", function () {
 
 });
 
+Router::route("POST", "/lease/delete", function () {
+    LeaseController::delete();
+    Router::redirect("/lease");
+    echo "<script>alert(\"DELETED\")</script>";
+});
+
 Router::route("POST", "/lease/create", function () {
     LeaseController::leaseUpdateOrCreate();
     Router::redirect("/lease");
     echo "<script>alert(\"CREATED\")</script>";
-
-
 });
 
 /*
