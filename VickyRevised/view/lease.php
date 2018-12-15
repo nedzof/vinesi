@@ -7,8 +7,6 @@
  */
 
 namespace domain;
-include("lease_delete_popup.php");
-
 
 use view\TemplateView;
 
@@ -51,8 +49,7 @@ use view\TemplateView;
                     <a class="btn btn-default" role="button" href="lease/edit?id=<?php echo $lease->getLeaseid(); ?>"><i
                                 class="fa fa-edit"></i></a>
 
-                    <a class="btn btn-default" data-toggle="modal" data-target="#modalContactForm" role="button"
-                       href=""><i class="ion-android-delete"></i></a>
+                    <?php include("lease_delete_popup.php") ?>
 
                 </div>
             </td>
@@ -61,8 +58,7 @@ use view\TemplateView;
     ?>
     <div class="btn-group" role="group">
         <a class="btn btn-default" role="button" href="lease/create"> <i class="fa fa-plus-square-o"></i></a>
-        <a target="_blank" class="btn btn-default" role="button" href="lease/pdf"> <i
-                    class="fa fa-file-pdf-o"></i></a>
+        <a target="_blank" class="btn btn-default" role="button" href="lease/pdf"> <i class="fa fa-file-pdf-o"></i></a>
         <a class="btn btn-default" role="button" href="lease/email"> <i class="fa fa-envelope-o"></i></a>
     </div>
     </tbody>

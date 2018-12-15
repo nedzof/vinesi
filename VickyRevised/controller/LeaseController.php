@@ -17,10 +17,6 @@ use view\TemplateView;
  */
 class LeaseController{
 
-    public static function create()
-    {
-
-    }
 
     public static function leaseView()
     {
@@ -64,6 +60,17 @@ class LeaseController{
 
     public static function delete(){
 
+    }
+
+    public static function create()
+    {
+        try {
+            $contentView = new TemplateView("lease_form.php");
+            LayoutRendering::basicLayout($contentView);
+        } catch (HTTPException $e) {
+            HTTPStatusCode::HTTP_401_UNAUTHORIZED;
+
+        }
     }
 
 }

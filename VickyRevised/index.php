@@ -81,6 +81,11 @@ Router::route("GET", "/lease/edit", function () {
 
 });
 
+Router::route("GET", "/lease/create", function () {
+    LeaseController::create();
+
+});
+
 /*
  * Menu Routing
  */

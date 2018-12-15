@@ -40,7 +40,7 @@
                             required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Utilities</label><input name="leaseutilities"
-                                                                                              value="<?php echo $this->lease->getLeaseutilities() ?? 0 ?>"
+                                                                                              value="<?php echo $this->lease->getLeaseutilities() ?>"
                                                                                               class="form-control"
                                                                                               type="number" required="">
                 </div>
@@ -50,17 +50,17 @@
                             type="text"
                             required=""></div>
                 <div class="form-group"><label class="text-secondary">Deposit</label><input name="leasedeposit"
-                                                                                            value="<?php echo $this->lease->getLeasedeposit() ?? 0 ?>"
+                                                                                            value="<?php echo $this->lease->getLeasedeposit() ?>"
                                                                                             class="form-control"
                                                                                             type="text" required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Lease Start</label><input name="leasestart"
-                                                                                                value="<?php echo $this->lease->getLeasestart() ?? null ?>"
+                                                                                                value="<?php echo $this->lease->getLeasestart() ?>"
                                                                                                 class="form-control"
                                                                                                 type="date" required="">
                 </div>
                 <div class="form-group"><label class="text-secondary">Lease Expiry</label><input name="leaseend"
-                                                                                                 value="<?php echo $this->lease->getLeaseend() ?? null ?>"
+                                                                                                 value="<?php echo $this->lease->getLeaseend() ?>"
                                                                                                  class="form-control"
                                                                                                  type="date"
                                                                                                  required="">
@@ -74,7 +74,7 @@
 
                         <?php
 
-                        $pID = $this->lease->getPropertytablePropertyid() ?? 1;
+                        $pID = $this->lease->getPropertytablePropertyid();
 
                         $properties = (new service\PropertyServiceImpl())->getDropDownProperties($pID);
                         foreach ($properties as $property) {
@@ -93,7 +93,7 @@
 
                         <?php
 
-                        $tID = $this->lease->getTenttableTenantid() ?? 1;
+                        $tID = $this->lease->getTenttableTenantid();
                         $tenants = (new service\TenantServiceImpl())->getDropDownTenants($tID);
                         foreach ($tenants as $tenant) {
                             echo $tenant;
