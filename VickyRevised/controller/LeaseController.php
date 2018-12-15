@@ -57,9 +57,11 @@ class LeaseController{
             if ($lease->getLeaseid() == 0) {
                 (new LeaseServiceImpl())->createLease($lease);
 
+
                 return true;
             } else {
                 (new LeaseServiceImpl())->updateLease($lease);
+
 
             }
 
