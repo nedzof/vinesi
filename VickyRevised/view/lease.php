@@ -67,14 +67,15 @@ use view\TemplateView;
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Mr Andreas Martin, do you want to delete this Lease?</p>
+                                    <p>Mr Andreas Martin, do you want to delete this
+                                        Lease <? echo $lease->getLeaseid(); ?> ?</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                     <button type="button" data-method="delete"
                                             href="lease/delete/<?php echo $lease->getLeaseid(); ?>
-                                            class=" btn btn-primary">Delete
-                                    </button>
+                                            class=" btn btn-primary
+                                    ">Delete</button>
                                 </div>
                             </div>
                         </div>
