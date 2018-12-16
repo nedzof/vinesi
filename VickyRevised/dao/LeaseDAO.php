@@ -57,7 +57,7 @@ class LeaseDAO extends BasicDAO
     {
 
         try {
-            $stmt = $this->pdoInstance->prepare("
+            $stmt = $this->pdoInstance->prepare('
                 UPDATE leasetable SET 
                 leasemonthlyrent = :leasemonthlyrent,
                 leaseutilities = :leaseutilities,
@@ -67,7 +67,7 @@ class LeaseDAO extends BasicDAO
                 leaseend = :leaseend,
                 propertytable_propertyid = :propertytable_propertyid,
                 tenttable_tenantid = :tenttable_tenantid,
-                WHERE leaseid = :id");
+                WHERE leaseid = :id');
             $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyrent());
             $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
             $stmt->bindValue(':leasepaymentmethod', $lease->getLeasepaymentmethod());

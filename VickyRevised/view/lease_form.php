@@ -38,7 +38,7 @@ $createOrUpdate = !empty($this->lease) ?>
                 <?php if ($createOrUpdate) { ?>
                 <div class="form-grou§p"><label class="text-secondary">LeaseID</label><input
                             name="leaseid"
-                            value="<?php echo $createOrUpdate ? $this->lease->getLeaseid() : 0 ?>"
+                            value="<?php echo $this->lease->getLeaseid() ?>"
                             class="form-control"
                             type="number"
                             required=""
