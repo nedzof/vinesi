@@ -43,7 +43,7 @@ class Lease
     /**
      * @return mixed
      */
-    public function getLeasemonthlyent()
+    public function getLeasemonthlyrent()
     {
         return $this->leasemonthlyrent;
     }

@@ -3,6 +3,7 @@
 namespace dao;
 
 use domain\Lease;
+use Exception;
 use PDO;
 
 class LeaseDAO extends BasicDAO
@@ -14,7 +15,7 @@ class LeaseDAO extends BasicDAO
         $stmt = $this->pdoInstance->prepare('
             INSERT INTO leasetable (leaseid, leasemonthlyrent, leaseutilities, leasepaymentmethod, leasedeposit, leasestart, leaseend, propertytable_propertyid, tenttable_tenantid) 
             VALUES (DEFAULT , :leasemonthlyrent, :leaseutilities, :leasepaymentmethod, :leasedeposit, :leasestart, :leaseend, :propertytable_propertyid, :tenttable_tenantid');
-        $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyent());
+        $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyrent());
         $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
         $stmt->bindValue(':leasepaymentmethod', $lease->getLeasepaymentmethod());
         $stmt->bindValue(':leasedeposit', $lease->getLeasedeposit());
@@ -54,29 +55,33 @@ class LeaseDAO extends BasicDAO
 
     public function update(Lease $lease)
     {
-        $stmt = $this->pdoInstance->prepare('
-            UPDATE leasetable SET 
-            leasemonthlyrent = :leasemonthlyrent,
-            leaseutilities = :leaseutilities,
-            leasepaymentmethod = :leasepaymentmethod,
-            leasedeposit = :leasedeposit,
-            leasestart = :leasestart,
-            leaseend = :leaseend,
-            propertytable_propertyid = :propertytable_propertyid,
-            tenttable_tenantid = :tenttable_tenantid,
-            WHERE leaseid = :id');
-        $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyent());
-        $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
-        $stmt->bindValue(':leasepaymentmethod', $lease->getLeasepaymentmethod());
-        $stmt->bindValue(':leasedeposit', $lease->getLeasedeposit());
-        $stmt->bindValue(':leasestart', null);//$lease->getLeasestartDate());//->format('Y-m-d H:i:s.u'));
-        $stmt->bindValue(':leaseend', null);//$lease->getLeaseendDate());//->format('Y-m-d H:i:s.u'));
-        $stmt->bindValue(':propertytable_propertyid', $lease->getPropertytablePropertyid());
-        $stmt->bindValue(':tenttable_tenantid', $lease->getTenttableTenantid());
-        $stmt->bindValue(':id', $lease->getLeaseid());
 
-        $stmt->execute();
-        return $this->readById($lease->getLeaseid());
+        try {
+            $stmt = $this->pdoInstance->prepare('
+                UPDATE leasetable SET 
+                leasemonthlyrent = :leasemonthlyrent,
+               leaseutilities = :leaseutilities,
+                leasepaymentmethod = :leasepaymentmethod,
+                leasedeposit = :leasedeposit,
+                leasestart = :leasestart,
+                leaseend = :leaseend,
+                propertytable_propertyid = :propertytable_propertyid,
+                tenttable_tenantid = :tenttable_tenantid,
+                WHERE leaseid = :id');
+            $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyrent());
+            $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
+            $stmt->bindValue(':leasepaymentmethod', $lease->getLeasepaymentmethod());
+            $stmt->bindValue(':leasedeposit', $lease->getLeasedeposit());
+            $stmt->bindValue(':leasestart', null);//$lease->getLeasestartDate());//->format('Y-m-d H:i:s.u'));
+            $stmt->bindValue(':leaseend', null);//$lease->getLeaseendDate());//->format('Y-m-d H:i:s.u'));
+            $stmt->bindValue(':propertytable_propertyid', $lease->getPropertytablePropertyid());
+            $stmt->bindValue(':tenttable_tenantid', $lease->getTenttableTenantid());
+            $stmt->bindValue(':id', $lease->getLeaseid());
+            $stmt->execute();
+        } catch (Exception $e) {
+            echo $e->getMessage();
+            //sql> UPDATE "public"."leasetable" SET "leasemonthlyrent" = 1200.00, "leaseutilities" = 180.00, "leasedeposit" = 1500.00 WHERE "leaseid" = 3
+        }
     }
 
 

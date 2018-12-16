@@ -48,7 +48,7 @@ $createOrUpdate = !empty($this->lease) ?>
 
                     <div class="form-grou§p"><label class="text-secondary">Monthly Rent</label><input
                                 name="leasemonthlyrent"
-                                value="<?php echo $createOrUpdate ? $this->lease->getLeasemonthlyent() : 0 ?>"
+                                value="<?php echo $createOrUpdate ? $this->lease->getLeasemonthlyrent() : 0 ?>"
                                 class="form-control"
                                 type="number"
                                 required="">
