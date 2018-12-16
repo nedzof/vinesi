@@ -131,7 +131,7 @@ $createOrUpdate = !empty($this->lease) ?>
 
 
                     <div>
-                        <input type="submit" value="Edit Lease"/>
+                        <input type="submit" value="<?php echo $createOrUpdate ? "Update" : "Create" ?>"/>
                     </div>
             </form>
 
