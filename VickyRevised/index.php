@@ -20,7 +20,7 @@ use http\HTTPStatusCode;
 use router\Router;
 use service\ServiceEndpoint;
 
-ini_set( 'session.cookie_httponly', 1 );
+ini_set('session.cookie_httponly', 1);
 session_start();
 
 $authFunction = function () {
@@ -103,9 +103,10 @@ Router::route("POST", "/lease/delete", function () {
 });
 
 Router::route("POST", "/lease/create", function () {
-    LeaseController::leaseUpdateOrCreate();
-    Router::redirect("/lease");
-    echo "<script>alert(\"CREATED\")</script>";
+    if (LeaseController::leaseUpdateOrCreate()) {
+        Router::redirect("/lease");
+        echo "<script>alert(\"CREATED\")</script>";
+    }
 });
 
 /*

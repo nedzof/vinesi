@@ -24,12 +24,12 @@ class LeaseServiceImpl implements LeaseService
      * @throws HTTPException
      */
     public function createLease(Lease $lease) {
-        if(AuthServiceImpl::getInstance()->verifyAuth()) {
+        //if(AuthServiceImpl::getInstance()->verifyAuth()) {
             $leaseDAO = new LeaseDAO();
             //$lease->set(AuthServiceImpl::getInstance()->getCurrentUserId());
             return $leaseDAO->create($lease);
-        }
-        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+        //}
+        //throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
     /**
