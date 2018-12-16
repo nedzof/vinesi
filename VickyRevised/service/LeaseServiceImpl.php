@@ -59,11 +59,13 @@ class LeaseServiceImpl implements LeaseService
      */
     public function updateLease(Lease $lease)
     {
-        if(AuthServiceImpl::getInstance()->verifyAuth()) {
-            $leaseDAO = new LeaseDAO();
-            return $leaseDAO->update($lease);
-        }
-        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+        // if (AuthServiceImpl::getInstance()->verifyAuth()) {
+
+        $leaseDAO = new LeaseDAO();
+        return $leaseDAO->update($lease);
+        //}
+        //throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+
     }
 
     /**
@@ -77,7 +79,7 @@ class LeaseServiceImpl implements LeaseService
             $leaseDAO = new LeaseDAO();
             $lease = new Lease();
             $lease->setLeaseid($leaseId);
-            $leaseDAO->delete($lease);
+            return $leaseDAO->delete($lease);
         }
     }
 

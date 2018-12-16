@@ -18,7 +18,7 @@ require_once('../database.php'); ?>
 
 $date = date_create("2013-03-15");
 
-$result = $date->format('Y-m-d H:i:s.u');
+$result = (password_hash("test", PASSWORD_DEFAULT));
 
 echo "<script>alert(\"$result\")</script>";
 

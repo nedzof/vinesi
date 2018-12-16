@@ -40,9 +40,9 @@ class LeaseController{
 
     public static function leaseUpdateOrCreate()
     {
-
+        try {
         $lease = new Lease();
-        $lease->setLeaseid($_POST["leaseid"] ?? 0);
+            $lease->setLeaseid($_POST["leaseid"]);
         $lease->setLeasemonthylrent($_POST["leasymonthlyrent"] ?? 0);
         $lease->setLeaseutilities($_POST["leasymonthlyrent"] ?? 0);
         $lease->setLeasepaymentmethod($_POST["leasepaymentmethod"] ?? "");
@@ -53,20 +53,22 @@ class LeaseController{
         $lease->setTenttableTenantid($_POST["tenttable_tenantid"] ?? null);
 
 
-        try {
             if ($lease->getLeaseid() == 0) {
                 (new LeaseServiceImpl())->createLease($lease);
             } else {
                 (new LeaseServiceImpl())->updateLease($lease);
+
             }
 
         } catch (HTTPException $e) {
+
         }
 
     }
 
-    public static function delete($id)
+    public static function delete()
     {
+        $id = $_GET["id"] ?? 0;
         (new LeaseServiceImpl())->deleteLease($id);
     }
 

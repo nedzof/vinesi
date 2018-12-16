@@ -83,9 +83,11 @@ Router::route("GET", "/lease/update", function () {
 
 Router::route("POST", "/lease/update", function () {
 
-    LeaseController::leaseUpdateOrCreate();
+    $check = LeaseController::leaseUpdateOrCreate() ?? "Bullshit";
+    $check = strval($check);
+    echo "<script>alert(\"Updated ID is $check\")</script>";
 
-    Router::redirect("/lease");
+    //Router::redirect("/lease");
 
 
 });

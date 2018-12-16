@@ -65,16 +65,15 @@ class LeaseDAO extends BasicDAO
             propertytable_propertyid = :propertytable_propertyid,
             tenttable_tenantid = :tenttable_tenantid,
             WHERE leaseid = :id');
-        $stmt->bindValue(':id', $lease->getLeaseid());
         $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyent());
         $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
         $stmt->bindValue(':leasepaymentmethod', $lease->getLeasepaymentmethod());
         $stmt->bindValue(':leasedeposit', $lease->getLeasedeposit());
-        $stmt->bindValue(':leasestart', $lease->getLeasestartDate()->format('Y-m-d H:i:s.u'));
-        $stmt->bindValue(':leaseend', $lease->getLeaseendDate()->format('Y-m-d H:i:s.u'));
+        $stmt->bindValue(':leasestart', null);//$lease->getLeasestartDate());//->format('Y-m-d H:i:s.u'));
+        $stmt->bindValue(':leaseend', null);//$lease->getLeaseendDate());//->format('Y-m-d H:i:s.u'));
         $stmt->bindValue(':propertytable_propertyid', $lease->getPropertytablePropertyid());
         $stmt->bindValue(':tenttable_tenantid', $lease->getTenttableTenantid());
-
+        $stmt->bindValue(':id', $lease->getLeaseid());
 
         $stmt->execute();
         return $this->readById($lease->getLeaseid());
