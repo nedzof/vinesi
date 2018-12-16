@@ -23,8 +23,8 @@ class LeaseDAO extends BasicDAO
         $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
         $stmt->bindValue(':leasepaymentmethod', $lease->getLeasepaymentmethod());
         $stmt->bindValue(':leasedeposit', $lease->getLeasedeposit());
-        $stmt->bindValue(':leasestart', '2018-12-16 13:57:14.897000');
-        $stmt->bindValue(':leaseend', '2018-12-16 13:57:14.897000');
+            $stmt->bindValue(':leasestart', $lease->getLeaseendDate(true));
+            $stmt->bindValue(':leaseend', $lease->getLeaseendDate(true));
         $stmt->bindValue(':propertytable_propertyid', $lease->getPropertytablePropertyid());
             $stmt->bindValue(':tenttable_tenantid', $lease->getTenttableTenantid());
 
