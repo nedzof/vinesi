@@ -29,8 +29,7 @@ class LeaseDAO extends BasicDAO
 
     public function readById($leaseid)
     {
-        $stmt = $this->pdoInstance->prepare('
-            SELECT * FROM leasetable WHERE leaseid = :id;');
+        $stmt = $this->pdoInstance->prepare('SELECT * FROM leasetable WHERE leaseid = :id;');
         $stmt->bindValue(':id', $leaseid);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
@@ -84,10 +83,7 @@ class LeaseDAO extends BasicDAO
 
     public function delete(Lease $lease)
     {
-        $stmt = $this->pdoInstance->prepare('
-            DELETE FROM leasetable
-            WHERE leaseid = :id
-        ');
+        $stmt = $this->pdoInstance->prepare('DELETE FROM leasetable WHERE leaseid = :id');
         $stmt->bindValue(':id', $lease->getLeaseid());
         $stmt->execute();
     }

@@ -56,13 +56,8 @@ class LeaseController{
         try {
             if ($lease->getLeaseid() == 0) {
                 (new LeaseServiceImpl())->createLease($lease);
-
-
-                return true;
             } else {
                 (new LeaseServiceImpl())->updateLease($lease);
-
-
             }
 
         } catch (HTTPException $e) {
@@ -70,8 +65,9 @@ class LeaseController{
 
     }
 
-    public static function delete(){
-
+    public static function delete($id)
+    {
+        (new LeaseServiceImpl())->deleteLease($id);
     }
 
     public static function createForm()

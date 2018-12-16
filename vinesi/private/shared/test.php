@@ -16,10 +16,10 @@ require_once('../database.php'); ?>
 <h1>Connection with PDO</h1>
 <?php
 
-$d = new Datetime('2000-01-01');
-//$d = date('Y-m-d');
+$date = date_create("2013-03-15");
 
-$result = $d->format('Y-m-d H:i:s.u');
+$result = $date->format('Y-m-d H:i:s.u');
+
 echo "<script>alert(\"$result\")</script>";
 
 ?>
