@@ -5,6 +5,7 @@ namespace dao;
 use domain\Lease;
 use Exception;
 use PDO;
+use PDOException;
 
 class LeaseDAO extends BasicDAO
 {
@@ -12,21 +13,23 @@ class LeaseDAO extends BasicDAO
 
     public function create(Lease $lease)
     {
+        $stmt = $this->pdoInstance->prepare('
+                INSERT INTO leasetable (leasemonthlyrent, leaseutilities, leasepaymentmethod, leasedeposit, leasestart, leaseend, propertytable_propertyid, tenttable_tenantid) 
+                VALUES (:leasemonthlyrent, :leaseutilities, :leasepaymentmethod, :leasedeposit, :leasestart, :leaseend, :propertytable_propertyid, :tenttable_tenantid');
+        $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyrent());
+        $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
+        $stmt->bindValue(':leasepaymentmethod', $lease->getLeasepaymentmethod());
+        $stmt->bindValue(':leasedeposit', $lease->getLeasedeposit());
+        $stmt->bindValue(':leasestart', $lease->getLeasestartDate());//->format('Y-m-d H:i:s.u'));
+        $stmt->bindValue(':leaseend', $lease->getLeaseendDate());//->format('Y-m-d H:i:s.u'));
+        $stmt->bindValue(':propertytable_propertyid', $lease->getPropertytablePropertyid());
+        $stmt->bindValue(':tenttable_tenantid', $lease->getTenttableTenantid());
+
         try {
-            $stmt = $this->pdoInstance->prepare('
-                INSERT INTO leasetable (leaseid, leasemonthlyrent, leaseutilities, leasepaymentmethod, leasedeposit, leasestart, leaseend, propertytable_propertyid, tenttable_tenantid) 
-                VALUES (DEFAULT, :leasemonthlyrent, :leaseutilities, :leasepaymentmethod, :leasedeposit, :leasestart, :leaseend, :propertytable_propertyid, :tenttable_tenantid');
-            $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyrent());
-            $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
-            $stmt->bindValue(':leasepaymentmethod', $lease->getLeasepaymentmethod());
-            $stmt->bindValue(':leasedepososit', $lease->getLeasedeposit());
-            $stmt->bindValue(':leasestart', $lease->getLeasestartDate());//->format('Y-m-d H:i:s.u'));
-            $stmt->bindValue(':leaseend', $lease->getLeaseendDate());//->format('Y-m-d H:i:s.u'));
-            $stmt->bindValue(':propertytable_propertyid', $lease->getPropertytablePropertyid());
-            $stmt->bindValue(':tenttable_tenantid', $lease->getTenttableTenantid());
-            $stmt->execute();
+
+            $stmt->execute() or die("SQL Error in: " . $stmt->queryString . " - " . $stmt->errorInfo()[2]);
             return true;
-        } catch (Exception $e) {
+        } catch (PDOException $e) {
             $a = strval($e->getMessage());
             echo "<script>alert(\"FIX YOOO SHIT\")</script>";
 
