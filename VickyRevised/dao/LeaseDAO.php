@@ -106,6 +106,7 @@ class LeaseDAO extends BasicDAO
         $stmt = $this->pdoInstance->prepare('DELETE FROM leasetable WHERE leaseid = :id');
         $stmt->bindValue(':id', $lease->getLeaseid());
         $stmt->execute();
+        return true;
     }
 
 

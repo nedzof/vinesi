@@ -110,7 +110,9 @@ Router::route("POST", "/lease/create", function () {
 });
 
 Router::route("DELETE", "/lease/delete/{id}", function ($id) {
-    LeaseController::deleteLease();
+    if (LeaseController::deleteLease($id)) {
+        Router::redirect("/lease");
+    }
 });
 
 /*
