@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="assets/css/-Login-form-Page-BS4-.css">
     <link rel="stylesheet"
-          href="../../vinesi/public/assets/css/Data-Summary-Panel---3-Column-Overview--Mobile-Responsive.css">
+          href="assets/css/Data-Summary-Panel---3-Column-Overview--Mobile-Responsive.css">
     <link rel="stylesheet" href="assets/css/Data-Table-1.css">
     <link rel="stylesheet" href="assets/css/Data-Table.css">
     <link rel="stylesheet" href="assets/css/Footer-Clean.css">
@@ -56,7 +56,8 @@ $createOrUpdate = !empty($this->lease) ?>
                     <div class="form-group"><label class="text-secondary">Utilities</label><input name="leaseutilities"
                                                                                                   value="<?php echo $createOrUpdate ? $this->lease->getLeaseutilities() : 0 ?>"
                                                                                                   class="form-control"
-                                                                                                  type="number" required="">
+                                                                                                  type="number"
+                                                                                                  required="">
                     </div>
                     <div class="form-group"><label class="text-secondary">Payment Method</label><input
                                 name="leasepaymentmethod"
@@ -67,15 +68,17 @@ $createOrUpdate = !empty($this->lease) ?>
                     <div class="form-group"><label class="text-secondary">Deposit</label><input name="leasedeposit"
                                                                                                 value="<?php echo $createOrUpdate ? $this->lease->getLeasedeposit() : 0 ?>"
                                                                                                 class="form-control"
-                                                                                                type="number" required="">
+                                                                                                type="number"
+                                                                                                required="">
                     </div>
                     <div class="form-group"><label class="text-secondary">Lease Start</label><input name="leasestart"
-                                                                                                    value="<?php echo $createOrUpdate ? $this->lease->getLeasestartDate() : date("Y-m-d"); ?>"
+                                                                                                    value="<?php echo $createOrUpdate ? $this->lease->getLeasestartDate(true) : date("Y-m-d"); ?>"
                                                                                                     class="form-control"
-                                                                                                    type="date" required="">
+                                                                                                    type="date"
+                                                                                                    required="">
                     </div>
                     <div class="form-group"><label class="text-secondary">Lease Expiry</label><input name="leaseend"
-                                                                                                     value="<?php echo $createOrUpdate ? $this->lease->getLeaseendDate() : date("Y-m-d"); ?>"
+                                                                                                     value="<?php echo $createOrUpdate ? $this->lease->getLeaseendDate(true) : date("Y-m-d"); ?>"
                                                                                                      class="form-control"
                                                                                                      type="date"
                                                                                                      required="">

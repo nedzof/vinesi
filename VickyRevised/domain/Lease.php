@@ -107,10 +107,18 @@ class Lease
     /**
      * @return mixed
      */
-    public function getLeasestartDate()
+    public function getLeasestartDate($b)
     {
+        //Boolean true if to display on table
+        //Boolena false if to insert in database
         $timestamp = $this->leasestart;
-        $date = strftime('%Y-%m-%d', strtotime($timestamp));
+        $date = null;
+        if ($b) {
+            $date = strftime('%Y-%m-%d', strtotime($timestamp));
+        } else {
+            $date = strftime('%Y-%m-%d %H:%M:%S.%f', strtotime($timestamp));
+        }
+
 
         // $time = date('Gi.s', $timestamp);
         return $date;
@@ -127,11 +135,20 @@ class Lease
     /**
      * @return mixed
      */
-    public function getLeaseendDate()
+    public function getLeaseendDate($b)
     {
+        //Boolean true if to display on table
+        //Boolean false if to insert in database
         $timestamp = $this->leaseend;
-        $date = strftime('%Y-%m-%d', strtotime($timestamp));
-        //$time = date('Gi.s', $timestamp);
+        $date = null;
+        if ($b) {
+            $date = strftime('%Y-%m-%d', strtotime($timestamp));
+        } else {
+            $date = strftime('%Y-%m-%d %H:%M:%S.%f', strtotime($timestamp));
+        }
+
+
+        // $time = date('Gi.s', $timestamp);
         return $date;
     }
 

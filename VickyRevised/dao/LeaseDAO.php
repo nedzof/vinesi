@@ -15,21 +15,21 @@ class LeaseDAO extends BasicDAO
         try {
 
             $stmt = $this->pdoInstance->prepare('
-                INSERT INTO leasetable (leasemonthlyrent, leaseutilities, leasepaymentmethod, leasedeposit,/* leasestart, leaseend,*/ propertytable_propertyid, tenttable_tenantid) 
+                INSERT INTO leasetable (leasemonthlyrent, leaseutilities, leasepaymentmethod, leasedeposit, leasestart, leaseend,  propertytable_propertyid, tenttable_tenantid) 
                 VALUES (:leasemonthlyrent, :leaseutilities, :leasepaymentmethod, :leasedeposit,/* :leasestart, :leaseend, */:propertytable_propertyid, :tenttable_tenantid');
             $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyrent());
             $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
             $stmt->bindValue(':leasepaymentmethod', $lease->getLeasepaymentmethod());
             $stmt->bindValue(':leasedeposit', $lease->getLeasedeposit());
-            // $stmt->bindValue(':leasestart', ($lease->getLeasestartDate())->format('Y-m-d H:i:s.u'));
-            // $stmt->bindValue(':leaseend', ($lease->getLeaseendDate())->format('Y-m-d H:i:s.u'));
+            $stmt->bindValue(':leasestart', ($lease->getLeasestartDate(false)));
+            $stmt->bindValue(':leaseend', ($lease->getLeaseendDate(false)));
             $stmt->bindValue(':propertytable_propertyid', $lease->getPropertytablePropertyid());
             $stmt->bindValue(':tenttable_tenantid', $lease->getTenttableTenantid());
 
 
             $stmt->execute();
         } catch (Exception $e) {
-            $a = $e->getTraceAsString();
+            $a = ($lease->getLeasestartDate());
             echo "<script>alert(\"$a\")</script>";
 
             echo "<script>alert(\"FIX YOOO SHIT\")</script>";
@@ -86,8 +86,8 @@ class LeaseDAO extends BasicDAO
             $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
             $stmt->bindValue(':leasepaymentmethod', $lease->getLeasepaymentmethod());
             $stmt->bindValue(':leasedeposit', $lease->getLeasedeposit());
-            $stmt->bindValue(':leasestart', $lease->getLeasestartDate());//->format('Y-m-d H:i:s.u'));
-            $stmt->bindValue(':leaseend', $lease->getLeaseendDate());//->format('Y-m-d H:i:s.u'));
+            $stmt->bindValue(':leasestart', $lease->getLeasestartDate(true));//->format('Y-m-d H:i:s.u'));
+            $stmt->bindValue(':leaseend', $lease->getLeaseendDate(true));//->format('Y-m-d H:i:s.u'));
             $stmt->bindValue(':propertytable_propertyid', $lease->getPropertytablePropertyid());
             $stmt->bindValue(':tenttable_tenantid', $lease->getTenttableTenantid());
             $stmt->bindValue(':id', $lease->getLeaseid());
