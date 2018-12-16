@@ -16,13 +16,13 @@ class LeaseDAO extends BasicDAO
 
             $stmt = $this->pdoInstance->prepare('
                 INSERT INTO leasetable (leasemonthlyrent, leaseutilities, leasepaymentmethod, leasedeposit, leasestart, leaseend,  propertytable_propertyid, tenttable_tenantid) 
-                VALUES (:leasemonthlyrent, :leaseutilities, :leasepaymentmethod, :leasedeposit,/* :leasestart, :leaseend, */:propertytable_propertyid, :tenttable_tenantid');
+                VALUES (:leasemonthlyrent, :leaseutilities, :leasepaymentmethod, :leasedeposit, :leasestart, :leaseend, :propertytable_propertyid, :tenttable_tenantid');
             $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyrent());
             $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
             $stmt->bindValue(':leasepaymentmethod', $lease->getLeasepaymentmethod());
             $stmt->bindValue(':leasedeposit', $lease->getLeasedeposit());
-            $stmt->bindValue(':leasestart', ($lease->getLeasestartDate(false)));
-            $stmt->bindValue(':leaseend', ($lease->getLeaseendDate(false)));
+            $stmt->bindValue(':leasestart', ($lease->getLeasestartDate(true)));
+            $stmt->bindValue(':leaseend', ($lease->getLeaseendDate(true)));
             $stmt->bindValue(':propertytable_propertyid', $lease->getPropertytablePropertyid());
             $stmt->bindValue(':tenttable_tenantid', $lease->getTenttableTenantid());
 
