@@ -12,21 +12,13 @@ class LeaseDAO extends BasicDAO
 
     public function create(Lease $lease)
     {
-        try {
 
+        //sql> INSERT INTO "public"."leasetable" ("leaseid", "leasemonthlyrent", "leaseutilities", "leasepaymentmethod", "leasedeposit", "leasestart", "leaseend", "propertytable_propertyid", "tenttable_tenantid") VALUES (DEFAULT, 233, 393, 'PayPal', 1200, '2018-12-16 14:10:06.164000', '2018-12-16 14:10:08.954000', 4, 1)
+        try {
             $sql = "INSERT INTO leasetable (leaseid, leasemonthlyrent, leaseutilities, leasepaymentmethod, leasedeposit, leasestart, leaseend, propertytable_propertyid, tenttable_tenantid) 
-VALUES (DEFAULT, 233, 393, 'PayPal', 1200, '2018-12-16 14:10:06.164000', '2018-12-16 14:10:08.954000', 4, 1)";
+            VALUES (DEFAULT, :leasemonthlyrent, :leaseutilities, :leasepaymentmethod, :leasedeposit, :leasestart, :leaseend, :propertytable_propertyid, :tenttable_tenantid)";
             $stmt = $this->pdoInstance->prepare($sql);
 
-
-            /*''
-
-
-
-
-
-            INSERT INTO leasetable (leaseid, leasemonthlyrent, leaseutilities, leasepaymentmethod, leasedeposit, leasestart, leaseend,  propertytable_propertyid, tenttable_tenantid)
-            VALUES (DEFAULT, :leasemonthlyrent, :leaseutilities, :leasepaymentmethod, :leasedeposit, :leasestart, :leaseend, :propertytable_propertyid, :tenttable_tenantid');
         $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyrent());
         $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
         $stmt->bindValue(':leasepaymentmethod', $lease->getLeasepaymentmethod());
@@ -34,7 +26,7 @@ VALUES (DEFAULT, 233, 393, 'PayPal', 1200, '2018-12-16 14:10:06.164000', '2018-1
         $stmt->bindValue(':leasestart', '2018-12-16 13:57:14.897000');
         $stmt->bindValue(':leaseend', '2018-12-16 13:57:14.897000');
         $stmt->bindValue(':propertytable_propertyid', $lease->getPropertytablePropertyid());
-        $stmt->bindValue(':tenttable_tenantid', $lease->getTenttableTenantid());*/
+            $stmt->bindValue(':tenttable_tenantid', $lease->getTenttableTenantid());
 
 
             $stmt->execute();
