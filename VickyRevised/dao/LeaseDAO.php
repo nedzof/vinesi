@@ -57,6 +57,7 @@ class LeaseDAO extends BasicDAO
     {
 
         try {
+            $this->pdoInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stmt = $this->pdoInstance->prepare('
                 UPDATE leasetable SET 
                 leasemonthlyrent = :leasemonthlyrent,
@@ -66,7 +67,7 @@ class LeaseDAO extends BasicDAO
                 leasestart = :leasestart,
                 leaseend = :leaseend,
                 propertytable_propertyid = :propertytable_propertyid,
-                tenttable_tenantid = :tenttable_tenantid,
+                tenttable_tenantid = :tenttable_tenantid
                 WHERE leaseid = :id');
             $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyrent());
             $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
@@ -77,9 +78,10 @@ class LeaseDAO extends BasicDAO
             $stmt->bindValue(':propertytable_propertyid', $lease->getPropertytablePropertyid());
             $stmt->bindValue(':tenttable_tenantid', $lease->getTenttableTenantid());
             $stmt->bindValue(':id', $lease->getLeaseid());
-            $stmt->execute();
+            $stmt->execute() or die("SQL Error in: " . $stmt->queryString . " - " . $stmt->errorInfo()[2]);
+            return true;
         } catch (Exception $e) {
-            echo $e->getMessage();
+            return false;
         }
     }
 

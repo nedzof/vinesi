@@ -42,21 +42,21 @@ class LeaseController{
     {
         try {
         $lease = new Lease();
-            $lease->setLeaseid($_POST["leaseid"]);
-        $lease->setLeasemonthylrent($_POST["leasymonthlyrent"] ?? 0);
-        $lease->setLeaseutilities($_POST["leasymonthlyrent"] ?? 0);
+            $lease->setLeaseid($_POST["leaseid"] ?? 0);
+            $lease->setLeasemonthylrent($_POST["leasemonthlyrent"] ?? 0);
+            $lease->setLeaseutilities($_POST["leaseutilities"] ?? 0);
         $lease->setLeasepaymentmethod($_POST["leasepaymentmethod"] ?? "");
         $lease->setLeasedeposit($_POST["leasedeposit"] ?? 0);
-        $lease->setLeasestart($_POST["leasestart"] ?? null);
-        $lease->setLeaseend($_POST["leaseend"] ?? null);
+            $lease->setLeasestart($_POST["leasestart"] ?? date("Y-m-d"));
+            $lease->setLeaseend($_POST["leaseend"] ?? date("Y-m-d"));
         $lease->setPropertytablePropertyid($_POST["propertytable_propertyid"] ?? null);
         $lease->setTenttableTenantid($_POST["tenttable_tenantid"] ?? null);
 
 
-            if ($lease->getLeaseid() == 0) {
-                (new LeaseServiceImpl())->createLease($lease);
+            if ($lease->getLeaseid() == null) {
+                return (new LeaseServiceImpl())->createLease($lease);
             } else {
-                (new LeaseServiceImpl())->updateLease($lease);
+                return (new LeaseServiceImpl())->updateLease($lease);
 
             }
 

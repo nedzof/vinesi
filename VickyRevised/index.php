@@ -82,7 +82,10 @@ Router::route("GET", "/lease/update", function () {
 });
 
 Router::route("POST", "/lease/update", function () {
-    LeaseController::leaseUpdateOrCreate();
+    if (LeaseController::leaseUpdateOrCreate()) {
+        Router::redirect("/lease");
+
+    };
     // Router::redirect("/lease");
 
 

@@ -34,7 +34,6 @@ class Database
             if (self::$pdoInstance) {
                 // echo "Connected to the <strong>$_dbname</strong> database successfully!";
                 self::$pdoInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
             }
         } catch (PDOException $e) {
             // report error message

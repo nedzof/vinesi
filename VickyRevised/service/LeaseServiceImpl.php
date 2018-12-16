@@ -59,8 +59,7 @@ class LeaseServiceImpl implements LeaseService
      */
     public function updateLease(Lease $lease)
     {
-        // if (AuthServiceImpl::getInstance()->verifyAuth()) {
-
+        //if (AuthServiceImpl::getInstance()->verifyAuth()) {
         $leaseDAO = new LeaseDAO();
         return $leaseDAO->update($lease);
         //}
