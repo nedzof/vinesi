@@ -74,12 +74,12 @@ class LeaseServiceImpl implements LeaseService
      */
     public function deleteLease($leaseId)
     {
-        if(AuthServiceImpl::getInstance()->verifyAuth()) {
+        //if(AuthServiceImpl::getInstance()->verifyAuth()) {
             $leaseDAO = new LeaseDAO();
             $lease = new Lease();
             $lease->setLeaseid($leaseId);
             return $leaseDAO->delete($lease);
-        }
+        //}
     }
 
     /**

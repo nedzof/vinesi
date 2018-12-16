@@ -71,8 +71,10 @@ use view\TemplateView;
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-primary"
-                                    ="lease/delete?id=<?php echo $lease->getLeaseid(); ?>">Delete</button>
+                                    <button type="button" data-method="delete"
+                                            href="lease/delete/<?php echo $lease->getLeaseid(); ?>"
+                                            class="btn btn-primary">Delete
+                                    </button>
                                 </div>
                             </div>
                         </div>
