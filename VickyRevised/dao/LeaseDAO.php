@@ -5,7 +5,6 @@ namespace dao;
 use domain\Lease;
 use Exception;
 use PDO;
-use PDOException;
 
 class LeaseDAO extends BasicDAO
 {
@@ -29,7 +28,7 @@ class LeaseDAO extends BasicDAO
 
             $stmt->execute() or die("SQL Error in: " . $stmt->queryString . " - " . $stmt->errorInfo()[2]);
             return true;
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             $a = strval($e->getMessage());
             echo "<script>alert(\"FIX YOOO SHIT\")</script>";
 
