@@ -57,30 +57,29 @@ class LeaseDAO extends BasicDAO
     {
 
         try {
-            $stmt = $this->pdoInstance->prepare('
+            $stmt = $this->pdoInstance->prepare("
                 UPDATE leasetable SET 
                 leasemonthlyrent = :leasemonthlyrent,
-               leaseutilities = :leaseutilities,
+                leaseutilities = :leaseutilities,
                 leasepaymentmethod = :leasepaymentmethod,
                 leasedeposit = :leasedeposit,
                 leasestart = :leasestart,
                 leaseend = :leaseend,
                 propertytable_propertyid = :propertytable_propertyid,
                 tenttable_tenantid = :tenttable_tenantid,
-                WHERE leaseid = :id');
+                WHERE leaseid = :id");
             $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyrent());
             $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
             $stmt->bindValue(':leasepaymentmethod', $lease->getLeasepaymentmethod());
             $stmt->bindValue(':leasedeposit', $lease->getLeasedeposit());
-            $stmt->bindValue(':leasestart', null);//$lease->getLeasestartDate());//->format('Y-m-d H:i:s.u'));
-            $stmt->bindValue(':leaseend', null);//$lease->getLeaseendDate());//->format('Y-m-d H:i:s.u'));
+            $stmt->bindValue(':leasestart', $lease->getLeasestartDate());//->format('Y-m-d H:i:s.u'));
+            $stmt->bindValue(':leaseend', $lease->getLeaseendDate());//->format('Y-m-d H:i:s.u'));
             $stmt->bindValue(':propertytable_propertyid', $lease->getPropertytablePropertyid());
             $stmt->bindValue(':tenttable_tenantid', $lease->getTenttableTenantid());
             $stmt->bindValue(':id', $lease->getLeaseid());
             $stmt->execute();
         } catch (Exception $e) {
             echo $e->getMessage();
-            //sql> UPDATE "public"."leasetable" SET "leasemonthlyrent" = 1200.00, "leaseutilities" = 180.00, "leasedeposit" = 1500.00 WHERE "leaseid" = 3
         }
     }
 

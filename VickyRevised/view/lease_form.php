@@ -72,7 +72,6 @@ $createOrUpdate = !empty($this->lease) ?>
                     <div class="form-group"><label class="text-secondary">Lease Start</label><input name="leasestart"
                                                                                                     value="<?php echo $createOrUpdate ? $this->lease->getLeasestartDate() : date("Y-m-d"); ?>"
                                                                                                     class="form-control"
-                                                                                                    min="<?php echo date("Y-m-d") ?>"
                                                                                                     type="date" required="">
                     </div>
                     <div class="form-group"><label class="text-secondary">Lease Expiry</label><input name="leaseend"
