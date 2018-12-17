@@ -66,8 +66,9 @@ class LeaseController{
 
     }
 
-    public static function deleteLease($id)
+    public static function deleteLease()
     {
+        $id = $_GET["id"] ?? 0;
         return (new LeaseServiceImpl())->deleteLease($id);
     }
 
