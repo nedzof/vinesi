@@ -32,6 +32,7 @@ use view\TemplateView;
     <tbody>
 
     <?php
+    $a =
     foreach ($this->leases as $lease): /* @var lease $lease */ ?>
         <tr>
             <td><?php echo TemplateView::noHTML($lease->getLeaseid()); ?></td>

@@ -104,7 +104,6 @@ Router::route("POST", "/lease/create", function () {
 });
 
 Router::route("GET", "/lease/delete", function () {
-    echo "<script>alert(\"IN\")</script>";
     if (LeaseController::deleteLease()) {
         Router::redirect("/lease");
     }
