@@ -32,9 +32,11 @@ use view\TemplateView;
     <tbody>
 
     <?php
-    $a =
-    foreach ($this->leases as $lease): /* @var lease $lease */ ?>
+
+    foreach ($this->leases as $lease): /* @var lease $lease */
+        $a = $lease->getLeaseid(); ?>
         <tr>
+
             <td><?php echo TemplateView::noHTML($lease->getLeaseid()); ?></td>
             <td><?php echo TemplateView::noHTML($lease->getLeasemonthlyrent()); ?></td>
             <td><?php echo TemplateView::noHTML($lease->getLeaseutilities()); ?> </td>
@@ -66,7 +68,7 @@ use view\TemplateView;
                                 </div>
                                 <div class="modal-body">
                                     <p>Mr Andreas Martin, do you want to delete this
-                                        Lease <? echo $lease->getLeaseid(); ?> ?</p>
+                                        Lease <?php $a ?></p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
