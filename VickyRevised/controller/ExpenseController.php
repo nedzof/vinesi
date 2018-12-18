@@ -2,11 +2,11 @@
 
 namespace controller;
 
-
+use domain\Expense;
+use service\ExpenseServiceImpl;
 use dao\ExpenseDAO;
 use http\HTTPException;
 use http\HTTPStatusCode;
-use router\Router;
 use view\LayoutRendering;
 use view\TemplateView;
 /**
@@ -38,19 +38,44 @@ class ExpenseController{
     }
 
 
-    public static function readAll(){
+    public static function expenseUpdateOrCreate(){
+    try {
+        $expense = new Expense();
+        $expense->setExpenseid($_POST["expenseid"] ?? 0);
+        $expense->setExpensetype($_POST["expensetype"] ?? "");
+        $expense->setExpenseamount($_POST["expenseamount"] ?? 0);
+        $expense->setExpensestartdate($_POST["expensestartdate"] ?? date("Y-m-d"));
+        $expense->setExpensepaid($_POST["expensepaid"] ?? false);
+        if ($expense->getExpenseid() == null) {
+            return (new ExpenseServiceImpl())->createExpense($expense);
+        } else {
+            return (new ExpenseServiceImpl())->updateExpense($expense);
 
+        }
+
+    } catch (HTTPException $e) {
+
+        }
     }
 
-    public static function edit(){
-
+    public static function deleteExpense($id)
+    {
+        return (new ExpenseServiceImpl())->deleteExpense($id);
     }
 
-    public static function create(){
+    public static function createExpenseForm(){
+        $id = $_GET["id"] ?? 0;
+        try {
+            $contentView = new TemplateView("expense_form.php");
+            if ($id != 0) {
+                $contentView->expense = (new ExpenseDAO())->getExpenseById($id);
+            }
+            LayoutRendering::basicLayout($contentView);
+        } catch (HTTPException $e) {
+            HTTPStatusCode::HTTP_401_UNAUTHORIZED;
 
-    }
-    public static function delete(){
 
+        }
     }
 
 }

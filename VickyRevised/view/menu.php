@@ -65,10 +65,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6 item" class>
+            <div class="col-sm-6 item">
                 <div class="row">
                     <div class="col-md-12 col-lg-5">
-                        <a href="<?php echo $GLOBALS["ROOT_URL"]; ?>/expenses">
+                        <a href="<?php echo $GLOBALS["ROOT_URL"]; ?>/expense">
                             <img class="img-fluid" src="assets/img/Accounting-1024x682.jpg"></a>
                     </div>
                     <div class="col">

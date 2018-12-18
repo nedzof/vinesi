@@ -10,6 +10,7 @@ require_once("config/Autoloader.php");
 use controller\AuthController;
 use controller\ErrorController;
 use controller\LeaseController;
+use controller\ExpenseController;
 use controller\LoginController;
 use controller\MenuController;
 use controller\RegisterController;
@@ -68,7 +69,7 @@ Router::route("POST", "/register", function () {
 
 
 /*
- *  Lease
+ *  Lease Routing
  */
 
 Router::route("GET", "/lease", function () {
@@ -96,8 +97,8 @@ Router::route("GET", "/lease/create", function () {
 
 });
 
-Router::route("POST", "/lease/delete", function () {
-    LeaseController::delete();
+Router::route("POST", "/lease/delete", function ($id) {
+    LeaseController::deleteLease($id);
     Router::redirect("/lease");
     echo "<script>alert(\"DELETED\")</script>";
 });
@@ -114,6 +115,51 @@ Router::route("DELETE", "/lease/delete/{id}", function ($id) {
         Router::redirect("/lease");
     }
 });
+
+/*
+ *  Expense Routing
+ */
+
+Router::route("GET", "/expense", function () {
+    ExpenseController::expenseView();
+});
+
+Router::route("GET", "/expense/update", function () {
+    ExpenseController::createExpenseForm();
+
+    });
+
+Router::route("POST", "/expense/update", function () {
+        if (ExpenseController::expenseUpdateOrCreate()) {
+        Router::redirect("/expense");
+        };
+    });
+
+Router::route("GET", "/expense/create", function () {
+    ExpenseController::createExpenseForm();
+
+    });
+
+Router::route("POST", "/expense/create", function () {
+    if (ExpenseController::expenseUpdateOrCreate()) {
+        Router::redirect("/expense");
+        echo "<script>alert(\"CREATED\")</script>";
+    }
+});
+
+Router::route("POST", "/expense/delete", function ($id) {
+    ExpenseController::deleteExpense($id);
+    Router::redirect("/expense");
+    echo "<script>alert(\"DELETED\")</script>";
+    });
+
+Router::route("DELETE", "/expense/delete/{id}", function ($id) {
+     if (ExpenseController::deleteExpense($id)) {
+        Router::redirect("/expense");
+     }
+    });
+
+
 
 /*
  * Menu Routing
