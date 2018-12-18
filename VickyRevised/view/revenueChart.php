@@ -60,20 +60,14 @@
     var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     var color = Chart.helpers.color;
     var horizontalBarChartData = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: MONTHS,
         datasets: [{
             label: 'Accounts Receivables',
             backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
             borderColor: window.chartColors.red,
             borderWidth: 1,
             data: [
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor()
+                <?php echo new MonitoringService()->getPaid()?>
             ]
         }, {
             label: 'Account Payables',
