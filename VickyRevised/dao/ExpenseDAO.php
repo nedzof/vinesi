@@ -16,20 +16,17 @@ class ExpenseDAO extends BasicDAO
 {
     public function create(Expense $expense){
         try{
-            $sql = "INSERT INTO expensetable (expenseid, expensetype, expenseamount, expensestartdate/*, expensespaid*/) 
-            VALUES (DEFAULT, :expensetype, :expenseamount, :expensestartdate/*, :expensespaid */)";
+            $sql = "INSERT INTO expensetable (expenseid, expensetype, expenseamount, expensestartdate, expensepaid) 
+            VALUES (DEFAULT, :expensetype, :expenseamount, :expensestartdate, :expensepaid)";
             $stmt = $this->pdoInstance->prepare($sql);
 
             $stmt->bindValue(':expensetype', $expense->getExpensetype());
             $stmt->bindValue(':expenseamount', $expense->getExpenseamount());
             $stmt->bindValue(':expensestartdate', $expense->getExpensestartdate());
-            //$stmt->bindValue(':expensespaid', $expense->getExpensepaid());
+            $stmt->bindValue(':expensepaid', $expense->getExpensepaid());
 
             $stmt->execute();
         } catch (Exception $e){
-            $a =($expense->getExpenseid());
-            echo "<script>alert(\"$a\")</script>";
-
             echo "<script>alert(\"FIX YOOO SHIT\")</script>";
 
             return false;
@@ -69,7 +66,7 @@ public function readAll()
         expensetype = :expensetype,
         expenseamount = :expenseamount,
         expensestartdate = :expensestartdate,
-        expensespaid = :expensespaid 
+        expensepaid = :expensepaid 
         WHERE expenseid = :id');
         $stmt->bindValue(':expensetype', $expense->getExpensetype());
         $stmt->bindValue(':expenseamount', $expense->getExpenseamount());
@@ -86,7 +83,7 @@ public function readAll()
 
     public function delete(Expense $expense)
     {
-    $stmt = $this->pdoInstance->prepare('DELETE FROM expensetable WHERE expensespaid = :id');
+        $stmt = $this->pdoInstance->prepare('DELETE FROM expensetable WHERE expensepaid = :id');
     $stmt->bindValue(':id', $expense->getExpensepaid());
     $stmt->execute();
     return true;

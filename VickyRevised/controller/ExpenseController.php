@@ -2,13 +2,14 @@
 
 namespace controller;
 
-use domain\Expense;
-use service\ExpenseServiceImpl;
 use dao\ExpenseDAO;
+use domain\Expense;
 use http\HTTPException;
 use http\HTTPStatusCode;
+use service\ExpenseServiceImpl;
 use view\LayoutRendering;
 use view\TemplateView;
+
 /**
  * Created by PhpStorm.
  * User: Victoria Villar
@@ -46,7 +47,7 @@ class ExpenseController{
         $expense->setExpenseamount($_POST["expenseamount"] ?? 0);
         $expense->setExpensestartdate($_POST["expensestartdate"] ?? date("Y-m-d"));
         $expense->setExpensepaid($_POST["expensepaid"] ?? false);
-        if ($expense->getExpenseid() == null) {
+        if ($expense->getExpenseid() == 0) {
             return (new ExpenseServiceImpl())->createExpense($expense);
         } else {
             return (new ExpenseServiceImpl())->updateExpense($expense);

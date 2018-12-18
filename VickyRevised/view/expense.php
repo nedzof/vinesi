@@ -31,10 +31,10 @@ use view\TemplateView;
         <td><?php echo TemplateView::noHTML($expense->getExpensetype()); ?></td>
         <td><?php echo TemplateView::noHTML($expense->getExpenseamount()); ?></td>
         <td><?php echo TemplateView::noHTML($expense->getExpensestartdate()); ?></td>
-        <td> <?php if ($expense->getExpensepaid() == 1){
-                echo "YES";
-            }else{
+        <td> <?php if ($expense->getExpensepaid() == 0) {
                 echo "NO";
+            }else{
+                echo "YES";
              }?>   <?php //echo background $a : backgroundgreen ? backgroundred //?></td>
 
         <td>
@@ -68,7 +68,7 @@ use view\TemplateView;
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                             <button type="button" data-method="delete"
                                     href="expense/delete/<?php echo $expense->getExpenseid(); ?>
-                                            class="btn btn-primary
+                                            class=" btn btn-primary
                             ">Delete</button>
                         </div>
                     </div>
