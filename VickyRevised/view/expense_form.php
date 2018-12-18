@@ -72,7 +72,7 @@ $createOrUpdate = !empty($this->expense) ?>
                     <?php
 
                     if (!empty($this->expense)) {
-                        if ($this->getExpensepaid() == 1) { ?>
+                        if ($this->expense->getExpensepaid() == 1) { ?>
 
                             <input type="checkbox" value="1" checked="checked" name="expensepaid">
 
