@@ -5,6 +5,7 @@
  * Date: 14/12/2018
  * Time: 17:50
  */
+
 namespace dao;
 
 
@@ -14,8 +15,9 @@ use PDO;
 
 class ExpenseDAO extends BasicDAO
 {
-    public function create(Expense $expense){
-        try{
+    public function create(Expense $expense)
+    {
+        try {
             $sql = "INSERT INTO expensetable (expenseid, expensetype, expenseamount, expensestartdate, expensepaid) 
             VALUES (DEFAULT, :expensetype, :expenseamount, :expensestartdate, :expensepaid)";
             $stmt = $this->pdoInstance->prepare($sql);
@@ -26,7 +28,7 @@ class ExpenseDAO extends BasicDAO
             $stmt->bindValue(':expensepaid', $expense->getExpensepaid());
 
             $stmt->execute();
-        } catch (Exception $e){
+        } catch (Exception $e) {
             echo "<script>alert(\"FIX YOOO SHIT\")</script>";
 
             return false;
@@ -45,7 +47,8 @@ class ExpenseDAO extends BasicDAO
         }
         return null;
     }
-public function readAll()
+
+    public function readAll()
     {
         $stmt = $this->pdoInstance->prepare('SELECT * FROM expensetable');
         $stmt->execute();
@@ -58,25 +61,26 @@ public function readAll()
 
     }
 
-    public function update (Expense $expense){
-      try{
-        $this->pdoInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $stmt = $this->pdoInstance->prepare('
+    public function update(Expense $expense)
+    {
+        try {
+            $this->pdoInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmt = $this->pdoInstance->prepare('
         UPDATE expensetable SET
         expensetype = :expensetype,
         expenseamount = :expenseamount,
         expensestartdate = :expensestartdate,
         expensepaid = :expensepaid 
         WHERE expenseid = :id');
-        $stmt->bindValue(':expensetype', $expense->getExpensetype());
-        $stmt->bindValue(':expenseamount', $expense->getExpenseamount());
-        $stmt->bindValue(':expensestartdate', $expense->getExpensestartdate());
-        $stmt->bindValue(':expensespaid', $expense->getExpensepaid());
-        $stmt->bindValue(':id', $expense->getExpenseid());
-        $stmt->execute()or die("SQL Error in: " . $stmt->queryString . " - " . $stmt->errorInfo()[2]);
-        return true;
-    }catch (Exception $e) {
-        return false;
+            $stmt->bindValue(':expensetype', $expense->getExpensetype());
+            $stmt->bindValue(':expenseamount', $expense->getExpenseamount());
+            $stmt->bindValue(':expensestartdate', $expense->getExpensestartdate());
+            $stmt->bindValue(':expensepaid', $expense->getExpensepaid());
+            $stmt->bindValue(':id', $expense->getExpenseid());
+            $stmt->execute() or die("SQL Error in: " . $stmt->queryString . " - " . $stmt->errorInfo()[2]);
+            return true;
+        } catch (Exception $e) {
+            return false;
         }
 
     }
@@ -84,9 +88,9 @@ public function readAll()
     public function delete(Expense $expense)
     {
         $stmt = $this->pdoInstance->prepare('DELETE FROM expensetable WHERE expensepaid = :id');
-    $stmt->bindValue(':id', $expense->getExpensepaid());
-    $stmt->execute();
-    return true;
+        $stmt->bindValue(':id', $expense->getExpensepaid());
+        $stmt->execute();
+        return true;
     }
 
     public function getAllExpenses()
@@ -101,7 +105,7 @@ public function readAll()
         $stmt = $this->pdoInstance->prepare('SELECT * FROM expensetable WHERE expenseid = :id LIMIT 1');
         $stmt->bindValue(':id', $expenseID);
         $stmt->execute();
-        if($stmt->rowCount()>0){
+        if ($stmt->rowCount() > 0) {
             $result = $stmt->fetchAll(\PDO::FETCH_CLASS, Expense::class)[0];
             return $result;
         }

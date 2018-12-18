@@ -46,8 +46,8 @@ class ExpenseController{
         $expense->setExpensetype($_POST["expensetype"] ?? "");
         $expense->setExpenseamount($_POST["expenseamount"] ?? 0);
         $expense->setExpensestartdate($_POST["expensestartdate"] ?? date("Y-m-d"));
-        $expense->setExpensepaid($_POST["expensepaid"] ?? false);
-        if ($expense->getExpenseid() == 0) {
+        $expense->setExpensepaid((int)($_POST["expensepaid"]) ?? 0);
+        if ($expense->getExpenseid() == null) {
             return (new ExpenseServiceImpl())->createExpense($expense);
         } else {
             return (new ExpenseServiceImpl())->updateExpense($expense);
