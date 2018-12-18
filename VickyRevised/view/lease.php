@@ -32,8 +32,11 @@ use view\TemplateView;
     <tbody>
 
     <?php
-    foreach ($this->leases as $lease): /* @var lease $lease */ ?>
+
+    foreach ($this->leases as $lease): /* @var lease $lease */
+        $a = $lease->getLeaseid(); ?>
         <tr>
+
             <td><?php echo TemplateView::noHTML($lease->getLeaseid()); ?></td>
             <td><?php echo TemplateView::noHTML($lease->getLeasemonthlyrent()); ?></td>
             <td><?php echo TemplateView::noHTML($lease->getLeaseutilities()); ?> </td>
@@ -62,20 +65,17 @@ use view\TemplateView;
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLongTitle">Deleting Lease</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
                                 </div>
                                 <div class="modal-body">
                                     <p>Mr Andreas Martin, do you want to delete this
-                                        Lease <? echo $lease->getLeaseid(); ?> ?</p>
+                                        Lease <?php $a ?></p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <button type="button" data-method="delete"
-                                            href="lease/delete/<?php echo $lease->getLeaseid(); ?>
-                                            class=" btn btn-primary
-                                    ">Delete</button>
+                                    <button type="button" class="btn btn-primary" data-method="get"
+                                            onclick="location.href='lease/delete?id=<?php echo $lease->getLeaseid(); ?>'">
+                                        Delete
+                                    </button>
                                 </div>
                             </div>
                         </div>

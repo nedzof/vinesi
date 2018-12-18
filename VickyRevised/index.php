@@ -69,7 +69,7 @@ Router::route("POST", "/register", function () {
 
 
 /*
- *  Lease Routing
+ *  Lease
  */
 
 Router::route("GET", "/lease", function () {
@@ -97,20 +97,21 @@ Router::route("GET", "/lease/create", function () {
 
 });
 
-Router::route("POST", "/lease/delete", function ($id) {
-    LeaseController::deleteLease($id);
-    Router::redirect("/lease");
-    echo "<script>alert(\"DELETED\")</script>";
-});
 
 Router::route("POST", "/lease/create", function () {
     if (LeaseController::leaseUpdateOrCreate()) {
         Router::redirect("/lease");
-        echo "<script>alert(\"CREATED\")</script>";
+    }
+});
+
+Router::route("GET", "/lease/delete", function () {
+    if (LeaseController::deleteLease()) {
+        Router::redirect("/lease");
     }
 });
 
 Router::route("DELETE", "/lease/delete/{id}", function ($id) {
+    echo "<script>alert(\"IN\")</script>";
     if (LeaseController::deleteLease($id)) {
         Router::redirect("/lease");
     }
