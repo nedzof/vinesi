@@ -3,8 +3,8 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Horizontal Bar Chart</title>
-    <script async="" src="analytics.js"></script>
-    <script src="Chart.js.php"></script>
+    <script async="" src="assets/js/analytics.js"></script>
+    <script src="assets/js/Chart.js"></script>
     <style type="text/css">/* Chart.js */
         @-webkit-keyframes chartjs-render-animation {
             from {
@@ -28,7 +28,7 @@
             -webkit-animation: chartjs-render-animation 0.001s;
             animation: chartjs-render-animation 0.001s;
         }</style>
-    <script src="utils.js"></script>
+    <script src="assets/js/utils.js"></script>
     <style>
         canvas {
             -moz-user-select: none;
@@ -39,7 +39,7 @@
 </head>
 
 <body>
-<div id="container" style="width: 75%;">
+<div id="container" style="width: 100%;" align="center">
     <div style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"
          class="chartjs-size-monitor">
         <div class="chartjs-size-monitor-expand"
@@ -54,18 +54,15 @@
     <canvas id="canvas" style="display: block; width: 1415px; height: 707px;" width="1415" height="707"
             class="chartjs-render-monitor"></canvas>
 </div>
-<button id="randomizeData">Randomize Data</button>
-<button id="addDataset">Add Dataset</button>
-<button id="removeDataset">Remove Dataset</button>
-<button id="addData">Add Data</button>
-<button id="removeData">Remove Data</button>
+
+
 <script>
     var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     var color = Chart.helpers.color;
     var horizontalBarChartData = {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
         datasets: [{
-            label: 'Dataset 1',
+            label: 'Accounts Receivables',
             backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
             borderColor: window.chartColors.red,
             borderWidth: 1,
@@ -79,7 +76,7 @@
                 randomScalingFactor()
             ]
         }, {
-            label: 'Dataset 2',
+            label: 'Account Payables',
             backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
             borderColor: window.chartColors.blue,
             data: [
@@ -121,64 +118,7 @@
 
     };
 
-    document.getElementById('randomizeData').addEventListener('click', function () {
-        var zero = Math.random() < 0.2 ? true : false;
-        horizontalBarChartData.datasets.forEach(function (dataset) {
-            dataset.data = dataset.data.map(function () {
-                return zero ? 0.0 : randomScalingFactor();
-            });
 
-        });
-        window.myHorizontalBar.update();
-    });
-
-    var colorNames = Object.keys(window.chartColors);
-
-    document.getElementById('addDataset').addEventListener('click', function () {
-        var colorName = colorNames[horizontalBarChartData.datasets.length % colorNames.length];
-        var dsColor = window.chartColors[colorName];
-        var newDataset = {
-            label: 'Dataset ' + (horizontalBarChartData.datasets.length + 1),
-            backgroundColor: color(dsColor).alpha(0.5).rgbString(),
-            borderColor: dsColor,
-            data: []
-        };
-
-        for (var index = 0; index < horizontalBarChartData.labels.length; ++index) {
-            newDataset.data.push(randomScalingFactor());
-        }
-
-        horizontalBarChartData.datasets.push(newDataset);
-        window.myHorizontalBar.update();
-    });
-
-    document.getElementById('addData').addEventListener('click', function () {
-        if (horizontalBarChartData.datasets.length > 0) {
-            var month = MONTHS[horizontalBarChartData.labels.length % MONTHS.length];
-            horizontalBarChartData.labels.push(month);
-
-            for (var index = 0; index < horizontalBarChartData.datasets.length; ++index) {
-                horizontalBarChartData.datasets[index].data.push(randomScalingFactor());
-            }
-
-            window.myHorizontalBar.update();
-        }
-    });
-
-    document.getElementById('removeDataset').addEventListener('click', function () {
-        horizontalBarChartData.datasets.pop();
-        window.myHorizontalBar.update();
-    });
-
-    document.getElementById('removeData').addEventListener('click', function () {
-        horizontalBarChartData.labels.splice(-1, 1); // remove the label first
-
-        horizontalBarChartData.datasets.forEach(function (dataset) {
-            dataset.data.pop();
-        });
-
-        window.myHorizontalBar.update();
-    });
 </script>
 
 

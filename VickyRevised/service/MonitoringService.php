@@ -16,4 +16,10 @@ class MonitoringService
 
     }
 
+    //Needed for dataset comparison between accounts receivables and accounts payables
+    public static function getPayments($numberOfMonths)
+    {
+
+    }
+
 }
