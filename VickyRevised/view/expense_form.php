@@ -89,10 +89,11 @@ $createOrUpdate = !empty($this->expense) ?>
                     </div>
 
                     <div class="input-group" role="group" >
-                            <input type="submit" value="<?php echo $createOrUpdate ? "Update" : "Create" ?>"
+                        <input type="submit" class="btn-primary"
+                               value="<?php echo $createOrUpdate ? "Update" : "Create" ?>"
                         </div>
                         <div>
-                            <input type="button" value="Cancel" onclick="goBack()">
+                            <input type="button" class="btn-success" value="Cancel" onclick="goBack()">
                                  <script>
                                       function goBack() {
                                       window.history.back();

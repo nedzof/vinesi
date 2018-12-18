@@ -9,8 +9,8 @@ require_once("config/Autoloader.php");
 
 use controller\AuthController;
 use controller\ErrorController;
-use controller\LeaseController;
 use controller\ExpenseController;
+use controller\LeaseController;
 use controller\LoginController;
 use controller\MenuController;
 use controller\RegisterController;
@@ -30,6 +30,8 @@ $authFunction = function () {
     Router::redirect("/login");
     return false;
 };
+
+####################################################################################################
 
 /*
  * Login Routing
@@ -54,6 +56,7 @@ Router::route("GET", "/logout", function () {
     Router::redirect("/login");
 });
 
+####################################################################################################
 
 /*
  * Register Routing
@@ -67,6 +70,8 @@ Router::route("POST", "/register", function () {
         Router::redirect("/logout");
 });
 
+
+####################################################################################################
 
 /*
  *  Lease
@@ -87,7 +92,6 @@ Router::route("POST", "/lease/update", function () {
         Router::redirect("/lease");
 
     };
-    // Router::redirect("/lease");
 
 
 });
@@ -117,6 +121,8 @@ Router::route("DELETE", "/lease/delete/{id}", function ($id) {
     }
 });
 
+
+####################################################################################################
 /*
  *  Expense Routing
  */
@@ -160,7 +166,7 @@ Router::route("DELETE", "/expense/delete/{id}", function ($id) {
      }
     });
 
-
+####################################################################################################
 
 /*
  * Menu Routing

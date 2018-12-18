@@ -57,11 +57,11 @@
             <div class="col-sm-6 item">
                 <div class="row">
                     <div class="col-md-12 col-lg-5">
-                        <a href="<?php echo $GLOBALS["ROOT_URL"]; ?>/controlling">
+                        <a href="<?php echo $GLOBALS["ROOT_URL"]; ?>/monitoring">
                             <img class="img-fluid" src="assets/img/building.jpg"></a></div>
                     <div class="col">
-                        <h3 class="name">Controlling</h3>
-                        <p class="description">Monitoring the rent payments.</p>
+                        <h3 class="name">Monitoring</h3>
+                        <p class="description">Receivables and Payables.</p>
                     </div>
                 </div>
             </div>
