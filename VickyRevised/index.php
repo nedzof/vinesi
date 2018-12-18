@@ -10,6 +10,7 @@ require_once("config/Autoloader.php");
 use controller\AuthController;
 use controller\ErrorController;
 use controller\LeaseController;
+use controller\InvoiceController;
 use controller\ExpenseController;
 use controller\LoginController;
 use controller\MenuController;
@@ -161,6 +162,47 @@ Router::route("DELETE", "/expense/delete/{id}", function ($id) {
     });
 
 
+
+//Invoice Routing
+Router::route("GET", "/invoice", function () {
+   InvoiceController::invoiceView();
+});
+
+Router::route("GET", "/invoice/update", function () {
+    InvoiceController::createInvoiceForm();
+
+
+});
+
+Router::route("POST", "/invoice/update", function () {
+    if (InvoiceController::invoiceUpdateOrCreate()) {
+        Router::redirect("/invoice");
+    };
+});
+
+Router::route("GET", "/invoice/create", function () {
+    InvoiceController::createInvoiceForm();
+
+});
+
+Router::route("POST", "/invoice/create", function () {
+    if (InvoiceController::invoiceUpdateOrCreate()) {
+        Router::redirect("/invoice");
+        echo "<script>alert(\"CREATED\")</script>";
+    }
+});
+
+Router::route("POST", "/invoice/delete", function ($id) {
+    InvoiceController::deleteInvoice($id);
+    Router::redirect("/invoice");
+    echo "<script>alert(\"DELETED\")</script>";
+});
+
+Router::route("DELETE", "/invoice/delete/{id}", function ($id) {
+    if (InvoiceController::deleteInvoice($id)) {
+        Router::redirect("/expense");
+    }
+});
 
 /*
  * Menu Routing
