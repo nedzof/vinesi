@@ -120,6 +120,19 @@ Router::route("DELETE", "/lease/delete/{id}", function ($id) {
         Router::redirect("/lease");
     }
 });
+####################################################################################################
+
+/*
+ * Monitoring
+ */
+
+Router::route("GET", "/monitoring", function () {
+    MonitoringController::monitoringView();
+});
+
+
+
+
 
 
 ####################################################################################################

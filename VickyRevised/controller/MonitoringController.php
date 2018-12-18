@@ -9,4 +9,8 @@ class MonitoringController
 {
 
 
+    public static function monitoringView()
+    {
+        
+    }
 }

@@ -25,58 +25,60 @@ use view\TemplateView;
     <tbody>
 
     <?php
-    foreach ($this->expenses as $expense):/*@var expense $expense*/?>
-    <tr>
-        <td><?php echo TemplateView::noHTML($expense->getExpenseid()); ?></td>
-        <td><?php echo TemplateView::noHTML($expense->getExpensetype()); ?></td>
-        <td><?php echo TemplateView::noHTML($expense->getExpenseamount()); ?></td>
-        <td><?php echo TemplateView::noHTML($expense->getExpensestartdate()); ?></td>
-        <td> <?php if ($expense->getExpensepaid() == 0) {
-                echo "NO";
-            }else{
-                echo "YES";
-             }?>   <?php //echo background $a : backgroundgreen ? backgroundred //?></td>
-
-        <td>
-
+    foreach ($this->expenses as $expense):/*@var expense $expense*/
+        ?>
+        <tr>
+            <td><?php echo TemplateView::noHTML($expense->getExpenseid()); ?></td>
+            <td><?php echo TemplateView::noHTML($expense->getExpensetype()); ?></td>
+            <td><?php echo TemplateView::noHTML($expense->getExpenseamount()); ?></td>
+            <td><?php echo TemplateView::noHTML($expense->getExpensestartdate()); ?></td>
+            <?php if ($expense->getExpensepaid() == 0) { ?>
+                <td style="background:#efa2a9">NO</td>
+            <?php } else { ?>
+                <td style="background:#71dd8a">YES</td>
+            <?php } ?>
 
 
-        <div class="btn-group btn-group-sm" role="group">
-            <a class="btn btn-default" role="button" href="expense/update?id=<?php echo $expense->getExpenseid(); ?>">
-                <i class="fa fa-edit"></i></a>
-            <!-- Delete Button Trigger -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter">
-                <i class="ion-android-delete"></i>
-            </button>
-            <!-- Delete -->
-            <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog"
-                 aria-labelledby="exampleModalCenterTitle"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Delete Expense</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Do you want to delete the
-                                Expense <? echo $expense->getExpenseid(); ?> ?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" data-method="delete"
-                                    href="expense/delete/<?php echo $expense->getExpenseid(); ?>
+            <td>
+
+
+                <div class="btn-group btn-group-sm" role="group">
+                    <a class="btn btn-default" role="button"
+                       href="expense/update?id=<?php echo $expense->getExpenseid(); ?>">
+                        <i class="fa fa-edit"></i></a>
+                    <!-- Delete Button Trigger -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter">
+                        <i class="ion-android-delete"></i>
+                    </button>
+                    <!-- Delete -->
+                    <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalCenterTitle"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Delete Expense</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Do you want to delete the
+                                        Expense <? echo $expense->getExpenseid(); ?> ?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button type="button" data-method="delete"
+                                            href="expense/delete/<?php echo $expense->getExpenseid(); ?>
                                             class=" btn btn-primary
-                            ">Delete</button>
+                                    ">Delete</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        </td>
-    </tr>
+            </td>
+        </tr>
     <?php endforeach;
     ?>
     <div class="btn-group" role="group">
