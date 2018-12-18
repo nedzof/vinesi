@@ -9,4 +9,7 @@
 class MonitoringDAO
 {
 
+    public function getChartData()
+    {
+    }
 }

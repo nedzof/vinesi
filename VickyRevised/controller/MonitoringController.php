@@ -1,4 +1,10 @@
 <?php
+
+namespace controller;
+
+use view\LayoutRendering;
+use view\TemplateView;
+
 /**
  * Created by PhpStorm.
  * User: Victoria Villar
@@ -11,6 +17,8 @@ class MonitoringController
 
     public static function monitoringView()
     {
-        
+        $contentView = new TemplateView("monitoring.php");
+        //$contentView->leases = (new MonitoringDAO())->getChartData();
+        LayoutRendering::basicLayout($contentView);
     }
 }

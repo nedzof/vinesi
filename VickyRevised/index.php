@@ -13,6 +13,7 @@ use controller\ExpenseController;
 use controller\LeaseController;
 use controller\LoginController;
 use controller\MenuController;
+use controller\MonitoringController;
 use controller\RegisterController;
 use controller\UserController;
 use http\HTTPException;
