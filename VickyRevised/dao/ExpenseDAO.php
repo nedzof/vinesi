@@ -23,7 +23,7 @@ class ExpenseDAO extends BasicDAO
             $stmt->bindValue(':expensetype', $expense->getExpensetype());
             $stmt->bindValue(':expenseamount', $expense->getExpenseamount());
             $stmt->bindValue(':expensestartdate', $expense->getExpensestartdate());
-            $stmt->bindValue(':expensepaid', $expense->getExpensepaid());
+            $stmt->bindValue(':expensespaid', $expense->getExpensepaid());
 
             $stmt->execute();
         } catch (Exception $e){
@@ -70,11 +70,11 @@ public function readAll()
         expenseamount = :expenseamount,
         expensestartdate = :expensestartdate,
         expensespaid = :expensespaid 
-        WHERE expenseid=id');
+        WHERE expenseid = :id');
         $stmt->bindValue(':expensetype', $expense->getExpensetype());
         $stmt->bindValue(':expenseamount', $expense->getExpenseamount());
-        $stmt->bindValue('expensestartdate', $expense->getExpensestartdate());
-        $stmt->bindValue('expensepaid', $expense->getExpensepaid());
+        $stmt->bindValue(':expensestartdate', $expense->getExpensestartdate());
+        $stmt->bindValue(':expensespaid', $expense->getExpensepaid());
         $stmt->bindValue(':id', $expense->getExpenseid());
         $stmt->execute()or die("SQL Error in: " . $stmt->queryString . " - " . $stmt->errorInfo()[2]);
         return true;
@@ -101,8 +101,8 @@ public function readAll()
 
     public function getExpenseById($expenseID)
     {
-        $stmt = $this->pdoInstance->prepare('SELECT * FROM expensetable WHERE expenseid = id LIMIT 1');
-        $stmt->bindValue(':expenseid', $expenseID);
+        $stmt = $this->pdoInstance->prepare('SELECT * FROM expensetable WHERE expenseid = :id LIMIT 1');
+        $stmt->bindValue(':id', $expenseID);
         $stmt->execute();
         if($stmt->rowCount()>0){
             $result = $stmt->fetchAll(\PDO::FETCH_CLASS, Expense::class)[0];
