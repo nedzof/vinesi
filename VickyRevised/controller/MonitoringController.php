@@ -17,7 +17,7 @@ class MonitoringController
 
     public static function monitoringView()
     {
-        $contentView = new TemplateView("monitoring.php");
+        $contentView = new TemplateView("revenueChart.php");
         //$contentView->leases = (new MonitoringDAO())->getChartData();
         LayoutRendering::basicLayout($contentView);
     }
