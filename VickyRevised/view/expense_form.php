@@ -69,11 +69,15 @@ $createOrUpdate = !empty($this->expense) ?>
                     </div>
                 <div class="form-group"><label class="text-secondary">Expense paid</label>
 
-                    <?php if ($this->expense->getExpensepaid() == 1) { ?>
+                    <?php
 
-                        <input type="checkbox" value="1" checked="checked" name="expensepaid">
+                    if (!empty($this->expense)) {
+                        if ($this->getExpensepaid() == 1) { ?>
 
-                    <?php } else { ?>
+                            <input type="checkbox" value="1" checked="checked" name="expensepaid">
+
+                        <?php }
+                    } else { ?>
 
                         <input type="checkbox" value="1" name="expensepaid">
 
