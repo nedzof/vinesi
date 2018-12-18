@@ -68,9 +68,21 @@ class Expense
     /**
      * @return mixed
      */
-    public function getExpensestartdate()
+    public function getExpensestartdate($b = true)
     {
-        return $this->expensestartdate;
+        //Boolean true if to display on table
+        //Boolena false if to insert in database
+        $timestamp = $this->expensestartdate;
+        $date = true;
+        if ($b) {
+            $date = strftime('%Y-%m-%d', strtotime($timestamp));
+        } else {
+            $date = strftime('%Y-%m-%d %H:%M:%S.%f', strtotime($timestamp));
+        }
+
+
+        // $time = date('Gi.s', $timestamp);
+        return $date;
     }
 
     /**
