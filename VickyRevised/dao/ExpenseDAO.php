@@ -9,21 +9,21 @@ namespace dao;
 
 
 use domain\Expense;
-use PDO;
 use Exception;
+use PDO;
 
 class ExpenseDAO extends BasicDAO
 {
     public function create(Expense $expense){
         try{
-            $sql = "INSERT INTO expensetable (expenseid, expensetype, expenseamount, expensestartdate, expensespaid) 
-            VALUES (DEFAULT, :expensetype, :expenseamount, :expensestartdate, :expensespaid )";
+            $sql = "INSERT INTO expensetable (expenseid, expensetype, expenseamount, expensestartdate/*, expensespaid*/) 
+            VALUES (DEFAULT, :expensetype, :expenseamount, :expensestartdate/*, :expensespaid */)";
             $stmt = $this->pdoInstance->prepare($sql);
 
             $stmt->bindValue(':expensetype', $expense->getExpensetype());
             $stmt->bindValue(':expenseamount', $expense->getExpenseamount());
             $stmt->bindValue(':expensestartdate', $expense->getExpensestartdate());
-            $stmt->bindValue(':expensespaid', $expense->getExpensepaid());
+            //$stmt->bindValue(':expensespaid', $expense->getExpensepaid());
 
             $stmt->execute();
         } catch (Exception $e){
