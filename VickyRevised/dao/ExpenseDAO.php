@@ -87,8 +87,8 @@ class ExpenseDAO extends BasicDAO
 
     public function delete(Expense $expense)
     {
-        $stmt = $this->pdoInstance->prepare('DELETE FROM expensetable WHERE expensepaid = :id');
-        $stmt->bindValue(':id', $expense->getExpensepaid());
+        $stmt = $this->pdoInstance->prepare('DELETE FROM expensetable WHERE expenseid = :id');
+        $stmt->bindValue(':id', $expense->getExpenseid());
         $stmt->execute();
         return true;
     }

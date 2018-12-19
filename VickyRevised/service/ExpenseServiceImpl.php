@@ -9,7 +9,6 @@
 namespace service;
 
 
-use service\ExpenseService;
 use dao\ExpenseDAO;
 use domain\Expense;
 use http\HTTPException;
@@ -79,9 +78,9 @@ class ExpenseServiceImpl implements ExpenseService
     {
         //if(AuthServiceImpl::getInstance()->verifyAuth()) {
         $expenseDAO = new ExpenseDAO();
-        $expnese = new Expense();
-        $expnese->setExpenseid($expenseId);
-        return $expenseDAO->delete($expnese);
+        $expense = new Expense();
+        $expense->setExpenseid($expenseId);
+        return $expenseDAO->delete($expense);
         //}
     }
 

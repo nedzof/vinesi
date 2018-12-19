@@ -170,8 +170,9 @@ Router::route("POST", "/expense/create", function () {
 });
 
 Router::route("GET", "/expense/delete", function () {
-    ExpenseController::deleteExpense();
-    Router::redirect("/expense");
+    if (ExpenseController::deleteExpense()) {
+        Router::redirect("/expense");
+    }
     echo "<script>alert(\"DELETED\")</script>";
 });
 
