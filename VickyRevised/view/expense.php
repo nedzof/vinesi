@@ -12,6 +12,13 @@ use view\TemplateView;
     <h2 class="text-center" style="margin-bottom: 40px;padding-top: 40px;"><strong>Expenses</strong></h2>
     <p class="text-center" style="color: #a2a8ae;">Overview of all expenses during a weeks time.</p>
 </div>
+<div class="btn-group" role="group">
+    <a class="btn btn-default" role="button" href="expense/create"> <i class="fa fa-plus-square-o"></i></a>
+    <a target="_blank" class="btn btn-default" role="button" href="expense/pdf"> <i
+                class="fa fa-file-pdf-o"></i></a>
+    <a class="btn btn-default" role="button" href="expense/email"> <i class="fa fa-envelope-o"></i></a>
+    class="ion-document"></i></a>
+</div>
 <table class="table">
     <thead>
     <tr class="header">
@@ -47,18 +54,15 @@ use view\TemplateView;
 
             <td>
 
-
                 <div class="btn-group btn-group-sm" role="group">
                     <a class="btn btn-default" role="button"
-                       href="expense/update?id=<?php echo $expense->getExpenseid(); ?>"><i
-                                class="fa fa-edit"></i></a>
+                       href="expense/update?id=<?php echo $expense->getExpenseid(); ?>"><i class="fa fa-edit"></i></a>
 
 
 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter">
-                        <i class="ion-android-delete"></i>
-                    </button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter"><i
+                                class="ion-android-delete"></i></button>
 
                     <!-- Modal -->
                     <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog"
@@ -89,17 +93,9 @@ use view\TemplateView;
     <?php endforeach;
     ?>
 
-    </button>
-    <div class="btn-group" role="group">
-        <a class="btn btn-default" role="button" href="expense/create"> <i class="fa fa-plus-square-o"></i></a>
-        <a target="_blank" class="btn btn-default" role="button" href="expense/pdf"> <i
-                    class="fa fa-file-pdf-o"></i></a>
-        <a class="btn btn-default" role="button" href="expense/email"> <i class="fa fa-envelope-o"></i></a>
-        <a class="btn btn-default" role="button" href="invoice/create/id?="<?php echo $expense->getExpenseid() ?>><i
-                    class="ion-document"></i></a>
-    </div>
     </tbody>
 </table>
+
 </body>
 </html>
 <!-- jQuery library -->

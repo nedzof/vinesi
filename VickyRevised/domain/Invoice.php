@@ -8,8 +8,6 @@
 
 namespace domain;
 
-use http\HTTPException;
-
 class Invoice
 {
 
@@ -18,7 +16,6 @@ class Invoice
     private $invoiceamount;
     private $invoicestartdate;
     private $invoicepaiddate;
-    private $invoicecreator;
     private $invoicelease;
 
     /**
@@ -72,7 +69,7 @@ class Invoice
     /**
      * @return mixed
      */
-    public function getInvoicestartdate($b)
+    public function getInvoicestartdate($b = true)
     {
         //Boolean true if to display on table
         //Boolena false if to insert in database
@@ -100,7 +97,7 @@ class Invoice
     /**
      * @return mixed
      */
-    public function getInvoicepaiddate($b)
+    public function getInvoicepaiddate($b = true)
     {
         //Boolean true if to display on table
         //Boolena false if to insert in database
@@ -125,21 +122,6 @@ class Invoice
         $this->invoicepaiddate = $invoicepaiddate;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getInvoicecreator()
-    {
-        return $this->invoicecreator;
-    }
-
-    /**
-     * @param mixed invoicecreator
-     */
-    public function setInvoicecreator($invoicecreator) :void
-    {
-        $this->invoicecreator = $invoicecreator;
-    }
 
     /**
      * @return mixed
