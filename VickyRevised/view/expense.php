@@ -26,12 +26,12 @@ use view\TemplateView;
         </thead>
 
         <?php
+        $i = 0;
         foreach ($this->expenses as $expense):/*@var expense $expense*/
-            for ($i = 0; $i < count($this->expenses); $i++)
-                //$expenseid = $expense->getExpenseid();
+            $id = $expense->getExpenseid();
                 ?>
                 <tr>
-                <td><?php echo TemplateView::noHTML($expenseid) ?></td>
+                    <td><?php echo TemplateView::noHTML($expense->getExpenseid()) ?></td>
             <td><?php echo TemplateView::noHTML($expense->getExpensetype()); ?></td>
             <td><?php echo TemplateView::noHTML($expense->getExpenseamount()); ?></td>
             <td><?php echo TemplateView::noHTML($expense->getExpensestartdate()); ?></td>
@@ -51,7 +51,7 @@ use view\TemplateView;
                             data-target="#ModalCenter">
                         <i class="ion-android-delete"></i>
                     </button>
-                    <a class="btn btn-default" role="button" href="expense/update?id=<?php echo $expenseid; ?>"><i
+                    <a class="btn btn-default" role="button" href="expense/update?id=<?php echo $id ?>"><i
                                 class="fa fa-edit"></i></a>
                 </div>
             </td>
@@ -73,7 +73,7 @@ use view\TemplateView;
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-default" role="button" href="expense/delete?id=<?php echo $expenseid; ?>"><i
+                            <a class="btn btn-default" role="button" href="expense/delete?id=<?php echo $id ?>"><i
                                         class="ion-android-delete"></i></a>
 
                         </div>
