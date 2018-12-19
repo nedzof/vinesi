@@ -54,31 +54,32 @@ use view\TemplateView;
                            href="expense/update?id=<?php echo $expense->getExpenseid() ?>"><i
                                     class="fa fa-edit"></i></a>
                     </div>
-                </td>
 
-                <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalCenterTitle"
-                     aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Deleting Expense</h5>
-                            </div>
-                            <div class="modal-body">
-                                <p>Mr Andreas Martin, do you want to delete this
-                                    Expense?
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-default" role="button"
-                                   href="expense/delete?id=<?php echo $expense->getExpenseid() ?>"><i
-                                            class="ion-android-delete"></i></a>
 
+                    <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalCenterTitle"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Deleting Expense</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Mr Andreas Martin, do you want to delete this
+                                        Expense?
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <a class="btn btn-default" role="button"
+                                       href="expense/delete?id=<?php echo $expense->getExpenseid() ?>"><i
+                                                class="ion-android-delete"></i></a>
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </td>
             </tr>
         <?php endforeach; ?>
 
