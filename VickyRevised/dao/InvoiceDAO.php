@@ -20,14 +20,14 @@ class InvoiceDAO extends BasicDAO
 
         try {
             $sql = "INSERT INTO invoicetable (invoiceid, invoicetype, invoiceamount, invoiceleaseid, invoicestartdate, invoicepaid) 
-            VALUES (DEFAULT, :invoiceid, :invoicetype, :invoiceamount, :invoiceleaseid, :invoicestartdate, :invoicepaid)";
+            VALUES (DEFAULT, :invoicetype, :invoiceamount, :invoiceleaseid, :invoicestartdate, :invoicepaid)";
             $stmt = $this->pdoInstance->prepare($sql);
 
             $stmt->bindValue(':invoicetype', $invoice->getInvoicetype());
             $stmt->bindValue(':invoiceamount', $invoice->getInvoiceamount());
+            $stmt->bindValue(':invoiceleaseid', $invoice->getInvoiceleaseid());
             $stmt->bindValue(':invoicestartdate', $invoice->getInvoicestartdate(true));
-            $stmt->bindValue(':invoicepaiddate', $invoice->getInvoicepaiddate(true));
-            $stmt->bindValue(':invoiceleaseid', $invoice->getInvoicelease());
+            $stmt->bindValue(':invoiceleaseid', $invoice->getInvoicepaid());
             $stmt->execute();
         } catch (Exception $e) {
             $a = ($invoice->getInvoiceid());

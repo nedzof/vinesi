@@ -50,7 +50,7 @@ $createOrUpdate = !empty($this->invoices) ?>
                     <div class="form-grou§p"><label class="text-secondary">Invoice Type</label><input
                                 name="invoice
                                type"
-                                value="<?php echo $createOrUpdate ? $this->invoices->getInvoicetype() : 0 ?>"
+                                value="<?php echo $createOrUpdate ? $this->invoices->getInvoicetype() : "" ?>"
                                 class="form-control"
                                 type="text"
                                 required=""

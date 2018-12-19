@@ -42,9 +42,8 @@ class InvoiceController{
             $invoice->setInvoicetype($_POST["invoicetype"] ?? "");
             $invoice->setInvoiceamount($_POST["invoiceamount"] ?? 0);
             $invoice->setInvoicestartdate($_POST["invoicestartdate"] ?? date("Y-m-d"));
-            $invoice->setInvoicepaiddate($_POST["invoicepaiddate"] ?? date("Y-m-d"));
-            $invoice->setInvoicecreator($_POST["invoicecreator"] ?? null);
-            $invoice->setInvoicelease($_POST["invoicelease"] ?? null);
+            $invoice->setInvoicepaid($_POST["invoicepaiddate"] ?? 0);
+            $invoice->setInvoiceleaseid($_POST["invoiceleaseid"] ?? null);
 
 
             if ($invoice->getInvoiceid() == null) {

@@ -10,6 +10,7 @@ namespace domain;
 
 use DateTime;
 
+
 class Invoice
 {
 
@@ -17,15 +18,23 @@ class Invoice
     private $invoicetype;
     private $invoiceamount;
     private $invoicestartdate;
-    private $invoicelease;
+    private $invoiceleaseid;
     private $invoicepaid;
 
     /**
-     * @param mixed $invoiceid
+     * @return mixed
      */
     public function getInvoiceid()
     {
         return $this->invoiceid;
+    }
+
+    /**
+     * @param mixed $invoiceid
+     */
+    public function setInvoiceid($invoiceid): void
+    {
+        $this->invoiceid = $invoiceid;
     }
 
     /**
@@ -39,7 +48,7 @@ class Invoice
     /**
      * @param mixed $invoicetype
      */
-    public function setInvoicetype($invoicetype) :void
+    public function setInvoicetype($invoicetype): void
     {
         $this->invoicetype = $invoicetype;
     }
@@ -63,12 +72,9 @@ class Invoice
     /**
      * @return mixed
      */
-    /**
-     * @return mixed
-     */
     public function getInvoicestartdate($b = true)
     {
-        //Boolean true if to display on table
+//Boolean true if to display on table
         //Boolena false if to insert in database
         $timestamp = $this->invoicestartdate;
         $date = true;
@@ -83,32 +89,12 @@ class Invoice
         return $date;
     }
 
-    /**
-     * @return mixed
-     */
     public function getInvoiceenddate()
     {
 
         $date = strtotime("+30 days", strtotime($this->invoicestartdate));
         return date("Y-m-d", $date);
 
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getInvoiceleaseid()
-    {
-        return $this->invoicelease;
-    }
-
-    /**
-     * @param mixed $invoicelease
-     */
-    public function setInvoiceleaseid($invoicelease): void
-    {
-        $this->invoicelease = $invoicelease;
     }
 
     public function getInvoicedaysleft()
@@ -124,6 +110,30 @@ class Invoice
             return $difference;
         }
 
+    }
+
+    /**
+     * @param mixed $invoicestartdate
+     */
+    public function setInvoicestartdate($invoicestartdate): void
+    {
+        $this->invoicestartdate = $invoicestartdate;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInvoiceleaseid()
+    {
+        return $this->invoiceleaseid;
+    }
+
+    /**
+     * @param mixed $invoiceleaseid
+     */
+    public function setInvoiceleaseid($invoiceleaseid): void
+    {
+        $this->invoiceleaseid = $invoiceleaseid;
     }
 
     /**

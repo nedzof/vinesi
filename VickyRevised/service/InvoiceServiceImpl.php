@@ -14,7 +14,7 @@ use domain\Invoice;
 use http\HTTPException;
 use http\HTTPStatusCode;
 
-class IncoiveServiceImpl implements InvoiceService
+class InvoiceServiceImpl implements InvoiceService
 {
     /**
      * @access public
