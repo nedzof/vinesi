@@ -48,7 +48,7 @@ use view\TemplateView;
             <td><?php echo TemplateView::noHTML($lease->getTenttableTenantid()); ?> </td>
             <td><?php echo TemplateView::noHTML($lease->getTenant($lease->getTenttableTenantid())); ?> </td>
             <td>
-                <div class="btn-group btn-group-sm" role="group">
+                <div role="group">
                     <a class="btn btn-default" role="button" href="lease/update?id=<?php echo $lease->getLeaseid(); ?>"><i
                                 class="fa fa-edit"></i></a>
 
