@@ -82,10 +82,9 @@ class InvoiceDAO extends BasicDAO
                 WHERE invoiceid = :id');
             $stmt->bindValue(':invoicetype', $invoice->getInvoicetype());
             $stmt->bindValue(':invoiceamount', $invoice->getInvoiceamount());
+            $stmt->bindValue(':invoiceleaseid', $invoice->getInvoiceleaseid());
             $stmt->bindValue(':invoicestartdate', $invoice->getInvoicestartdate(true));
-            $stmt->bindValue(':invoicepaiddate', $invoice->getInvoicepaiddate(true));
-            $stmt->bindValue(':invoicelease', $invoice->getInvoicelease());
-            $stmt->bindValue(':id', $invoice->getInvoiceid());
+            $stmt->bindValue(':invoicepaid', $invoice->getInvoicepaid());
             $stmt->execute() or die("SQL Error in: " . $stmt->queryString . " - " . $stmt->errorInfo()[2]);
             return true;
         } catch (Exception $e) {

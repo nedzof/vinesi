@@ -38,7 +38,7 @@ class InvoiceController{
 
         try {
             $invoice = new Invoice();
-            $invoice->setInvoiceid($_POST["invoiceid"] ?? 0);
+            $invoice->setInvoiceid($_POST["invoiceid"]);
             $invoice->setInvoicetype($_POST["invoicetype"] ?? "");
             $invoice->setInvoiceamount($_POST["invoiceamount"] ?? 0);
             $invoice->setInvoiceleaseid($_POST["invoiceleaseid"] ?? null);
@@ -46,7 +46,7 @@ class InvoiceController{
             $invoice->setInvoicepaid($_POST["invoicepaid"] ?? 0);
 
 
-            if ($invoice->getInvoiceid() == 0) {
+            if ($invoice->getInvoiceid() == null) {
                 return (new InvoiceServiceImpl())->createInvoice($invoice);
             } else {
                 return (new InvoiceServiceImpl())->updateInvoice($invoice);

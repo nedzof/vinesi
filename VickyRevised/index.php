@@ -189,9 +189,9 @@ Router::route("GET", "/invoice", function () {
 });
 
 Router::route("GET", "/invoice/update", function () {
-    InvoiceController::createInvoiceForm();
-
-
+    if (InvoiceController::invoiceUpdateOrCreate()) {
+        Router::redirect("/invoice");
+    };
 });
 
 Router::route("POST", "/invoice/update", function () {

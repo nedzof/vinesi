@@ -73,7 +73,7 @@ use view\TemplateView;
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-primary" data-method="get"
+                                <button type="button" class="btn btn-primary" data-method="GET"
                                         onclick="location.href='invoice/delete?invoiceid=<?php echo $invoice->getInvoiceid(); ?>'">
                                     Delete
                                 </button>
