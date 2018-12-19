@@ -18,12 +18,12 @@ use view\TemplateView;
             <thead>
             <tr>
                 <th onclick="sortTable(0)">ID</th>
-                <th onclick="sortTable(1)">ExpenseType</th>
+                <th onclick="sortTable(1)">Type</th>
                 <th onclick="sortTable(2)">Amount</th>
                 <th onclick="sortTable(3)">Expense Date</th>
                 <th onclick="sortTable(4)">Expense Due</th>
                 <th onclick="sortTable(5)">Days Remaining</th>
-                <th onclick="sortTable(6)"></th>
+                <th onclick="sortTable(6)">Paid</th>
 
             </tr>
             </thead>
