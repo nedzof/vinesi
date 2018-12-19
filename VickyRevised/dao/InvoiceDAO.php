@@ -27,7 +27,7 @@ class InvoiceDAO extends BasicDAO
             $stmt->bindValue(':invoiceamount', $invoice->getInvoiceamount());
             $stmt->bindValue(':invoiceleaseid', $invoice->getInvoiceleaseid());
             $stmt->bindValue(':invoicestartdate', $invoice->getInvoicestartdate(true));
-            $stmt->bindValue(':invoiceleaseid', $invoice->getInvoicepaid());
+            $stmt->bindValue(':invoicepaid', $invoice->getInvoicepaid());
             $stmt->execute();
         } catch (Exception $e) {
             $a = ($invoice->getInvoiceid());

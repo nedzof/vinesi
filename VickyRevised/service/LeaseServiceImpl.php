@@ -104,5 +104,27 @@ class LeaseServiceImpl implements LeaseService
         throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
+    public function getDropDownLeases($id)
+    {
+
+        $leaselist = [];
+
+        $result = (new LeaseDAO())->readAll();
+
+        for ($i = 0; $i < count($result); $i++) {
+            $row = $result[$i];
+            $leaseid = $row['leaseid'];
+            $name = $leaseid;
+
+            $leaseid == $id ?
+
+                $leaselist[$i] = "<option selected='selected' value='$leaseid'>$name</option>" :
+                $leaselist[$i] = "<option value='$leaseid'>$name</option>";
+        }
+
+
+        return $leaselist;
+    }
+
 
 }

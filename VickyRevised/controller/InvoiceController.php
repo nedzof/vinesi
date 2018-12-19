@@ -41,12 +41,12 @@ class InvoiceController{
             $invoice->setInvoiceid($_POST["invoiceid"] ?? 0);
             $invoice->setInvoicetype($_POST["invoicetype"] ?? "");
             $invoice->setInvoiceamount($_POST["invoiceamount"] ?? 0);
-            $invoice->setInvoicestartdate($_POST["invoicestartdate"] ?? date("Y-m-d"));
-            $invoice->setInvoicepaid($_POST["invoicepaiddate"] ?? 0);
             $invoice->setInvoiceleaseid($_POST["invoiceleaseid"] ?? null);
+            $invoice->setInvoicestartdate($_POST["invoicestartdate"] ?? date("Y-m-d"));
+            $invoice->setInvoicepaid($_POST["invoicepaid"] ?? 0);
 
 
-            if ($invoice->getInvoiceid() == null) {
+            if ($invoice->getInvoiceid() == 0) {
                 return (new InvoiceServiceImpl())->createInvoice($invoice);
             } else {
                 return (new InvoiceServiceImpl())->updateInvoice($invoice);

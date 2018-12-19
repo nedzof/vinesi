@@ -19,13 +19,13 @@ class LeaseDAO extends BasicDAO
             VALUES (DEFAULT, :leasemonthlyrent, :leaseutilities, :leasepaymentmethod, :leasedeposit, :leasestart, :leaseend, :propertytable_propertyid, :tenttable_tenantid)";
             $stmt = $this->pdoInstance->prepare($sql);
 
-        $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyrent());
-        $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
-        $stmt->bindValue(':leasepaymentmethod', $lease->getLeasepaymentmethod());
-        $stmt->bindValue(':leasedeposit', $lease->getLeasedeposit());
+            $stmt->bindValue(':leasemonthlyrent', $lease->getLeasemonthlyrent());
+            $stmt->bindValue(':leaseutilities', $lease->getLeaseutilities());
+            $stmt->bindValue(':leasepaymentmethod', $lease->getLeasepaymentmethod());
+            $stmt->bindValue(':leasedeposit', $lease->getLeasedeposit());
             $stmt->bindValue(':leasestart', $lease->getLeaseendDate(true));
             $stmt->bindValue(':leaseend', $lease->getLeaseendDate(true));
-        $stmt->bindValue(':propertytable_propertyid', $lease->getPropertytablePropertyid());
+            $stmt->bindValue(':propertytable_propertyid', $lease->getPropertytablePropertyid());
             $stmt->bindValue(':tenttable_tenantid', $lease->getTenttableTenantid());
 
 
@@ -56,19 +56,21 @@ class LeaseDAO extends BasicDAO
 
     public function readAll()
     {
-        $stmt = $this->pdoInstance->prepare('SELECT * FROM leasetable');
+        $sql = "SELECT * FROM leasetable";
+        $stmt = $this->pdoInstance->prepare($sql);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
-            $result = $stmt->fetchAll(PDO::FETCH_CLASS, Lease::class);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
-
         }
+
         return null;
 
 
     }
 
-    public function update(Lease $lease)
+    public
+    function update(Lease $lease)
     {
 
         try {
@@ -101,7 +103,8 @@ class LeaseDAO extends BasicDAO
     }
 
 
-    public function delete($leaseid)
+    public
+    function delete($leaseid)
     {
         $stmt = $this->pdoInstance->prepare('DELETE FROM leasetable WHERE leaseid = :id');
         $stmt->bindValue(':id', $leaseid);
@@ -110,7 +113,8 @@ class LeaseDAO extends BasicDAO
     }
 
 
-    public function getAllLeases()
+    public
+    function getAllLeases()
     {
         $stmt = $this->pdoInstance->prepare('SELECT * FROM leasetable ORDER BY leaseid;');
         $stmt->execute();
@@ -119,7 +123,8 @@ class LeaseDAO extends BasicDAO
 
     }
 
-    public function getLeaseById($leaseID)
+    public
+    function getLeaseById($leaseID)
     {
         $stmt = $this->pdoInstance->prepare('SELECT * FROM leasetable WHERE leaseid = :id LIMIT 1');
         $stmt->bindValue(':id', $leaseID);
@@ -131,4 +136,3 @@ class LeaseDAO extends BasicDAO
         return null;
     }
 }
-

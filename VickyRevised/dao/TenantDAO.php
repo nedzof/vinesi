@@ -4,7 +4,6 @@ namespace dao;
 
 use domain\Tenant;
 use PDO;
-use service\TenantServiceImpl;
 
 class TenantDAO extends BasicDAO {
 
@@ -51,10 +50,6 @@ class TenantDAO extends BasicDAO {
 
         }
         return null;
-    }
-
-    public function update(Tenant $tenant) {
-
     }
 
 
