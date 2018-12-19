@@ -59,8 +59,9 @@ class ExpenseController{
         }
     }
 
-    public static function deleteExpense($id)
+    public static function deleteExpense()
     {
+        $id = $_GET['del'];
         return (new ExpenseServiceImpl())->deleteExpense($id);
     }
 

@@ -74,9 +74,9 @@ use view\TemplateView;
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-primary" data-method="get"
+                                    <button type="button" class="btn btn-primary" data-method="delete"
 
-                                            onclick="location.href='lease/delete?id=<?php echo $expense->getExpenseid(); ?>'">
+                                            onclick="location.href='expense/delete?del=<?php echo $expense->getExpenseid(); ?>'">
                                         Delete
                                     </button>
                                 </div>
