@@ -8,10 +8,9 @@ use view\TemplateView;
 <!DOCTYPE html>
 <html>
 <body>
-<div class="container">
     <div class="page-header">
-        <h2 class="text-center">My <strong>leases</strong>.</h2></div>
-    <div class="table-responsive">
+        <h2 class="text-center">My <strong>expenses</strong>.</h2></div>
+    <div>
         <table class="table">
             <thead>
             <tr>
@@ -46,8 +45,10 @@ use view\TemplateView;
 
                     <td>
                         <div role="group">
-                            <a class="btn btn-default" role="button" data-toggle="modal" data-target="#ModalCenter"><i
-                                        class="ion-android-delete"></i></a>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#ModalCenter">
+                                <i class="ion-android-delete"></i>
+                            </button>
                             <a class="btn btn-default" role="button"
                                href="expense/update?id=<?php echo $expense->getExpenseid(); ?>"><i
                                         class="fa fa-edit"></i></a>
@@ -81,7 +82,6 @@ use view\TemplateView;
             <?php endforeach; ?>
         </table>
     </div>
-</div>
 </body>
 </html>
 <!-- jQuery library -->
