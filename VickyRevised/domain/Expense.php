@@ -9,6 +9,8 @@
 namespace domain;
 
 
+use DateTime;
+
 class Expense
 {
     protected $expenseid;
@@ -99,7 +101,16 @@ class Expense
     public function getExpensedaysleft()
     {
 
-        return round(abs(strtotime($this->getExpenseenddate()) - strtotime(date("Y-m-d"))) / 86400);
+        $datetime1 = new DateTime();
+        $datetime2 = new DateTime($this->getExpenseenddate());
+        $interval = $datetime1->diff($datetime2);
+        $difference = $interval->format('%R%a days');
+        if ($difference < 0) {
+            return 'Expired since ' . $difference;
+        } else {
+            return $difference;
+        }
+
     }
 
 
@@ -126,7 +137,6 @@ class Expense
     {
         $this->expensepaid = $expensepaid;
     }
-
 
 
 }
