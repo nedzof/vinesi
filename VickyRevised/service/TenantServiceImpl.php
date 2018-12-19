@@ -122,7 +122,12 @@ class TenantServiceImpl implements TenantService
     {
         $tenantDAO = new TenantDAO();
         return $tenantDAO->getTenantLastNameById($id);
+    }
 
+    public function getNumberOfTenantsImpl()
+    {
+        $tenantDAO = new TenantDAO();
+        return $tenantDAO->getNumberOfTenants();
     }
 
 

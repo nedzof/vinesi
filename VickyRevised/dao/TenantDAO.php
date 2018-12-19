@@ -7,6 +7,12 @@ use PDO;
 
 class TenantDAO extends BasicDAO {
 
+    public function getNumberOfTenants()
+    {
+        $sql = "SELECT COUNT(tenantid) FROM tenanttable";
+        $stmt = $this->pdoInstance->prepare($sql);
+        return $stmt->execute();
+    }
 
     public function create(Tenant $tenant) {
         $stmt = $this->pdoInstance->prepare('

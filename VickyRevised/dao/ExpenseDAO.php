@@ -118,4 +118,11 @@ class ExpenseDAO extends BasicDAO
 
     }
 
+    public function getExpenseSum()
+    {
+        $sql = "SELECT SUM(expenseamount) FROM expensetable";
+        $stmt = $this->pdoInstance->prepare($sql);
+        return $stmt->execute();
+    }
+
 }

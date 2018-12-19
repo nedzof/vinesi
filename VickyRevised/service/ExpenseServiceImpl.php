@@ -111,4 +111,12 @@ class ExpenseServiceImpl implements ExpenseService
         }
         throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
+
+    public function getExpenseSumImpl()
+    {
+        $expenseDAO = new ExpenseDAO();
+        return $expenseDAO->getExpenseSum();
+    }
+
+
 }

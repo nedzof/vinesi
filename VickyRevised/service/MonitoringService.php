@@ -8,18 +8,7 @@
 
 class MonitoringService
 {
-    public static function getLastMonths($numberOfMonths)
-    {
-        for ($i = 1; $i <= $numberOfMonths; $i++) {
-            $months[] = date("Y-m%", strtotime(date('Y-m-01') . " -$i months"));
-        }
 
-    }
 
-    //Needed for dataset comparison between accounts receivables and accounts payables
-    public static function getPaymentArrays($numberOfMonths)
-    {
-
-    }
 
 }

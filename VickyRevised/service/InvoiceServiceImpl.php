@@ -101,4 +101,24 @@ class InvoiceServiceImpl implements InvoiceService
         throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
+    public function billTenantsbyExpense($month)
+    {
+        $sum = (new ExpenseServiceImpl())->getExpenseSumImpl();
+        $count = (new TenantServiceImpl())->getNumberOfTenantsImpl();
+        $billamount = $sum / $count;
+
+        $invoiceDAO = new InvoiceDAO();
+        $invoiceArray = [];
+        for ($i = 1; $i = $count; $i++) {
+            $inv = new Invoice();
+            $inv->setInvoiceamount($billamount);
+            $inv->setInvoicepaid(0);
+            $inv->setInvoiceleaseid('HAHHA');
+            $inv->setInvoicetype('Rent');
+            $inv->setInvoicestartdate(date($month));
+            $invoiceDAO->createInvoice($inv);
+        }
+
+    }
+
 }

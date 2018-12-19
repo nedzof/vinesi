@@ -28,58 +28,58 @@ use view\TemplateView;
         <?php
         $i = 0;
         foreach ($this->expenses as $expense):/*@var expense $expense*/
-            $id = $expense->getExpenseid();
-                ?>
-                <tr>
-                    <td><?php echo TemplateView::noHTML($expense->getExpenseid()) ?></td>
-            <td><?php echo TemplateView::noHTML($expense->getExpensetype()); ?></td>
-            <td><?php echo TemplateView::noHTML($expense->getExpenseamount()); ?></td>
-            <td><?php echo TemplateView::noHTML($expense->getExpensestartdate()); ?></td>
-            <td><?php echo TemplateView::noHTML($expense->getExpenseenddate()); ?></td>
-            <td><?php echo TemplateView::noHTML($expense->getExpensedaysleft()); ?></td>
+            ?>
+            <tr>
+                <td><?php echo TemplateView::noHTML($expense->getExpenseid()) ?></td>
+                <td><?php echo TemplateView::noHTML($expense->getExpensetype()); ?></td>
+                <td><?php echo TemplateView::noHTML($expense->getExpenseamount()); ?></td>
+                <td><?php echo TemplateView::noHTML($expense->getExpensestartdate()); ?></td>
+                <td><?php echo TemplateView::noHTML($expense->getExpenseenddate()); ?></td>
+                <td><?php echo TemplateView::noHTML($expense->getExpensedaysleft()); ?></td>
 
-            <?php if ($expense->getExpensepaid() == 0) { ?>
-            <td style="background:#efa2a9">NO</td>
-        <?php } else { ?>
-            <td style="background:#71dd8a">YES</td>
-        <?php } ?>
-
-
-            <td>
-                <div role="group">
-                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#ModalCenter">
-                        <i class="ion-android-delete"></i>
-                    </button>
-                    <a class="btn btn-default" role="button" href="expense/update?id=<?php echo $id ?>"><i
-                                class="fa fa-edit"></i></a>
-                </div>
-            </td>
+                <?php if ($expense->getExpensepaid() == 0) { ?>
+                    <td style="background:#efa2a9">NO</td>
+                <?php } else { ?>
+                    <td style="background:#71dd8a">YES</td>
+                <?php } ?>
 
 
-            </tr>
-            <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog"
-                 aria-labelledby="exampleModalCenterTitle"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Deleting Expense</h5>
-                        </div>
-                        <div class="modal-body">
-                            <p>Mr Andreas Martin, do you want to delete this
-                                Expense?
-                            </p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-default" role="button" href="expense/delete?id=<?php echo $id ?>"><i
-                                        class="ion-android-delete"></i></a>
+                <td>
+                    <div role="group">
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#ModalCenter">
+                            <i class="ion-android-delete"></i>
+                        </button>
+                        <a class="btn btn-default" role="button"
+                           href="expense/update?id=<?php echo $expense->getExpenseid() ?>"><i
+                                    class="fa fa-edit"></i></a>
+                    </div>
+                </td>
 
+                <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalCenterTitle"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Deleting Expense</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>Mr Andreas Martin, do you want to delete this
+                                    Expense?
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <a class="btn btn-default" role="button"
+                                   href="expense/delete?id=<?php echo $expense->getExpenseid() ?>"><i
+                                            class="ion-android-delete"></i></a>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </tr>
         <?php endforeach; ?>
 
 
