@@ -12,8 +12,10 @@ use controller\ErrorController;
 use controller\LeaseController;
 use controller\InvoiceController;
 use controller\ExpenseController;
+use controller\LeaseController;
 use controller\LoginController;
 use controller\MenuController;
+use controller\MonitoringController;
 use controller\RegisterController;
 use controller\UserController;
 use http\HTTPException;
@@ -31,6 +33,8 @@ $authFunction = function () {
     Router::redirect("/login");
     return false;
 };
+
+####################################################################################################
 
 /*
  * Login Routing
@@ -55,6 +59,7 @@ Router::route("GET", "/logout", function () {
     Router::redirect("/login");
 });
 
+####################################################################################################
 
 /*
  * Register Routing
@@ -68,6 +73,8 @@ Router::route("POST", "/register", function () {
         Router::redirect("/logout");
 });
 
+
+####################################################################################################
 
 /*
  *  Lease
@@ -88,7 +95,6 @@ Router::route("POST", "/lease/update", function () {
         Router::redirect("/lease");
 
     };
-    // Router::redirect("/lease");
 
 
 });
@@ -117,7 +123,22 @@ Router::route("DELETE", "/lease/delete/{id}", function ($id) {
         Router::redirect("/lease");
     }
 });
+####################################################################################################
 
+/*
+ * Monitoring
+ */
+
+Router::route("GET", "/monitoring", function () {
+    MonitoringController::monitoringView();
+});
+
+
+
+
+
+
+####################################################################################################
 /*
  *  Expense Routing
  */
@@ -161,7 +182,7 @@ Router::route("DELETE", "/expense/delete/{id}", function ($id) {
      }
     });
 
-
+####################################################################################################
 
 //Invoice Routing
 Router::route("GET", "/invoice", function () {

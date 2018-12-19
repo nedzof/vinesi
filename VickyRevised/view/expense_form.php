@@ -53,33 +53,47 @@ $createOrUpdate = !empty($this->expense) ?>
                             type="text"
                             required=""
                     </div>
-                    <div class="form-group"><label class="text-secondary">Amount</label><input name="Expenseamount"
-                                                                                                  value="<?php echo $createOrUpdate ? $this->expense->getExpenseamount() : 0 ?>"
-                                                                                                  class="form-control"
-                                                                                                  type="number"
-                                                                                                  required="">
+                    <div class="form-group"><label class="text-secondary">Amount</label><input name="expenseamount"
+                                                                                               value="<?php echo $createOrUpdate ? $this->expense->getExpenseamount() : 0 ?>"
+                                                                                               class="form-control"
+                                                                                               type="number"
+                                                                                               required="">
                     </div>
 
                     </div>
-                    <div class="form-group"><label class="text-secondary">Expense Date</label><input name="expensedate"
-                                                                                                    value="<?php echo $createOrUpdate ? $this->expense->getExpensestartDate(true) : date("Y-m-d"); ?>"
-                                                                                                    class="form-control"
-                                                                                                    type="date"
-                                                                                                    required="">
+                <div class="form-group"><label class="text-secondary">Expense Date</label><input name="expensestartdate"
+                                                                                                 value="<?php echo $createOrUpdate ? $this->expense->getExpensestartdate() : date("Y-m-d"); ?>"
+                                                                                                 class="form-control"
+                                                                                                 type="date"
+                                                                                                 required="">
                     </div>
-                    <div class="form-group"><label class="text-secondary">Expense paid</label><input name="expensepaid"
-                                                                                                     value="<?php echo $createOrUpdate ? $this->expense->getExpensepaid() : false?>"
-                                                                                                     class="form-control"
-                                                                                                     type="checkbox"
+                <div class="form-group"><label class="text-secondary">Expense paid</label>
 
-                                                                                                     >
+                    <?php
+
+                    if ($createOrUpdate) {
+                        if ($this->expense->getExpensepaid() == 1) { ?>
+
+                            <input type="checkbox" value="1" checked="checked" name="expensepaid">
+
+                        <?php } elseif ($this->expense->getExpensepaid() == 0) { ?>
+
+                            <input type="checkbox" value="1" name="expensepaid">
+
+                        <?php }
+                    } else { ?>
+
+                        <input type="checkbox" value="1" name="expensepaid">
+
+                    <?php } ?>
                     </div>
 
                     <div class="input-group" role="group" >
-                            <input type="submit" value="<?php echo $createOrUpdate ? "Update" : "Create" ?>"
+                        <input type="submit" class="btn-primary"
+                               value="<?php echo $createOrUpdate ? "Update" : "Create" ?>"
                         </div>
                         <div>
-                            <input type="button" value="Cancel" onclick="goBack()">
+                            <input type="button" class="btn-success" value="Cancel" onclick="goBack()">
                                  <script>
                                       function goBack() {
                                       window.history.back();
