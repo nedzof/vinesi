@@ -8,6 +8,7 @@ use http\HTTPStatusCode;
 use service\InvoiceServiceImpl;
 use view\LayoutRendering;
 use view\TemplateView;
+
 /**
  * Created by PhpStorm.
  * User: Victoria Villar
@@ -39,7 +40,7 @@ class InvoiceController{
             $invoice = new Invoice();
             $invoice->setInvoiceid($_POST["invoiceid"] ?? 0);
             $invoice->setInvoicetype($_POST["invoicetype"] ?? "");
-            $invoice->setInvocieamount($_POST["invoiceamount"] ?? 0);
+            $invoice->setInvoiceamount($_POST["invoiceamount"] ?? 0);
             $invoice->setInvoicestartdate($_POST["invoicestartdate"] ?? date("Y-m-d"));
             $invoice->setInvoicepaiddate($_POST["invoicepaiddate"] ?? date("Y-m-d"));
             $invoice->setInvoicecreator($_POST["invoicecreator"] ?? null);

@@ -8,6 +8,8 @@
 
 namespace domain;
 
+use DateTime;
+
 class Invoice
 {
 
@@ -15,23 +17,15 @@ class Invoice
     private $invoicetype;
     private $invoiceamount;
     private $invoicestartdate;
-    private $invoicepaiddate;
     private $invoicelease;
-
-    /**
-     * @return mixed
-     */
-    public function getInvoiceid()
-    {
-        return $this->invoiceid;
-    }
+    private $invoicepaid;
 
     /**
      * @param mixed $invoiceid
      */
-    public function setInvoiceid($invoiceid) :void
+    public function getInvoiceid()
     {
-        $this->invoiceid = $invoiceid;
+        return $this->invoiceid;
     }
 
     /**
@@ -53,7 +47,7 @@ class Invoice
     /**
      * @return mixed
      */
-    public function getInvocieamount()
+    public function getInvoiceamount()
     {
         return $this->invoiceamount;
     }
@@ -61,11 +55,14 @@ class Invoice
     /**
      * @param mixed $invoiceamount
      */
-    public function setInvocieamount($invoiceamount) :void
+    public function setInvoiceamount($invoiceamount): void
     {
         $this->invoiceamount = $invoiceamount;
     }
 
+    /**
+     * @return mixed
+     */
     /**
      * @return mixed
      */
@@ -74,7 +71,7 @@ class Invoice
         //Boolean true if to display on table
         //Boolena false if to insert in database
         $timestamp = $this->invoicestartdate;
-        $date = null;
+        $date = true;
         if ($b) {
             $date = strftime('%Y-%m-%d', strtotime($timestamp));
         } else {
@@ -87,46 +84,21 @@ class Invoice
     }
 
     /**
-     * @param mixed $invoicestartdate
-     */
-    public function setInvoicestartdate($invoicestartdate) :void
-    {
-        $this->invoicestartdate = $invoicestartdate;
-    }
-
-    /**
      * @return mixed
      */
-    public function getInvoicepaiddate($b = true)
+    public function getInvoiceenddate()
     {
-        //Boolean true if to display on table
-        //Boolena false if to insert in database
-        $timestamp = $this->invoicepaiddate;
-        $date = null;
-        if ($b) {
-            $date = strftime('%Y-%m-%d', strtotime($timestamp));
-        } else {
-            $date = strftime('%Y-%m-%d %H:%M:%S.%f', strtotime($timestamp));
-        }
 
+        $date = strtotime("+30 days", strtotime($this->invoicestartdate));
+        return date("Y-m-d", $date);
 
-        // $time = date('Gi.s', $timestamp);
-        return $date;
-    }
-
-    /**
-     * @param mixed $invoicepaiddate
-     */
-    public function setInvoicepaiddate($invoicepaiddate) :void
-    {
-        $this->invoicepaiddate = $invoicepaiddate;
     }
 
 
     /**
      * @return mixed
      */
-    public function getInvoicelease()
+    public function getInvoiceleaseid()
     {
         return $this->invoicelease;
     }
@@ -134,12 +106,41 @@ class Invoice
     /**
      * @param mixed $invoicelease
      */
-    public function setInvoicelease($invoicelease) :void
+    public function setInvoiceleaseid($invoicelease): void
     {
         $this->invoicelease = $invoicelease;
     }
 
+    public function getInvoicedaysleft()
+    {
 
+        $datetime1 = new DateTime();
+        $datetime2 = new DateTime($this->getInvoiceenddate());
+        $interval = $datetime1->diff($datetime2);
+        $difference = $interval->format('%R%a days');
+        if ($difference < 0) {
+            return 'Expired since ' . $difference;
+        } else {
+            return $difference;
+        }
+
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInvoicepaid()
+    {
+        return $this->invoicepaid;
+    }
+
+    /**
+     * @param mixed $invoicepaid
+     */
+    public function setInvoicepaid($invoicepaid): void
+    {
+        $this->invoicepaid = $invoicepaid;
+    }
 
 
 }

@@ -9,8 +9,8 @@
 namespace dao;
 
 use domain\Invoice;
-use PDO;
 use Exception;
+use PDO;
 
 
 class InvoiceDAO extends BasicDAO
@@ -19,16 +19,15 @@ class InvoiceDAO extends BasicDAO
     {
 
         try {
-            $sql = "INSERT INTO invoicetable (invoiceid, invoicetype, invoiceamount, invoicestartdate, invoicepaiddate, invoicecreator, invoicelease) 
-            VALUES (DEFAULT, :invoicetype, :invoiceamount, :invoicestartdate, :invoicepaiddate, :invoicecreator, :invoicelease)";
+            $sql = "INSERT INTO invoicetable (invoiceid, invoicetype, invoiceamount, invoiceleaseid, invoicestartdate, invoicepaid) 
+            VALUES (DEFAULT, :invoiceid, :invoicetype, :invoiceamount, :invoiceleaseid, :invoicestartdate, :invoicepaid)";
             $stmt = $this->pdoInstance->prepare($sql);
 
             $stmt->bindValue(':invoicetype', $invoice->getInvoicetype());
-            $stmt->bindValue(':invoiceamount', $invoice->getInvocieamount());
+            $stmt->bindValue(':invoiceamount', $invoice->getInvoiceamount());
             $stmt->bindValue(':invoicestartdate', $invoice->getInvoicestartdate(true));
             $stmt->bindValue(':invoicepaiddate', $invoice->getInvoicepaiddate(true));
-            $stmt->bindValue(':invoicecreator', $invoice->getInvoicecreator());
-            $stmt->bindValue(':invoicelease', $invoice->getInvoicelease());
+            $stmt->bindValue(':invoiceleaseid', $invoice->getInvoicelease());
             $stmt->execute();
         } catch (Exception $e) {
             $a = ($invoice->getInvoiceid());
@@ -77,16 +76,14 @@ class InvoiceDAO extends BasicDAO
                 UPDATE invoicetable SET 
                 invoicetype = :invoicetype,
                 invoiceamount = :invoiceamount,
-                invoicestartdate= :invoicestartdate,
-                invoicepaiddate= :invoicepaiddate,
-                invoicecreator = :invoicecreator,
-                invoicelease = :invoicelease
+                invoiceleaseid= :invoiceleaseid,
+                invoicestartdate = :invoicestartdate,
+                invoicepaid = :invoicepaid
                 WHERE invoiceid = :id');
             $stmt->bindValue(':invoicetype', $invoice->getInvoicetype());
-            $stmt->bindValue(':invoiceamount', $invoice->getInvocieamount());
+            $stmt->bindValue(':invoiceamount', $invoice->getInvoiceamount());
             $stmt->bindValue(':invoicestartdate', $invoice->getInvoicestartdate(true));
             $stmt->bindValue(':invoicepaiddate', $invoice->getInvoicepaiddate(true));
-            $stmt->bindValue(':invoicecreator', $invoice->getInvoicecreator());
             $stmt->bindValue(':invoicelease', $invoice->getInvoicelease());
             $stmt->bindValue(':id', $invoice->getInvoiceid());
             $stmt->execute() or die("SQL Error in: " . $stmt->queryString . " - " . $stmt->errorInfo()[2]);

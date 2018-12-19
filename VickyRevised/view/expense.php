@@ -66,11 +66,13 @@ use view\TemplateView;
                                 </div>
                                 <div class="modal-body">
                                     <p>Mr Andreas Martin, do you want to delete this
-                                        Expense</p>
+                                        Expense?
+                                    </p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                     <button type="button" class="btn btn-primary" data-method="get"
+
                                             onclick="location.href='lease/delete?id=<?php echo $expense->getExpenseid(); ?>'">
                                         Delete
                                     </button>
