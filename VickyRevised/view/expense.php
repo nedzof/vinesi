@@ -19,7 +19,9 @@ use view\TemplateView;
         <th>Type</th>
         <th>Amount</th>
         <th>Expense Date</th>
+        <th>Expense Due</th>
         <th>Expense Paid</th>
+
     </tr>
     </thead>
     <tbody>
@@ -32,6 +34,7 @@ use view\TemplateView;
             <td><?php echo TemplateView::noHTML($expense->getExpensetype()); ?></td>
             <td><?php echo TemplateView::noHTML($expense->getExpenseamount()); ?></td>
             <td><?php echo TemplateView::noHTML($expense->getExpensestartdate()); ?></td>
+            <td><?php echo TemplateView::noHTML($expense->getExpenseenddate()); ?></td>
             <?php if ($expense->getExpensepaid() == 0) { ?>
                 <td style="background:#efa2a9">NO</td>
             <?php } else { ?>
@@ -47,11 +50,7 @@ use view\TemplateView;
                        href="expense/update?id=<?php echo $expense->getExpenseid(); ?>"><i
                                 class="fa fa-edit"></i></a>
 
-                    <button type="button" class="btn-outline-light">
-                        <a class="btn btn-default" role="button"
-                           href="invoice/create?id=<?php echo $expense->getExpenseid(); ?>">
-                            <i class="ion-ios-plus-empty">Create Invoice</i>
-                    </button>
+
 
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter">
@@ -86,11 +85,15 @@ use view\TemplateView;
         </tr>
     <?php endforeach;
     ?>
+
+    </button>
     <div class="btn-group" role="group">
         <a class="btn btn-default" role="button" href="expense/create"> <i class="fa fa-plus-square-o"></i></a>
         <a target="_blank" class="btn btn-default" role="button" href="expense/pdf"> <i
                     class="fa fa-file-pdf-o"></i></a>
         <a class="btn btn-default" role="button" href="expense/email"> <i class="fa fa-envelope-o"></i></a>
+        <a class="btn btn-default" role="button" href="invoice/create/id?="<?php echo $expense->getExpenseid() ?>><i
+                    class="ion-document"></i></a>
     </div>
     </tbody>
 </table>

@@ -86,6 +86,18 @@ class Expense
     }
 
     /**
+     * @return mixed
+     */
+    public function getExpenseenddate()
+    {
+
+        $date = strtotime("+30 days", strtotime($this->expensestartdate));
+        return date("Y-m-d", $date);
+
+    }
+
+
+    /**
      * @param mixed $expensestartdate
      */
     public function setExpensestartdate($expensestartdate):void

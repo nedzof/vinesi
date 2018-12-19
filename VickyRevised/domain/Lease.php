@@ -120,7 +120,7 @@ class Lease
         }
 
 
-        // $time = date('Gi.s', $timestamp);
+// $time = date('Gi.s', $timestamp);
         return $date;
     }
 
