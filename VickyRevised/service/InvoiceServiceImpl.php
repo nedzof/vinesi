@@ -104,6 +104,7 @@ class InvoiceServiceImpl implements InvoiceService
     public function billTenantsbyExpense($month)
     {
         $sum = (new ExpenseServiceImpl())->getExpenseSumImpl();
+        $tenantIDs = (new TenantServiceImpl())->getDropDownTenants();
         $count = (new TenantServiceImpl())->getNumberOfTenantsImpl();
         $billamount = $sum / $count;
 

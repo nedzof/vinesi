@@ -65,9 +65,7 @@ use view\TemplateView;
                                     <h5 class="modal-title" id="exampleModalLongTitle">Deleting Expense</h5>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Mr Andreas Martin, do you want to delete this
-                                        Expense?
-                                    </p>
+                                    <p>Mr Andreas Martin, do you want to delete this Expense?</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

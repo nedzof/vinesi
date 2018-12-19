@@ -11,14 +11,5 @@ vendor/
 # See https://github.com/joeblau/gitignore.io/issues/186 and https://github.com/joeblau/gitignore.io/issues/360
 .idea/
 
-### VisualStudioCode ###
-.vscode/
-.history
-
-### Visual Paradigm ###
-.vpprefdata/
-*.vpp~*
-*.vpp.*
-
 ### Environment Variables ###
 *.env
