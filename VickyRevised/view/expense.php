@@ -19,7 +19,10 @@ use view\TemplateView;
         <th>Type</th>
         <th>Amount</th>
         <th>Expense Date</th>
+        <th>Expense Due</th>
+        <th>Days Remaining</th>
         <th>Expense Paid</th>
+
     </tr>
     </thead>
     <tbody>
@@ -32,6 +35,9 @@ use view\TemplateView;
             <td><?php echo TemplateView::noHTML($expense->getExpensetype()); ?></td>
             <td><?php echo TemplateView::noHTML($expense->getExpenseamount()); ?></td>
             <td><?php echo TemplateView::noHTML($expense->getExpensestartdate()); ?></td>
+            <td><?php echo TemplateView::noHTML($expense->getExpenseenddate()); ?></td>
+            <td><?php echo TemplateView::noHTML($expense->getExpensedaysleft()); ?></td>
+
             <?php if ($expense->getExpensepaid() == 0) { ?>
                 <td style="background:#efa2a9">NO</td>
             <?php } else { ?>
@@ -44,34 +50,35 @@ use view\TemplateView;
 
                 <div class="btn-group btn-group-sm" role="group">
                     <a class="btn btn-default" role="button"
-                       href="expense/update?id=<?php echo $expense->getExpenseid(); ?>">
-                        <i class="fa fa-edit"></i></a>
-                    <!-- Delete Button Trigger -->
+                       href="expense/update?id=<?php echo $expense->getExpenseid(); ?>"><i
+                                class="fa fa-edit"></i></a>
+
+
+
+                    <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter">
                         <i class="ion-android-delete"></i>
                     </button>
-                    <!-- Delete -->
+
+                    <!-- Modal -->
                     <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog"
                          aria-labelledby="exampleModalCenterTitle"
                          aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Delete Expense</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Deleting Expense</h5>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Do you want to delete the
-                                        Expense <? echo $expense->getExpenseid(); ?> ?</p>
+                                    <p>Mr Andreas Martin, do you want to delete this
+                                        Expense</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <button type="button" data-method="delete"
-                                            href="expense/delete/<?php echo $expense->getExpenseid(); ?>
-                                            class=" btn btn-primary
-                                    ">Delete</button>
+                                    <button type="button" class="btn btn-primary" data-method="get"
+                                            onclick="location.href='lease/delete?id=<?php echo $expense->getExpenseid(); ?>'">
+                                        Delete
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -81,11 +88,15 @@ use view\TemplateView;
         </tr>
     <?php endforeach;
     ?>
+
+    </button>
     <div class="btn-group" role="group">
         <a class="btn btn-default" role="button" href="expense/create"> <i class="fa fa-plus-square-o"></i></a>
         <a target="_blank" class="btn btn-default" role="button" href="expense/pdf"> <i
                     class="fa fa-file-pdf-o"></i></a>
         <a class="btn btn-default" role="button" href="expense/email"> <i class="fa fa-envelope-o"></i></a>
+        <a class="btn btn-default" role="button" href="invoice/create/id?="<?php echo $expense->getExpenseid() ?>><i
+                    class="ion-document"></i></a>
     </div>
     </tbody>
 </table>

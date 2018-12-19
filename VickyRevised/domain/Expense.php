@@ -9,6 +9,8 @@
 namespace domain;
 
 
+use DateTime;
+
 class Expense
 {
     protected $expenseid;
@@ -86,6 +88,33 @@ class Expense
     }
 
     /**
+     * @return mixed
+     */
+    public function getExpenseenddate()
+    {
+
+        $date = strtotime("+30 days", strtotime($this->expensestartdate));
+        return date("Y-m-d", $date);
+
+    }
+
+    public function getExpensedaysleft()
+    {
+
+        $datetime1 = new DateTime();
+        $datetime2 = new DateTime($this->getExpenseenddate());
+        $interval = $datetime1->diff($datetime2);
+        $difference = $interval->format('%R%a days');
+        if ($difference < 0) {
+            return 'Expired since ' . $difference;
+        } else {
+            return $difference;
+        }
+
+    }
+
+
+    /**
      * @param mixed $expensestartdate
      */
     public function setExpensestartdate($expensestartdate):void
@@ -108,7 +137,6 @@ class Expense
     {
         $this->expensepaid = $expensepaid;
     }
-
 
 
 }

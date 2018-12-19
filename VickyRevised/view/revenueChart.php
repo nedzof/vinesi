@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Horizontal Bar Chart</title>
+    <title>Number of late Rate Payments</title>
     <script async="" src="assets/js/analytics.js"></script>
     <script src="assets/js/Chart.js"></script>
     <style type="text/css">/* Chart.js */
@@ -39,7 +39,7 @@
 </head>
 
 <body>
-<div id="container" style="width: 100%;" align="center">
+<div id="container" style="width: 80%;" align="center">
     <div style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"
          class="chartjs-size-monitor">
         <div class="chartjs-size-monitor-expand"
@@ -60,9 +60,9 @@
     var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     var color = Chart.helpers.color;
     var horizontalBarChartData = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: MONTHS,
         datasets: [{
-            label: 'Accounts Receivables',
+            label: 'Payments due',
             backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
             borderColor: window.chartColors.red,
             borderWidth: 1,
@@ -76,7 +76,7 @@
                 randomScalingFactor()
             ]
         }, {
-            label: 'Account Payables',
+            label: 'Payments on time',
             backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
             borderColor: window.chartColors.blue,
             data: [
@@ -107,11 +107,11 @@
                 },
                 responsive: true,
                 legend: {
-                    position: 'right',
+                    position: 'middle',
                 },
                 title: {
                     display: true,
-                    text: 'Chart.js Horizontal Bar Chart'
+                    text: 'Amount of rent payments within deadline'
                 }
             }
         });
