@@ -23,7 +23,7 @@
 </head>
 
 <body>
-</body>
+
 
 <?php
 //False for Create, True for Update
@@ -36,24 +36,27 @@ $createOrUpdate = !empty($this->invoice) ?>
             <form action="<?php echo $createOrUpdate ? "update" : "create" ?>" method="post">
 
                 <?php if ($createOrUpdate) { ?>
-                <div class="form-grou§p"><label class="text-secondary">InvoiceID</label><input
-                        name="invoiceid"
-                        value="<?php echo $this->invoice->getInvoiceid() ?>"
-                        class="form-control"
-                        type="number"
-                        required=""
-                        readonly="readonly">
+                <div class="form-grou§p"><label class="text-secondary">Invoice ID</label><input
+                            name="invoice
+                           id"
+                            value="<?php echo $this->invoice->getInvoiceid() ?>"
+                            class="form-control"
+                            type="number"
+                            required=""
+                            readonly="readonly">
 
                     <?php } ?>
 
                     <div class="form-grou§p"><label class="text-secondary">Invoice Type</label><input
-                            name="invoicetype"
-                            value="<?php echo $createOrUpdate ? $this->invoice->getInvoicetype() : 0 ?>"
-                            class="form-control"
-                            type="text"
-                            required=""
+                                name="invoice
+                               type"
+                                value="<?php echo $createOrUpdate ? $this->invoice->getInvoicetype() : 0 ?>"
+                                class="form-control"
+                                type="text"
+                                required=""
                     </div>
-                    <div class="form-group"><label class="text-secondary">Amount</label><input name="invoiceamount"
+                    <div class="form-group"><label class="text-secondary">Amount</label><input name="invoice
+                   amount"
                                                                                                value="<?php echo $createOrUpdate ? $this->invoice->getInvoiceamount() : 0 ?>"
                                                                                                class="form-control"
                                                                                                type="number"
@@ -61,26 +64,43 @@ $createOrUpdate = !empty($this->invoice) ?>
                     </div>
 
                 </div>
-                <div class="form-group"><label class="text-secondary">Invoice Date</label><input name="invoicestartdate"
-                                                                                                 value="<?php echo $createOrUpdate ? $this->invoice->getInvoicestartdate(true) : date("Y-m-d"); ?>"
+                <div class="form-group"><label class="text-secondary">Invoice Date</label><input name="invoice
+               startdate"
+                                                                                                 value="<?php echo $createOrUpdate ? $this->invoice->getInvoicestartdate() : date("Y-m-d"); ?>"
                                                                                                  class="form-control"
                                                                                                  type="date"
                                                                                                  required="">
                 </div>
-                <div class="form-group"><label class="text-secondary">Invoice Pay Date</label><input name="invoicepaiddate"
-                                                                                                 value="<?php echo $createOrUpdate ? $this->invoice->getInvoicepaiddate() : false?>"
-                                                                                                 class="form-control"
-                                                                                                 type="date"
+                <div class="form-group"><label class="text-secondary">Invoice paid</label>
 
+                    <?php
 
-                    >
+                    if ($createOrUpdate) {
+                        if ($this->invoice->getInvoicepaid() == 1) { ?>
+
+                            <input type="checkbox" value="1" checked="checked" name="invoice
+                           paid">
+
+                        <?php } elseif ($this->invoice->getInvoicepaid() == 0) { ?>
+
+                            <input type="checkbox" value="1" name="invoice
+                           paid">
+
+                        <?php }
+                    } else { ?>
+
+                        <input type="checkbox" value="1" name="invoice
+                       paid">
+
+                    <?php } ?>
                 </div>
 
                 <div class="input-group" role="group" >
-                    <input type="submit" value="<?php echo $createOrUpdate ? "Update" : "Create" ?>"
+                    <input type="submit" class="btn-primary"
+                           value="<?php echo $createOrUpdate ? "Update" : "Create" ?>"
                 </div>
                 <div>
-                    <input type="button" value="Cancel" onclick="goBack()">
+                    <input type="button" class="btn-success" value="Cancel" onclick="goBack()">
                     <script>
                         function goBack() {
                             window.history.back();
@@ -94,4 +114,5 @@ $createOrUpdate = !empty($this->invoice) ?>
 </div>
 </div>
 
+</body>
 </html>

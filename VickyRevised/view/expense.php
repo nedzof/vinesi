@@ -7,20 +7,23 @@ use view\TemplateView;
 
 <!DOCTYPE html>
 <html>
+<head>
+    <script src="assets/js/Sorttable.js"></script>
+</head>
 <body>
     <div class="page-header">
         <h2 class="text-center">My <strong>expenses</strong>.</h2></div>
     <div>
-        <table class="table">
+        <table class="table" id="mytable">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Type</th>
-                <th>Amount</th>
-                <th>Expense Date</th>
-                <th>Expense Due</th>
-                <th>Days Remaining</th>
-                <th>Expense Paid</th>
+                <th onclick="sortTable(0)">ID</th>
+                <th onclick="sortTable(1)">ExpenseType</th>
+                <th onclick="sortTable(2)">Amount</th>
+                <th onclick="sortTable(3)">Expense Date</th>
+                <th onclick="sortTable(4)">Expense Due</th>
+                <th onclick="sortTable(5)">Days Remaining</th>
+                <th onclick="sortTable(6)"></th>
 
             </tr>
             </thead>
