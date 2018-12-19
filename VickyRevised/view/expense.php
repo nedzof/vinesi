@@ -44,34 +44,39 @@ use view\TemplateView;
 
                 <div class="btn-group btn-group-sm" role="group">
                     <a class="btn btn-default" role="button"
-                       href="expense/update?id=<?php echo $expense->getExpenseid(); ?>">
-                        <i class="fa fa-edit"></i></a>
-                    <!-- Delete Button Trigger -->
+                       href="expense/update?id=<?php echo $expense->getExpenseid(); ?>"><i
+                                class="fa fa-edit"></i></a>
+
+                    <button type="button" class="btn-outline-light">
+                        <a class="btn btn-default" role="button"
+                           href="invoice/create?id=<?php echo $expense->getExpenseid(); ?>">
+                            <i class="ion-ios-plus-empty">Create Invoice</i>
+                    </button>
+
+                    <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter">
                         <i class="ion-android-delete"></i>
                     </button>
-                    <!-- Delete -->
+
+                    <!-- Modal -->
                     <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog"
                          aria-labelledby="exampleModalCenterTitle"
                          aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Delete Expense</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Deleting Expense</h5>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Do you want to delete the
-                                        Expense <? echo $expense->getExpenseid(); ?> ?</p>
+                                    <p>Mr Andreas Martin, do you want to delete this
+                                        Expense</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <button type="button" data-method="delete"
-                                            href="expense/delete/<?php echo $expense->getExpenseid(); ?>
-                                            class=" btn btn-primary
-                                    ">Delete</button>
+                                    <button type="button" class="btn btn-primary" data-method="get"
+                                            onclick="location.href='lease/delete?id=<?php echo $expense->getExpenseid(); ?>'">
+                                        Delete
+                                    </button>
                                 </div>
                             </div>
                         </div>

@@ -68,7 +68,7 @@ use view\TemplateView;
                                 </div>
                                 <div class="modal-body">
                                     <p>Mr Andreas Martin, do you want to delete this
-                                        Lease <?php $a ?></p>
+                                        Lease</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
