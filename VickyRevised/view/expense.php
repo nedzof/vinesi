@@ -8,61 +8,51 @@ use view\TemplateView;
 <!DOCTYPE html>
 <html>
 <body>
-<div class="intro">
-    <h2 class="text-center" style="margin-bottom: 40px;padding-top: 40px;"><strong>Expenses</strong></h2>
-    <p class="text-center" style="color: #a2a8ae;">Overview of all expenses during a weeks time.</p>
-</div>
-<div class="btn-group" role="group">
-    <a class="btn btn-default" role="button" href="expense/create"> <i class="fa fa-plus-square-o"></i></a>
-    <a target="_blank" class="btn btn-default" role="button" href="expense/pdf"> <i
-                class="fa fa-file-pdf-o"></i></a>
-    <a class="btn btn-default" role="button" href="expense/email"> <i class="fa fa-envelope-o"></i></a>
-    class="ion-document"></i></a>
-</div>
-<table class="table">
-    <thead>
-    <tr class="header">
-        <th>ID</th>
-        <th>Type</th>
-        <th>Amount</th>
-        <th>Expense Date</th>
-        <th>Expense Due</th>
-        <th>Days Remaining</th>
-        <th>Expense Paid</th>
+<div class="container">
+    <div class="page-header">
+        <h2 class="text-center">My <strong>leases</strong>.</h2></div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Expense Date</th>
+                <th>Expense Due</th>
+                <th>Days Remaining</th>
+                <th>Expense Paid</th>
 
-    </tr>
-    </thead>
-    <tbody>
+            </tr>
+            </thead>
 
-    <?php
-    foreach ($this->expenses as $expense):/*@var expense $expense*/
-        ?>
-        <tr>
-            <td><?php echo TemplateView::noHTML($expense->getExpenseid()); ?></td>
-            <td><?php echo TemplateView::noHTML($expense->getExpensetype()); ?></td>
-            <td><?php echo TemplateView::noHTML($expense->getExpenseamount()); ?></td>
-            <td><?php echo TemplateView::noHTML($expense->getExpensestartdate()); ?></td>
-            <td><?php echo TemplateView::noHTML($expense->getExpenseenddate()); ?></td>
-            <td><?php echo TemplateView::noHTML($expense->getExpensedaysleft()); ?></td>
+            <?php
+            foreach ($this->expenses as $expense):/*@var expense $expense*/
+                ?>
+                <tr>
+                    <td><?php echo TemplateView::noHTML($expense->getExpenseid()); ?></td>
+                    <td><?php echo TemplateView::noHTML($expense->getExpensetype()); ?></td>
+                    <td><?php echo TemplateView::noHTML($expense->getExpenseamount()); ?></td>
+                    <td><?php echo TemplateView::noHTML($expense->getExpensestartdate()); ?></td>
+                    <td><?php echo TemplateView::noHTML($expense->getExpenseenddate()); ?></td>
+                    <td><?php echo TemplateView::noHTML($expense->getExpensedaysleft()); ?></td>
 
-            <?php if ($expense->getExpensepaid() == 0) { ?>
-                <td style="background:#efa2a9">NO</td>
-            <?php } else { ?>
-                <td style="background:#71dd8a">YES</td>
-            <?php } ?>
+                    <?php if ($expense->getExpensepaid() == 0) { ?>
+                        <td style="background:#efa2a9">NO</td>
+                    <?php } else { ?>
+                        <td style="background:#71dd8a">YES</td>
+                    <?php } ?>
 
 
-            <td>
-
-                <div class="btn-group btn-group-sm" role="group">
-                    <a class="btn btn-default" role="button"
-                       href="expense/update?id=<?php echo $expense->getExpenseid(); ?>"><i class="fa fa-edit"></i></a>
-
-
-
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalCenter"><i
-                                class="ion-android-delete"></i></button>
+                    <td>
+                        <div role="group">
+                            <a class="btn btn-default" role="button" data-toggle="modal" data-target="#ModalCenter"><i
+                                        class="ion-android-delete"></i></a>
+                            <a class="btn btn-default" role="button"
+                               href="expense/update?id=<?php echo $expense->getExpenseid(); ?>"><i
+                                        class="fa fa-edit"></i></a>
+                        </div>
+                    </td>
 
                     <!-- Modal -->
                     <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog"
@@ -87,15 +77,11 @@ use view\TemplateView;
                             </div>
                         </div>
                     </div>
-                </div>
-            </td>
-        </tr>
-    <?php endforeach;
-    ?>
-
-    </tbody>
-</table>
-
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    </div>
+</div>
 </body>
 </html>
 <!-- jQuery library -->

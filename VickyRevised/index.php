@@ -9,9 +9,8 @@ require_once("config/Autoloader.php");
 
 use controller\AuthController;
 use controller\ErrorController;
-use controller\LeaseController;
-use controller\InvoiceController;
 use controller\ExpenseController;
+use controller\InvoiceController;
 use controller\LeaseController;
 use controller\LoginController;
 use controller\MenuController;
