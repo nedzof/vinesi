@@ -212,10 +212,10 @@ Router::route("POST", "/invoice/create", function () {
     }
 });
 
-Router::route("POST", "/invoice/delete", function ($id) {
-    InvoiceController::deleteInvoice($id);
-    Router::redirect("/invoice");
-    echo "<script>alert(\"DELETED\")</script>";
+Router::route("GET", "/invoice/delete", function () {
+    if (InvoiceController::deleteInvoice()) {
+        //Router::redirect("/invoice");
+    }
 });
 
 Router::route("DELETE", "/invoice/delete/{id}", function ($id) {

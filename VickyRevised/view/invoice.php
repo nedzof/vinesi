@@ -17,6 +17,7 @@ use view\TemplateView;
             <th>ID</th>
             <th>Type</th>
             <th>Amount</th>
+            <th>Lease ID</th>
             <th>Invoice Date</th>
             <th>Invoice Due</th>
             <th>Days Remaining</th>
@@ -32,6 +33,7 @@ use view\TemplateView;
                 <td><?php echo TemplateView::noHTML($invoice->getInvoiceid()); ?></td>
                 <td><?php echo TemplateView::noHTML($invoice->getInvoicetype()); ?></td>
                 <td><?php echo TemplateView::noHTML($invoice->getInvoiceamount()); ?></td>
+                <td><?php echo TemplateView::noHTML($invoice->getInvoiceleaseid()); ?></td>
                 <td><?php echo TemplateView::noHTML($invoice->getInvoicestartdate()); ?></td>
                 <td><?php echo TemplateView::noHTML($invoice->getInvoiceenddate()); ?></td>
                 <td><?php echo TemplateView::noHTML($invoice->getInvoicedaysleft()); ?></td>
@@ -72,8 +74,7 @@ use view\TemplateView;
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <button type="button" class="btn btn-primary" data-method="get"
-
-                                        onclick="location.href='invoice/delete?id=<?php echo $invoice->getInvoiceid(); ?>'">
+                                        onclick="location.href='invoice/delete?invoiceid=<?php echo $invoice->getInvoiceid(); ?>'">
                                     Delete
                                 </button>
                             </div>
