@@ -20,6 +20,7 @@ use view\TemplateView;
         <th>Amount</th>
         <th>Expense Date</th>
         <th>Expense Due</th>
+        <th>Days Remaining</th>
         <th>Expense Paid</th>
 
     </tr>
@@ -35,6 +36,8 @@ use view\TemplateView;
             <td><?php echo TemplateView::noHTML($expense->getExpenseamount()); ?></td>
             <td><?php echo TemplateView::noHTML($expense->getExpensestartdate()); ?></td>
             <td><?php echo TemplateView::noHTML($expense->getExpenseenddate()); ?></td>
+            <td><?php echo TemplateView::noHTML($expense->getExpensedaysleft()); ?></td>
+
             <?php if ($expense->getExpensepaid() == 0) { ?>
                 <td style="background:#efa2a9">NO</td>
             <?php } else { ?>

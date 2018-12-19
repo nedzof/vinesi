@@ -96,6 +96,12 @@ class Expense
 
     }
 
+    public function getExpensedaysleft()
+    {
+
+        return round(abs(strtotime($this->getExpenseenddate()) - strtotime(date("Y-m-d"))) / 86400);
+    }
+
 
     /**
      * @param mixed $expensestartdate
