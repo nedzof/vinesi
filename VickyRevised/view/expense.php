@@ -85,6 +85,12 @@ use view\TemplateView;
                     </div>
                 </tr>
             <?php endforeach; ?>
+            <div role="group">
+                <a class="btn btn-default" role="button" href="expense/create"> <i class="fa fa-plus-square-o"></i></a>
+                <a target="_blank" class="btn btn-default" role="button" href="expense/pdf"> <i
+                            class="fa fa-file-pdf-o"></i></a>
+                <a class="btn btn-default" role="button" href="expense/email"> <i class="fa fa-envelope-o"></i></a>
+            </div>
         </table>
     </div>
 </body>

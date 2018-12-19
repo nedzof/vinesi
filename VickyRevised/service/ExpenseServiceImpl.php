@@ -31,8 +31,6 @@ class ExpenseServiceImpl implements ExpenseService
         $expenseDAO = new ExpenseDAO();
         //$lease->set(AuthServiceImpl::getInstance()->getCurrentUserId());
         return $expenseDAO->create($expense);
-        //}
-        //throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
     /**
