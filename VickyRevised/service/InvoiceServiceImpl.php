@@ -26,22 +26,13 @@ class InvoiceServiceImpl
      */
     public function createInvoice(Invoice $invoice)
     {
-        //if(AuthServiceImpl::getInstance()->verifyAuth()) {
-        $invoiceDAO = new InvoiceDAO();
-        //$invoice->set(AuthServiceImpl::getInstance()->getCurrentUserId());
-        return $invoiceDAO->createInvoice($invoice);
-        //}
-        //throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+            $invoiceDAO = new InvoiceDAO();
+            return $invoiceDAO->createInvoice($invoice);
+        }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
-    /**
-     * @access public
-     * @param int invoiceId
-     * @return Invoice
-     * @ParamType invoiceId int
-     * @ReturnType Invoice
-     * @throws HTTPException
-     */
     public function readInvoice($invoiceId)
     {
         if (AuthServiceImpl::getInstance()->verifyAuth()) {
@@ -51,44 +42,34 @@ class InvoiceServiceImpl
         throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
-    /**
-     * @access public
-     * @param Invoice invoice
-     * @return Invoice
-     * @ParamType Invoice invoice
-     * @ReturnType Invoice
-     * @throws HTTPException
-     */
+
     public function updateInvoice(Invoice $invoice)
     {
-        //if (AuthServiceImpl::getInstance()->verifyAuth()) {
-        $invoiceDAO = new InvoiceDAO();
-        return $invoiceDAO->update($invoice);
-        //}
-        //throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+            $invoiceDAO = new InvoiceDAO();
+            return $invoiceDAO->update($invoice);
+        }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
-    /**
-     * @access public
-     * @param int invoiceId
-     * @ParamType invoiceId int
-     */
     public function deleteInvoice($invoiceId)
     {
-        //if(AuthServiceImpl::getInstance()->verifyAuth()) {
-        $invoiceDAO = new InvoiceDAO();
-        return $invoiceDAO->delete($invoiceId);
-        //}
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+            $invoiceDAO = new InvoiceDAO();
+            return $invoiceDAO->delete($invoiceId);
+        }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+
     }
 
     public function findAllInvoice()
     {
 
-        // if (AuthServiceImpl::getInstance()->verifyAuth()) {
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
             $invoiceDAO = new InvoiceDAO();
             return $invoiceDAO->getAllInvoice();
-        //}
-        //throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+        }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
 
@@ -103,44 +84,54 @@ class InvoiceServiceImpl
 
     public function billTenantsbyExpense()
     {
-        // get sum of all expenses Amount
-        $expensesSum = (new ExpenseServiceImpl())->getExpenseSumImpl();
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
 
-        // get array of all tenants
-        $tenantDetails = (new TenantServiceImpl())->getAllTenantDetails();
+            // get sum of all expenses Amount
+            $expensesSum = (new ExpenseServiceImpl())->getExpenseSumImpl();
 
-        //echo '<pre>';
-        //print_r($tenantDetails);die;
+            // get array of all tenants
+            $tenantDetails = (new TenantServiceImpl())->getAllTenantDetails();
 
-        $tenantAmount = count($tenantDetails);
+            //echo '<pre>';
+            //print_r($tenantDetails);die;
 
-        // calculate average
-        $averageExpenseAmount = intval($expensesSum / $tenantAmount);
+            $tenantAmount = count($tenantDetails);
 
-        $invoiceDAO = new InvoiceDAO();
-        $mydate = date("Y-01-01");
+            // calculate average
+            $averageExpenseAmount = intval($expensesSum / $tenantAmount);
 
-        for ($i = 0; $i < $tenantAmount; $i++) {
-            $leaseID = (new LeaseServiceImpl())->getLeaseIDfromTenantID($tenantDetails[$i]['tenantid']);
-            $inv = new Invoice();
-            $inv->setInvoiceamount($averageExpenseAmount);
-            $inv->setInvoicepaid(0);
-            $inv->setInvoiceleaseid($leaseID);
-            $inv->setInvoicetype('Annual Expense');
-            $inv->setInvoicestartdate($mydate);
-            $invoiceDAO->createInvoice($inv);
+            $invoiceDAO = new InvoiceDAO();
+            $mydate = date("Y-01-01");
+
+            for ($i = 0; $i < $tenantAmount; $i++) {
+                $leaseID = (new LeaseServiceImpl())->getLeaseIDfromTenantID($tenantDetails[$i]['tenantid']);
+                $inv = new Invoice();
+                $inv->setInvoiceamount($averageExpenseAmount);
+                $inv->setInvoicepaid(0);
+                $inv->setInvoiceleaseid($leaseID);
+                $inv->setInvoicetype('Annual Expense');
+                $inv->setInvoicestartdate($mydate);
+                $invoiceDAO->createInvoice($inv);
+            }
         }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
 
     }
 
     public function invoiceAmountOfMonth()
     {
-        $invoiceDAO = new InvoiceDAO();
-        $invoiceDAO->getAllInvoiceAmountsOfMonth();
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+            $invoiceDAO = new InvoiceDAO();
+            $invoiceDAO->getAllInvoiceAmountsOfMonth();
+        }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+
     }
 
     public function billTenantbyRentImpl()
     {
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+
             $leaseDetails = (new LeaseServiceImpl())->findAllLeases();
             $leaseAmount = count($leaseDetails);
             $mydate = date("Y-m-01");
@@ -157,6 +148,8 @@ class InvoiceServiceImpl
                 $inv->setInvoicestartdate($mydate);
                 (new InvoiceDAO())->createInvoice($inv);
             }
+        }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
 
 
     }

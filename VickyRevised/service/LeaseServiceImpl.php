@@ -10,69 +10,43 @@ use http\HTTPStatusCode;
 
 class LeaseServiceImpl implements LeaseService
 {
-    /**
-     * @access public
-     * @param Lease lease
-     * @return Lease
-     * @ParamType lease Lease
-     * @ReturnType Lease
-     * @throws HTTPException
-     */
-    public function createLease(Lease $lease) {
-        //if(AuthServiceImpl::getInstance()->verifyAuth()) {
+
+    public function createLease(Lease $lease)
+    {
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
             $leaseDAO = new LeaseDAO();
             //$lease->set(AuthServiceImpl::getInstance()->getCurrentUserId());
             return $leaseDAO->create($lease);
-        //}
-        //throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+        }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
-    /**
-     * @access public
-     * @param int leaseId
-     * @return Lease
-     * @ParamType leaseId int
-     * @ReturnType Lease
-     * @throws HTTPException
-     */
     public function readLease($leaseId)
     {
-        if(AuthServiceImpl::getInstance()->verifyAuth()) {
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
             $leaseDAO = new LeaseDAO();
             return $leaseDAO->readById($leaseId);
         }
         throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
-    /**
-     * @access public
-     * @param Lease lease
-     * @return Lease
-     * @ParamType lease Lease
-     * @ReturnType Lease
-     * @throws HTTPException
-     */
     public function updateLease(Lease $lease)
     {
-        //if (AuthServiceImpl::getInstance()->verifyAuth()) {
-        $leaseDAO = new LeaseDAO();
-        return $leaseDAO->update($lease);
-        //}
-        //throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+            $leaseDAO = new LeaseDAO();
+            return $leaseDAO->update($lease);
+        }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
 
     }
 
-    /**
-     * @access public
-     * @param int leaseId
-     * @ParamType leaseId int
-     */
     public function deleteLease($leaseId)
     {
-        //if(AuthServiceImpl::getInstance()->verifyAuth()) {
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
             $leaseDAO = new LeaseDAO();
-        return $leaseDAO->delete($leaseId);
-        //}
+            return $leaseDAO->delete($leaseId);
+        }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
     /**
@@ -83,8 +57,12 @@ class LeaseServiceImpl implements LeaseService
      */
     public function findAllLeases()
     {
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
             $leaseDAO = new LeaseDAO();
-        return $leaseDAO->getAllLeasesAssoc();
+            return $leaseDAO->getAllLeasesAssoc();
+        }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+
     }
 
     public function findLeaseById($id)
@@ -98,36 +76,47 @@ class LeaseServiceImpl implements LeaseService
 
     public function getDropDownLeases($id)
     {
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+            $leaselist = [];
 
-        $leaselist = [];
+            $result = (new LeaseDAO())->readAll();
 
-        $result = (new LeaseDAO())->readAll();
+            for ($i = 0; $i < count($result); $i++) {
+                $row = $result[$i];
+                $leaseid = $row['leaseid'];
+                $name = $leaseid;
 
-        for ($i = 0; $i < count($result); $i++) {
-            $row = $result[$i];
-            $leaseid = $row['leaseid'];
-            $name = $leaseid;
+                $leaseid == $id ?
 
-            $leaseid == $id ?
+                    $leaselist[$i] = "<option selected='selected' value='$leaseid'>$name</option>" :
+                    $leaselist[$i] = "<option value='$leaseid'>$name</option>";
+            }
 
-                $leaselist[$i] = "<option selected='selected' value='$leaseid'>$name</option>" :
-                $leaselist[$i] = "<option value='$leaseid'>$name</option>";
+
+            return $leaselist;
         }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
 
-
-        return $leaselist;
     }
 
     public function getLeaseIDfromTenantID($tenantid)
     {
-        $leaseDAO = new LeaseDAO();
-        return $leaseDAO->getLeaseIDfromTenantID($tenantid);
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+
+            $leaseDAO = new LeaseDAO();
+            return $leaseDAO->getLeaseIDfromTenantID($tenantid);
+        }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+
     }
 
     public function getRentAmountfromLeaseID($leaseid)
     {
-        $leaseDAO = new LeaseDAO();
-        return $leaseDAO->getRentAmountfromLeaseID($leaseid);
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+            $leaseDAO = new LeaseDAO();
+            return $leaseDAO->getRentAmountfromLeaseID($leaseid);
+        }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
 

@@ -99,7 +99,10 @@ class TenantServiceImpl implements TenantService
 
     public function getDropDownTenants($id)
     {
-        $tenantlist = [];
+
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+
+            $tenantlist = [];
 
         $result = (new TenantDAO())->readAll();
         for ($i = 0; $i < count($result); $i++) {
@@ -116,23 +119,33 @@ class TenantServiceImpl implements TenantService
         }
 
         return $tenantlist;
+        }
     }
 
     public function getAllTenantDetails()
     {
-        return (new TenantDAO())->readAll();
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+
+            return (new TenantDAO())->readAll();
+        }
     }
 
     public function getTenantlastnameById($id)
     {
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+
         $tenantDAO = new TenantDAO();
         return $tenantDAO->getTenantLastNameById($id);
+        }
     }
 
     public function getNumberOfTenantsImpl()
     {
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+
         $tenantDAO = new TenantDAO();
         return $tenantDAO->getNumberOfTenants();
+        }
     }
 
 

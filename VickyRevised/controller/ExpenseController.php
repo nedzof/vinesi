@@ -22,6 +22,7 @@ class ExpenseController{
     {
         try {
 
+
             $contentView = new TemplateView("expense.php");
             $contentView->expenses = (new ExpenseDAO())->getAllExpenses();
             LayoutRendering::basicLayout($contentView);

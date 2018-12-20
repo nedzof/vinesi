@@ -17,30 +17,17 @@ use http\HTTPStatusCode;
 
 class ExpenseServiceImpl implements ExpenseService
 {
-    /**
-     * @access public
-     * @param Expense expense
-     * @return Expense
-     * @ParamType Expense expense
-     * @ReturnType Expense
-     * @throws HTTPException
-     */
+
     public function createExpense(Expense $expense)
     {
-        //if(AuthServiceImpl::getInstance()->verifyAuth()) {
-        $expenseDAO = new ExpenseDAO();
-        //$lease->set(AuthServiceImpl::getInstance()->getCurrentUserId());
-        return $expenseDAO->create($expense);
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+            $expenseDAO = new ExpenseDAO();
+            return $expenseDAO->create($expense);
+        }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+
     }
 
-    /**
-     * @access public
-     * @param int expenseId
-     * @return Expense
-     * @ParamType expenseId int
-     * @ReturnType Expense
-     * @throws HTTPException
-     */
     public function readExpense($expenseId)
     {
         if (AuthServiceImpl::getInstance()->verifyAuth()) {
@@ -50,44 +37,30 @@ class ExpenseServiceImpl implements ExpenseService
         throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
-    /**
-     * @access public
-     * @param Expense expense
-     * @return Expense
-     * @ParamType Expense expense
-     * @ReturnType Expense
-     * @throws HTTPException
-     */
+
     public function updateExpense(Expense $expense)
-    {//if (AuthServiceImpl::getInstance()->verifyAuth()) {
-        $expenseDAO = new ExpenseDAO();
-        return $expenseDAO->update($expense);
-        //}
-        //throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+    {
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+            $expenseDAO = new ExpenseDAO();
+            return $expenseDAO->update($expense);
+        }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
 
     }
 
-    /**
-     * @access public
-     * @param int expenseId
-     * @ParamType expenseId int
-     */
     public function deleteExpense($expenseId)
     {
-        //if(AuthServiceImpl::getInstance()->verifyAuth()) {
-        $expenseDAO = new ExpenseDAO();
-        $expense = new Expense();
-        $expense->setExpenseid($expenseId);
-        return $expenseDAO->delete($expense);
-        //}
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+            $expenseDAO = new ExpenseDAO();
+            $expense = new Expense();
+            $expense->setExpenseid($expenseId);
+            return $expenseDAO->delete($expense);
+        }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+
     }
 
-    /**
-     * @access public
-     * @return Expense[]
-     * @ReturnType Expense[]
-     * @throws HTTPException
-     */
+
     public function findAllExpenses()
     {
         if (AuthServiceImpl::getInstance()->verifyAuth()) {
@@ -97,12 +70,7 @@ class ExpenseServiceImpl implements ExpenseService
         throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
-    /**
-     * @access public
-     * @return Expense[]
-     * @ReturnType Expense[]
-     * @throws HTTPException
-     */
+
     public function findLeaseById($id)
     {
         if (AuthServiceImpl::getInstance()->verifyAuth()) {
@@ -114,8 +82,12 @@ class ExpenseServiceImpl implements ExpenseService
 
     public function getExpenseSumImpl()
     {
-        $expenseDAO = new ExpenseDAO();
-        return $expenseDAO->getExpenseSum();
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+
+            $expenseDAO = new ExpenseDAO();
+            return $expenseDAO->getExpenseSum();
+        }
+        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
 

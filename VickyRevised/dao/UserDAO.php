@@ -60,7 +60,7 @@ class UserDAO extends BasicDAO
             useremail = :useremail,
             userhashedpassword = :userhashedpassword,
             userstatus = :userstatus
-            WHERE id = :id');
+            WHERE userid = :id');
         $stmt->bindValue(':userlastname', $user->getUserlastname());
         $stmt->bindValue(':useremail', $user->getUseremail());
         $stmt->bindValue(':userhashedpassword', $user->getUserhashedpassword());

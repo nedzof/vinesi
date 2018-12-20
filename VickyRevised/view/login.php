@@ -45,7 +45,8 @@
 
                 <p class="mt-3 mb-0"
                    style="margin: 0px;margin-top: 0;margin-right: 0;margin-bottom: 0;margin-left: 0;min-height: 0px;padding-top: 0px;padding-bottom: 12px;">
-                    <a href="#" class="text-info small">Forgot your email or password?</a></p>
+                    <a href="<?php echo $GLOBALS["ROOT_URL"]; ?>/password/request" class="text-info small">Forgot your
+                        email or password?</a></p>
             </div>
         </div>
         <div class="col-lg-6 d-flex align-items-end" id="bg-block"
