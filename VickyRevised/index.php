@@ -251,6 +251,15 @@ Router::route_auth("GET", "/lease/email", $authFunction, function () {
     Router::redirect("/menu");
 });
 
+Router::route_auth("GET", "/expense/email", $authFunction, function () {
+    EmailController::sendMeMyExpenses();
+    Router::redirect("/menu");
+});
+
+Router::route_auth("GET", "/invoice/email", $authFunction, function () {
+    EmailController::sendMeMyInvoices();
+    Router::redirect("/menu");
+});
 /*
  * Password
  */
