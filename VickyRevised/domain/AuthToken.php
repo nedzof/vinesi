@@ -20,10 +20,7 @@ class AuthToken
      * @AttributeType String
      */
     private $validator;
-    /**
-     * @AttributeType String
-     */
-    private $expiration;
+
     /**
      * @AssociationType int
      * @AssociationMultiplicity 1
@@ -100,27 +97,6 @@ class AuthToken
         $this->validator = $validator;
     }
 
-    /**
-     * @access public
-     * @return String
-     * @ReturnType String
-     */
-    public function getExpiration()
-    {
-        return $this->expiration;
-    }
-
-    /**
-     * @access public
-     * @param String expiration
-     * @return void
-     * @ParamType expiration String
-     * @ReturnType void
-     */
-    public function setExpiration($expiration)
-    {
-        $this->expiration = $expiration;
-    }
 
     /**
      * @access public

@@ -25,7 +25,7 @@ class UserDAO extends BasicDAO
     public function read($userid)
     {
         $pdostatement = $this->pdoInstance->prepare('
-            SELECT * FROM usertable WHERE id = :id;');
+            SELECT * FROM usertable WHERE userid = :id');
         $pdostatement->bindValue(':id', $userid);
         $pdostatement->execute();
         if ($pdostatement->rowCount() > 0) {

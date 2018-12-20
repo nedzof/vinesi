@@ -159,7 +159,6 @@ class AuthServiceImpl implements AuthService {
         $authTokenDAO = new AuthTokenDAO();
         $authToken = $authTokenDAO->findBySelector($tokenArray[0]);
         if (!empty($authToken)) {
-            if (time() <= (new \DateTime($authToken->getExpiration()))->getTimestamp()) {
                 if (hash_equals(hash('sha384', hex2bin($tokenArray[1])), $authToken->getValidator())) {
                     $this->currentUserId = $authToken->getUserid();
                     if ($authToken->getType() === self::RESET_TOKEN) {
@@ -167,7 +166,6 @@ class AuthServiceImpl implements AuthService {
                     }
                     return true;
                 }
-            }
             $authTokenDAO->delete($authToken);
         }
         return false;
@@ -202,7 +200,6 @@ class AuthServiceImpl implements AuthService {
         } else {
             throw new HTTPException(HTTPStatusCode::HTTP_406_NOT_ACCEPTABLE, 'RESET_TOKEN without email');
         }
-        $token->setExpiration($timestamp->format("Y-m-d H:i:s"));
         $validator = random_bytes(20);
         $token->setValidator(hash('sha384', $validator));
         $authTokenDAO = new AuthTokenDAO();
