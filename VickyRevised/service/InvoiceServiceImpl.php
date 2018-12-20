@@ -126,7 +126,7 @@ class InvoiceServiceImpl
             $inv->setInvoiceamount($averageExpenseAmount);
             $inv->setInvoicepaid(0);
             $inv->setInvoiceleaseid($leaseID);
-            $inv->setInvoicetype('Yeary Expenses');
+            $inv->setInvoicetype('Annual Expense');
             $inv->setInvoicestartdate($mydate);
             $invoiceDAO->createInvoice($inv);
         }
