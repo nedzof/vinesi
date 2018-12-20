@@ -60,38 +60,31 @@
 
 
 <script>
-    var chartdata = [{"suminvoiceamount": 2333, "invoiceleaseid": 26}, {
-        "suminvoiceamount": 2333,
-        "invoiceleaseid": 27
-    }, {"suminvoiceamount": 2333.00, "invoiceleaseid": 28}, {
-        "suminvoiceamount": 20333.00,
-        "invoiceleaseid": 29
-    }, {"suminvoiceamount": 17333.00, "invoiceleaseid": 30}, {
-        "suminvoiceamount": 11333.00,
-        "invoiceleaseid": 31
-    }, {"suminvoiceamount": 2333.00, "invoiceleaseid": 32}, {
-        "suminvoiceamount": 2333.00,
-        "invoiceleaseid": 33
-    }, {"suminvoiceamount": 2333.00, "invoiceleaseid": 34}, {"suminvoiceamount": 2333.00, "invoiceleaseid": 35}];
 
-    /*$get_data = callAPI('GET', 'http://localhost/vinesi/VickyRevised/invoice/getInvoiceAmountOfMonth', false);
-    $response = json_decode($get_data, true);
-    $errors = $response['response']['errors'];
-    $data = $response['response']['data'][0];*/
 
-    let labels = chartdata.map(e => e.invoiceleaseid);
-    let data = chartdata.map(f => f.suminvoiceamount);
+    async function getmyData(checkCondition) {
+        let url = 'http://localhost/vinesi/VickyRevised/invoice/getInvoiceAmountOfMonth';
+        // read our JSON
+        let response = await fetch(url);
+        let out = await response.json();
+        if (checkCondition == 1) {
+            labels = out.map(a => a.invoiceleaseid);
+            return labels;
+        } else {
+            datac = out.map(b => b.suminvoiceamount);
+            return datac;
+        }
+    }
 
-    var color = Chart.helpers.color;
+
     var barChartData = {
-        labels: labels,
+        labels: getmyData(1),
         datasets: [{
             label: 'Dataset 1',
-            backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+            backgroundColor: Chart.helpers.color(window.chartColors.red).alpha(0.5).rgbString(),
             borderColor: window.chartColors.red,
             borderWidth: 1,
-            data: data
-
+            data: getmyData(0),
         }]
 
     };
@@ -108,49 +101,13 @@
                 },
                 title: {
                     display: true,
-                    text: 'Revenue by tenant this month'
-                }
+                    text: 'Revenue by lease this month'
+                },
             }
         });
 
     };
 
-    function callAPI($method, $url, $data) {
-        $curl = curl_init();
-
-        switch ($method) {
-            case "POST":
-                curl_setopt($curl, CURLOPT_POST, 1);
-                if ($data)
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-                break;
-            case "PUT":
-                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
-                if ($data)
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-                break;
-            default:
-                if ($data)
-                    $url = sprintf("%s?%s", $url, http_build_query($data));
-        }
-
-        // OPTIONS:
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-            'APIKEY: 111111111111111111111',
-            'Content-Type: application/json',
-        ));
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-
-        // EXECUTE:
-        $result = curl_exec($curl);
-        if (!$result) {
-            die("Connection Failure");
-        }
-        curl_close($curl);
-        return $result;
-    }
 
 </script>
 
