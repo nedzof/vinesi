@@ -25,7 +25,7 @@
 
 <?php
 //False for Create, True for Update
-$createOrUpdate = !empty($this->invoices) ?>
+$createOrUpdate = !empty($this->invoice) ?>
 <div class="projects-horizontal">
     <div class="container">
         <div class="intro">
@@ -34,7 +34,7 @@ $createOrUpdate = !empty($this->invoices) ?>
             <form action="<?php echo $createOrUpdate ? "update" : "create" ?>" method="post">
 
                 <?php if ($createOrUpdate) { ?>
-                <div class="form-grou§p"><label class="text-secondary">Invoice ID</label><input
+                <div class="form-grou§p"><label class="text-secondary">InvoiceID</label><input
                             name="invoiceid"
                             value="<?php echo $this->invoices->getInvoiceid() ?>"
                             class="form-control"
@@ -46,7 +46,7 @@ $createOrUpdate = !empty($this->invoices) ?>
 
                     <div class="form-grou§p"><label class="text-secondary">Invoice Type</label><input
                                 name="invoicetype"
-                                value="<?php echo $createOrUpdate ? $this->invoices->getInvoicetype() : "" ?>"
+                                value="<?php echo $createOrUpdate ? $this->invoices->getInvoicetype() : 0 ?>"
                                 class="form-control"
                                 type="text"
                                 required=""
@@ -59,7 +59,32 @@ $createOrUpdate = !empty($this->invoices) ?>
                     </div>
 
                 </div>
+                <div class="form-group"><label class="text-secondary">Invoice Date</label><input name="invoicestartdate"
+                                                                                                 value="<?php echo $createOrUpdate ? $this->invoices->getInvoicestartdate() : date("Y-m-d"); ?>"
+                                                                                                 class="form-control"
+                                                                                                 type="date"
+                                                                                                 required="">
+                </div>
+                <div class="form-group"><label class="text-secondary">Invoice paid</label>
 
+                    <?php
+
+                    if ($createOrUpdate) {
+                        if ($this->invoices->getInvoicepaid() == 1) { ?>
+
+                            <input type="checkbox" value="1" checked="checked" name="invoicepaid">
+
+                        <?php } elseif ($this->invoices->getInvoicepaid() == 0) { ?>
+
+                            <input type="checkbox" value="1" name="invoicepaid">
+
+                        <?php }
+                    } else { ?>
+
+                        <input type="checkbox" value="1" name="invoicepaid">
+
+                    <?php } ?>
+                </div>
 
                 <div class="form-group">
                     <label class="text-secondary">Lease ID</label>
@@ -81,34 +106,6 @@ $createOrUpdate = !empty($this->invoices) ?>
                         ?>
 
                     </select>
-                </div>
-
-
-                <div class="form-group"><label class="text-secondary">Invoice Date</label><input name="invoicestartdate"
-                                                                                                 value="<?php echo $createOrUpdate ? $this->invoices->getInvoicestartdate() : date("Y-m-d"); ?>"
-                                                                                                 class="form-control"
-                                                                                                 type="date"
-                                                                                                 required="">
-                </div>
-                <div class="form-group"><label class="text-secondary">Invoice paid</label>
-
-                    <?php
-
-                    if ($createOrUpdate) {
-                        if ($this->invoice->getInvoicepaid() == 1) { ?>
-
-                            <input type="checkbox" value="1" checked="checked" name="invoicepaid">
-
-                        <?php } elseif ($this->invoice->getInvoicepaid() == 0) { ?>
-
-                            <input type="checkbox" value="1" name="invoicepaid">
-
-                        <?php }
-                    } else { ?>
-
-                        <input type="checkbox" value="1" name="invoicepaid">
-
-                    <?php } ?>
                 </div>
 
                 <div class="input-group" role="group">

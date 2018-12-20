@@ -30,11 +30,6 @@ class InvoiceDAO extends BasicDAO
             $stmt->bindValue(':invoicepaid', $invoice->getInvoicepaid());
             $stmt->execute();
         } catch (Exception $e) {
-            $a = ($invoice->getInvoiceid());
-            echo "<script>alert(\"$a\")</script>";
-
-            echo "<script>alert(\"FIX YOOO SHIT\")</script>";
-
             return false;
         }
         return true;
