@@ -89,7 +89,7 @@ class LeaseServiceImpl implements LeaseService
     public function findAllLeases()
     {
             $leaseDAO = new LeaseDAO();
-            return $leaseDAO->getAllLeases();
+        return $leaseDAO->getAllLeasesAssoc();
     }
 
     public function findLeaseById($id)

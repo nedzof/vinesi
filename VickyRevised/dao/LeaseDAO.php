@@ -113,13 +113,26 @@ class LeaseDAO extends BasicDAO
     }
 
 
-    public
-    function getAllLeases()
+    public function getAllLeases()
     {
         $stmt = $this->pdoInstance->prepare('SELECT * FROM leasetable ORDER BY leaseid;');
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $result = $stmt->fetchAll(\PDO::FETCH_CLASS, Lease::class);
+
+            return $result;
+
+
+        }
+        return null;
+    }
+
+    public function getAllLeasesAssoc()
+    {
+        $stmt = $this->pdoInstance->prepare('SELECT * FROM leasetable ORDER BY leaseid;');
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
             return $result;
 

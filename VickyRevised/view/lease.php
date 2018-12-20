@@ -1,45 +1,34 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: andreas.martin
- * Date: 13.09.2017
- * Time: 16:59
- */
-
 namespace domain;
 
 use view\TemplateView;
 
 ?>
+
 <!DOCTYPE html>
 <html>
 <body>
 <div class="page-header">
     <h2 class="text-center">My <strong>leases</strong>.</h2></div>
 <div>
-    <table class="table">
+    <table class="table" id="mytable">
         <thead>
         <tr>
             <th>ID</th>
-            <th>Monthly Rent</th>
-            <th>Utilities</th>
-            <th>Payment Method</th>
-            <th>Deposit</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>Property ID</th>
-            <th>Tenant ID</th>
-            <th>Tenant Name</th>
+            <th>Type</th>
+            <th>Amount</th>
+            <th>Lease Date</th>
+            <th>Lease Due</th>
+            <th>Days Remaining</th>
+            <th>Paid</th>
+
         </tr>
         </thead>
-        <tbody>
 
         <?php
 
-        foreach ($this->leases as $lease): /* @var lease $lease */
-            ?>
+        foreach ($this->leases as $lease):?>
             <tr>
-
                 <td><?php echo TemplateView::noHTML($lease->getLeaseid()); ?></td>
                 <td><?php echo TemplateView::noHTML($lease->getLeasemonthlyrent()); ?></td>
                 <td><?php echo TemplateView::noHTML($lease->getLeaseutilities()); ?> </td>
@@ -80,6 +69,7 @@ use view\TemplateView;
                                     <a class="btn btn-default" role="button"
                                        href="lease/delete?id=<?php echo $lease->getLeaseid() ?>"><i
                                                 class="ion-android-delete"></i></a>
+
                                 </div>
                             </div>
                         </div>
@@ -91,10 +81,12 @@ use view\TemplateView;
 
         <div role="group">
             <a class="btn btn-default" role="button" href="lease/create"> <i class="fa fa-plus-square-o"></i></a>
-            <a target="_blank" class="btn btn-default" role="button" href="lease/pdf"> <i class="fa fa-file-pdf-o"></i></a>
+            <a target="_blank" class="btn btn-default" role="button" href="lease/pdf"> <i
+                        class="fa fa-file-pdf-o"></i></a>
             <a class="btn btn-default" role="button" href="lease/email"> <i class="fa fa-envelope-o"></i></a>
         </div>
     </table>
+</div>
 </body>
 </html>
 <!-- jQuery library -->
