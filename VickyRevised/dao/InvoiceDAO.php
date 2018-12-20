@@ -66,7 +66,6 @@ class InvoiceDAO extends BasicDAO
     {
 
         try {
-            $this->pdoInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stmt = $this->pdoInstance->prepare('
                 UPDATE invoicetable SET 
                 invoicetype = :invoicetype,
@@ -75,6 +74,7 @@ class InvoiceDAO extends BasicDAO
                 invoicestartdate = :invoicestartdate,
                 invoicepaid = :invoicepaid
                 WHERE invoiceid = :id');
+            $stmt->bindValue(':id', $invoice->getInvoiceid());
             $stmt->bindValue(':invoicetype', $invoice->getInvoicetype());
             $stmt->bindValue(':invoiceamount', $invoice->getInvoiceamount());
             $stmt->bindValue(':invoiceleaseid', $invoice->getInvoiceleaseid());

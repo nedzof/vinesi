@@ -25,7 +25,7 @@
 
 <?php
 //False for Create, True for Update
-$createOrUpdate = !empty($this->invoice) ?>
+$createOrUpdate = !empty($this->invoices) ?>
 <div class="projects-horizontal">
     <div class="container">
         <div class="intro">
