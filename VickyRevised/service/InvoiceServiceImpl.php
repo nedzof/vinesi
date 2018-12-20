@@ -141,13 +141,10 @@ class InvoiceServiceImpl
 
     public function billTenantbyRentImpl()
     {
-
-
             $leaseDetails = (new LeaseServiceImpl())->findAllLeases();
             $leaseAmount = count($leaseDetails);
             $mydate = date("Y-m-01");
 
-            echo '<pre>', print_r($leaseDetails, 1), '</pre>';
 
             for ($i = 0; $i < $leaseAmount; $i++) {
                 $leaseID = $leaseDetails[$i]['leaseid'];

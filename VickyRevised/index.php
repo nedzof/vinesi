@@ -36,6 +36,13 @@ $authFunction = function () {
 ####################################################################################################
 
 /*
+ * First page Routing
+ */
+Router::route("GET", "/", function () {
+    Router::redirect("/login");
+});
+
+/*
  * Login Routing
  */
 Router::route("GET", "/login", function () {
@@ -226,8 +233,7 @@ Router::route("GET", "/invoice/generateaverageinvoice", function () {
 
 Router::route("GET", "/invoice/billtenantbyrent", function () {
     InvoiceController::billTenantbyRent();
-    //Router::redirect("/invoice");
-
+    Router::redirect("/invoice");
 });
 
 /*
