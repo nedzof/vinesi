@@ -37,7 +37,7 @@ use view\TemplateView;
         <?php
 
         foreach ($this->leases as $lease): /* @var lease $lease */
-            $a = $lease->getLeaseid(); ?>
+            ?>
             <tr>
 
                 <td><?php echo TemplateView::noHTML($lease->getLeaseid()); ?></td>
@@ -80,15 +80,13 @@ use view\TemplateView;
                                     <a class="btn btn-default" role="button"
                                        href="lease/delete?id=<?php echo $lease->getLeaseid() ?>"><i
                                                 class="ion-android-delete"></i></a>
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                    </div>
                 </td>
             </tr>
-<?php endforeach; ?>
+        <?php endforeach; ?>
 
 
         <div role="group">
