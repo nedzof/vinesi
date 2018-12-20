@@ -8,10 +8,10 @@
 
 namespace controller;
 
+use dao\LeaseDAO;
 use service\AuthServiceImpl;
 use service\CustomerServiceImpl;
 use service\EmailServiceClient;
-use service\LeaseServiceImpl;
 use view\TemplateView;
 
 class EmailController
@@ -19,7 +19,7 @@ class EmailController
     public static function sendMeMyLeases()
     {
         $emailView = new TemplateView("lease_PDF.php");
-        $emailView->leasing = (new LeaseServiceImpl())->findAllLeases();
+        $emailView->leasing = (new LeaseDAO())->getAllLeases();
         return EmailServiceClient::sendEmail(AuthServiceImpl::getInstance()->readUser()->getUseremail(), "My current customers", $emailView->render());
     }
 }

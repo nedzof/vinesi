@@ -30,8 +30,13 @@ class UserDAO extends BasicDAO
         $pdostatement->execute();
         if ($pdostatement->rowCount() > 0) {
             $result = $pdostatement->fetchObject();
-            return new User($result->userid, $result->userlastname, $result->useremail, $result->userhashedpassword, $result->userstatus);
-
+            $user = new User();
+            $user->setUserid($result->userid);
+            $user->setUserlastname($result->userlastname);
+            $user->setUseremail($result->useremail);
+            $user->setUserhashedpassword($result->userhashedpassword);
+            $user->setUserstatus($result->userstatus);
+            return $user;
         }
         return null;
     }
