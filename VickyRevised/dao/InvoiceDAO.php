@@ -139,6 +139,7 @@ class InvoiceDAO extends BasicDAO
         $stmt = $this->pdoInstance->prepare($sql);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION["JSONCODE"] = json_encode($results);
         echo json_encode($results);
         return null;
     }
