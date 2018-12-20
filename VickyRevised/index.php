@@ -8,6 +8,7 @@
 require_once("config/Autoloader.php");
 
 use controller\AuthController;
+use controller\EmailController;
 use controller\ErrorController;
 use controller\ExpenseController;
 use controller\InvoiceController;
@@ -50,7 +51,7 @@ Router::route("GET", "/login", function () {
 
 });
 
-Router::route("POST", "/login", function () {
+/*Router::route("POST", "/login", function () {
     if (AuthController::login() == true) {
         Router::redirect("/menu");
     } else {
@@ -58,6 +59,11 @@ Router::route("POST", "/login", function () {
         echo "<script>window.location='login'</script>";
 
     }
+});*/
+
+Router::route("POST", "/login", function () {
+    AuthController::login();
+    Router::redirect("/menu");
 });
 
 Router::route("GET", "/logout", function () {
@@ -236,6 +242,13 @@ Router::route("GET", "/expense/pdf", function () {
 
 Router::route("GET", "/invoice/pdf", function () {
     PDFController::generatePDFinvoice();
+});
+/*
+ * Email
+ */
+Router::route_auth("GET", "/lease/email", $authFunction, function () {
+    EmailController::sendMeMyLeases();
+    Router::redirect("/menu");
 });
 
 /*

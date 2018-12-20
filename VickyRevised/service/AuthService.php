@@ -10,7 +10,10 @@ namespace service;
 
 use domain\User;
 
-
+/**
+ * @access public
+ * @author andreas.martin
+ */
 interface AuthService {
     /**
      * @AttributeType int

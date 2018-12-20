@@ -1,19 +1,26 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Victoria Villar
- * Date: 07/12/2018
- * Time: 16:39
+ * User: andreas.martin
+ * Date: 09.10.2017
+ * Time: 08:30
  */
 
 namespace controller;
 
 use service\AuthServiceImpl;
 
-class AuthController{
+class AuthController
+{
+
     public static function authenticate(){
-        if (isset($_SESSION["login"])) {
-            if(AuthServiceImpl::getInstance()->validateToken($_SESSION["login"]["token"])) {
+        if (isset($_SESSION["userLogin"])) {
+            if (AuthServiceImpl::getInstance()->validateToken($_SESSION["userLogin"]["token"])) {
+                return true;
+            }
+        }
+        if (isset($_COOKIE["token"])) {
+            if (AuthServiceImpl::getInstance()->validateToken($_COOKIE["token"])) {
                 return true;
             }
         }
@@ -25,10 +32,11 @@ class AuthController{
         if ($authService->verifyUser($_POST["email"], $_POST["password"])) {
             session_regenerate_id(true);
             $token = $authService->issueToken();
-            $_SESSION["agentLogin"]["token"] = $token;
-            return true;
+            $_SESSION["userLogin"]["token"] = $token;
+            if (isset($_POST["remember"])) {
+                setcookie("token", $token, (new \DateTime('now'))->modify('+30 days')->getTimestamp(), "/", "", false, true);
+            }
         }
-        return false;
     }
 
     public static function logout()
@@ -36,4 +44,5 @@ class AuthController{
         session_destroy();
         setcookie("token", "", time() - 3600, "/", "", false, true);
     }
+
 }
