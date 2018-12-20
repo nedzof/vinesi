@@ -118,7 +118,7 @@ class InvoiceServiceImpl implements InvoiceService
         $averageExpenseAmount = intval($expensesSum / $tenantAmount);
 
         $invoiceDAO = new InvoiceDAO();
-        $mydate = date("Y-m-01");
+        $mydate = date("Y-01-01");
 
         for ($i = 0; $i < $tenantAmount; $i++) {
             $leaseID = (new LeaseServiceImpl())->getLeaseIDfromTenantID($tenantDetails[$i]['tenantid']);
@@ -126,7 +126,7 @@ class InvoiceServiceImpl implements InvoiceService
             $inv->setInvoiceamount($averageExpenseAmount);
             $inv->setInvoicepaid(0);
             $inv->setInvoiceleaseid($leaseID);
-            $inv->setInvoicetype('Rent');
+            $inv->setInvoicetype('Yeary Expenses');
             $inv->setInvoicestartdate($mydate);
             $invoiceDAO->createInvoice($inv);
         }

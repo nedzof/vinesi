@@ -35,8 +35,8 @@ use view\TemplateView;
                 <td><?php echo TemplateView::noHTML($invoice->getInvoiceamount()); ?></td>
                 <td><?php echo TemplateView::noHTML($invoice->getInvoiceleaseid()); ?></td>
                 <td><?php echo TemplateView::noHTML($invoice->getInvoicestartdate()); ?></td>
-                <td><?php echo TemplateView::noHTML($invoice->getInvoiceenddate()); ?></td>
-                <td><?php echo TemplateView::noHTML($invoice->getInvoicedaysleft()); ?></td>
+                <td><?php echo TemplateView::noHTML($invoice->getInvoiceenddate(0)); ?></td>
+                <td><?php echo TemplateView::noHTML($invoice->getInvoicedaysleft(0)); ?></td>
 
                 <?php if ($invoice->getInvoicepaid() == 0) { ?>
                     <td style="background:#efa2a9">NO</td>

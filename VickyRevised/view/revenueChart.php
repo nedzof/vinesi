@@ -79,8 +79,8 @@
                 labels: label,
                 datasets: [{
                     label: 'Dataset 1',
-                    backgroundColor: "rgba(153,255,51,0.4)",
-                    borderColor: "rgba(153,255,51,0.4)",
+                    backgroundColor: "rgba(36, 249, 235,0.4)",
+                    borderColor: "rgba(2, 94, 88, 1)",
                     borderWidth: 1,
                     data: data,
                 }]

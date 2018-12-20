@@ -89,19 +89,23 @@ class Invoice
         return $date;
     }
 
-    public function getInvoiceenddate()
+    public function getInvoiceenddate($b = 1)
     {
 
-        $date = strtotime("+30 days", strtotime($this->invoicestartdate));
-        return date("Y-m-d", $date);
-
+        if ($b == 0) {
+            $date = strtotime("+365 days", strtotime($this->invoicestartdate));
+            return date("Y-m-d", $date);
+        } else {
+            $date = strtotime("+30 days", strtotime($this->invoicestartdate));
+            return date("Y-m-d", $date);
+        }
     }
 
-    public function getInvoicedaysleft()
+    public function getInvoicedaysleft($b = 1)
     {
 
         $datetime1 = new DateTime();
-        $datetime2 = new DateTime($this->getInvoiceenddate());
+        $datetime2 = new DateTime($this->getInvoiceenddate($b));
         $interval = $datetime1->diff($datetime2);
         $difference = $interval->format('%R%a days');
         if ($difference < 0) {
