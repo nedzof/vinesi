@@ -38,8 +38,8 @@
                     </div>
                     <div class="col">
                         <h3 class="name">Leases</h3>
-                        <p class="description">Overview of the current tenancies. The page includes information about
-                            the property units and the tenant and the individual contract.</p>
+                        <p class="description">Overview of the current leases. The page includes information about
+                            the leases and the tenant and the individual contract.</p>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,8 @@
                             <img class="img-fluid" src="assets/img/desk.jpg"></a></div>
                     <div class="col">
                         <h3 class="name">Invoice</h3>
-                        <p class="description">Creates a yearly invoice for clients for additional charges.</p>
+                        <p class="description">Overview of all invoices including outstanding rent payments and
+                            expenses.</p>
                     </div>
                 </div>
             </div>
@@ -61,7 +62,7 @@
                             <img class="img-fluid" src="assets/img/building.jpg"></a></div>
                     <div class="col">
                         <h3 class="name">Monitoring</h3>
-                        <p class="description">Receivables and Payables.</p>
+                        <p class="description">Monitor the most viable lease contracts in the current month.</p>
                     </div>
                 </div>
             </div>
@@ -73,7 +74,7 @@
                     </div>
                     <div class="col">
                         <h3 class="name">Expenses</h3>
-                        <p class="description">Offers records of all incoming invoices of our suppliers.&nbsp;</p>
+                        <p class="description">Overview of all current liabilities.&nbsp;</p>
                     </div>
                 </div>
             </div>

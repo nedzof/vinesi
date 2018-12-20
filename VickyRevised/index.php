@@ -238,6 +238,13 @@ Router::route("GET", "/invoice/pdf", function () {
     PDFController::generatePDFinvoice();
 });
 
+/*
+ * Password
+ */
+Router::route("GET", "/password/request", function () {
+    AgentPasswordResetController::requestView();
+});
+
 try {
     HTTPHeader::setHeader("Access-Control-Allow-Origin: *");
     HTTPHeader::setHeader("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS, HEAD");
