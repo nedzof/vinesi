@@ -87,4 +87,10 @@ class InvoiceController{
     {
         (new InvoiceServiceImpl)->invoiceAmountOfMonth();
     }
+
+    public static function billTenantbyRent()
+    {
+        (new InvoiceServiceImpl)->billTenantbyRent();
+    }
+
 }

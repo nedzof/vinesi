@@ -205,7 +205,7 @@ Router::route("GET", "/invoice/create", function () {
 
 Router::route("GET", "/invoice/generateaverageinvoice", function () {
     InvoiceController::generateaverageinvoices();
-    Router::redirect("/monitoring");
+    Router::redirect("/invoice");
 
 });
 
@@ -222,10 +222,10 @@ Router::route("GET", "/invoice/delete", function () {
     }
 });
 
-Router::route("DELETE", "/invoice/delete/{id}", function ($id) {
-    if (InvoiceController::deleteInvoice($id)) {
-        Router::redirect("/expense");
-    }
+Router::route("GET", "/invoice/billtenantbyrent", function () {
+    InvoiceController::billTenantbyRent();
+    Router::redirect("/invoice");
+
 });
 
 /*

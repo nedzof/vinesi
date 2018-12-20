@@ -137,4 +137,5 @@ class InvoiceDAO extends BasicDAO
         echo json_encode($results);
         return null;
     }
+
 }

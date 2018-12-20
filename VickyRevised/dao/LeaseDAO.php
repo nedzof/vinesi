@@ -118,9 +118,14 @@ class LeaseDAO extends BasicDAO
     {
         $stmt = $this->pdoInstance->prepare('SELECT * FROM leasetable ORDER BY leaseid;');
         $stmt->execute();
-        return $stmt->fetchAll(\PDO::FETCH_CLASS, Lease::class);
+        if ($stmt->rowCount() > 0) {
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $result;
 
 
+        }
+        return null;
     }
 
     public
@@ -143,6 +148,16 @@ class LeaseDAO extends BasicDAO
         $stmt->bindValue(':tenantid', $tenantid);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC)['leaseid'];
+        return $result;
+    }
+
+    public function getRentAmountfromLeaseID($leaseid)
+    {
+        $sql = "SELECT leasemonthlyrent FROM leasetable WHERE leaseid = :leaseid LIMIT 1";
+        $stmt = $this->pdoInstance->prepare($sql);
+        $stmt->bindValue(':leaseid', $leaseid);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC)['leasemonthlyrent'];
         return $result;
     }
 }

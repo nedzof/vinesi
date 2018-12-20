@@ -24,7 +24,8 @@ class InvoiceServiceImpl implements InvoiceService
      * @ReturnType Invoice
      * @throws HTTPException
      */
-    public function createInvoice(Invoice $invoice){
+    public function createInvoice(Invoice $invoice)
+    {
         //if(AuthServiceImpl::getInstance()->verifyAuth()) {
         $invoiceDAO = new InvoiceDAO();
         //$invoice->set(AuthServiceImpl::getInstance()->getCurrentUserId());
@@ -41,8 +42,9 @@ class InvoiceServiceImpl implements InvoiceService
      * @ReturnType Invoice
      * @throws HTTPException
      */
-    public function readInvoice($invoiceId){
-        if(AuthServiceImpl::getInstance()->verifyAuth()) {
+    public function readInvoice($invoiceId)
+    {
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
             $invoiceDAO = new InvoiceDAO();
             return $invoiceDAO->readById($invoiceId);
         }
@@ -57,7 +59,8 @@ class InvoiceServiceImpl implements InvoiceService
      * @ReturnType Invoice
      * @throws HTTPException
      */
-    public function updateInvoice(Invoice $invoice){
+    public function updateInvoice(Invoice $invoice)
+    {
         //if (AuthServiceImpl::getInstance()->verifyAuth()) {
         $invoiceDAO = new InvoiceDAO();
         return $invoiceDAO->update($invoice);
@@ -70,7 +73,8 @@ class InvoiceServiceImpl implements InvoiceService
      * @param int invoiceId
      * @ParamType invoiceId int
      */
-    public function deleteInvoice($invoiceId){
+    public function deleteInvoice($invoiceId)
+    {
         //if(AuthServiceImpl::getInstance()->verifyAuth()) {
         $invoiceDAO = new InvoiceDAO();
         return $invoiceDAO->delete($invoiceId);
@@ -83,9 +87,10 @@ class InvoiceServiceImpl implements InvoiceService
      * @ReturnType Invoice[]
      * @throws HTTPException
      */
-    public function findAllInvoice(){
+    public function findAllInvoice()
+    {
 
-        if(AuthServiceImpl::getInstance()->verifyAuth()){
+        if (AuthServiceImpl::getInstance()->verifyAuth()) {
             $invoiceDAO = new InvoiceDAO();
             return $invoiceDAO->getAllInvoice();
         }
@@ -137,6 +142,32 @@ class InvoiceServiceImpl implements InvoiceService
     {
         $invoiceDAO = new InvoiceDAO();
         $invoiceDAO->getAllInvoiceAmountsOfMonth();
+    }
+
+    public function billTenantbyRent()
+    {
+        // get sum of all expenses Amount
+
+        try {
+            $leaseDetails = (new LeaseServiceImpl())->findAllLeases();
+            $leaseAmount = count($leaseDetails);// calculate average
+            $invoiceDAO = new InvoiceDAO();
+            $mydate = date("Y-m-01");
+            for ($i = 0; $i < $leaseAmount; $i++) {
+                $leaseID = $leaseDetails[$i]['leaseid'];
+                $leasemonthlyrent = (new LeaseServiceImpl())->getRentAmountfromLeaseID($leaseDetails[$i]['leaseid']);
+                $inv = new Invoice();
+                $inv->setInvoiceamount($leasemonthlyrent);
+                $inv->setInvoicepaid(0);
+                $inv->setInvoiceleaseid($leaseID);
+                $inv->setInvoicetype('Monthly Rent');
+                $inv->setInvoicestartdate($mydate);
+                $invoiceDAO->createInvoice($inv);
+            }
+        } catch (HTTPException $e) {
+
+        }
+
     }
 
 }
