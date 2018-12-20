@@ -7,6 +7,7 @@
  */
 require_once("config/Autoloader.php");
 
+use controller\AgentPasswordResetController;
 use controller\AuthController;
 use controller\EmailController;
 use controller\ErrorController;
