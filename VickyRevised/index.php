@@ -265,8 +265,22 @@ Router::route_auth("GET", "/invoice/email", $authFunction, function () {
 /*
  * Password
  */
+Router::route("POST", "/password/request", function () {
+    UserPasswordResetController::resetEmail();
+    Router::redirect("/login");
+});
+
 Router::route("GET", "/password/request", function () {
     UserPasswordResetController::requestView();
+});
+
+Router::route("POST", "/password/reset", function () {
+    UserPasswordResetController::reset();
+    Router::redirect("/login");
+});
+
+Router::route("GET", "/password/reset", function () {
+    UserPasswordResetController::resetView();
 });
 
 try {
