@@ -15,7 +15,7 @@ use controller\LeaseController;
 use controller\LoginController;
 use controller\MenuController;
 use controller\MonitoringController;
-use controller\RegisterController;
+use controller\PDFController;
 use controller\UserController;
 use http\HTTPException;
 use http\HTTPHeader;
@@ -64,21 +64,6 @@ Router::route("GET", "/logout", function () {
     AuthController::logout();
     Router::redirect("/login");
 });
-
-####################################################################################################
-
-/*
- * Register Routing
- */
-Router::route("GET", "/register", function () {
-    RegisterController::registerView();
-});
-
-Router::route("POST", "/register", function () {
-    if (UserController::register())
-        Router::redirect("/logout");
-});
-
 
 ####################################################################################################
 
@@ -138,11 +123,6 @@ Router::route("DELETE", "/lease/delete/{id}", function ($id) {
 Router::route("GET", "/monitoring", function () {
     MonitoringController::monitoringView();
 });
-
-
-
-
-
 
 ####################################################################################################
 /*
@@ -243,6 +223,20 @@ Router::route("GET", "/menu", function () {
     MenuController::menuView();
 });
 
+/*
+ * PDF
+ */
+Router::route("GET", "/lease/pdf", function () {
+    PDFController::generatePDFlease();
+});
+
+Router::route("GET", "/expense/pdf", function () {
+    PDFController::generatePDFexpense();
+});
+
+Router::route("GET", "/invoice/pdf", function () {
+    PDFController::generatePDFinvoice();
+});
 
 try {
     HTTPHeader::setHeader("Access-Control-Allow-Origin: *");
