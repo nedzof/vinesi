@@ -22,8 +22,6 @@
     <link rel="stylesheet" href="assets/css/Team-Clean.css">
 </head>
 
-<body>
-
 
 <?php
 //False for Create, True for Update
@@ -97,11 +95,11 @@ $createOrUpdate = !empty($this->invoices) ?>
                     <?php
 
                     if ($createOrUpdate) {
-                        if ($this->invoices->getInvoicepaid() == 1) { ?>
+                        if ($this->invoice->getInvoicepaid() == 1) { ?>
 
                             <input type="checkbox" value="1" checked="checked" name="invoicepaid">
 
-                        <?php } elseif ($this->invoices->getInvoicepaid() == 0) { ?>
+                        <?php } elseif ($this->invoice->getInvoicepaid() == 0) { ?>
 
                             <input type="checkbox" value="1" name="invoicepaid">
 
@@ -113,7 +111,7 @@ $createOrUpdate = !empty($this->invoices) ?>
                     <?php } ?>
                 </div>
 
-                <div class="input-group" role="group" >
+                <div class="input-group" role="group">
                     <input type="submit" class="btn-primary"
                            value="<?php echo $createOrUpdate ? "Update" : "Create" ?>"
                 </div>
@@ -132,5 +130,4 @@ $createOrUpdate = !empty($this->invoices) ?>
 </div>
 </div>
 
-</body>
 </html>

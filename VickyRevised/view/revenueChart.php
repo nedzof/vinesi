@@ -62,8 +62,6 @@
 
 <script>
 
-    let url = 'http://localhost/vinesi/VickyRevised/invoice/getInvoiceAmountOfMonth';
-
     $.ajax({
         url: "http://localhost/vinesi/VickyRevised/invoice/getInvoiceAmountOfMonth",
         method: 'GET',

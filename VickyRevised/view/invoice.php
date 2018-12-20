@@ -48,41 +48,42 @@ use view\TemplateView;
                 <td>
                     <div role="group">
                         <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#ModalCenter">
+                                data-target="#ModalCenter<?php echo $invoice->getInvoiceid() ?>">
                             <i class="ion-android-delete"></i>
                         </button>
                         <a class="btn btn-default" role="button"
-                           href="invoice/update?id=<?php echo $invoice->getInvoiceid(); ?>"><i
+                           href="invoice/update?id=<?php echo $invoice->getInvoiceid() ?>"><i
                                     class="fa fa-edit"></i></a>
                     </div>
-                </td>
 
-                <!-- Modal -->
-                <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalCenterTitle"
-                     aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Deleting Invoice</h5>
-                            </div>
-                            <div class="modal-body">
-                                <p>Mr Andreas Martin, do you want to delete this
-                                    Invoice?
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <button type="button" class="btn btn-primary" data-method="GET"
-                                        onclick="location.href='invoice/delete?id=<?php echo $invoice->getInvoiceid(); ?>'">
-                                    Delete
-                                </button>
+
+                    <div class="modal fade" id="ModalCenter<?php echo $invoice->getInvoiceid() ?>" tabindex="-1"
+                         role="dialog"
+                         aria-labelledby="exampleModalCenterTitle"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Deleting Expense</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Mr Andreas Martin, do you want to delete this Expense?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <a class="btn btn-default" role="button"
+                                       href="invoice/delete?id=<?php echo $invoice->getInvoiceid() ?>"><i
+                                                class="ion-android-delete"></i></a>
+
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </td>
             </tr>
         <?php endforeach; ?>
+
+
         <div role="group">
             <a class="btn btn-default" role="button" href="invoice/create"> <i class="fa fa-plus-square-o"></i></a>
             <a target="_blank" class="btn btn-default" role="button" href="invoice/pdf"> <i

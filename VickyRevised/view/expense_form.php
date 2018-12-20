@@ -22,8 +22,6 @@
     <link rel="stylesheet" href="assets/css/Team-Clean.css">
 </head>
 
-<body>
-</body>
 
 <?php
 //False for Create, True for Update
@@ -37,21 +35,21 @@ $createOrUpdate = !empty($this->expense) ?>
 
                 <?php if ($createOrUpdate) { ?>
                 <div class="form-grou§p"><label class="text-secondary">ExpenseID</label><input
-                        name="expenseid"
-                        value="<?php echo $this->expense->getExpenseid() ?>"
-                        class="form-control"
-                        type="number"
-                        required=""
-                        readonly="readonly">
+                            name="expenseid"
+                            value="<?php echo $this->expense->getExpenseid() ?>"
+                            class="form-control"
+                            type="number"
+                            required=""
+                            readonly="readonly">
 
                     <?php } ?>
 
                     <div class="form-grou§p"><label class="text-secondary">Expense Type</label><input
-                            name="expensetype"
-                            value="<?php echo $createOrUpdate ? $this->expense->getExpensetype() : 0 ?>"
-                            class="form-control"
-                            type="text"
-                            required=""
+                                name="expensetype"
+                                value="<?php echo $createOrUpdate ? $this->expense->getExpensetype() : 0 ?>"
+                                class="form-control"
+                                type="text"
+                                required=""
                     </div>
                     <div class="form-group"><label class="text-secondary">Amount</label><input name="expenseamount"
                                                                                                value="<?php echo $createOrUpdate ? $this->expense->getExpenseamount() : 0 ?>"
@@ -60,13 +58,13 @@ $createOrUpdate = !empty($this->expense) ?>
                                                                                                required="">
                     </div>
 
-                    </div>
+                </div>
                 <div class="form-group"><label class="text-secondary">Expense Date</label><input name="expensestartdate"
                                                                                                  value="<?php echo $createOrUpdate ? $this->expense->getExpensestartdate() : date("Y-m-d"); ?>"
                                                                                                  class="form-control"
                                                                                                  type="date"
                                                                                                  required="">
-                    </div>
+                </div>
                 <div class="form-group"><label class="text-secondary">Expense paid</label>
 
                     <?php
@@ -86,25 +84,25 @@ $createOrUpdate = !empty($this->expense) ?>
                         <input type="checkbox" value="1" name="expensepaid">
 
                     <?php } ?>
-                    </div>
-
-                    <div class="input-group" role="group" >
-                        <input type="submit" class="btn-primary"
-                               value="<?php echo $createOrUpdate ? "Update" : "Create" ?>"
-                        </div>
-                        <div>
-                            <input type="button" class="btn-success" value="Cancel" onclick="goBack()">
-                                 <script>
-                                      function goBack() {
-                                      window.history.back();
-                                       }
-                                 </script>
-                         </div>
-                    </div>
                 </div>
-            </form>
+
+                <div class="input-group" role="group">
+                    <input type="submit" class="btn-primary"
+                           value="<?php echo $createOrUpdate ? "Update" : "Create" ?>"
+                </div>
+                <div>
+                    <input type="button" class="btn-success" value="Cancel" onclick="goBack()">
+                    <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>
+                </div>
         </div>
     </div>
+    </form>
+</div>
+</div>
 </div>
 
 </html>
