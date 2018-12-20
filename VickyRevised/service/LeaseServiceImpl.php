@@ -13,7 +13,6 @@ class LeaseServiceImpl
     public function createLease(Lease $lease)
     {
             $leaseDAO = new LeaseDAO();
-            //$lease->set(AuthServiceImpl::getInstance()->getCurrentUserId());
             return $leaseDAO->create($lease);
 
     }

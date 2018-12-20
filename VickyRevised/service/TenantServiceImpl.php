@@ -25,7 +25,6 @@ class TenantServiceImpl
     public function createTenant(Tenant $tenant)
     {
             $tenantDAO = new TenantDAO();
-            //$tenant->set(AuthServiceImpl::getInstance()->getCurrentUserId());
             return $tenantDAO->create($tenant);
     }
 
