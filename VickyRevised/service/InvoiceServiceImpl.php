@@ -14,7 +14,7 @@ use domain\Invoice;
 use http\HTTPException;
 use http\HTTPStatusCode;
 
-class InvoiceServiceImpl implements InvoiceService
+class InvoiceServiceImpl
 {
     /**
      * @access public
@@ -81,21 +81,16 @@ class InvoiceServiceImpl implements InvoiceService
         //}
     }
 
-    /**
-     * @access public
-     * @return Invoice[]
-     * @ReturnType Invoice[]
-     * @throws HTTPException
-     */
     public function findAllInvoice()
     {
 
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+        // if (AuthServiceImpl::getInstance()->verifyAuth()) {
             $invoiceDAO = new InvoiceDAO();
             return $invoiceDAO->getAllInvoice();
-        }
-        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+        //}
+        //throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
+
 
     public function findInvoiceById($id)
     {
@@ -144,7 +139,7 @@ class InvoiceServiceImpl implements InvoiceService
         $invoiceDAO->getAllInvoiceAmountsOfMonth();
     }
 
-    public function billTenantbyRent()
+    public function billTenantbyRentImpl()
     {
 
         try {
@@ -152,7 +147,7 @@ class InvoiceServiceImpl implements InvoiceService
             $leaseAmount = count($leaseDetails);
             $mydate = date("Y-m-01");
 
-            echo '<pre>';
+            echo '<pre>', print_r($leaseDetails, 1), '</pre>';
 
             for ($i = 0; $i < $leaseAmount; $i++) {
                 $leaseID = $leaseDetails[$i]['leaseid'];
@@ -167,7 +162,6 @@ class InvoiceServiceImpl implements InvoiceService
             }
         } catch (HTTPException $e) {
             $line = $e->getLine();
-            echo "<script>alert(\"$line\")</script>";
         }
 
     }

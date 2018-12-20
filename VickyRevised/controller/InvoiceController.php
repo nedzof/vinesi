@@ -90,7 +90,7 @@ class InvoiceController{
 
     public static function billTenantbyRent()
     {
-        (new InvoiceServiceImpl)->billTenantbyRent();
+        (new InvoiceServiceImpl)->billTenantbyRentImpl();
     }
 
 }
