@@ -205,7 +205,7 @@ Router::route("GET", "/invoice/create", function () {
 
 Router::route("GET", "/invoice/generateaverageinvoice", function () {
     InvoiceController::generateaverageinvoices();
-    Router::redirect("/invoice");
+    Router::redirect("/monitoring");
 
 });
 

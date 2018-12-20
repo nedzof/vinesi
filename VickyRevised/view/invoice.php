@@ -90,6 +90,7 @@ use view\TemplateView;
                         class="fa fa-file-pdf-o"></i></a>
             <a class="btn btn-default" role="button" href="invoice/email"> <i class="fa fa-envelope-o"></i></a>
             <a class="btn btn-default" role="button" href="invoice/generateaverageinvoice"> <i class="ion-document"></i></a>
+            <a class="btn btn-default" role="button" href="invoice/billmonthlyrent"> <i class="ion-card"></i></a>
 
         </div>
     </table>
