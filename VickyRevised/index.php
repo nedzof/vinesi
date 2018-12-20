@@ -219,7 +219,7 @@ Router::route("POST", "/invoice/create", function () {
 
 Router::route("GET", "/invoice/delete", function () {
     if (InvoiceController::deleteInvoice()) {
-        //Router::redirect("/invoice");
+        Router::redirect("/invoice");
     }
 });
 

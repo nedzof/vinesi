@@ -60,9 +60,7 @@ class InvoiceController{
     }
     public static function deleteInvoice(){
 
-        $id = $_GET["invoiceid"] ?? 0;
-        echo "<script>alert(\"$id\")</script>";
-
+        $id = $_GET['id'];
         return (new InvoiceServiceImpl())->deleteInvoice($id);
     }
 
