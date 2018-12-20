@@ -13,7 +13,7 @@ use domain\Tenant;
 use http\HTTPException;
 use http\HTTPStatusCode;
 
-class TenantServiceImpl implements TenantService
+class TenantServiceImpl
 {
     /**
      * @access public
@@ -100,7 +100,6 @@ class TenantServiceImpl implements TenantService
     public function getDropDownTenants($id)
     {
 
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
 
             $tenantlist = [];
 
@@ -119,7 +118,7 @@ class TenantServiceImpl implements TenantService
         }
 
         return $tenantlist;
-        }
+
     }
 
     public function getAllTenantDetails()

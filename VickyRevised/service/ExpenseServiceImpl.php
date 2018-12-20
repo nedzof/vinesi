@@ -15,7 +15,7 @@ use http\HTTPException;
 use http\HTTPStatusCode;
 
 
-class ExpenseServiceImpl implements ExpenseService
+class ExpenseServiceImpl
 {
 
     public function createExpense(Expense $expense)

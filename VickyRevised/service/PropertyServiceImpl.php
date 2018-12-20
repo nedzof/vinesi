@@ -16,7 +16,6 @@ class PropertyServiceImpl
 
     public function getDropDownProperties($id)
     {
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
 
             $propertylist = [];
 
@@ -32,7 +31,6 @@ class PropertyServiceImpl
             }
 
             return $propertylist;
-        }
     }
 
 

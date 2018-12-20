@@ -8,7 +8,7 @@ use domain\Lease;
 use http\HTTPException;
 use http\HTTPStatusCode;
 
-class LeaseServiceImpl implements LeaseService
+class LeaseServiceImpl
 {
 
     public function createLease(Lease $lease)
@@ -76,7 +76,6 @@ class LeaseServiceImpl implements LeaseService
 
     public function getDropDownLeases($id)
     {
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
             $leaselist = [];
 
             $result = (new LeaseDAO())->readAll();
@@ -94,8 +93,7 @@ class LeaseServiceImpl implements LeaseService
 
 
             return $leaselist;
-        }
-        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+
 
     }
 
