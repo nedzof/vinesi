@@ -3,10 +3,11 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Number of late Rate Payments</title>
-    <script async="" src="assets/js/analytics.js"></script>
-    <script src="assets/js/Chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/curl/0.8.9/curl/curl.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/curl/0.8.9/curl-for-jQuery/curl.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+
 
     <style type="text/css">/* Chart.js */
         @-webkit-keyframes chartjs-render-animation {
