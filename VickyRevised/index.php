@@ -253,12 +253,12 @@ Router::route_auth("GET", "/lease/email", $authFunction, function () {
 
 Router::route_auth("GET", "/expense/email", $authFunction, function () {
     EmailController::sendMeMyExpenses();
-    Router::redirect("/menu");
+    Router::redirect("/expense");
 });
 
 Router::route_auth("GET", "/invoice/email", $authFunction, function () {
     EmailController::sendMeMyInvoices();
-    Router::redirect("/menu");
+    Router::redirect("/invoice");
 });
 /*
  * Password
