@@ -1,8 +1,3 @@
-<?php
-if (!isset($page_title)) {
-    $page_title = 'Admin Area';
-}
-?>
 <!DOCTYPE html>
 <html>
 <head>

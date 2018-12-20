@@ -142,7 +142,7 @@ class InvoiceServiceImpl
     public function billTenantbyRentImpl()
     {
 
-        try {
+
             $leaseDetails = (new LeaseServiceImpl())->findAllLeases();
             $leaseAmount = count($leaseDetails);
             $mydate = date("Y-m-01");
@@ -160,9 +160,7 @@ class InvoiceServiceImpl
                 $inv->setInvoicestartdate($mydate);
                 (new InvoiceDAO())->createInvoice($inv);
             }
-        } catch (HTTPException $e) {
-            $line = $e->getLine();
-        }
+
 
     }
 

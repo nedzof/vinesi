@@ -116,17 +116,6 @@ class InvoiceDAO extends BasicDAO
         return null;
     }
 
-    public function billTenantsbyExpense($billamount, $count)
-    {
-        for ($i = 1; $i = $count; $i++) {
-            $inv = new Invoice();
-            $inv->setInvoiceamount($billamount);
-            $inv->setInvoicepaid(0);
-            $inv->setInvoiceleaseid('HAHHA');
-            $inv->setInvoicetype('Rent');
-            $inv->setInvoicestartdate(date("Y-m-d"));
-        }
-    }
 
     public function getAllInvoiceAmountsOfMonth()
     {
