@@ -56,7 +56,7 @@ class LeaseDAO extends BasicDAO
 
     public function readAll()
     {
-        $sql = "SELECT * FROM leasetable";
+        $sql = "SELECT * FROM leasetable ORDER BY leaseid";
         $stmt = $this->pdoInstance->prepare($sql);
         $stmt->execute();
         if ($stmt->rowCount() > 0) {
