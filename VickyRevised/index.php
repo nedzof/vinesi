@@ -19,6 +19,7 @@ use controller\MenuController;
 use controller\MonitoringController;
 use controller\PDFController;
 use controller\UserController;
+use controller\UserPasswordResetController;
 use http\HTTPException;
 use http\HTTPHeader;
 use http\HTTPStatusCode;
@@ -265,7 +266,7 @@ Router::route_auth("GET", "/invoice/email", $authFunction, function () {
  * Password
  */
 Router::route("GET", "/password/request", function () {
-    AgentPasswordResetController::requestView();
+    UserPasswordResetController::requestView();
 });
 
 try {
