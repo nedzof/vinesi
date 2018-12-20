@@ -146,26 +146,28 @@ class InvoiceServiceImpl implements InvoiceService
 
     public function billTenantbyRent()
     {
-        // get sum of all expenses Amount
 
         try {
             $leaseDetails = (new LeaseServiceImpl())->findAllLeases();
-            $leaseAmount = count($leaseDetails);// calculate average
-            $invoiceDAO = new InvoiceDAO();
+            $leaseAmount = count($leaseDetails);
             $mydate = date("Y-m-01");
+
+            echo '<pre>';
+
             for ($i = 0; $i < $leaseAmount; $i++) {
                 $leaseID = $leaseDetails[$i]['leaseid'];
-                $leasemonthlyrent = (new LeaseServiceImpl())->getRentAmountfromLeaseID($leaseDetails[$i]['leaseid']);
+                $leasemonthlyrent = (new LeaseServiceImpl())->getRentAmountfromLeaseID($leaseID);
                 $inv = new Invoice();
                 $inv->setInvoiceamount($leasemonthlyrent);
                 $inv->setInvoicepaid(0);
                 $inv->setInvoiceleaseid($leaseID);
                 $inv->setInvoicetype('Monthly Rent');
                 $inv->setInvoicestartdate($mydate);
-                $invoiceDAO->createInvoice($inv);
+                (new InvoiceDAO())->createInvoice($inv);
             }
         } catch (HTTPException $e) {
-
+            $line = $e->getLine();
+            echo "<script>alert(\"$line\")</script>";
         }
 
     }

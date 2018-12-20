@@ -224,7 +224,7 @@ Router::route("GET", "/invoice/delete", function () {
 
 Router::route("GET", "/invoice/billtenantbyrent", function () {
     InvoiceController::billTenantbyRent();
-    Router::redirect("/invoice");
+    //Router::redirect("/invoice");
 
 });
 
