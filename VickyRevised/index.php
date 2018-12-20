@@ -185,6 +185,11 @@ Router::route("GET", "/invoice", function () {
    InvoiceController::invoiceView();
 });
 
+Router::route("GET", "/invoice/getInvoiceAmountOfMonth", function () {
+    InvoiceController::invoiceAmountOfMonth();
+});
+
+
 Router::route("GET", "/invoice/update", function () {
     if (InvoiceController::invoiceUpdateOrCreate()) {
         Router::redirect("/invoice");
@@ -199,6 +204,12 @@ Router::route("POST", "/invoice/update", function () {
 
 Router::route("GET", "/invoice/create", function () {
     InvoiceController::createInvoiceForm();
+
+});
+
+Router::route("GET", "/invoice/generateaverageinvoice", function () {
+    InvoiceController::generateaverageinvoices();
+    Router::redirect("/invoice");
 
 });
 

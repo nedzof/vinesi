@@ -28,7 +28,7 @@ class InvoiceServiceImpl implements InvoiceService
         //if(AuthServiceImpl::getInstance()->verifyAuth()) {
         $invoiceDAO = new InvoiceDAO();
         //$invoice->set(AuthServiceImpl::getInstance()->getCurrentUserId());
-        return $invoiceDAO->create($invoice);
+        return $invoiceDAO->createInvoice($invoice);
         //}
         //throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
@@ -101,25 +101,42 @@ class InvoiceServiceImpl implements InvoiceService
         throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
-    public function billTenantsbyExpense($month)
+    public function billTenantsbyExpense()
     {
-        $sum = (new ExpenseServiceImpl())->getExpenseSumImpl();
-        $tenantIDs = (new TenantServiceImpl())->getDropDownTenants();
-        $count = (new TenantServiceImpl())->getNumberOfTenantsImpl();
-        $billamount = $sum / $count;
+        // get sum of all expenses Amount
+        $expensesSum = (new ExpenseServiceImpl())->getExpenseSumImpl();
+
+        // get array of all tenants
+        $tenantDetails = (new TenantServiceImpl())->getAllTenantDetails();
+
+        //echo '<pre>';
+        //print_r($tenantDetails);die;
+
+        $tenantAmount = count($tenantDetails);
+
+        // calculate average
+        $averageExpenseAmount = intval($expensesSum / $tenantAmount);
 
         $invoiceDAO = new InvoiceDAO();
-        $invoiceArray = [];
-        for ($i = 1; $i = $count; $i++) {
+        $mydate = date("Y-m-01");
+
+        for ($i = 0; $i < $tenantAmount; $i++) {
+            $leaseID = (new LeaseServiceImpl())->getLeaseIDfromTenantID($tenantDetails[$i]['tenantid']);
             $inv = new Invoice();
-            $inv->setInvoiceamount($billamount);
+            $inv->setInvoiceamount($averageExpenseAmount);
             $inv->setInvoicepaid(0);
-            $inv->setInvoiceleaseid('HAHHA');
+            $inv->setInvoiceleaseid($leaseID);
             $inv->setInvoicetype('Rent');
-            $inv->setInvoicestartdate(date($month));
+            $inv->setInvoicestartdate($mydate);
             $invoiceDAO->createInvoice($inv);
         }
 
+    }
+
+    public function invoiceAmountOfMonth()
+    {
+        $invoiceDAO = new InvoiceDAO();
+        $invoiceDAO->getAllInvoiceAmountsOfMonth();
     }
 
 }

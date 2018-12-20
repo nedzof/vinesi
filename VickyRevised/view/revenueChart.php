@@ -57,70 +57,29 @@
 
 
 <script>
-    var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var color = Chart.helpers.color;
-    var horizontalBarChartData = {
-        labels: MONTHS,
-        datasets: [{
-            label: 'Payments due',
-            backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-            borderColor: window.chartColors.red,
-            borderWidth: 1,
-            data: [
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor()
-            ]
-        }, {
-            label: 'Payments on time',
-            backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
-            borderColor: window.chartColors.blue,
-            data: [
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor()
-            ]
-        }]
+    var chartdata = [{"suminvoiceamount": 2333, "invoiceleaseid": 26}, {
+        "suminvoiceamount": 2333,
+        "invoiceleaseid": 27
+    }, {"suminvoiceamount": 2333.00, "invoiceleaseid": 28}, {
+        "suminvoiceamount": 20333.00,
+        "invoiceleaseid": 29
+    }, {"suminvoiceamount": 17333.00, "invoiceleaseid": 30}, {
+        "suminvoiceamount": 11333.00,
+        "invoiceleaseid": 31
+    }, {"suminvoiceamount": 2333.00, "invoiceleaseid": 32}, {
+        "suminvoiceamount": 2333.00,
+        "invoiceleaseid": 33
+    }, {"suminvoiceamount": 2333.00, "invoiceleaseid": 34}, {"suminvoiceamount": 2333.00, "invoiceleaseid": 35}];
 
-    };
+    var dataarr = [];
+    for (i = 0; i < chartdata.length; i++) {
+        dataarr.push(chartdata[i].suminvoiceamount);
+    }
 
-    window.onload = function () {
-        var ctx = document.getElementById('canvas').getContext('2d');
-        window.myHorizontalBar = new Chart(ctx, {
-            type: 'horizontalBar',
-            data: horizontalBarChartData,
-            options: {
-                // Elements options apply to all of the options unless overridden in a dataset
-                // In this case, we are setting the border of each horizontal bar to be 2px wide
-                elements: {
-                    rectangle: {
-                        borderWidth: 2,
-                    }
-                },
-                responsive: true,
-                legend: {
-                    position: 'middle',
-                },
-                title: {
-                    display: true,
-                    text: 'Amount of rent payments within deadline'
-                }
-            }
-        });
-
-    };
+    console.log(dataarr);
 
 
 </script>
-
 
 </body>
 </html>

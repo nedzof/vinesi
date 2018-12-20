@@ -15,7 +15,7 @@ use PDO;
 
 class InvoiceDAO extends BasicDAO
 {
-    public function create(Invoice $invoice)
+    public function createInvoice(Invoice $invoice)
     {
 
         try {
@@ -26,7 +26,7 @@ class InvoiceDAO extends BasicDAO
             $stmt->bindValue(':invoicetype', $invoice->getInvoicetype());
             $stmt->bindValue(':invoiceamount', $invoice->getInvoiceamount());
             $stmt->bindValue(':invoiceleaseid', $invoice->getInvoiceleaseid());
-            $stmt->bindValue(':invoicestartdate', $invoice->getInvoicestartdate(true));
+            $stmt->bindValue(':invoicestartdate', $invoice->getInvoicestartdate());
             $stmt->bindValue(':invoicepaid', $invoice->getInvoicepaid());
             $stmt->execute();
         } catch (Exception $e) {
@@ -107,8 +107,6 @@ class InvoiceDAO extends BasicDAO
         $stmt = $this->pdoInstance->prepare('SELECT * FROM invoicetable ORDER BY invoiceid;');
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_CLASS, Invoice::class);
-
-
     }
 
     public function getInvoiceById($invoiceid)
@@ -133,5 +131,15 @@ class InvoiceDAO extends BasicDAO
             $inv->setInvoicetype('Rent');
             $inv->setInvoicestartdate(date("Y-m-d"));
         }
+    }
+
+    public function getAllInvoiceAmountsOfMonth()
+    {
+        $sql = "SELECT SUM(invoiceamount) AS suminvoiceamount, invoiceleaseid FROM invoicetable WHERE ( EXTRACT( MONTH FROM invoicestartdate) = EXTRACT ( MONTH FROM NOW() ) ) GROUP BY invoiceleaseid;";
+        $stmt = $this->pdoInstance->prepare($sql);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($results);
+        return null;
     }
 }

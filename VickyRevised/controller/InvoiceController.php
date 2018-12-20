@@ -38,7 +38,7 @@ class InvoiceController{
 
         try {
             $invoice = new Invoice();
-            $invoice->setInvoiceid($_POST["invoiceid"]);
+            $invoice->setInvoiceid($_POST["invoiceid"] ?? null);
             $invoice->setInvoicetype($_POST["invoicetype"] ?? "");
             $invoice->setInvoiceamount($_POST["invoiceamount"] ?? 0);
             $invoice->setInvoiceleaseid($_POST["invoiceleaseid"] ?? null);
@@ -78,5 +78,15 @@ class InvoiceController{
         } catch (HTTPException $e) {
             HTTPStatusCode::HTTP_401_UNAUTHORIZED;
         }
+    }
+
+    public static function generateaverageinvoices()
+    {
+        (new InvoiceServiceImpl)->billTenantsbyExpense();
+    }
+
+    public static function invoiceAmountOfMonth()
+    {
+        (new InvoiceServiceImpl)->invoiceAmountOfMonth();
     }
 }

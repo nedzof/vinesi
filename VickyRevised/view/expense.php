@@ -47,7 +47,7 @@ use view\TemplateView;
                 <td>
                     <div role="group">
                         <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#ModalCenter">
+                                data-target="#ModalCenter<?php echo $expense->getExpenseid() ?>">
                             <i class="ion-android-delete"></i>
                         </button>
                         <a class="btn btn-default" role="button"
@@ -56,7 +56,8 @@ use view\TemplateView;
                     </div>
 
 
-                    <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog"
+                    <div class="modal fade" id="ModalCenter<?php echo $expense->getExpenseid() ?>" tabindex="-1"
+                         role="dialog"
                          aria-labelledby="exampleModalCenterTitle"
                          aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">

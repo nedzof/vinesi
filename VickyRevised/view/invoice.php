@@ -88,6 +88,8 @@ use view\TemplateView;
             <a target="_blank" class="btn btn-default" role="button" href="invoice/pdf"> <i
                         class="fa fa-file-pdf-o"></i></a>
             <a class="btn btn-default" role="button" href="invoice/email"> <i class="fa fa-envelope-o"></i></a>
+            <a class="btn btn-default" role="button" href="invoice/generateaverageinvoice"> <i class="ion-document"></i></a>
+
         </div>
     </table>
 </div>

@@ -118,6 +118,11 @@ class TenantServiceImpl implements TenantService
         return $tenantlist;
     }
 
+    public function getAllTenantDetails()
+    {
+        return (new TenantDAO())->readAll();
+    }
+
     public function getTenantlastnameById($id)
     {
         $tenantDAO = new TenantDAO();

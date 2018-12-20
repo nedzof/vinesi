@@ -135,4 +135,14 @@ class LeaseDAO extends BasicDAO
         }
         return null;
     }
+
+    public function getLeaseIDfromTenantID($tenantid)
+    {
+        $sql = "SELECT leaseid FROM leasetable WHERE tenttable_tenantid = :tenantid";
+        $stmt = $this->pdoInstance->prepare($sql);
+        $stmt->bindValue(':tenantid', $tenantid);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC)['leaseid'];
+        return $result;
+    }
 }

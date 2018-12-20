@@ -126,5 +126,11 @@ class LeaseServiceImpl implements LeaseService
         return $leaselist;
     }
 
+    public function getLeaseIDfromTenantID($tenantid)
+    {
+        $leaseDAO = new LeaseDAO();
+        return $leaseDAO->getLeaseIDfromTenantID($tenantid);
+    }
+
 
 }
