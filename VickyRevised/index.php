@@ -187,13 +187,12 @@ Router::route("GET", "/invoice/getInvoiceAmountOfMonth", function () {
 });
 
 
-Router::route("GET", "/invoice/update", function () {
-    if (InvoiceController::invoiceUpdateOrCreate()) {
-        Router::redirect("/invoice");
-    };
+Router::route("GET", "/expense/update", function () {
+    InvoiceController::createInvoiceForm();
+
 });
 
-Router::route("POST", "/invoice/update", function () {
+Router::route("POST", "/expense/update", function () {
     if (InvoiceController::invoiceUpdateOrCreate()) {
         Router::redirect("/invoice");
     };

@@ -115,7 +115,6 @@ class ExpenseDAO extends BasicDAO
             return $result;
         }
         return null;
-
     }
 
     public function getExpenseSum()
