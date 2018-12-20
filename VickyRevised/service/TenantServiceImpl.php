@@ -11,7 +11,6 @@ namespace service;
 use dao\TenantDAO;
 use domain\Tenant;
 use http\HTTPException;
-use http\HTTPStatusCode;
 
 class TenantServiceImpl
 {
@@ -25,12 +24,9 @@ class TenantServiceImpl
      */
     public function createTenant(Tenant $tenant)
     {
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
             $tenantDAO = new TenantDAO();
             //$tenant->set(AuthServiceImpl::getInstance()->getCurrentUserId());
             return $tenantDAO->create($tenant);
-        }
-        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
     /**
@@ -43,11 +39,8 @@ class TenantServiceImpl
      */
     public function readTenant($tenantId)
     {
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
             $tenantDAO = new TenantDAO();
             return $tenantDAO->readTenantById($tenantId);
-        }
-        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
     /**
@@ -60,11 +53,8 @@ class TenantServiceImpl
      */
     public function updateTenant(Tenant $tenant)
     {
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
             $tenantDAO = new TenantDAO();
             return $tenantDAO->update($tenant);
-        }
-        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
     /**
@@ -74,27 +64,19 @@ class TenantServiceImpl
      */
     public function deleteTenant($tenantId)
     {
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
+
             $tenantDAO = new TenantDAO();
             $tenant = new Tenant();
             $tenant->setTenantid($tenantId);
             $tenantDAO->delete($tenant);
-        }
+
     }
 
-    /**
-     * @access public
-     * @return Tenant[]
-     * @ReturnType Tenant[]
-     * @throws HTTPException
-     */
+
     public function findAllTenants()
     {
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
             $tenantDAO = new TenantDAO();
             return $tenantDAO->getAllTenants(AuthServiceImpl::getInstance()->getCurrentUserId());
-        }
-        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
     }
 
     public function getDropDownTenants($id)
@@ -123,28 +105,22 @@ class TenantServiceImpl
 
     public function getAllTenantDetails()
     {
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
-
             return (new TenantDAO())->readAll();
-        }
+
     }
 
     public function getTenantlastnameById($id)
     {
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
-
         $tenantDAO = new TenantDAO();
         return $tenantDAO->getTenantLastNameById($id);
-        }
+
     }
 
     public function getNumberOfTenantsImpl()
     {
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
-
         $tenantDAO = new TenantDAO();
         return $tenantDAO->getNumberOfTenants();
-        }
+
     }
 
 

@@ -11,145 +11,116 @@ namespace service;
 
 use dao\InvoiceDAO;
 use domain\Invoice;
-use http\HTTPException;
-use http\HTTPStatusCode;
 
 class InvoiceServiceImpl
 {
-    /**
-     * @access public
-     * @param Invoice invoice
-     * @return Invoice
-     * @ParamType Invoice invoice
-     * @ReturnType Invoice
-     * @throws HTTPException
-     */
+
     public function createInvoice(Invoice $invoice)
     {
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
-            $invoiceDAO = new InvoiceDAO();
-            return $invoiceDAO->createInvoice($invoice);
-        }
-        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+        $invoiceDAO = new InvoiceDAO();
+        return $invoiceDAO->createInvoice($invoice);
+
     }
 
     public function readInvoice($invoiceId)
     {
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
-            $invoiceDAO = new InvoiceDAO();
-            return $invoiceDAO->readById($invoiceId);
-        }
-        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+        $invoiceDAO = new InvoiceDAO();
+        return $invoiceDAO->readById($invoiceId);
+
     }
 
 
     public function updateInvoice(Invoice $invoice)
     {
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
-            $invoiceDAO = new InvoiceDAO();
-            return $invoiceDAO->update($invoice);
-        }
-        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+        $invoiceDAO = new InvoiceDAO();
+        return $invoiceDAO->update($invoice);
+
     }
 
     public function deleteInvoice($invoiceId)
     {
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
-            $invoiceDAO = new InvoiceDAO();
-            return $invoiceDAO->delete($invoiceId);
-        }
-        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+        $invoiceDAO = new InvoiceDAO();
+        return $invoiceDAO->delete($invoiceId);
 
     }
 
     public function findAllInvoice()
     {
 
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
-            $invoiceDAO = new InvoiceDAO();
-            return $invoiceDAO->getAllInvoice();
-        }
-        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+        $invoiceDAO = new InvoiceDAO();
+        return $invoiceDAO->getAllInvoice();
     }
 
 
     public function findInvoiceById($id)
     {
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
-            $invoiceDAO = new InvoiceDAO();
-            return $invoiceDAO->getInvoiceById($id);
-        }
-        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+        $invoiceDAO = new InvoiceDAO();
+        return $invoiceDAO->getInvoiceById($id);
+
     }
 
     public function billTenantsbyExpense()
     {
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
 
-            // get sum of all expenses Amount
-            $expensesSum = (new ExpenseServiceImpl())->getExpenseSumImpl();
+        // get sum of all expenses Amount
+        $expensesSum = (new ExpenseServiceImpl())->getExpenseSumImpl();
 
-            // get array of all tenants
-            $tenantDetails = (new TenantServiceImpl())->getAllTenantDetails();
+        // get array of all tenants
+        $tenantDetails = (new TenantServiceImpl())->getAllTenantDetails();
 
-            //echo '<pre>';
-            //print_r($tenantDetails);die;
+        //echo '<pre>';
+        //print_r($tenantDetails);die;
 
-            $tenantAmount = count($tenantDetails);
+        $tenantAmount = count($tenantDetails);
 
-            // calculate average
-            $averageExpenseAmount = intval($expensesSum / $tenantAmount);
+        // calculate average
+        $averageExpenseAmount = intval($expensesSum / $tenantAmount);
 
-            $invoiceDAO = new InvoiceDAO();
-            $mydate = date("Y-01-01");
+        $invoiceDAO = new InvoiceDAO();
+        $mydate = date("Y-01-01");
 
-            for ($i = 0; $i < $tenantAmount; $i++) {
-                $leaseID = (new LeaseServiceImpl())->getLeaseIDfromTenantID($tenantDetails[$i]['tenantid']);
-                $inv = new Invoice();
-                $inv->setInvoiceamount($averageExpenseAmount);
-                $inv->setInvoicepaid(0);
-                $inv->setInvoiceleaseid($leaseID);
-                $inv->setInvoicetype('Annual Expense');
-                $inv->setInvoicestartdate($mydate);
-                $invoiceDAO->createInvoice($inv);
-            }
+        for ($i = 0; $i < $tenantAmount; $i++) {
+            $leaseID = (new LeaseServiceImpl())->getLeaseIDfromTenantID($tenantDetails[$i]['tenantid']);
+            $inv = new Invoice();
+            $inv->setInvoiceamount($averageExpenseAmount);
+            $inv->setInvoicepaid(0);
+            $inv->setInvoiceleaseid($leaseID);
+            $inv->setInvoicetype('Annual Expense');
+            $inv->setInvoicestartdate($mydate);
+            $invoiceDAO->createInvoice($inv);
         }
-        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+
 
     }
 
     public function invoiceAmountOfMonth()
     {
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
-            $invoiceDAO = new InvoiceDAO();
-            $invoiceDAO->getAllInvoiceAmountsOfMonth();
-        }
-        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
+        $invoiceDAO = new InvoiceDAO();
+        $invoiceDAO->getAllInvoiceAmountsOfMonth();
+
 
     }
 
     public function billTenantbyRentImpl()
     {
-        if (AuthServiceImpl::getInstance()->verifyAuth()) {
 
-            $leaseDetails = (new LeaseServiceImpl())->findAllLeases();
-            $leaseAmount = count($leaseDetails);
-            $mydate = date("Y-m-01");
+        $leaseDetails = (new LeaseServiceImpl())->findAllLeases();
+        $leaseAmount = count($leaseDetails);
+        $mydate = date("Y-m-01");
 
 
-            for ($i = 0; $i < $leaseAmount; $i++) {
-                $leaseID = $leaseDetails[$i]['leaseid'];
-                $leasemonthlyrent = (new LeaseServiceImpl())->getRentAmountfromLeaseID($leaseID);
-                $inv = new Invoice();
-                $inv->setInvoiceamount($leasemonthlyrent);
-                $inv->setInvoicepaid(0);
-                $inv->setInvoiceleaseid($leaseID);
-                $inv->setInvoicetype('Monthly Rent');
-                $inv->setInvoicestartdate($mydate);
-                (new InvoiceDAO())->createInvoice($inv);
-            }
+        for ($i = 0; $i < $leaseAmount; $i++) {
+            $leaseID = $leaseDetails[$i]['leaseid'];
+            $leasemonthlyrent = (new LeaseServiceImpl())->getRentAmountfromLeaseID($leaseID);
+            $inv = new Invoice();
+            $inv->setInvoiceamount($leasemonthlyrent);
+            $inv->setInvoicepaid(0);
+            $inv->setInvoiceleaseid($leaseID);
+            $inv->setInvoicetype('Monthly Rent');
+            $inv->setInvoicestartdate($mydate);
+            (new InvoiceDAO())->createInvoice($inv);
+
         }
-        throw new HTTPException(HTTPStatusCode::HTTP_401_UNAUTHORIZED);
 
 
     }
