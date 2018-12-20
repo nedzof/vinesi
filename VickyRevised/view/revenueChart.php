@@ -7,6 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
 
 
     <style type="text/css">/* Chart.js */
@@ -32,7 +33,6 @@
             -webkit-animation: chartjs-render-animation 0.001s;
             animation: chartjs-render-animation 0.001s;
         }</style>
-    <script src="assets/js/utils.js"></script>
     <style>
         canvas {
             -moz-user-select: none;
@@ -62,52 +62,48 @@
 
 <script>
 
+    let url = 'http://localhost/vinesi/VickyRevised/invoice/getInvoiceAmountOfMonth';
 
-    async function getmyData(checkCondition) {
-        let url = 'http://localhost/vinesi/VickyRevised/invoice/getInvoiceAmountOfMonth';
-        // read our JSON
-        let response = await fetch(url);
-        let out = await response.json();
-        if (checkCondition == 1) {
-            labels = out.map(a => a.invoiceleaseid);
-            return labels;
-        } else {
-            datac = out.map(b => b.suminvoiceamount);
-            return datac;
-        }
-    }
-
-
-    var barChartData = {
-        labels: getmyData(1),
-        datasets: [{
-            label: 'Dataset 1',
-            backgroundColor: Chart.helpers.color(window.chartColors.red).alpha(0.5).rgbString(),
-            borderColor: window.chartColors.red,
-            borderWidth: 1,
-            data: getmyData(0),
-        }]
-
-    };
-
-    window.onload = function () {
-        var ctx = document.getElementById('canvas').getContext('2d');
-        window.myBar = new Chart(ctx, {
-            type: 'bar',
-            data: barChartData,
-            options: {
-                responsive: true,
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: 'Revenue by lease this month'
-                },
+    $.ajax({
+        url: "http://localhost/vinesi/VickyRevised/invoice/getInvoiceAmountOfMonth",
+        method: 'GET',
+        dataType: 'json',
+        success: function (response) {
+            var label = [];
+            var data = [];
+            for (var i = 0; i < response.length; i++) {
+                label.push(response[i].invoiceleaseid);
+                data.push(response[i].suminvoiceamount);
             }
-        });
+            var barChartData = {
+                labels: label,
+                datasets: [{
+                    label: 'Dataset 1',
+                    backgroundColor: "rgba(153,255,51,0.4)",
+                    borderColor: "rgba(153,255,51,0.4)",
+                    borderWidth: 1,
+                    data: data,
+                }]
 
-    };
+            };
+
+            var ctx = document.getElementById('canvas').getContext('2d');
+            var graph = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Revenue by lease this month'
+                    },
+                }
+            });
+        }
+    });
 
 
 </script>
