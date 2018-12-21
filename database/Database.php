@@ -28,7 +28,7 @@ class Database
 
         try {
             // create a PostgreSQL database connection
-            self::$pdoInstance = new PDO($dsn);
+            self::$pdoInstance = new PDO($dsn, $_user, $_password);
 
             // display a message if connected to the PostgreSQL successfully
             if (self::$pdoInstance) {
