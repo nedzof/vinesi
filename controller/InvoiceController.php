@@ -26,11 +26,6 @@ class InvoiceController
             $contentView->invoices = (new InvoiceDAO())->getAllInvoice();
             LayoutRendering::basicLayout($contentView);
 
-            /*
-            $contentView = new TemplateView("lease.php");
-            $contentView->leases = (new LeaseServiceImpl())->findAllLeases();
-            LayoutRendering::basicLayout($contentView);
-*/
         } catch (HTTPException $e) {
             HTTPStatusCode::HTTP_401_UNAUTHORIZED;
 

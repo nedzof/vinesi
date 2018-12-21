@@ -13,7 +13,6 @@ class LeaseDAO extends BasicDAO
     public function create(Lease $lease)
     {
 
-        //sql> INSERT INTO "public"."leasetable" ("leaseid", "leasemonthlyrent", "leaseutilities", "leasepaymentmethod", "leasedeposit", "leasestart", "leaseend", "propertytable_propertyid", "tenttable_tenantid") VALUES (DEFAULT, 233, 393, 'PayPal', 1200, '2018-12-16 14:10:06.164000', '2018-12-16 14:10:08.954000', 4, 1)
         try {
             $sql = "INSERT INTO leasetable (leaseid, leasemonthlyrent, leaseutilities, leasepaymentmethod, leasedeposit, leasestart, leaseend, propertytable_propertyid, tenttable_tenantid) 
             VALUES (DEFAULT, :leasemonthlyrent, :leaseutilities, :leasepaymentmethod, :leasedeposit, :leasestart, :leaseend, :propertytable_propertyid, :tenttable_tenantid)";

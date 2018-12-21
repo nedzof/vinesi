@@ -28,11 +28,6 @@ class ExpenseController
             $contentView->expenses = (new ExpenseDAO())->getAllExpenses();
             LayoutRendering::basicLayout($contentView);
 
-            /*
-            $contentView = new TemplateView("lease.php");
-            $contentView->leases = (new LeaseServiceImpl())->findAllLeases();
-            LayoutRendering::basicLayout($contentView);
-*/
         } catch (HTTPException $e) {
             HTTPStatusCode::HTTP_401_UNAUTHORIZED;
 
