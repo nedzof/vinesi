@@ -36,8 +36,8 @@ class Database
                 self::$pdoInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
         } catch (PDOException $e) {
-            // report error message
             echo $e->getMessage();
+            echo $e->getLine();
         }
 
 
