@@ -24,12 +24,15 @@ class Database
         $_port = Config::get("database.port");
         $_password = Config::get("database.password");
 
-        $dsn = "pgsql:host=$_host;dbname=$_dbname;user=$_user;password=$_password";
+        $connection_string="dsn=pgsql:host=$_host;dbname=$_dbname;user=$_user;password=$_password";
+        parse_str($connection_string, $params);
+
         //$dsn = "pgsql:host=$_host;port=$_port;dbname=$_dbname;user=$_user;password=$_password";
 
         try {
             // create a PostgreSQL database connection
-            self::$pdoInstance = new PDO($dsn, $_user, $_password);
+            //self::$pdoInstance = new PDO($dsn, $_user, $_password);
+            self::$pdoInstance = new PDO($params['dsn'], @$params['username'], @$params['password']);
 
             // display a message if connected to the PostgreSQL successfully
             if (self::$pdoInstance) {
