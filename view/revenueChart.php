@@ -4,9 +4,6 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Number of late Rate Payments</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
     <script src="assets/js/jquery.min.js"></script>
 
 
@@ -19,7 +16,6 @@
                 opacity: 1
             }
         }
-
         @keyframes chartjs-render-animation {
             from {
                 opacity: 0.99
@@ -28,7 +24,6 @@
                 opacity: 1
             }
         }
-
         .chartjs-render-monitor {
             -webkit-animation: chartjs-render-animation 0.001s;
             animation: chartjs-render-animation 0.001s;
@@ -61,9 +56,8 @@
 
 
 <script>
-
     $.ajax({
-        url: "http://localhost/vinesi/VickyRevised/invoice/getInvoiceAmountOfMonth",
+        url: "<?php echo $GLOBALS["ROOT_URL"]; ?>/invoice/getInvoiceAmountOfMonth",
         method: 'GET',
         dataType: 'json',
         success: function (response) {
@@ -82,9 +76,7 @@
                     borderWidth: 1,
                     data: data,
                 }]
-
             };
-
             var ctx = document.getElementById('canvas').getContext('2d');
             var graph = new Chart(ctx, {
                 type: 'bar',
@@ -102,8 +94,6 @@
             });
         }
     });
-
-
 </script>
 
 </body>
