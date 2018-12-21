@@ -21,7 +21,7 @@ class Database
         $_host = Config::get("database.host");
         $_dbname = Config::get("database.name");
         $_user = Config::get("database.user");
-        $_port = (int)Config::get("database.port");
+        $_port = /**(int)*/Config::get("database.port");
         $_password = Config::get("database.password");
 
         $dsn = "pgsql:host=$_host;port=$_port;dbname=$_dbname;user=$_user;password=$_password";
