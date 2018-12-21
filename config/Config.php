@@ -28,6 +28,7 @@ class Config
         } else if (file_exists("../" . self::$iniFile)) {
             self::$config = parse_ini_file("../" . self::$iniFile);
         } else {
+
             self::loadENV();
         }
     }
