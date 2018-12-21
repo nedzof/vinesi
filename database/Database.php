@@ -24,7 +24,8 @@ class Database
         $_port = Config::get("database.port");
         $_password = Config::get("database.password");
 
-        $dsn = "pgsql:host=$_host;port=$_port;dbname=$_dbname;user=$_user;password=$_password";
+        $dsn = "pgsql:host=$_host;dbname=$_dbname;user=$_user;password=$_password";
+        //$dsn = "pgsql:host=$_host;port=$_port;dbname=$_dbname;user=$_user;password=$_password";
 
         try {
             // create a PostgreSQL database connection
