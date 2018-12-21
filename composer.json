@@ -1,0 +1,13 @@
+{
+  "name": "vinesi",
+  "description": "vinesi",
+  "authors": [
+    {
+      "name": "Nedzo Fetahovic",
+      "email": "nedzo.fetahovic@students.fhnw.ch"
+    }
+  ],
+  "require": {
+    "php": "~7.2.0"
+  }
+}
